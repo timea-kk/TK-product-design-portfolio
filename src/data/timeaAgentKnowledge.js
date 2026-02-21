@@ -15,6 +15,10 @@ export const KNOWLEDGE = [
     answer: "I'm based in Berlin.",
   },
   {
+    keywords: ['how many years', 'years of experience', 'how long', 'experience', 'how much experience'],
+    answer: "I have over 12 years of experience in product design, UX/UI, design systems, and research-led work—from early roles through to my current role at Ecosia.",
+  },
+  {
     keywords: ['contact', 'email', 'reach', 'get in touch', 'hire', 'work together'],
     answer: "You can reach me at work@timea.cc. I'm open to new projects and conversations.",
   },
