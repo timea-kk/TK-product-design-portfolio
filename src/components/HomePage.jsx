@@ -9,6 +9,7 @@
 import { Header } from './Header';
 import { Logo } from './Logo';
 import { RotatingDescriptor } from './RotatingDescriptor';
+import { TimeaAgent } from './TimeaAgent';
 
 /** Placeholder project data until real case studies and routes exist. slug is used as list key and future route. */
 const PLACEHOLDER_PROJECTS = [
@@ -19,7 +20,7 @@ const PLACEHOLDER_PROJECTS = [
 
 export function HomePage() {
   return (
-    <div className="min-h-screen bg-[var(--color-surface)]">
+    <div className="min-h-screen bg-[var(--color-surface)] pb-24">
       <Header />
 
       <main>
@@ -79,6 +80,9 @@ export function HomePage() {
           </div>
         </div>
       </footer>
+
+      {/* Sticky chat bar: visitors can ask about Timea’s experience; answers from local knowledge base. */}
+      <TimeaAgent />
     </div>
   );
 }

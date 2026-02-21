@@ -207,4 +207,5 @@ Theme and a11y settings live in ThemeContext and A11yContext; the CSS files use 
 
 - **PROJECT_BRIEF.md** — Full scope, themes, accessibility, and collaboration approach.
 - **CV_CONTEXT.md** — Career and copy used on the site.
+- **AGENT_SETUP.md** — How to enable the LLM chat agent (OpenAI + Vercel).
 - **public/LOGO-INSTRUCTIONS.md** — Notes on the logo asset.
