@@ -67,6 +67,14 @@ export const KNOWLEDGE = [
     answer: "Sustainability and ethical design are central to me. At Ecosia we're mission-driven: 100% of profits go to climate projects. I care about making design inclusive and accessible and using it for something genuinely good.",
   },
   {
+    keywords: ['what is it like working with you', 'like working with you', 'work with you', 'collaborat', 'working with me', 'how do you work', 'your style'],
+    answer: "I care about doing good work, making things clear, and leaving projects better than I found them. I focus on design systems, collaboration, design for growth, strategy, mentoring, and process—and I keep the team involved. People say collaboration with me is a 4.9★ experience.",
+  },
+  {
+    keywords: ['enjoy', 'love about', 'like most', 'favourite', 'favorite', 'passion', 'what do you like', 'strengths', 'good at'],
+    answer: "I enjoy complex problem solving, designing for growth with experiments and data, and building systems that scale. I like bringing clarity when things feel messy, co-creating with teams, and connecting design work to real impact. Evidence-based design and ownership are important to me.",
+  },
+  {
     keywords: ['resume', 'cv', 'download'],
     answer: "There's a 'Download CV' link in the footer. If you don't see it yet, you can email me at work@timea.cc and I'll send it.",
   },
