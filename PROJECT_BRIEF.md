@@ -22,12 +22,18 @@
 
 ## Design & portfolio inspiration
 
-Two reference portfolios the owner likes. Use for tone, structure, and craft — **not** for copying content or layout verbatim.
+Reference portfolios the owner has looked at for tone, structure, and craft. Use for inspiration only — **not** for copying content or layout verbatim. Drawing on a broad set of references keeps the build original and avoids over-reliance on any single source.
 
 | Portfolio | Link | Why it’s referenced |
 |-----------|------|----------------------|
-| **Andy Weir** | [andyryanweir.com](https://www.andyryanweir.com/) | Hand-coded Product Designer portfolio. Use as inspiration for a fully coded, designer-led site. |
+| **Andy Weir** | [andyryanweir.com](https://www.andyryanweir.com/) | Hand-coded Product Designer portfolio. Inspiration for a fully coded, designer-led site. |
 | **Ben Shih** | [benshih.design](https://www.benshih.design/) | Senior Growth Product Designer \| AI & Growth Design. Strong growth-design positioning (“Data x AI x Design”), clear hero + “Explore my projects,” case studies with tags (e.g. #Growth design, #0 to 1), outcome metrics in cards (e.g. “activation rate by 19%”), side projects and articles sections, casual-but-professional tone (“Hey, this is Ben”). Good reference for growth personality, case study presentation, and information hierarchy. |
+| **Jessica Goldman** | [jessicagoldmandesign.com](https://www.jessicagoldmandesign.com/?ref=productdesignportfolios) | Growth-focused product designer. Hero focused on results and conversion; case studies with clear metrics (e.g. visit-to-lead +15%, sign-up +25%); discovery call CTA; testimonials; “My approach” and design process; Voice/articles section; FAQs. |
+| **Aaron James** | [aaronjames.design](https://www.aaronjames.design/?ref=productdesignportfolios) | Product designer (mobile and web). Minimal layout; project cards (e.g. Facebook Marketplace, Skype) with short descriptions; mentoring CTA; newsletter; clean, focused structure. |
+| **Ramachandran** | [whyramachandran.design](https://whyramachandran.design/?ref=productdesignportfolios) | Product designer with emphasis on scale and impact. Case studies with expected/served user numbers (e.g. 1M MAU, 500K); featured work carousel; timeline of projects; skills and “interested in” section. |
+| **Emily Backes** | [emilybackes.design](https://www.emilybackes.design/?ref=productdesignportfolios) | Product Designer (e.g. Sortly). Playful, memorable positioning (“Wrangler of Pixels. Herder of Cats.”); case catalog with filters; career snapshot; journal/blog; testimonials; approachable tone. |
+| **Meagan Fisher Couldwell** | [owltastic.com](https://owltastic.com/?ref=productdesignportfolios) | Independent UX, product, and web designer. Long-form intro; featured work grid; “About” with client list (e.g. Twitter, Adobe, Toyota); recent interviews & articles; contact and newsletter. |
+| **Rachel Chen** | [rachelchen.tech](https://www.rachelchen.tech/?ref=productdesignportfolios) | Product designer who also engineers. Dual designer+engineer positioning; experience timeline (internships); project mix (shipped vs concept); “Designed + Coded” credit; compact, scannable layout. |
 
 When making design or content-structure decisions, consider what works in these sites (e.g. scannable project cards, visible metrics, clear navigation between Work / About / Projects) and adapt to this project’s requirements and accessibility standards.
 
