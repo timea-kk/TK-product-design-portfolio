@@ -1,0 +1,128 @@
+/*
+  index.css – Global styles and design tokens.
+  Tailwind layers + base CSS variables (default theme) + accessibility classes + typewriter cursor animations.
+  Theme overrides live in src/themes/index.css and are applied when <html> has a theme-* class.
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Base layer: design tokens and layout ==========
+   :root holds the default theme. When ThemeContext sets a class on <html> (e.g. .theme-bauhaus),
+   src/themes/index.css overrides these variables. */
+@layer base {
+  :root {
+    /* Semantic colors – themes override these in themes/index.css */
+    --color-brand: #0f766e;
+    --color-surface: #ffffff;
+    --color-surface-elevated: #f0fdfa;
+    --color-muted: #64748b;
+    --color-border: #e2e8f0;
+    --color-headline: #334155;
+    --color-descriptor-bg: rgba(15, 118, 110, 0.12);
+    --color-logo: var(--color-brand);
+    --color-cta-bg: var(--color-brand);
+    --color-cta-text: #ffffff;
+    --font-sans: system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, monospace;
+    /* A11yContext writes these; we use them for scale, motion, and contrast. */
+    --a11y-text-scale: 1;
+    --a11y-motion: 1;
+    --a11y-contrast: 0;
+  }
+
+  /* Text scale from accessibility panel (90%–130%) is applied to the whole page. */
+  html {
+    font-size: calc(1rem * var(--a11y-text-scale));
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  /* If the user hasn't set a preference, respect system "reduce motion" so we start safe. */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --a11y-motion: 0;
+    }
+  }
+}
+
+/* Focus ring only for keyboard users (focus-visible), not on mouse click, for clearer a11y. */
+@layer base {
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+/* When "Reduce motion" is on, A11yContext adds .reduced-motion-none to <html>. Disable transitions/animations. */
+.reduced-motion-none * {
+  transition: none !important;
+}
+
+/* When "High contrast" is on, A11yContext adds .a11y-high-contrast. Stronger borders and focus ring. */
+.a11y-high-contrast {
+  --color-border: #000000;
+}
+.a11y-high-contrast :focus-visible {
+  outline-width: 3px;
+}
+
+/* ========== Typewriter cursor (RotatingDescriptor) ========== */
+/* Infinite blink used elsewhere if needed; RotatingDescriptor uses cursor-blink-twice at end of phrase. */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0; }
+  55% { opacity: 0; }
+}
+.cursor-blink {
+  animation: cursor-blink 0.5s ease-in-out infinite;
+}
+
+/* End-of-phrase: blink once, hold 0.5s, blink again, hold 0.5s (2s total), then cursor stays visible until cursorFadeOut. */
+@keyframes cursor-blink-twice {
+  0% { opacity: 1; }
+  11.25% { opacity: 0; }
+  13.75% { opacity: 0; }
+  25% { opacity: 1; }
+  50% { opacity: 1; }
+  61.25% { opacity: 0; }
+  63.75% { opacity: 0; }
+  75% { opacity: 1; }
+  100% { opacity: 1; }
+}
+.cursor-blink-twice {
+  animation: cursor-blink-twice 2s ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+
+/* After the two blinks, cursor fades out (phase cursorFadeOut). Forwards keeps it invisible in fadeOut phase. */
+.cursor-fade-out {
+  animation: cursor-fade-out 0.4s ease-out 1;
+  animation-fill-mode: forwards;
+}
+@keyframes cursor-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* With reduce motion, cursor is always visible (no blink/fade animations). */
+.reduced-motion-none .cursor-blink,
+.reduced-motion-none .cursor-blink-twice,
+.reduced-motion-none .cursor-fade-out {
+  animation: none;
+  opacity: 1;
+}

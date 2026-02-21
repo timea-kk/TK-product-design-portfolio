@@ -1,0 +1,184 @@
+/*
+  themes/index.css – Theme definitions.
+  ThemeContext adds a class to <html> (e.g. theme-bauhaus). Each block below overrides the CSS
+  variables from index.css (:root) so the whole app (colors, fonts, radius, shadows) updates.
+  Based on designprompts.dev + Bauhaus/Terminal/Sketch/Neo-brutalism/Retro/Material design language.
+*/
+
+/* ========== BAUHAUS ==========
+   Primary colors (red, yellow, blue), geometric forms, clean sans.
+   Refs: designprompts.dev/bauhaus, Bauhaus color theory. */
+html.theme-bauhaus {
+  --color-brand: #e53935;
+  --color-brand-secondary: #1e88e5;
+  --color-surface: #fff8e1;
+  --color-surface-elevated: #ffecb3;
+  --color-muted: #5d4037;
+  --color-headline: #5d4037;
+  --color-descriptor-bg: rgba(229, 57, 53, 0.14);
+  --color-border: #8d6e63;
+  --color-logo: #b71c1c;
+  --color-cta-bg: #e53935;
+  --color-cta-text: #ffffff;
+  --font-sans: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Bebas Neue', 'Work Sans', sans-serif;
+  --radius: 0.25rem;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== TERMINAL ==========
+   CLI aesthetic: dark background, green text, monospace, box-drawing feel. */
+html.theme-terminal {
+  --color-brand: #39ff14;
+  --color-brand-secondary: #00ff00;
+  --color-surface: #0d1117;
+  --color-surface-elevated: #161b22;
+  --color-muted: #8b949e;
+  --color-headline: #8b949e;
+  --color-descriptor-bg: rgba(57, 255, 20, 0.1);
+  --color-border: #30363d;
+  --color-logo: #39ff14;
+  --color-cta-bg: #21262d;
+  --color-cta-text: #39ff14;
+  --font-sans: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-heading: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 0;
+  --shadow: none;
+}
+
+/* ========== NEO-BRUTALISM ==========
+   Bold black borders, hard shadows, no rounded corners, high contrast. */
+html.theme-neo-brutalism {
+  --color-brand: #000000;
+  --color-surface: #ffff00;
+  --color-surface-elevated: #ffffff;
+  --color-muted: #1a1a1a;
+  --color-headline: #1a1a1a;
+  --color-descriptor-bg: rgba(0, 0, 0, 0.06);
+  --color-border: #000000;
+  --color-logo: #000000;
+  --color-cta-bg: #000000;
+  --color-cta-text: #ffff00;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --radius: 0;
+  --shadow: 4px 4px 0 #000;
+  --border-width: 3px;
+}
+
+/* Neo-brutalism: force sharp corners everywhere (override Tailwind rounded-*). */
+html.theme-neo-brutalism .rounded,
+html.theme-neo-brutalism .rounded-lg,
+html.theme-neo-brutalism .rounded-md,
+html.theme-neo-brutalism [class*="rounded"] {
+  border-radius: 0 !important;
+}
+
+/* Thick borders and hard shadow on main layout elements. */
+html.theme-neo-brutalism header,
+html.theme-neo-brutalism footer,
+html.theme-neo-brutalism article {
+  border-width: var(--border-width) !important;
+  box-shadow: var(--shadow);
+}
+
+html.theme-neo-brutalism a[href="#projects"] {
+  border-width: var(--border-width) !important;
+  box-shadow: var(--shadow);
+}
+
+/* ========== SKETCH (Hand-drawn) ==========
+   Dot grid, paper feel, clean readable type (not literal hand-drawn). */
+html.theme-sketch {
+  --color-brand: #2d3748;
+  --color-brand-secondary: #4a5568;
+  --color-surface: #f7f5f0;
+  --color-surface-elevated: #ede9e0;
+  --color-muted: #5a534a;
+  --color-headline: #5a534a;
+  --color-descriptor-bg: rgba(45, 55, 72, 0.08);
+  --color-border: #c4b8a8;
+  --color-logo: #2d3748;
+  --color-cta-bg: #2d3748;
+  --color-cta-text: #ffffff;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-heading: 'DM Sans', system-ui, sans-serif;
+  --radius: 0.5rem;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Sketch: dot grid on body for a paper/sketch feel. */
+html.theme-sketch body {
+  background-color: var(--color-surface);
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1.5px, transparent 0);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+/* Main wrapper doesn't cover the grid so the dots show through. */
+html.theme-sketch .min-h-screen {
+  background-color: transparent;
+}
+
+/* Header/footer keep solid borders; article cards get dashed for a sketchy look. */
+html.theme-sketch header,
+html.theme-sketch footer {
+  border-style: solid;
+}
+
+html.theme-sketch article {
+  border: 2px dashed var(--color-border);
+}
+
+/* ========== RETRO ==========
+   Warm amber/orange, serif typography, 70s–90s feel. */
+html.theme-retro {
+  --color-brand: #b45309;
+  --color-brand-secondary: #92400e;
+  --color-surface: #fef3c7;
+  --color-surface-elevated: #fde68a;
+  --color-muted: #78350f;
+  --color-headline: #78350f;
+  --color-descriptor-bg: rgba(180, 83, 9, 0.14);
+  --color-border: #b45309;
+  --color-logo: #92400e;
+  --color-cta-bg: #b45309;
+  --color-cta-text: #ffffff;
+  --font-sans: 'Playfair Display', Georgia, Times, serif;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --radius: 0.125rem;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== MATERIAL DESIGN ==========
+   Material 3–style colors, Roboto, subtle elevation. */
+html.theme-material {
+  --color-brand: #1976d2;
+  --color-brand-secondary: #1565c0;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #e3f2fd;
+  --color-muted: #616161;
+  --color-headline: #616161;
+  --color-descriptor-bg: rgba(25, 118, 210, 0.1);
+  --color-border: #e0e0e0;
+  --color-logo: #1565c0;
+  --color-cta-bg: #1976d2;
+  --color-cta-text: #ffffff;
+  --font-sans: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Roboto', sans-serif;
+  --radius: 0.5rem;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* All theme blocks can set --font-heading; apply it to headings so h1/h2/h3 match the theme. */
+html[class^="theme-"] h1,
+html[class^="theme-"] h2,
+html[class^="theme-"] h3 {
+  font-family: var(--font-heading), var(--font-sans), inherit;
+}
+
+/* Default (no theme class): heading font falls back to sans. */
+:root {
+  --font-heading: var(--font-sans);
+}
