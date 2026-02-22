@@ -126,3 +126,17 @@
   animation: none;
   opacity: 1;
 }
+
+/* ========== TimeaAgent: bouncing thinking dots ========== */
+@keyframes timea-agent-dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-0.35em); }
+}
+.timea-agent-dot {
+  animation: timea-agent-dot-bounce 1.4s ease-in-out infinite;
+}
+.timea-agent-dot:nth-child(2) { animation-delay: 0.2s; }
+.timea-agent-dot:nth-child(3) { animation-delay: 0.4s; }
+.reduced-motion-none .timea-agent-dot {
+  animation: none;
+}
