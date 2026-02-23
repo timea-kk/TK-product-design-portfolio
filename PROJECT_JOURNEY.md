@@ -187,12 +187,54 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 12: Dyslexia mode + visual polish
+
+**What we built**
+- Dyslexia-friendly option in the A11y panel: OpenDyslexic font, wider letter spacing, bigger line height.
+- Retro theme.
+
+**What went wrong**
+- "Hi, I'm" + Logo SVG lost vertical alignment in dyslexia mode — OpenDyslexic's bigger line-height pushed the paragraph below the SVG baseline.
+- Typing cursor jumped to the next line mid-word for long descriptors like "design system enthusiast."
+
+**Fixes:** Targeted CSS in the dyslexia section (`.flex > p { line-height: 1; margin-bottom: 0; }`). Added `whitespace-nowrap` to the RotatingDescriptor span.
+
+**What the agent learned**
+- You catch one-pixel issues immediately. Precision matters more than speed.
+
+**Outcome:** ✅ Dyslexia mode aligned. Cursor stays on the same line.
+
+---
+
+## 📍 Milestone 13: React → Vue 3 + TypeScript
+
+**Why**
+- React worked but Vue 3 is a cleaner fit — less boilerplate, Composition API reads like the logic it describes. Wanted TypeScript, automated tests, and consistent formatting locked in.
+
+**What we built**
+- Full rewrite: all `.jsx` components → `.vue` SFCs with `<script setup lang="ts">`.
+- Replaced React Context with Pinia stores. TypeScript strict mode throughout.
+- 51 Vitest tests (knowledge scoring, stores, components). ESLint 9 + Prettier. README rewritten.
+
+**What went wrong**
+- Apostrophes inside single-quoted strings in `timeaAgentKnowledge.ts` caused a build error (`Expected } but found m`) on words like `I'm` and `I'd`.
+
+**Fix:** Changed those strings to double quotes. Prettier's `singleQuote: true` switches automatically — run the formatter before building.
+
+**What the agent learned**
+- The test suite is the net that catches regressions. Write tests before shipping, not after finding bugs.
+
+**Outcome:** ✅ 51/51 tests passing. Zero TypeScript errors. Clean build.
+
+---
+
 ## 📍 Where we are now
 
-- **Site:** One page — hero, themes, a11y, chat bar (pill input → expands on send → 2s thinking dots → reply). No API.
-- **Agent:** ~35 entries in `src/data/timeaAgentKnowledge.js`; scoring algorithm; honest fallback. The `api/` folder is still in the repo but not called.
+- **Site:** One page — hero, themes, a11y panel (reduce motion, high contrast, dyslexia mode, text scale), chat bar (pill input → expands on send → 2s thinking dots → reply). No external API.
+- **Stack:** Vue 3 + TypeScript (strict) + Pinia + Tailwind CSS + Vite. Tests: Vitest + @vue/test-utils (51 tests). ESLint 9 + Prettier.
+- **Agent:** ~35 entries in `src/data/timeaAgentKnowledge.ts`; scoring algorithm; honest fallback.
 - **Deploy:** GitHub + Vercel; branch workflow; preview URLs. See `AGENT_SETUP.md`.
-- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`.
+- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`, `README.md`.
 
 ---
 

@@ -5,25 +5,89 @@
   Based on designprompts.dev + Bauhaus/Terminal/Sketch/Neo-brutalism/Retro/Material design language.
 */
 
+/* ========== DEFAULT ==========
+   Warm peachy surface from Burnt Orange 50 (#FEF5EE), Golden Honey 50 elevated (#FDF8EC),
+   Dusty Violet accent (#9966AA), warm honey border (#EDD9B8), Lora serif headings. */
+html.theme-default {
+  --color-brand: #9966AA;
+  --color-brand-secondary: #7A4E8A;
+  --color-surface: #FEF5EE;
+  --color-surface-elevated: #FDF8EC;
+  --color-muted: #6B5464;
+  --color-headline: #2B1A33;
+  --color-descriptor-bg: rgba(153, 102, 170, 0.10);
+  --color-border: #EDD9B8;
+  --color-logo: #9966AA;
+  --color-cta-bg: #9966AA;
+  --color-cta-text: #ffffff;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Lora', Georgia, serif;
+  --radius: 0.5rem;
+  --shadow: 0 2px 8px rgba(153, 102, 170, 0.12);
+}
+
 /* ========== BAUHAUS ==========
-   Primary colors (red, yellow, blue), geometric forms, clean sans.
+   Strict primary palette (Red #D02020, Blue #1040C0, Yellow #F0C020), off-white canvas,
+   hard offset shadows, thick black borders, geometric Outfit typeface.
    Refs: designprompts.dev/bauhaus, Bauhaus color theory. */
 html.theme-bauhaus {
-  --color-brand: #e53935;
-  --color-brand-secondary: #1e88e5;
-  --color-surface: #fff8e1;
-  --color-surface-elevated: #ffecb3;
-  --color-muted: #5d4037;
-  --color-headline: #5d4037;
-  --color-descriptor-bg: rgba(229, 57, 53, 0.14);
-  --color-border: #8d6e63;
-  --color-logo: #b71c1c;
-  --color-cta-bg: #e53935;
+  --color-brand: #D02020;
+  --color-brand-secondary: #1040C0;
+  --color-surface: #F0F0F0;
+  --color-surface-elevated: #FFFFFF;
+  --color-muted: #121212;
+  --color-headline: #121212;
+  --color-descriptor-bg: rgba(208, 32, 32, 0.10);
+  --color-border: #121212;
+  --color-logo: #D02020;
+  --color-cta-bg: #D02020;
   --color-cta-text: #ffffff;
-  --font-sans: 'Work Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-heading: 'Bebas Neue', 'Work Sans', sans-serif;
-  --radius: 0.25rem;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --font-sans: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --radius: 0;
+  --shadow: 4px 4px 0px 0px #121212;
+}
+
+/* Bauhaus: binary border-radius — square (0) or circle (rounded-full) only. */
+html.theme-bauhaus .rounded,
+html.theme-bauhaus .rounded-sm,
+html.theme-bauhaus .rounded-md,
+html.theme-bauhaus .rounded-lg,
+html.theme-bauhaus .rounded-xl,
+html.theme-bauhaus .rounded-2xl,
+html.theme-bauhaus .rounded-3xl {
+  border-radius: 0 !important;
+}
+
+/* Bauhaus: thick black rule under header. */
+html.theme-bauhaus header {
+  border-bottom: 4px solid #121212;
+}
+
+/* Bauhaus: project cards — thick border + hard offset shadow; lifts on hover. */
+html.theme-bauhaus article {
+  border: 2px solid #121212 !important;
+  box-shadow: 6px 6px 0px 0px #121212;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out;
+}
+html.theme-bauhaus article:hover {
+  transform: translateY(-2px);
+  box-shadow: 8px 8px 0px 0px #121212;
+}
+
+/* Bauhaus: headlines — maximum weight, uppercase, tight tracking. */
+html.theme-bauhaus h1,
+html.theme-bauhaus h2,
+html.theme-bauhaus h3 {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+/* Bauhaus: thick rule above footer. */
+html.theme-bauhaus footer {
+  border-top: 4px solid #121212;
 }
 
 /* ========== TERMINAL ==========
@@ -131,24 +195,145 @@ html.theme-sketch article {
   border: 2px dashed var(--color-border);
 }
 
-/* ========== RETRO ==========
-   Warm amber/orange, serif typography, 70s–90s feel. */
+/* ========== RETRO / 90s NOSTALGIA ==========
+   Windows 95 system palette: silver (#C0C0C0), navy (#000080), pure primaries.
+   Arial Black headings, system sans body, outset bevel borders on everything,
+   tiled crosshatch background, rainbow h1 animation. Welcome to 1997. */
 html.theme-retro {
-  --color-brand: #b45309;
-  --color-brand-secondary: #92400e;
-  --color-surface: #fef3c7;
-  --color-surface-elevated: #fde68a;
-  --color-muted: #78350f;
-  --color-headline: #78350f;
-  --color-descriptor-bg: rgba(180, 83, 9, 0.14);
-  --color-border: #b45309;
-  --color-logo: #92400e;
-  --color-cta-bg: #b45309;
-  --color-cta-text: #ffffff;
-  --font-sans: 'Playfair Display', Georgia, Times, serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
-  --radius: 0.125rem;
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --color-brand: #0000FF;
+  --color-brand-secondary: #FF0000;
+  --color-surface: #C0C0C0;
+  --color-surface-elevated: #FFFFFF;
+  --color-muted: #000000;
+  --color-headline: #000000;
+  --color-descriptor-bg: #FFFFCC;
+  --color-border: #000000;
+  --color-logo: #000080;
+  --color-cta-bg: #C0C0C0;
+  --color-cta-text: #000000;
+  --font-sans: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --font-heading: "Arial Black", Impact, Haettenschweiler, sans-serif;
+  --radius: 0;
+  --shadow: none;
+}
+
+/* Rainbow animation — the signature 90s web effect. */
+@keyframes retro-rainbow {
+  0%   { color: #ff0000; }
+  17%  { color: #ff8000; }
+  33%  { color: #ffff00; }
+  50%  { color: #00cc00; }
+  67%  { color: #0080ff; }
+  83%  { color: #8000ff; }
+  100% { color: #ff0000; }
+}
+
+/* Zero border-radius everywhere — the 90s had no such thing. */
+html.theme-retro .rounded,
+html.theme-retro .rounded-sm,
+html.theme-retro .rounded-md,
+html.theme-retro .rounded-lg,
+html.theme-retro .rounded-xl,
+html.theme-retro .rounded-2xl,
+html.theme-retro .rounded-3xl,
+html.theme-retro [class*="rounded"] {
+  border-radius: 0 !important;
+}
+
+/* Tiled crosshatch on body — no flat backgrounds in 1997. */
+html.theme-retro body {
+  background-color: #C0C0C0;
+  background-image:
+    linear-gradient(45deg, #b8b8b8 25%, transparent 25%),
+    linear-gradient(-45deg, #b8b8b8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b8b8b8 75%),
+    linear-gradient(-45deg, transparent 75%, #b8b8b8 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+}
+
+/* Main wrapper is transparent so the tile shows through. */
+html.theme-retro .min-h-screen {
+  background-color: transparent;
+}
+
+/* Header: outset bevel — raised like a Windows 95 panel. */
+html.theme-retro header {
+  background-color: #C0C0C0;
+  border-bottom: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+}
+
+/* Article cards: outset bevel; placeholder image area → Windows title bar. */
+html.theme-retro article {
+  border: 2px solid !important;
+  border-color: #ffffff #808080 #808080 #ffffff !important;
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  transition: none;
+}
+html.theme-retro article:hover {
+  transform: none;
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+}
+/* First div (image slot) becomes the Windows nav-to-blue title bar. */
+html.theme-retro article > div:first-child {
+  background: linear-gradient(to right, #000080, #1084d0) !important;
+}
+
+/* All buttons: outset bevel, instant press feedback. */
+html.theme-retro button {
+  border: 2px solid !important;
+  border-color: #ffffff #808080 #808080 #ffffff !important;
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  transition: none !important;
+}
+html.theme-retro button:hover {
+  background-color: #d0d0d0;
+}
+html.theme-retro button:active {
+  border-color: #808080 #ffffff #ffffff #808080 !important;
+  box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #dfdfdf !important;
+  transform: translate(1px, 1px);
+}
+
+/* Headings: Arial Black, uppercase, hard gray text-shadow — no softness. */
+html.theme-retro h1,
+html.theme-retro h2,
+html.theme-retro h3 {
+  font-family: "Arial Black", Impact, Haettenschweiler, sans-serif !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 #808080;
+  line-height: 1.2;
+}
+/* h1 cycles rainbow — the single most 90s thing possible. */
+html.theme-retro h1 {
+  animation: retro-rainbow 4s linear infinite;
+}
+
+/* Footer: classic groove rule above it (two-tone raised/sunken edge). */
+html.theme-retro footer {
+  border-top: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  box-shadow: 0 -2px 0 #ffffff;
+}
+
+/* Links: classic blue, always underlined, turn red on hover. No transitions. */
+html.theme-retro a {
+  color: #0000FF;
+  text-decoration: underline;
+}
+html.theme-retro a:hover {
+  color: #FF0000;
+  transition: none;
+}
+
+/* Reduce-motion: kill rainbow, fall back to a steady red. */
+html.reduced-motion-none.theme-retro h1 {
+  animation: none;
+  color: #FF0000;
 }
 
 /* ========== MATERIAL DESIGN ==========
@@ -171,14 +356,63 @@ html.theme-material {
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* All theme blocks can set --font-heading; apply it to headings so h1/h2/h3 match the theme. */
-html[class^="theme-"] h1,
-html[class^="theme-"] h2,
-html[class^="theme-"] h3 {
+/* Default: explicit Lora for headings. !important beats any Tailwind utility class competition. */
+html.theme-default h1,
+html.theme-default h2,
+html.theme-default h3 {
+  font-family: 'Lora', Georgia, serif !important;
+}
+
+/* All other theme blocks can set --font-heading; apply it to headings.
+   Uses [class*] (contains) instead of [class^] (starts-with) so it works
+   even when other classes like reduced-motion-none appear before theme-*. */
+html[class*="theme-"] h1,
+html[class*="theme-"] h2,
+html[class*="theme-"] h3 {
   font-family: var(--font-heading), var(--font-sans), inherit;
 }
 
 /* Default (no theme class): heading font falls back to sans. */
 :root {
   --font-heading: var(--font-sans);
+}
+
+/* ========== DYSLEXIA-FRIENDLY (A11Y) ==========
+   A11yContext adds .a11y-dyslexia to <html> when the option is on.
+   Uses OpenDyslexic (self-hosted in public/fonts, @font-face in index.css).
+   Placed last so it overrides all per-theme font rules.
+   Wider letter/word spacing, generous line-height, no italics, no uppercase, no decorative shadows. */
+html.a11y-dyslexia body {
+  font-family: 'OpenDyslexic', Arial, Verdana, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  word-spacing: 0.16em;
+}
+
+html.a11y-dyslexia h1,
+html.a11y-dyslexia h2,
+html.a11y-dyslexia h3 {
+  font-family: 'OpenDyslexic', Arial, Verdana, sans-serif !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  letter-spacing: 0.03em;
+  line-height: 1.4 !important;
+}
+
+/* No italics — slanted letterforms are harder for dyslexic readers. */
+html.a11y-dyslexia em,
+html.a11y-dyslexia i {
+  font-style: normal;
+}
+
+/* Extra paragraph breathing room. */
+html.a11y-dyslexia p {
+  margin-bottom: 1em;
+}
+
+/* Keep inline flex rows (e.g. "Hi, I'm" + logo) visually aligned.
+   The 1.8 line-height and margin-bottom on <p> throw off cross-axis centering. */
+html.a11y-dyslexia .flex > p {
+  line-height: 1;
+  margin-bottom: 0;
 }
