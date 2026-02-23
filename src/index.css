@@ -8,6 +8,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* OpenDyslexic — self-hosted from public/fonts, used by the dyslexia-friendly a11y mode. */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('/fonts/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('/fonts/OpenDyslexic-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ========== Base layer: design tokens and layout ==========
    :root holds the default theme. When ThemeContext sets a class on <html> (e.g. .theme-bauhaus),
    src/themes/index.css overrides these variables. */

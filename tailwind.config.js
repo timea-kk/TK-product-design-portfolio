@@ -10,7 +10,7 @@ export default {
   /** Files that may contain Tailwind class names; purge anything not found here in production. */
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,vue}",
   ],
   theme: {
     extend: {
@@ -33,6 +33,7 @@ export default {
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        heading: ['var(--font-heading)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       /** Semantic color names map to CSS variables; themes override in themes/index.css. */
       colors: {
