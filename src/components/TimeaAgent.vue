@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
 import { X } from 'lucide-vue-next'
+import { getAnswerForQuestion } from '@/data/timeaAgentKnowledge'
 
 const PLACEHOLDER = 'Ask about my experience, work at Ecosia, or how to reach me'
 
@@ -51,10 +52,18 @@ async function handleSubmit(e: Event) {
       body: JSON.stringify({ message: text }),
     })
     const data = await res.json()
-    const reply = data.reply || "I'm not sure how to answer that—please email me at work@timea.cc!"
-    messages.value = [...messages.value, { role: 'assistant', text: reply }]
+    if (data.reply) {
+      messages.value = [...messages.value, { role: 'assistant', text: data.reply }]
+    } else {
+      // API returned an error — log it and fall back to knowledge base
+      console.error('API error:', data.error)
+      const reply = getAnswerForQuestion(text)
+      messages.value = [...messages.value, { role: 'assistant', text: reply }]
+    }
   } catch {
-    messages.value = [...messages.value, { role: 'assistant', text: "Something went wrong. Please try again or email work@timea.cc." }]
+    // Network error (e.g. local dev with no API server) — fall back to knowledge base
+    const reply = getAnswerForQuestion(text)
+    messages.value = [...messages.value, { role: 'assistant', text: reply }]
   } finally {
     isThinking.value = false
   }
