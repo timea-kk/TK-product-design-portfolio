@@ -1,15 +1,13 @@
 <!--
   TimeaAgent.vue – Sticky chat widget at the bottom of the page.
   A single rounded input bar that expands into a chat thread when the user sends a message.
-  Answers are matched locally from the knowledge base — no API or backend required.
-  The "thinking" state shows animated dots for 2 seconds before the answer appears.
+  Answers come from the Gemini API (api/chat.js). The "thinking" state shows animated dots
+  while waiting; the avatar and name header only appear once a response has arrived.
 -->
 
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
 import { X } from 'lucide-vue-next'
-import { useA11yStore } from '@/stores/a11y'
-import { getAnswerForQuestion } from '@/data/timeaAgentKnowledge'
 
 const PLACEHOLDER = 'Ask about my experience, work at Ecosia, or how to reach me'
 
@@ -18,8 +16,6 @@ interface Message {
   role: 'user' | 'assistant'
   text: string
 }
-
-const a11y = useA11yStore()
 
 const expanded = ref(false)
 const messages = ref<Message[]>([])
@@ -37,8 +33,8 @@ watch([messages, isThinking], async () => {
   }
 })
 
-/** Send a message: add it to the thread, show thinking dots, then show the answer after 2s. */
-function handleSubmit(e: Event) {
+/** Send a message: add it to the thread, show thinking dots, then fetch the reply from Gemini. */
+async function handleSubmit(e: Event) {
   e.preventDefault()
   const text = input.value.trim()
   if (!text || isThinking.value) return
@@ -48,13 +44,20 @@ function handleSubmit(e: Event) {
   expanded.value = true
   isThinking.value = true
 
-  const reply = getAnswerForQuestion(text)
-
-  // Fixed 2s delay keeps the "thinking" feel reliable regardless of how fast matching runs
-  setTimeout(() => {
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text }),
+    })
+    const data = await res.json()
+    const reply = data.reply || "I'm not sure how to answer that—please email me at work@timea.cc!"
     messages.value = [...messages.value, { role: 'assistant', text: reply }]
+  } catch {
+    messages.value = [...messages.value, { role: 'assistant', text: "Something went wrong. Please try again or email work@timea.cc." }]
+  } finally {
     isThinking.value = false
-  }, 2000)
+  }
 }
 </script>
 
@@ -86,20 +89,36 @@ function handleSubmit(e: Event) {
         class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 pt-12 pb-2"
         style="max-height: min(40vh, 280px)"
       >
-        <div
-          v-for="(m, i) in messages"
-          :key="i"
-          :class="[
-            'max-w-[85%] rounded-lg px-3 py-2 text-sm',
-            m.role === 'user'
-              ? 'ml-auto bg-[var(--color-brand)] text-[var(--color-cta-text)]'
-              : 'mr-auto border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-muted)]',
-          ]"
-        >
-          {{ m.text }}
-        </div>
+        <template v-for="(m, i) in messages" :key="i">
+          <!-- User message -->
+          <div
+            v-if="m.role === 'user'"
+            class="ml-auto max-w-[85%] rounded-lg bg-[var(--color-brand)] px-3 py-2 text-sm text-[var(--color-cta-text)]"
+          >
+            {{ m.text }}
+          </div>
 
-        <!-- Animated thinking dots while waiting for the answer -->
+          <!-- Assistant message: avatar + name header above the bubble -->
+          <div v-else class="mr-auto flex max-w-[85%] flex-col gap-1.5">
+            <div class="flex items-center gap-2">
+              <img
+                src="/timea.jpeg"
+                alt=""
+                aria-hidden="true"
+                class="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-brand)]"
+              />
+              <div class="flex flex-col leading-tight">
+                <span class="text-xs font-semibold text-[var(--color-headline)]">TimeaAgent</span>
+                <span class="text-[10px] text-[var(--color-muted)]">Powered by Gemini</span>
+              </div>
+            </div>
+            <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-muted)]">
+              {{ m.text }}
+            </div>
+          </div>
+        </template>
+
+        <!-- Thinking dots appear alone while waiting — no avatar during loading -->
         <div
           v-if="isThinking"
           class="mr-auto flex items-center gap-0.5 text-xl text-[var(--color-muted)]"
