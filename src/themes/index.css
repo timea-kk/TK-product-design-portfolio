@@ -59,11 +59,6 @@ html.theme-bauhaus .rounded-3xl {
   border-radius: 0 !important;
 }
 
-/* Bauhaus: thick black rule under header. */
-html.theme-bauhaus header {
-  border-bottom: 4px solid #121212;
-}
-
 /* Bauhaus: project cards — thick border + hard offset shadow; lifts on hover. */
 html.theme-bauhaus article {
   border: 2px solid #121212 !important;
@@ -210,7 +205,7 @@ html.theme-retro {
   --color-border: #000000;
   --color-logo: #000080;
   --color-cta-bg: #C0C0C0;
-  --color-cta-text: #000000;
+  --color-cta-text: #ffffff;
   --font-sans: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --font-mono: "Courier New", Courier, monospace;
   --font-heading: "Arial Black", Impact, Haettenschweiler, sans-serif;
@@ -239,6 +234,12 @@ html.theme-retro .rounded-2xl,
 html.theme-retro .rounded-3xl,
 html.theme-retro [class*="rounded"] {
   border-radius: 0 !important;
+}
+
+/* Keep the TimeaAgent avatar circular in themes that strip border-radius — it's a photo, not a UI element. */
+html.theme-retro img.rounded-full,
+html.theme-neo-brutalism img.rounded-full {
+  border-radius: 9999px !important;
 }
 
 /* Tiled crosshatch on body — no flat backgrounds in 1997. */
