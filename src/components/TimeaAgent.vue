@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue'
-import { X } from 'lucide-vue-next'
 import { getAnswerForQuestion } from '@/data/timeaAgentKnowledge'
 
 const PLACEHOLDER = 'Ask about my experience, work at Ecosia, or how to reach me'
@@ -22,6 +21,27 @@ const expanded = ref(false)
 const messages = ref<Message[]>([])
 const input = ref('')
 const isThinking = ref(false)
+
+// Typewriter animation state
+const typingIndex = ref<number | null>(null)
+const typingText = ref('')
+let typingTimer: ReturnType<typeof setInterval> | null = null
+
+function startTyping(fullText: string, messageIndex: number) {
+  if (typingTimer) clearInterval(typingTimer)
+  typingIndex.value = messageIndex
+  typingText.value = ''
+  let i = 0
+  typingTimer = setInterval(() => {
+    i++
+    typingText.value = fullText.slice(0, i)
+    if (i >= fullText.length) {
+      clearInterval(typingTimer!)
+      typingTimer = null
+      typingIndex.value = null
+    }
+  }, 18)
+}
 
 /** Ref to the scrollable message list so we can auto-scroll to the latest message. */
 const panelRef = ref<HTMLElement | null>(null)
@@ -45,6 +65,10 @@ async function handleSubmit(e: Event) {
   expanded.value = true
   isThinking.value = true
 
+  // Fetch the reply and enforce a minimum loading time — both must finish before showing the answer
+  const minDelay = new Promise(resolve => setTimeout(resolve, 1500))
+
+  let reply = ''
   try {
     const res = await fetch('/api/chat', {
       method: 'POST',
@@ -53,19 +77,18 @@ async function handleSubmit(e: Event) {
     })
     const data = await res.json()
     if (data.reply) {
-      messages.value = [...messages.value, { role: 'assistant', text: data.reply }]
+      reply = data.reply
     } else {
-      // API returned an error — log it and fall back to knowledge base
       console.error('API error:', data.error)
-      const reply = getAnswerForQuestion(text)
-      messages.value = [...messages.value, { role: 'assistant', text: reply }]
+      reply = getAnswerForQuestion(text)
     }
   } catch {
-    // Network error (e.g. local dev with no API server) — fall back to knowledge base
-    const reply = getAnswerForQuestion(text)
-    messages.value = [...messages.value, { role: 'assistant', text: reply }]
+    reply = getAnswerForQuestion(text)
   } finally {
+    await minDelay
+    messages.value = [...messages.value, { role: 'assistant', text: reply }]
     isThinking.value = false
+    startTyping(reply, messages.value.length - 1)
   }
 }
 </script>
@@ -80,22 +103,36 @@ async function handleSubmit(e: Event) {
       ]"
       aria-label="Chat with Timea"
     >
-      <!-- Floating close button (only when the panel is expanded) -->
-      <button
+      <!-- Chat header: avatar, name, subtitle, and close — only when expanded -->
+      <div
         v-if="expanded"
-        type="button"
-        @click="expanded = false"
-        class="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-surface-elevated)]/90 text-[var(--color-muted)] shadow-sm backdrop-blur-sm hover:bg-[var(--color-surface)] hover:text-[var(--color-headline)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)]"
-        aria-label="Close chat"
+        class="flex items-center gap-3 bg-[var(--color-brand)] px-4 py-3"
       >
-        <X class="h-4 w-4" aria-hidden="true" />
-      </button>
+        <img
+          src="/timeaAgent.jpg"
+          alt=""
+          aria-hidden="true"
+          class="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-cta-text)]"
+        />
+        <div class="flex flex-col leading-tight">
+          <span class="text-base font-semibold text-[var(--color-cta-text)]">TimeaAgent</span>
+          <span class="text-sm text-[var(--color-cta-text)] opacity-75">AI assistant · Powered by Gemini</span>
+        </div>
+        <button
+          type="button"
+          @click="expanded = false"
+          class="ml-auto rounded-full border border-[var(--color-cta-text)] px-3 py-1 text-sm text-[var(--color-cta-text)] hover:bg-[var(--color-cta-text)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-text)]"
+          aria-label="Close chat"
+        >
+          Close
+        </button>
+      </div>
 
       <!-- Message thread: visible only when the panel is expanded -->
       <div
         v-if="expanded"
         ref="panelRef"
-        class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 pt-12 pb-2"
+        class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 pt-3 pb-2"
         style="max-height: min(40vh, 280px)"
       >
         <template v-for="(m, i) in messages" :key="i">
@@ -107,27 +144,16 @@ async function handleSubmit(e: Event) {
             {{ m.text }}
           </div>
 
-          <!-- Assistant message: avatar + name header above the bubble -->
-          <div v-else class="mr-auto flex max-w-[85%] flex-col gap-1.5">
-            <div class="flex items-center gap-2">
-              <img
-                src="/timea.jpeg"
-                alt=""
-                aria-hidden="true"
-                class="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-brand)]"
-              />
-              <div class="flex flex-col leading-tight">
-                <span class="text-xs font-semibold text-[var(--color-headline)]">TimeaAgent</span>
-                <span class="text-[10px] text-[var(--color-muted)]">Powered by Gemini</span>
-              </div>
-            </div>
-            <div class="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-muted)]">
-              {{ m.text }}
-            </div>
+          <!-- Assistant message bubble -->
+          <div
+            v-else
+            class="mr-auto max-w-[85%] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-muted)]"
+          >
+            {{ typingIndex === i ? typingText : m.text }}
           </div>
         </template>
 
-        <!-- Thinking dots appear alone while waiting — no avatar during loading -->
+        <!-- Thinking dots appear while waiting -->
         <div
           v-if="isThinking"
           class="mr-auto flex items-center gap-0.5 text-xl text-[var(--color-muted)]"
@@ -147,7 +173,7 @@ async function handleSubmit(e: Event) {
           expanded ? 'mx-2 mb-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]' : '',
         ]"
       >
-        <label for="timea-agent-input" class="sr-only">
+<label for="timea-agent-input" class="sr-only">
           Ask Timea about her work and experience
         </label>
         <input

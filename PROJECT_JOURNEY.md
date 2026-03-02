@@ -228,10 +228,35 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 14: Chat header, hero, scroll indicator
+
+**What we built**
+- Switched to @tabler/icons-vue (`IconPalette`, `IconAccessible`).
+- Gemini API wired as chat backend; local knowledge base as fallback.
+- TimeaAgent chat header: brand-color strip, larger avatar, name, subtitle, pill Close button.
+- 1.5s minimum loading delay (held in `finally` block so dots always show).
+- Typewriter animation on assistant replies.
+- Hero fills the viewport; projects pushed below fold.
+- Scroll-wheel SVG indicator that fades on scroll; hero content shifted up for balance.
+
+**What went wrong**
+- Site broke: wrong image filename (`timea.jpeg` vs `timea.jpg`).
+- Tailwind opacity slash (`/85`) doesn't work with CSS variables. Used standalone `opacity-75`.
+- Retro theme had black CTA text on a blue background. Changed `--color-cta-text` to `#ffffff`.
+- Retro and neo-brutalism `border-radius: 0 !important` made the avatar square. Fixed with targeted `img.rounded-full` override.
+- Bauhaus had a `border-bottom: 4px solid` on all headers. Removed.
+
+**What the agent learned**
+- `!important` theme resets silently break unrelated components. Check all themes visually after touching theme CSS.
+
+**Outcome:** ✅ Chat polished, loading reliable, hero full-viewport, scroll indicator working.
+
+---
+
 ## 📍 Where we are now
 
-- **Site:** One page — hero, themes, a11y panel (reduce motion, high contrast, dyslexia mode, text scale), chat bar (pill input → expands on send → 2s thinking dots → reply). No external API.
-- **Stack:** Vue 3 + TypeScript (strict) + Pinia + Tailwind CSS + Vite. Tests: Vitest + @vue/test-utils (51 tests). ESLint 9 + Prettier.
+- **Site:** One page — hero (full viewport, scroll indicator), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Gemini API, local fallback.
+- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vitest + @vue/test-utils (51 tests). ESLint 9 + Prettier.
 - **Agent:** ~35 entries in `src/data/timeaAgentKnowledge.ts`; scoring algorithm; honest fallback.
 - **Deploy:** GitHub + Vercel; branch workflow; preview URLs. See `AGENT_SETUP.md`.
 - **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`, `README.md`.
@@ -242,6 +267,6 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 - Add a new milestone when you start a new phase.
 - What we built / what went wrong / fix / what I learned / **outcome (always last)**.
-- Keep it scannable. 🚀
+- Keep it scannable.
 
-*Last updated: Feb 2026.*
+*Last updated: Mar 2026.*
