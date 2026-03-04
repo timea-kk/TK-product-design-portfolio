@@ -84,7 +84,8 @@ async function handleSubmit(e: Event) {
       console.error('API error:', data.error)
       reply = getAnswerForQuestion(text)
     }
-  } catch {
+  } catch (err) {
+    console.error('Chat fetch failed (using local fallback):', err)
     reply = getAnswerForQuestion(text)
   } finally {
     await minDelay
