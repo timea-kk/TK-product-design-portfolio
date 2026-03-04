@@ -297,6 +297,24 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       "I've helped scale Ecosia's Design System (Flora): component health tracking, contribution processes, cross-team reviews. I own complex components and shared libraries used across product areas.",
   },
 
+  // Before Ecosia / previous roles (must come after the Ecosia entry to win ties)
+  {
+    keywords: [
+      'before ecosia',
+      'prior to ecosia',
+      'before joining ecosia',
+      'previous job',
+      'previous company',
+      'previous employer',
+      'previous role',
+      'worked before',
+      'jobs before',
+      'career before',
+    ],
+    answer:
+      'Before Ecosia I was at three Berlin startups: Dojo Madness (esports product designer, Feb 2017–Sep 2019), KIWI.KI (key-free access for buildings, Nov 2015–Jan 2017), and Airfy (free public WiFi, Jul 2014–Nov 2015). That covers about six years of startup experience before joining Ecosia in 2020.',
+  },
+
   // Dojo Madness / gaming / esports
   {
     keywords: [
