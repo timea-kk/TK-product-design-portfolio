@@ -253,6 +253,29 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 15: CI/coverage, system prompt refinement, agent fixes
+
+**What we built**
+- CI pipeline (GitHub Actions): runs 106 Vitest tests + coverage on every PR to main. Codecov integration. 70% coverage threshold blocks deploys.
+- New tests for Logo, Header, HomePage, TimeaAgent, App — coverage up from ~40% to 86%+ functions.
+- Conversation history passed to Gemini so it has context to rephrase repeated questions.
+- Auto-scroll during typewriter animation (was only scrolling when a message landed, not while text was being typed).
+
+**What went wrong**
+- `'hi '` (trailing space) in greeting keywords meant a bare "hi" message scored 0 and fell through to the default rejection answer.
+- Greeting rule was ordered after the off-topic rejection rule, so "hi" triggered "That's outside what I can answer" before reaching the greeting logic.
+- Gemini was being called stateless (no history) — "vary your answers" instruction was impossible to follow without conversation context.
+- Daily Gemini free-tier quota exhausted during testing (1,500 req/day). All responses were silently coming from the local static fallback, not Gemini.
+
+**Fix:** Removed trailing space from `'hi'` keyword. Moved greeting rule to top of system prompt. Added `history` to API request; API maps prior messages to Gemini's `contents` format. Added "before Ecosia" entry to local fallback so pre-Ecosia role questions no longer return the Ecosia answer. Created a new Gemini API key for fresh quota.
+
+**What the agent learned**
+- Static fallback answers always look correct until you realise Gemini hasn't been called once. Check the Network tab, not just the UI.
+
+**Outcome:** ✅ 106 tests, CI enforced, greeting fixed, history wired, auto-scroll working.
+
+---
+
 ## 📍 Where we are now
 
 - **Site:** One page — hero (full viewport, scroll indicator), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Gemini API, local fallback.

@@ -16,6 +16,19 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./tests/setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+      include: ['src/**/*.{ts,vue}'],
+      exclude: ['src/main.ts', 'src/data/**'],
+      // Fail the CI run if any coverage metric drops below 70%
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70,
+      },
+    },
   },
 
   resolve: {

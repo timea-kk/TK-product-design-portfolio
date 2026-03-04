@@ -80,4 +80,16 @@ describe('A11yPanel', () => {
 
     expect(store.textScale).toBe(1.2)
   })
+
+  it('closes the panel when clicking outside the component', async () => {
+    const wrapper = mount(A11yPanel, { attachTo: document.body })
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(true)
+
+    document.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await nextTick()
+
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(false)
+    wrapper.unmount()
+  })
 })

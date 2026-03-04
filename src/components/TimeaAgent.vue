@@ -46,8 +46,8 @@ function startTyping(fullText: string, messageIndex: number) {
 /** Ref to the scrollable message list so we can auto-scroll to the latest message. */
 const panelRef = ref<HTMLElement | null>(null)
 
-// Scroll to the bottom of the message list whenever messages or thinking state changes
-watch([messages, isThinking], async () => {
+// Scroll to the bottom whenever messages, thinking state, or typewriter text changes
+watch([messages, isThinking, typingText], async () => {
   await nextTick()
   if (panelRef.value) {
     panelRef.value.scrollTop = panelRef.value.scrollHeight
@@ -70,10 +70,12 @@ async function handleSubmit(e: Event) {
 
   let reply = ''
   try {
+    // Send prior messages as history so Gemini has conversation context
+    const history = messages.value.slice(0, -1)
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text }),
+      body: JSON.stringify({ message: text, history }),
     })
     const data = await res.json()
     if (data.reply) {
@@ -82,7 +84,8 @@ async function handleSubmit(e: Event) {
       console.error('API error:', data.error)
       reply = getAnswerForQuestion(text)
     }
-  } catch {
+  } catch (err) {
+    console.error('Chat fetch failed (using local fallback):', err)
     reply = getAnswerForQuestion(text)
   } finally {
     await minDelay
