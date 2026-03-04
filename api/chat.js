@@ -24,10 +24,11 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
   }
 
-  let message;
+  let message, history;
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     message = body?.message;
+    history = Array.isArray(body?.history) ? body.history : [];
   } catch {
     return res.status(400).json({ error: 'Invalid JSON body' });
   }
@@ -47,8 +48,15 @@ export default async function handler(req, res) {
       systemInstruction: TIMEA_SYSTEM_PROMPT,
     });
 
+    // Map prior messages to Gemini's content format (assistant → model)
+    // Cap at last 10 messages to keep token usage reasonable
+    const historyContents = history.slice(-10).map(msg => ({
+      role: msg.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: msg.text }],
+    }));
+
     const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text }] }],
+      contents: [...historyContents, { role: 'user', parts: [{ text }] }],
       generationConfig: {
         maxOutputTokens: 400,
         temperature: 0.7,

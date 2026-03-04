@@ -70,10 +70,12 @@ async function handleSubmit(e: Event) {
 
   let reply = ''
   try {
+    // Send prior messages as history so Gemini has conversation context
+    const history = messages.value.slice(0, -1)
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text }),
+      body: JSON.stringify({ message: text, history }),
     })
     const data = await res.json()
     if (data.reply) {
