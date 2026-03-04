@@ -28,8 +28,8 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'tell me about yourself',
       'introduce',
       'hello',
-      'hi ',
-      'hey ',
+      'hi',
+      'hey',
       'hey there',
       'about timea',
       'timea konya',
@@ -41,7 +41,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'is this timea',
     ],
     answer:
-      "I'm Timea, a Senior Product Designer based in Berlin. I focus on clear, intuitive design and love turning complex problems into simple experiences. I'm passionate about sustainability, design systems, and using data to guide product decisions.",
+      "Hi! I'm Timea, a Senior Product Designer based in Berlin. Happy to tell you about my work — you could ask about my time at Ecosia, specific projects like the onboarding experiments or the Ecosia Browser launch, how I work, my background, or how to get in touch.",
   },
 
   // Location
@@ -59,7 +59,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'what country',
     ],
     answer:
-      "I'm based in Berlin, Germany. Most of my career has been at Berlin-based product companies and startups.",
+      "I'm originally from Romania and based in Berlin since 2014. Most of my career has been at Berlin-based product companies and startups.",
   },
 
   // Years of experience / seniority
