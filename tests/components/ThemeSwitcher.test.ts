@@ -69,4 +69,16 @@ describe('ThemeSwitcher', () => {
     const descriptions = wrapper.findAll('[role="option"] .opacity-60')
     expect(descriptions.length).toBeGreaterThan(0)
   })
+
+  it('closes the dropdown when clicking outside the component', async () => {
+    const wrapper = mount(ThemeSwitcher, { attachTo: document.body })
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.find('[role="listbox"]').exists()).toBe(true)
+
+    document.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('[role="listbox"]').exists()).toBe(false)
+    wrapper.unmount()
+  })
 })

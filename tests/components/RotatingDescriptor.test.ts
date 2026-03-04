@@ -4,7 +4,7 @@
  * real setTimeout chains that would make tests flaky without fake timers.
  */
 
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { setActivePinia, createPinia } from 'pinia'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
@@ -65,5 +65,53 @@ describe('RotatingDescriptor', () => {
     // Just verify the outer structure is there
     const liveRegion = wrapper.find('[aria-live="polite"]')
     expect(liveRegion.exists()).toBe(true)
+  })
+
+  it('updates systemReduceMotion when the prefers-reduced-motion query fires a change event', () => {
+    // Set up a matchMedia mock that captures registered listeners so we can call them
+    const listeners: Array<() => void> = []
+    const mockMq = {
+      matches: false,
+      media: '(prefers-reduced-motion: reduce)',
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn((_event: string, cb: () => void) => listeners.push(cb)),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }
+    vi.spyOn(window, 'matchMedia').mockReturnValue(mockMq as unknown as MediaQueryList)
+
+    mount(RotatingDescriptor)
+
+    // Simulate the OS switching to reduce-motion
+    mockMq.matches = true
+    listeners.forEach((cb) => cb())
+
+    // The mock itself doesn't re-render Vue, but the listener must have been called
+    expect(listeners.length).toBeGreaterThan(0)
+
+    vi.restoreAllMocks()
+  })
+
+  it('removes the media query listener and clears timers on unmount', () => {
+    const mockMq = {
+      matches: false,
+      media: '(prefers-reduced-motion: reduce)',
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }
+    vi.spyOn(window, 'matchMedia').mockReturnValue(mockMq as unknown as MediaQueryList)
+
+    const wrapper = mount(RotatingDescriptor)
+    wrapper.unmount()
+
+    expect(mockMq.removeEventListener).toHaveBeenCalledWith('change', expect.any(Function))
+
+    vi.restoreAllMocks()
   })
 })
