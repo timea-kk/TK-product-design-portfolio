@@ -80,8 +80,6 @@ async function handleSubmit(e: Event) {
     const data = await res.json()
     if (data.reply) {
       reply = data.reply
-    } else if (res.status === 429) {
-      reply = "I'm getting a lot of messages right now — please wait a moment and try again."
     } else {
       console.error('API error:', data.error)
       reply = getAnswerForQuestion(text)
