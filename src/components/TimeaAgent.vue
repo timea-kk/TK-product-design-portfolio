@@ -46,8 +46,8 @@ function startTyping(fullText: string, messageIndex: number) {
 /** Ref to the scrollable message list so we can auto-scroll to the latest message. */
 const panelRef = ref<HTMLElement | null>(null)
 
-// Scroll to the bottom of the message list whenever messages or thinking state changes
-watch([messages, isThinking], async () => {
+// Scroll to the bottom whenever messages, thinking state, or typewriter text changes
+watch([messages, isThinking, typingText], async () => {
   await nextTick()
   if (panelRef.value) {
     panelRef.value.scrollTop = panelRef.value.scrollHeight

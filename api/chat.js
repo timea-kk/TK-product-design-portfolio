@@ -59,7 +59,7 @@ export default async function handler(req, res) {
       contents: [...historyContents, { role: 'user', parts: [{ text }] }],
       generationConfig: {
         maxOutputTokens: 400,
-        temperature: 0.7,
+        temperature: 0.9,
       },
     });
 
