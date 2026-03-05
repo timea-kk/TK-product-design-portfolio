@@ -276,6 +276,24 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 16: CI/CD pipeline
+
+**What we built**
+- 5-job GitHub Actions pipeline: lint, typecheck, and test run in parallel → build → deploy (main only).
+- Deploy uses Vercel CLI + GitHub secrets. Vercel auto-deploy disabled (`exit 1`) so the pipeline is the only thing that publishes the site.
+
+**What went wrong**
+- ESLint was linting the `coverage/` folder (generated files, shouldn't be checked).
+- `tseslint.configs.recommended` overrides the Vue parser for `.vue` files — all components failed with "Type expected". Fix: scope tseslint to `**/*.ts` only.
+
+**What I learned**
+- More jobs = better visibility and faster runs (parallel). One big job hides which checks actually passed.
+- Vercel deploys on its own even when you have GitHub Actions — you have to explicitly turn it off.
+
+**Outcome:** ✅ 5-job pipeline running, all checks green, deploy wired to main.
+
+---
+
 ## 📍 Where we are now
 
 - **Site:** One page — hero (full viewport, scroll indicator), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Gemini API, local fallback.
