@@ -11,13 +11,13 @@ import prettierConfig from 'eslint-config-prettier'
 
 export default [
   // Ignore generated/installed directories
-  { ignores: ['node_modules', 'dist'] },
+  { ignores: ['node_modules', 'dist', 'coverage'] },
 
-  // Vue SFC rules
+  // Vue SFC rules — must come before tseslint so vue-eslint-parser stays as the main parser for .vue files
   ...pluginVue.configs['flat/recommended'],
 
-  // TypeScript rules
-  ...tseslint.configs.recommended,
+  // TypeScript rules — scoped to .ts files only so they don't override the Vue parser
+  ...tseslint.configs.recommended.map(config => ({ ...config, files: ['**/*.ts'] })),
 
   // Tell ESLint to use the TS parser inside <script lang="ts"> blocks
   {
@@ -34,6 +34,12 @@ export default [
     rules: {
       // Single-word component names are fine for a portfolio (e.g. <Logo>, <Header>)
       'vue/multi-word-component-names': 'off',
+    },
+  },
+  {
+    // TypeScript-specific rule overrides — scoped to .ts files to match plugin scope above
+    files: ['**/*.ts'],
+    rules: {
       // Allow any when genuinely needed (store type casts)
       '@typescript-eslint/no-explicit-any': 'warn',
     },
