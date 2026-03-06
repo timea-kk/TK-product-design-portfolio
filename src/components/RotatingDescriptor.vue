@@ -16,9 +16,9 @@ import { useA11yStore } from '@/stores/a11y'
 
 /** All phrases that rotate in the headline. */
 const DESCRIPTORS = [
-  'Growth Product Designer',
+  'Senior Product Designer',
   'Design systems enthusiast',
-  'Coding student',
+  'Designer who codes',
   'Accessibility advocate',
   'Systems thinker',
 ]
@@ -148,7 +148,7 @@ onUnmounted(() => {
   <!-- Reduce-motion: static first phrase, no cursor or animation -->
   <span
     v-if="reduceMotion"
-    class="inline-block min-w-[24ch] whitespace-nowrap align-baseline"
+    class="inline-block whitespace-nowrap align-baseline"
     aria-live="polite"
     aria-atomic="true"
   >
@@ -159,7 +159,7 @@ onUnmounted(() => {
   <span
     v-else
     :class="[
-      'inline-block min-w-[24ch] whitespace-nowrap align-baseline transition-opacity duration-300',
+      'inline-block whitespace-nowrap align-baseline transition-opacity duration-300',
       phase === 'fadeOut' ? 'opacity-0' : 'opacity-100',
     ]"
     aria-live="polite"
