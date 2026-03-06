@@ -37,7 +37,7 @@ describe('RotatingDescriptor', () => {
     const liveRegion = wrapper.find('[aria-live="polite"]')
 
     // In reduce-motion mode, the span should contain the first descriptor as plain text
-    expect(liveRegion.text()).toBe('Growth Product Designer')
+    expect(liveRegion.text()).toBe('Senior Product Designer')
   })
 
   it('does not render the blinking cursor in reduce-motion mode', async () => {
