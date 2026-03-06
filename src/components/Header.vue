@@ -80,15 +80,10 @@ function selectTheme(id: string) {
         Work
       </a>
 
-      <a
-        href="/about"
-        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
-      >
-        About Me
-      </a>
-
-      <a
-        href="/resume"
+<a
+        href="https://drive.google.com/file/d/1aeNwj4QkRwouV0SgZ-m-c1h9_PUWALsb/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
         class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
       >
         Resume

@@ -294,12 +294,31 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 17: Homepage polish and responsive fixes
+
+**What we built**
+- Nav: Resume link (header + footer) → Google Drive, opens in new tab. LinkedIn wired up. "About Me" hidden. Scroll indicator and placeholder projects hidden.
+- Hero: new photo, updated descriptors (Senior Product Designer, Designer who codes), headline restructured into a guaranteed 3-line layout.
+
+**What went wrong**
+- Image cut off on the right at 800–1200px: `w-full` on the text div forced 100% width in flex-row, pushing the image off-screen. Also `min-w-[24ch]` on the descriptor created a large blank gap mid-headline for short phrases.
+
+**Fixes**
+- Two-column layout moved to `lg` (1024px) breakpoint; text div uses `w-full lg:w-auto`. Removed `min-w-[24ch]`. h1 split into three `<span class="block">` lines.
+
+**What I learned**
+- `w-full` on a flex child in a row layout overrides flex sizing. Use `lg:w-auto` to restore it on desktop.
+
+**Outcome:** ✅ Clean nav, real links, responsive hero, stable 3-line headline.
+
+---
+
 ## 📍 Where we are now
 
-- **Site:** One page — hero (full viewport, scroll indicator), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Gemini API, local fallback.
-- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vitest + @vue/test-utils (51 tests). ESLint 9 + Prettier.
+- **Site:** One page — hero (full viewport, photo, 3-line typewriter headline, bio), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Projects and scroll indicator hidden until content is ready. Gemini API, local fallback.
+- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vitest + @vue/test-utils. ESLint 9 + Prettier.
 - **Agent:** ~35 entries in `src/data/timeaAgentKnowledge.ts`; scoring algorithm; honest fallback.
-- **Deploy:** GitHub + Vercel; branch workflow; preview URLs. See `AGENT_SETUP.md`.
+- **Deploy:** GitHub + Vercel; 5-job CI/CD pipeline (lint → typecheck → test → build → deploy). See `AGENT_SETUP.md`.
 - **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`, `README.md`.
 
 ---

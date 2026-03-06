@@ -22,11 +22,10 @@ describe('Header', () => {
     expect(wrapper.find('nav').exists()).toBe(true)
   })
 
-  it('renders Work, About Me, and Resume links', () => {
+  it('renders Work and Resume links', () => {
     const wrapper = mount(Header)
     const texts = wrapper.findAll('a').map((a) => a.text())
     expect(texts).toContain('Work')
-    expect(texts).toContain('About Me')
     expect(texts).toContain('Resume')
   })
 

@@ -47,11 +47,11 @@ src/
     a11y.ts                # Accessibility preferences (Pinia store)
   components/
     Header.vue             # Sticky navigation bar
-    HomePage.vue           # Landing page (hero, projects, footer)
-    ThemeSwitcher.vue      # Theme selection dropdown
-    A11yPanel.vue          # Accessibility options dropdown
+    HomePage.vue           # Landing page (hero, footer, chat widget)
+    ThemeSwitcher.vue      # Theme selection dropdown (standalone, currently unused — panels are embedded in Header.vue)
+    A11yPanel.vue          # Accessibility options dropdown (standalone, currently unused — panels are embedded in Header.vue)
     RotatingDescriptor.vue # Typewriter effect in the hero headline
-    TimeaAgent.vue         # Sticky chat widget (local knowledge base)
+    TimeaAgent.vue         # Sticky chat widget (Gemini API + local fallback)
     Logo.vue               # Inline SVG logo (uses currentColor)
   data/
     timeaAgentKnowledge.ts # Chat agent Q&A entries + scoring function
@@ -82,7 +82,7 @@ managed by `useThemeStore` and persisted to `localStorage` under `portfolio-them
 To add a new theme:
 1. Add the theme id to `THEMES` in `src/stores/theme.ts`
 2. Add a `html.theme-<id> { ... }` block to `src/themes/index.css`
-3. Add a display name and description to `LABELS`/`DESCRIPTIONS` in `src/components/ThemeSwitcher.vue`
+3. Add a display name and description to `THEME_LABELS`/`THEME_DESCRIPTIONS` in `src/components/Header.vue`
 
 ## Accessibility System
 
@@ -100,6 +100,12 @@ The dyslexia font (OpenDyslexic) is self-hosted in `public/fonts/` and declared 
 
 ## Chat Widget
 
-`TimeaAgent.vue` is a local chat interface. Questions are scored against a knowledge base in
-`src/data/timeaAgentKnowledge.ts` — no API calls, no backend needed. Edit `KNOWLEDGE` in that
-file to add or update Q&A entries.
+`TimeaAgent.vue` sends questions to the Gemini API (`api/chat.js`) and falls back to a local
+scoring-based knowledge base (`src/data/timeaAgentKnowledge.ts`) when the API is unavailable.
+To add or update Q&A content, edit the `KNOWLEDGE` array in that file.
+
+## CI/CD
+
+GitHub Actions runs five jobs on every PR to `main`: lint, typecheck, and test in parallel → build → deploy.
+Deploy uses the Vercel CLI with secrets stored in GitHub. Vercel's own auto-deploy is disabled so
+the pipeline is the only thing that publishes the site.

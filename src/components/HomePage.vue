@@ -47,9 +47,9 @@ const PLACEHOLDER_PROJECTS = [
         class="relative flex min-h-screen items-center"
         aria-labelledby="hero-heading"
       >
-        <div class="mx-auto w-full max-w-6xl px-4 py-24 flex flex-col-reverse items-center gap-10 md:flex-row md:items-center md:gap-16 -translate-y-10">
+        <div class="mx-auto w-full max-w-6xl px-6 pt-32 pb-16 flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:gap-12 lg:px-16 xl:px-8 lg:py-32">
           <!-- Left: text -->
-          <div class="flex-1">
+          <div class="flex-1 w-full lg:w-auto">
             <!-- "Hi, I'm" + logo mark (aria-hidden since the logo is decorative here) -->
             <div class="flex flex-wrap items-center gap-2">
               <p class="text-lg font-semibold text-[var(--color-muted)] md:text-xl">Hi, I'm</p>
@@ -59,9 +59,11 @@ const PLACEHOLDER_PROJECTS = [
 
             <h1
               id="hero-heading"
-              class="font-heading mt-2 text-4xl font-bold leading-tight tracking-tight text-[var(--color-headline)] md:text-5xl"
+              class="font-heading mt-2 text-4xl font-bold leading-tight tracking-tight text-[var(--color-headline)] lg:text-5xl"
             >
-              I'm a <RotatingDescriptor /> who creates with clarity and purpose.
+              <span class="block">I'm a</span>
+              <span class="block"><RotatingDescriptor /></span>
+              <span class="block">who creates with clarity and purpose.</span>
             </h1>
 
             <p class="mt-6 text-lg text-[var(--color-muted)]">
@@ -80,9 +82,9 @@ const PLACEHOLDER_PROJECTS = [
             Photo is inset by the 31-unit frame margin so it sits inside the frame rect.
             SVG fills the container exactly — frame rect aligns with photo edges.
           -->
-          <div class="relative shrink-0 w-56 md:w-72" style="aspect-ratio: 747 / 948">
+          <div class="relative shrink-0 w-56 lg:w-72" style="aspect-ratio: 747 / 948">
             <img
-              src="/timea.jpg"
+              src="/timea.png"
               alt="Timea Konya"
               class="absolute object-cover"
               :style="{
@@ -109,65 +111,8 @@ const PLACEHOLDER_PROJECTS = [
           </div>
         </div>
 
-        <!-- Scroll indicator: fades out once the user starts scrolling -->
-        <a
-          href="#projects"
-          :class="[
-            'absolute bottom-24 left-1/2 -translate-x-1/2 transition-opacity duration-500',
-            hasScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          ]"
-          aria-label="Scroll to projects"
-        >
-          <svg
-            width="22"
-            height="36"
-            viewBox="0 0 22 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="text-[var(--color-muted)]"
-            aria-hidden="true"
-          >
-            <rect x="1" y="1" width="20" height="34" rx="10" stroke="currentColor" stroke-width="1.5"/>
-            <circle cx="11" cy="9" r="2.5" fill="currentColor" class="scroll-dot"/>
-          </svg>
-        </a>
       </section>
 
-      <!-- Featured projects grid -->
-      <section
-        id="projects"
-        class="mx-auto max-w-6xl px-4 py-12"
-        aria-labelledby="projects-heading"
-      >
-        <h2
-          id="projects-heading"
-          class="font-heading text-2xl font-bold text-[var(--color-brand)]"
-        >
-          Recent Projects
-        </h2>
-        <p class="mt-2 text-[var(--color-muted)]">
-          Here are some examples of how I work with cross-functional teams, and how I blend
-          research, evaluation and execution.
-        </p>
-
-        <ul class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <li v-for="p in PLACEHOLDER_PROJECTS" :key="p.slug">
-            <article
-              class="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] transition-[var(--a11y-motion)] hover:shadow-md"
-            >
-              <!-- Placeholder image — replace with real image when case study pages exist -->
-              <div class="h-40 w-full bg-[var(--color-border)]" aria-hidden="true" />
-              <div class="p-4">
-                <h3 class="font-heading font-semibold text-[var(--color-brand)]">{{ p.title }}</h3>
-                <p class="mt-1 text-sm text-[var(--color-muted)]">{{ p.tagline }}</p>
-                <span class="mt-3 inline-block text-sm font-medium text-[var(--color-brand)]">
-                  Read case study →
-                </span>
-              </div>
-            </article>
-          </li>
-        </ul>
-      </section>
     </main>
 
     <!-- Footer: copyright and external links -->
@@ -175,8 +120,8 @@ const PLACEHOLDER_PROJECTS = [
       <div class="mx-auto flex max-w-6xl justify-between text-sm text-[var(--color-muted)]">
         <span>© Timea Konya</span>
         <div class="flex gap-4">
-          <a href="#" class="hover:text-[var(--color-brand)]">LinkedIn</a>
-          <a href="#" class="hover:text-[var(--color-brand)]">Download CV</a>
+          <a href="https://www.linkedin.com/in/timea-konya-a3543284/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-brand)]">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1aeNwj4QkRwouV0SgZ-m-c1h9_PUWALsb/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-brand)]">Resume</a>
         </div>
       </div>
     </footer>
