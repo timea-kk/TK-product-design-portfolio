@@ -22,6 +22,13 @@ function mockFetch(reply: string) {
   )
 }
 
+// The chat panel is collapsed by default — click the pill to open it first.
+async function openPanel(wrapper: ReturnType<typeof mount>) {
+  const pill = wrapper.findAll('button').find((b) => b.text().includes('Get to know Timea'))
+  await pill!.trigger('click')
+  await wrapper.vm.$nextTick()
+}
+
 describe('TimeaAgent', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -34,23 +41,27 @@ describe('TimeaAgent', () => {
 
   // ── Collapsed state ────────────────────────────────────────────────────────
 
-  it('renders the input field', () => {
+  it('renders the input field', async () => {
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     expect(wrapper.find('input[type="text"]').exists()).toBe(true)
   })
 
-  it('renders the send button', () => {
+  it('renders the send button', async () => {
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     expect(wrapper.find('button[aria-label="Send message"]').exists()).toBe(true)
   })
 
-  it('send button is disabled when the input is empty', () => {
+  it('send button is disabled when the input is empty', async () => {
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     expect(wrapper.find('button[type="submit"]').attributes('disabled')).toBeDefined()
   })
 
   it('send button becomes enabled when the input has text', async () => {
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     expect(wrapper.find('button[type="submit"]').attributes('disabled')).toBeUndefined()
   })
@@ -66,11 +77,31 @@ describe('TimeaAgent', () => {
     expect(wrapper.findAll('.rounded-lg').length).toBe(0)
   })
 
+  it('shows the three prompt questions when the panel is open and no messages sent', async () => {
+    const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
+    const text = wrapper.html()
+    expect(text).toContain('What has Timea worked on at Ecosia')
+    expect(text).toContain('What makes Timea stand out')
+    expect(text).toContain('Is Timea available for new opportunities')
+  })
+
+  it('collapses the panel when Escape is pressed', async () => {
+    const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
+    expect(wrapper.find('button[aria-label="Close chat"]').exists()).toBe(true)
+    await wrapper.vm.$nextTick()
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.find('button[aria-label="Close chat"]').exists()).toBe(false)
+  })
+
   // ── Submitting a message ───────────────────────────────────────────────────
 
   it('expands the panel immediately after submission', async () => {
     mockFetch('Hi there!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()
@@ -80,6 +111,7 @@ describe('TimeaAgent', () => {
   it('adds the user message to the thread immediately', async () => {
     mockFetch('Hi there!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Tell me about Ecosia')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()
@@ -89,6 +121,7 @@ describe('TimeaAgent', () => {
   it('clears the input after submission', async () => {
     mockFetch('Hi there!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()
@@ -99,6 +132,7 @@ describe('TimeaAgent', () => {
     vi.useFakeTimers()
     mockFetch('Hi there!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()
@@ -109,6 +143,7 @@ describe('TimeaAgent', () => {
     vi.useFakeTimers()
     mockFetch('I worked at Ecosia.')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Where did you work?')
     await wrapper.find('form').trigger('submit')
     // Let fetch resolve, then advance past the 1 500 ms minimum delay,
@@ -125,6 +160,7 @@ describe('TimeaAgent', () => {
     vi.useFakeTimers()
     mockFetch('Done!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     await wrapper.find('form').trigger('submit')
     await flushPromises()
@@ -142,6 +178,7 @@ describe('TimeaAgent', () => {
       }),
     )
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('What is your name?')
     await wrapper.find('form').trigger('submit')
     await flushPromises()
@@ -156,6 +193,7 @@ describe('TimeaAgent', () => {
     vi.useFakeTimers()
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('Network error')))
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Who are you?')
     await wrapper.find('form').trigger('submit')
     await flushPromises()
@@ -170,6 +208,7 @@ describe('TimeaAgent', () => {
   it('collapses the panel when the Close button is clicked', async () => {
     mockFetch('Hi!')
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('Hello')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()
@@ -186,6 +225,7 @@ describe('TimeaAgent', () => {
     vi.stubGlobal('fetch', fetchSpy)
 
     const wrapper = mount(TimeaAgent)
+    await openPanel(wrapper)
     await wrapper.find('input').setValue('First')
     await wrapper.find('form').trigger('submit')
     await wrapper.vm.$nextTick()

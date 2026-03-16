@@ -1,7 +1,7 @@
 /**
  * Component tests for HomePage.vue.
  * Child components are stubbed so tests focus on the page's own logic:
- * hero structure and footer content.
+ * hero structure and portrait image.
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
@@ -33,22 +33,6 @@ describe('HomePage', () => {
     expect(wrapper.find('h1').exists()).toBe(true)
   })
 
-  it('renders the footer', () => {
-    const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    expect(wrapper.find('footer').exists()).toBe(true)
-  })
-
-  it('footer contains the copyright notice', () => {
-    const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    expect(wrapper.find('footer').text()).toContain('Timea Konya')
-  })
-
-  it('footer has LinkedIn and Resume links', () => {
-    const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    const footerLinks = wrapper.findAll('footer a').map((a) => a.text())
-    expect(footerLinks).toContain('LinkedIn')
-    expect(footerLinks).toContain('Resume')
-  })
 
   it('portrait image has an accessible alt attribute', () => {
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })

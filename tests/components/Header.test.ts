@@ -22,10 +22,11 @@ describe('Header', () => {
     expect(wrapper.find('nav').exists()).toBe(true)
   })
 
-  it('renders Work and Resume links', () => {
+  it('renders Work, LinkedIn and Resume links', () => {
     const wrapper = mount(Header)
     const texts = wrapper.findAll('a').map((a) => a.text())
     expect(texts).toContain('Work')
+    expect(texts).toContain('LinkedIn')
     expect(texts).toContain('Resume')
   })
 
@@ -69,11 +70,10 @@ describe('Header', () => {
     expect(wrapper.find('[role="dialog"]').exists()).toBe(false)
   })
 
-  it('shows one theme option per available theme', async () => {
+  it('shows only the enabled themes in the theme panel', async () => {
     const wrapper = mount(Header)
-    const store = useThemeStore()
     await wrapper.find('button[aria-label="Choose theme"]').trigger('click')
-    expect(wrapper.findAll('[role="option"]')).toHaveLength(store.themes.length)
+    expect(wrapper.findAll('[role="option"]')).toHaveLength(3)
   })
 
   it('switching to the a11y panel hides the theme panel', async () => {
@@ -88,11 +88,11 @@ describe('Header', () => {
     const wrapper = mount(Header)
     const store = useThemeStore()
     await wrapper.find('button[aria-label="Choose theme"]').trigger('click')
-    const bauhaus = wrapper
+    const material = wrapper
       .findAll('[role="option"] button')
-      .find((o) => o.text().includes('Bauhaus'))
-    await bauhaus!.trigger('click')
-    expect(store.theme).toBe('bauhaus')
+      .find((o) => o.text().includes('Material'))
+    await material!.trigger('click')
+    expect(store.theme).toBe('material')
   })
 
   it('closes the theme panel after a theme is selected', async () => {
