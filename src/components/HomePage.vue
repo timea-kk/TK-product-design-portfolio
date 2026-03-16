@@ -8,7 +8,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import Header from '@/components/Header.vue'
-import Logo from '@/components/Logo.vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import TimeaAgent from '@/components/TimeaAgent.vue'
 
@@ -44,87 +43,81 @@ const PLACEHOLDER_PROJECTS = [
     <main>
       <!-- Hero: greeting row, typewriter headline, and bio paragraph -->
       <section
-        class="relative flex min-h-screen items-center"
+        class="relative h-screen p-[40px]"
         aria-labelledby="hero-heading"
       >
-        <div class="mx-auto w-full max-w-6xl px-6 pt-32 pb-16 flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:gap-12 lg:px-16 xl:px-8 lg:py-32">
-          <!-- Left: text -->
-          <div class="flex-1 w-full lg:w-auto">
-            <!-- "Hi, I'm" + logo mark (aria-hidden since the logo is decorative here) -->
-            <div class="flex flex-wrap items-center gap-2">
-              <p class="text-lg font-semibold text-[var(--color-muted)] md:text-xl">Hi, I'm</p>
-              <Logo class="h-7 w-auto md:h-8" />
-              <span class="sr-only">Timea</span>
-            </div>
-
+        <!-- Whiteboard panel: fills the viewport minus 80px on all sides -->
+        <div
+          class="w-full h-full rounded-3xl flex items-start overflow-y-auto px-10 lg:px-20"
+          style="
+            background-color: #f7f6f2;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
+            background-size: 22px 22px;
+            border: 1px solid rgba(0,0,0,0.06);
+          "
+        >
+          <div class="w-full flex flex-col gap-8 pt-16 mt-20">
+          <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-[102px]">
+          <!-- Left: headline -->
+          <div class="flex-1 w-full lg:w-auto lg:max-w-[720px] min-w-0">
             <h1
               id="hero-heading"
-              class="font-heading mt-2 text-4xl font-bold leading-tight tracking-tight text-[var(--color-headline)] lg:text-5xl"
+              class="font-heading mt-2 text-5xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-7xl"
             >
               <span class="block">I'm a</span>
               <span class="block"><RotatingDescriptor /></span>
               <span class="block">who creates with clarity and purpose.</span>
             </h1>
-
-            <p class="mt-6 text-lg text-[var(--color-muted)]">
-              People describe me as
-              <strong class="font-semibold text-[var(--color-brand)]"
-                >thoughtful, analytical, and structured</strong
-              >. I enjoy connecting dots others miss and bringing clarity to ambiguity through deep
-              thinking and systematic problem solving. I care about making design inclusive and
-              accessible, and about using it for something genuinely good.
-            </p>
           </div>
 
-          <!--
-            Right: portrait with outline frame overlaid.
-            Container matches the full SVG canvas (747×948 aspect ratio).
-            Photo is inset by the 31-unit frame margin so it sits inside the frame rect.
-            SVG fills the container exactly — frame rect aligns with photo edges.
-          -->
-          <div class="relative shrink-0 w-56 lg:w-72" style="aspect-ratio: 747 / 948">
-            <img
-              src="/timea.png"
-              alt="Timea Konya"
-              class="absolute object-cover"
-              :style="{
-                left: 'calc(100% * 31 / 747)',
-                top: 'calc(100% * 31 / 948)',
-                width: 'calc(100% * 685 / 747)',
-                height: 'calc(100% * 886 / 948)',
-              }"
-            />
-            <!-- Inlined so stroke/fill can use theme CSS variables instead of hardcoded purple -->
-            <svg
-              viewBox="0 0 747 948"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="absolute inset-0 h-full w-full"
-            >
-              <rect x="31" y="31" width="685" height="886" stroke="var(--color-brand)" stroke-width="10"/>
-              <rect x="692" y="893" width="50" height="50" fill="white" stroke="var(--color-brand)" stroke-width="10"/>
-              <rect x="5"   y="893" width="50" height="50" fill="white" stroke="var(--color-brand)" stroke-width="10"/>
-              <rect x="692" y="5"   width="50" height="50" fill="white" stroke="var(--color-brand)" stroke-width="10"/>
-              <rect x="5"   y="5"   width="50" height="50" fill="white" stroke="var(--color-brand)" stroke-width="10"/>
-            </svg>
+          <!-- OPTION A — STICKY NOTE (active) -->
+          <div class="relative shrink-0 w-64 lg:w-80" style="aspect-ratio: 1 / 1; transform: rotate(2deg)">
+            <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
+            <div class="absolute inset-0 flex flex-col" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
+              <div class="relative flex-1 overflow-hidden mx-9 mt-9 mb-9">
+                <img src="/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+                <div class="absolute inset-0 border-4 border-white pointer-events-none"></div>
+              </div>
+            </div>
+            <!-- Pointer: X and Y on separate elements with coprime durations (7s/5s) -->
+            <!-- so the combined path is a curved Lissajous that doesn't repeat for 35s -->
+            <div class="absolute pointer-events-none pointer-float-x" style="width: 7rem; bottom: calc(-2rem + 5px); right: calc(1rem - 30px);">
+              <img src="/pointer.svg" alt="" aria-hidden="true" class="pointer-float-y w-full" />
+            </div>
           </div>
+          </div>
+
+          <!-- Description: sits below the headline + image row -->
+          <p class="mt-20 text-lg text-[var(--color-muted)] max-w-2xl mx-auto text-center">
+            People describe me as
+            <strong class="font-semibold text-[var(--color-brand)]"
+              >thoughtful, analytical, and structured</strong
+            > – someone who cuts through ambiguity and connects dots others miss. I care about making design inclusive, accessible, and used for something genuinely good.
+          </p>
+
+
+          </div>
+
+          <!-- =====================================================================
+            OPTION B — POLAROID (parked, may revisit)
+            Square polaroid frame, white border thicker at bottom, tape on top.
+            To restore: uncomment the block below and remove the sticky note block.
+          ======================================================================
+          <div class="relative shrink-0 w-64 lg:w-80" style="aspect-ratio: 1 / 1; transform: rotate(-2deg)">
+            <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
+            <div class="absolute inset-0 flex flex-col" style="background: #ffffff; padding: 0.6rem 0.6rem 2rem 0.6rem; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
+              <div class="flex-1 overflow-hidden">
+                <img src="/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+          </div>
+          ===================================================================== -->
         </div>
 
       </section>
 
     </main>
 
-    <!-- Footer: copyright and external links -->
-    <footer class="border-t border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 pt-6 pb-24">
-      <div class="mx-auto flex max-w-6xl justify-between text-sm text-[var(--color-muted)]">
-        <span>© Timea Konya</span>
-        <div class="flex gap-4">
-          <a href="https://www.linkedin.com/in/timea-konya-a3543284/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-brand)]">LinkedIn</a>
-          <a href="https://drive.google.com/file/d/1aeNwj4QkRwouV0SgZ-m-c1h9_PUWALsb/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-brand)]">Resume</a>
-        </div>
-      </div>
-    </footer>
 
     <!-- Sticky chat bar: visitors can ask about Timea's experience -->
     <TimeaAgent />
@@ -132,6 +125,29 @@ const PLACEHOLDER_PROJECTS = [
 </template>
 
 <style scoped>
+/*
+  Natural float via Lissajous with coprime periods: X=7s, Y=5s.
+  The path doesn't repeat for 35s, and ease-in-out on each axis keeps transitions curved.
+*/
+.pointer-float-x {
+  animation: pointer-float-x 7s ease-in-out infinite;
+}
+.pointer-float-y {
+  animation: pointer-float-y 5s ease-in-out infinite;
+}
+
+@keyframes pointer-float-x {
+  0%   { transform: translateX(0px); }
+  50%  { transform: translateX(16px); }
+  100% { transform: translateX(0px); }
+}
+
+@keyframes pointer-float-y {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(12px); }
+  100% { transform: translateY(0px); }
+}
+
 .scroll-dot {
   transform-box: fill-box;
   transform-origin: center top;

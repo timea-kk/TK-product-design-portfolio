@@ -7,11 +7,11 @@
 
 /* ========== DEFAULT ==========
    Warm peachy surface from Burnt Orange 50 (#FEF5EE), Golden Honey 50 elevated (#FDF8EC),
-   Dusty Violet accent (#9966AA), warm honey border (#EDD9B8), Lora serif headings. */
+   Dusty Violet accent (#9966AA), warm honey border (#EDD9B8), Bricolage Grotesque headings. */
 html.theme-default {
   --color-brand: #9966AA;
   --color-brand-secondary: #7A4E8A;
-  --color-surface: #FEF5EE;
+  --color-surface: #d9c7e0;
   --color-surface-elevated: #FDF8EC;
   --color-muted: #6B5464;
   --color-headline: #2B1A33;
@@ -21,7 +21,7 @@ html.theme-default {
   --color-cta-bg: #9966AA;
   --color-cta-text: #ffffff;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Lora', Georgia, serif;
+  --font-heading: 'Bricolage Grotesque', Georgia, serif;
   --radius: 0.5rem;
   --shadow: 0 2px 8px rgba(153, 102, 170, 0.12);
 }
@@ -357,11 +357,11 @@ html.theme-material {
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Default: explicit Lora for headings. !important beats any Tailwind utility class competition. */
+/* Default: explicit Bricolage Grotesque for headings. !important beats any Tailwind utility class competition. */
 html.theme-default h1,
 html.theme-default h2,
 html.theme-default h3 {
-  font-family: 'Lora', Georgia, serif !important;
+  font-family: 'Bricolage Grotesque', Georgia, serif !important;
 }
 
 /* All other theme blocks can set --font-heading; apply it to headings.

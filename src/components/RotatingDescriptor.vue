@@ -17,7 +17,7 @@ import { useA11yStore } from '@/stores/a11y'
 /** All phrases that rotate in the headline. */
 const DESCRIPTORS = [
   'Senior Product Designer',
-  'Design systems enthusiast',
+  'Design systems fan',
   'Designer who codes',
   'Accessibility advocate',
   'Systems thinker',
