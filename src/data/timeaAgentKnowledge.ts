@@ -629,6 +629,32 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'I enjoy complex problem solving, designing for growth with experiments and data, and building systems that scale. I like bringing clarity when things feel messy, co-creating with teams, and connecting design work to real impact. Evidence-based design and ownership are important to me.',
   },
 
+  // What makes Timea stand out / unique / different as a designer
+  {
+    keywords: [
+      "stand out",
+      "stands out",
+      "what makes you different",
+      "what makes timea different",
+      "unique as a designer",
+      "what sets you apart",
+      "what sets timea apart",
+      "what makes you special",
+      "what makes timea special",
+      "differentiat",
+      "why hire you",
+      "why should we hire",
+      "why timea",
+      "what makes you stand",
+      "what makes timea stand",
+      "why you over",
+      "distinctive",
+      "your edge",
+    ],
+    answer:
+      "I combine a deep passion for design systems and design operations with a strong focus on designing for growth. I bring both strategic thinking and hands-on execution, and I care about scaling design quality across teams.",
+  },
+
   // Management / leadership / mentoring other designers
   {
     keywords: [

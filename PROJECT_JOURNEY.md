@@ -313,10 +313,30 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 18: Whiteboard theme branch
+
+**What we built**
+- Hero redesigned: Bricolage Grotesque 900 heading font, scrollable whiteboard panel (dotted `#f7f6f2` background) framed by a `#d9c7e0` canvas. Sticky note photo with tape, asymmetric shadow, and a floating cursor (Lissajous animation via two nested elements with coprime 7s/5s periods).
+- TimeaAgent rebuilt: collapsed pill state → expanded chat panel with 3 prompt questions, GSAP open/close animations (pill fades, panel springs up with `back.out(1.4)`), Escape key to close, typewriter responses styled with the same `#e7dbeb` background as prompt buttons.
+- Header: LinkedIn added between Work and Resume; footer removed. Unfinished themes and dyslexia a11y option hidden until a future fix branch.
+
+**What went wrong**
+- GSAP animation: pill and panel were in the same flex container, so during transition both existed in the DOM side by side. Fixed by giving each its own `fixed bottom-0 left-0 right-0` container so they overlap rather than stack.
+- Gap between headline and sticky note was visually unchanged despite reducing `gap-` — `flex-1` on the text column filled all available space regardless of gap value. Fixed by capping the column at `max-w-[720px]` so free space becomes real.
+- `min-h` to prevent layout jump from "Senior Product Designer" added a blank line. Root cause: RotatingDescriptor already has `whitespace-nowrap`, so no wrapping occurs. `min-w-0` on the flex column was the real fix (prevents min-content from forcing a reflow on the last typed character).
+
+**What the agent learned**
+- Flex items with `flex-1` absorb all free space — gap changes are invisible unless the item is capped below available space.
+- `:css="false"` on Vue `<Transition>` is required when using GSAP hooks, otherwise Vue's CSS transitions fight GSAP simultaneously.
+
+**Outcome:** ✅ 97 tests passing, whiteboard hero on branch, chat widget rebuilt, CI green.
+
+---
+
 ## 📍 Where we are now
 
-- **Site:** One page — hero (full viewport, photo, 3-line typewriter headline, bio), 7 themes, a11y panel, chat bar (pill → expands → dots → typewriter reply). Projects and scroll indicator hidden until content is ready. Gemini API, local fallback.
-- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vitest + @vue/test-utils. ESLint 9 + Prettier.
+- **Site:** One page — scrollable whiteboard panel (dotted background, `#d9c7e0` canvas), sticky note photo with floating cursor, Bricolage Grotesque 900 headline, bio. 3 active themes (default, neo-brutalism, material). Chat bar (pill → GSAP animated panel → prompt questions → typewriter reply). Gemini API, local fallback.
+- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vitest + @vue/test-utils. ESLint 9 + Prettier. GSAP for animations.
 - **Agent:** ~35 entries in `src/data/timeaAgentKnowledge.ts`; scoring algorithm; honest fallback.
 - **Deploy:** GitHub + Vercel; 5-job CI/CD pipeline (lint → typecheck → test → build → deploy). See `AGENT_SETUP.md`.
 - **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`, `README.md`.
