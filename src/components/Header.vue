@@ -121,7 +121,7 @@ function selectTheme(id: string) {
       <!-- Theme list -->
       <ul v-if="activePanel === 'theme'" role="listbox" aria-label="Theme options">
         <li
-          v-for="id in themeStore.themes"
+          v-for="id in themeStore.themes.filter(t => ['default', 'neo-brutalism', 'material'].includes(t))"
           :key="id"
           role="option"
           :aria-selected="themeStore.theme === id"
@@ -165,18 +165,7 @@ function selectTheme(id: string) {
           />
         </label>
 
-        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
-          <div>
-            <span class="block text-sm font-medium text-[var(--color-muted)]">Dyslexia-friendly</span>
-            <span class="block text-xs opacity-60">OpenDyslexic font, wider spacing</span>
-          </div>
-          <input
-            type="checkbox"
-            :checked="a11y.dyslexia"
-            @change="a11y.update({ dyslexia: ($event.target as HTMLInputElement).checked })"
-            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
-          />
-        </label>
+        <!-- dyslexia-friendly hidden until fixed in a future branch -->
 
         <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
           <div>
