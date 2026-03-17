@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
-import HomePage from '@/components/HomePage.vue'
+import AppLayout from '@/components/AppLayout.vue'
 import '@/themes/index.css'
 
 // Initialise stores on app boot — their immediate watchers apply HTML classes and CSS vars
@@ -17,5 +17,5 @@ useA11yStore()
 </script>
 
 <template>
-  <HomePage />
+  <AppLayout />
 </template>
