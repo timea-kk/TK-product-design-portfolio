@@ -12,7 +12,8 @@ import App from '@/App.vue'
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
 
-const STUBS = { HomePage: true }
+// App.vue now renders AppLayout (which contains RouterView) rather than HomePage directly
+const STUBS = { AppLayout: true }
 
 describe('App', () => {
   beforeEach(() => {
@@ -27,9 +28,9 @@ describe('App', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('renders the HomePage component', () => {
+  it('renders the AppLayout component', () => {
     const wrapper = mount(App, { global: { stubs: STUBS } })
-    expect(wrapper.findComponent({ name: 'HomePage' }).exists()).toBe(true)
+    expect(wrapper.findComponent({ name: 'AppLayout' }).exists()).toBe(true)
   })
 
   it('initialises the theme store on boot', () => {

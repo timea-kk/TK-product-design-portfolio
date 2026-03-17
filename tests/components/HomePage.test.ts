@@ -7,13 +7,12 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { setActivePinia, createPinia } from 'pinia'
-import HomePage from '@/components/HomePage.vue'
+import HomePage from '@/pages/HomePage.vue'
 
+// Header and TimeaAgent are no longer part of HomePage — they live in AppLayout
 const STUBS = {
-  Header: true,
   Logo: true,
   RotatingDescriptor: true,
-  TimeaAgent: true,
 }
 
 describe('HomePage', () => {
@@ -21,11 +20,6 @@ describe('HomePage', () => {
     setActivePinia(createPinia())
     document.documentElement.className = ''
     localStorage.clear()
-  })
-
-  it('renders the main landmark', () => {
-    const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    expect(wrapper.find('main').exists()).toBe(true)
   })
 
   it('renders the hero heading', () => {
