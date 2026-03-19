@@ -37,6 +37,7 @@ function scrollToSection(id: string) {
 }
 
 let observer: IntersectionObserver | null = null
+const visibleSections = new Set<string>()
 
 onMounted(() => {
   if (!panelRef.value) return
@@ -45,8 +46,13 @@ onMounted(() => {
   observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (entry.isIntersecting) activeSection.value = entry.target.id
+        if (entry.isIntersecting) visibleSections.add(entry.target.id)
+        else visibleSections.delete(entry.target.id)
       }
+      // Always highlight the topmost visible section in nav order,
+      // so "overview" wins over "context" when both are on screen
+      const first = NAV_SECTIONS.find(s => visibleSections.has(s.id))
+      if (first) activeSection.value = first.id
     },
     { root: panelRef.value, rootMargin: '0px 0px -75% 0px' }
   )
@@ -111,7 +117,7 @@ onUnmounted(() => observer?.disconnect())
         </nav>
 
         <!-- ── Main content ── -->
-        <div class="w-full min-w-0 max-w-4xl space-y-16">
+        <div class="w-full min-w-0 max-w-4xl space-y-24">
 
           <!-- ── Hero + TL;DR (merged) ── -->
           <!-- mt-[35px]: first child gets no space-y gap, so we add 35px manually -->
