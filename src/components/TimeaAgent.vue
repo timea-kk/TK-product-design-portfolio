@@ -134,7 +134,7 @@ function onPanelLeave(el: Element, done: () => void) {
         @click="openChat"
         class="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-3 text-sm font-medium text-[var(--color-muted)] shadow-lg hover:text-[var(--color-brand)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)] transition-colors"
       >
-        <img src="/timeaAgent.jpg" alt="" aria-hidden="true" class="h-6 w-6 rounded-full object-cover" />
+        <img src="/main-page/timeaAgent.jpg" alt="" aria-hidden="true" class="h-6 w-6 rounded-full object-cover" />
         Get to know Timea
       </button>
     </div>
@@ -149,7 +149,7 @@ function onPanelLeave(el: Element, done: () => void) {
       <!-- Header -->
       <div class="flex items-center gap-3 bg-[var(--color-brand)] px-4 py-3">
         <img
-          src="/timeaAgent.jpg"
+          src="/main-page/timeaAgent.jpg"
           alt=""
           aria-hidden="true"
           class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-cta-text)]"

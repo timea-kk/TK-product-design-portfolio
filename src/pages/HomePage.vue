@@ -68,14 +68,14 @@ const PLACEHOLDER_PROJECTS = [
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="relative flex-1 overflow-hidden mx-9 mt-9 mb-9">
-            <img src="/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+            <img src="/main-page/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
             <div class="absolute inset-0 border-4 border-white pointer-events-none"></div>
           </div>
         </div>
         <!-- Pointer: X and Y on separate elements with coprime durations (7s/5s) -->
         <!-- so the combined path is a curved Lissajous that doesn't repeat for 35s -->
         <div class="absolute pointer-events-none pointer-float-x" style="width: 7rem; bottom: calc(-2rem + 5px); right: calc(1rem - 30px);">
-          <img src="/pointer.svg" alt="" aria-hidden="true" class="pointer-float-y w-full" />
+          <img src="/main-page/pointer.svg" alt="" aria-hidden="true" class="pointer-float-y w-full" />
         </div>
       </div>
       </div>
@@ -100,7 +100,7 @@ const PLACEHOLDER_PROJECTS = [
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: #ffffff; padding: 0.6rem 0.6rem 2rem 0.6rem; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="flex-1 overflow-hidden">
-            <img src="/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+            <img src="/main-page/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
           </div>
         </div>
       </div>

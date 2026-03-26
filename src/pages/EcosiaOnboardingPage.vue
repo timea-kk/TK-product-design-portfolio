@@ -124,7 +124,7 @@ onUnmounted(() => observer?.disconnect())
           <!-- 40px flex padding-top + 35px margin-top = 75px from panel top -->
           <!-- label is 35px above card → label lands at 40px = nav sticky top ✓ -->
           <div id="overview" class="mt-[35px] scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-14 space-y-8">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Overview</p>
 
             <!-- Title block -->
@@ -168,15 +168,20 @@ onUnmounted(() => observer?.disconnect())
             <div class="space-y-3">
               <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TL;DR</h2>
               <p class="text-[var(--color-muted)] leading-relaxed">
-                I built Ecosia's first web onboarding experience, helping new users quickly understand the product, trust its mission, and continue using it beyond their first search. Through user research, iterative experimentation, and a new onboarding strategy, I defined how Ecosia introduced itself and communicated its value to users. The work resulted in a 20-25% increase in conversion, a 3% lift in D1 retention, and a scalable foundation for future growth.
+                I built Ecosia's first web onboarding experience, defining how the product introduced itself and communicated its value to new users. Through research and iterative experimentation, I helped users understand the mission, build trust, and return after their first search, resulting in a <strong>20–25% conversion increase</strong> and a <strong>3% lift in D1 retention</strong>.
               </p>
             </div>
+
+            <figure>
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl" />
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Ecosia Landing Page snapshot</figcaption>
+            </figure>
 
           </div>
 
           <!-- ── Context ── -->
           <div id="context" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Context</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🌎 Context</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -198,7 +203,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── The Problem ── -->
           <div id="problem" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Problem</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧠 The Problem</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -225,7 +230,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── The Challenge ── -->
           <div id="challenge" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Challenge</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">⚡️ The Challenge</h2>
             <blockquote class="rounded-xl border border-black/10 bg-black/[0.03] px-8 py-6">
@@ -250,7 +255,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Research ── -->
           <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Research</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🔍 Research Insights</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -298,7 +303,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Opportunities ── -->
           <div id="opportunities" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Opportunities</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧭 Mapping Opportunities</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -315,7 +320,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Experimentation ── -->
           <div id="experimentation" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Experimentation</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧪 Experimentation</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -360,7 +365,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Strategy ── -->
           <div id="strategy" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Strategy</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🏔️ Strategic Direction</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -391,7 +396,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Execution ── -->
           <div id="execution" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Execution</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🚧 Executing Strategy</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -424,7 +429,7 @@ onUnmounted(() => observer?.disconnect())
 
           <!-- ── Results ── -->
           <div id="results" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-[var(--color-muted)] bg-white border border-black/[0.06] rounded-lg px-2.5 py-1 select-none"
+            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Results</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🌱 Results & Learnings</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
