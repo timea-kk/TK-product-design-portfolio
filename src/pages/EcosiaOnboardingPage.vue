@@ -9,9 +9,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
-  { id: 'context',         label: 'Context' },
   { id: 'problem',         label: 'The Problem' },
-  { id: 'challenge',       label: 'The Challenge' },
+  { id: 'challenge',       label: 'The Approach' },
   { id: 'research',        label: 'Research' },
   { id: 'opportunities',   label: 'Opportunities' },
   { id: 'experimentation', label: 'Experimentation' },
@@ -36,34 +35,27 @@ function scrollToSection(id: string) {
   }
 }
 
-let observer: IntersectionObserver | null = null
-const visibleSections = new Set<string>()
+function updateActiveSection() {
+  const panel = panelRef.value
+  if (!panel) return
+  const threshold = panel.getBoundingClientRect().top + panel.clientHeight * 0.4
+  let active = NAV_SECTIONS[0].id
+  for (const { id } of NAV_SECTIONS) {
+    const el = document.getElementById(id)
+    if (!el) continue
+    if (el.getBoundingClientRect().top <= threshold) active = id
+  }
+  activeSection.value = active
+}
 
 onMounted(() => {
-  if (!panelRef.value) return
-
-  // root must be the scrolling panel, not the viewport
-  observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) visibleSections.add(entry.target.id)
-        else visibleSections.delete(entry.target.id)
-      }
-      // Always highlight the topmost visible section in nav order,
-      // so "overview" wins over "context" when both are on screen
-      const first = NAV_SECTIONS.find(s => visibleSections.has(s.id))
-      if (first) activeSection.value = first.id
-    },
-    { root: panelRef.value, rootMargin: '0px 0px -75% 0px' }
-  )
-
-  NAV_SECTIONS.forEach(({ id }) => {
-    const el = document.getElementById(id)
-    if (el) observer!.observe(el)
-  })
+  panelRef.value?.addEventListener('scroll', updateActiveSection, { passive: true })
+  updateActiveSection()
 })
 
-onUnmounted(() => observer?.disconnect())
+onUnmounted(() => {
+  panelRef.value?.removeEventListener('scroll', updateActiveSection)
+})
 </script>
 
 <template>
@@ -173,57 +165,44 @@ onUnmounted(() => observer?.disconnect())
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Ecosia Landing Page snapshot</figcaption>
             </figure>
 
           </div>
 
           <!-- ── Context ── -->
-          <div id="context" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Context</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🌎 Context</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Ecosia is a search engine that dedicates 100% of its profits to planting trees all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              After switching to Google as a search partner, Ecosia needed to improve retention by helping users make it their default search engine. Despite strong awareness, many new users left after their first search, often before understanding its mission or impact.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              I joined Ecosia in 2020 as a Product Designer in a cross functional team focused on user engagement. The onboarding project was part of a broader effort to reduce early drop off and build a scalable way to introduce new users to Ecosia.
-            </p>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">
-                Ecosia product offering: Extensions, native apps and Default Search
-              </figcaption>
-            </figure>
-          </div>
 
           <!-- ── The Problem ── -->
           <div id="problem" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Problem</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧠 The Problem</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Users left before understanding what Ecosia was</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Despite having great organic acquisition, Ecosia's growth was limited by activation. Many users installed Ecosia or tried it once but didn't stay. There was no clear onboarding experience to explain what the product was, how to use it, or why it was worth switching from familiar search engines.
+              Ecosia is a search engine that dedicates 100% of its profits to planting trees all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission. After switching to Google as a search partner, Ecosia needed to improve retention by helping users make it their default search engine. Despite strong awareness, many <strong>new users left after their first search</strong>, often before understanding its mission or impact.
             </p>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business Problem</p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">📉 Low conversion and retention rates with limited insight into why users dropped off</li>
-              <li class="text-[var(--color-muted)]">🧪 Small testing volume made it difficult to reach statistically reliable results</li>
-              <li class="text-[var(--color-muted)]">⚙️ Dependence on a new search partner (Google) with strict messaging limitations</li>
-            </ul>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">User Problem</p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">❓ Unclear value as users didn't understand what Ecosia was or how it worked</li>
-              <li class="text-[var(--color-muted)]">🧭 No guidance on how to install or set Ecosia as the default search engine</li>
-              <li class="text-[var(--color-muted)]">💬 Early experience lacked trust or familiarity leading to quick churn</li>
-              <li class="text-[var(--color-muted)]">🌍 Skepticism about Ecosia's environmental claims and real world impact</li>
-            </ul>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              I joined Ecosia in 2020 as a Product Designer in a cross functional team focused on user engagement. The onboarding project was part of a broader effort to reduce early drop off and build a scalable way to introduce new users to Ecosia.
+            </p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business and user problems</p>
+            <div class="pt-5">
+            <div class="flex gap-4">
+              <div class="relative flex-1" style="transform: rotate(-1deg)">
+                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
+              </div>
+              <div class="relative flex-1" style="transform: rotate(1deg)">
+                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(-2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
+              </div>
+              <div class="relative flex-1" style="transform: rotate(-0.5deg)">
+                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(1.5deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
+              </div>
+            </div>
+            </div>
+            <figure class="pt-4 space-y-3">
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Product landscape</figcaption>
             </figure>
           </div>
@@ -231,25 +210,21 @@ onUnmounted(() => observer?.disconnect())
           <!-- ── The Challenge ── -->
           <div id="challenge" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Challenge</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">⚡️ The Challenge</h2>
-            <blockquote class="rounded-xl border border-black/10 bg-black/[0.03] px-8 py-6">
-              <p class="text-lg font-semibold text-[var(--color-headline)] leading-snug">
-                🧠 How might we help new users quickly understand and trust Ecosia while keeping their experience familiar?
-              </p>
-            </blockquote>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              We realized that users arrived curious, but left before realizing how Ecosia worked and what made it different. We needed to communicate value and impact in just a few seconds, with limited space, strict content policies, and small test samples.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              The challenge was to design an onboarding experience that built trust, encouraged action, and fit naturally into existing user behavior.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.
-            </p>
+              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Approach</p>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Injecting tool evaluation insights into the product</h2>
+            <div class="flex gap-8 items-start">
+              <div class="flex flex-col gap-4 flex-1 text-[var(--color-muted)] leading-relaxed">
+                <p>We realized that users arrived curious, but left before realizing how Ecosia worked and what made it different.</p>
+                <p>The <strong>challenge</strong> was to design an onboarding experience that built trust, encouraged action, and fit naturally into existing user behavior.</p>
+                <p>To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.</p>
+              </div>
+              <div class="relative shrink-0 w-56 mt-4" style="transform: rotate(-1deg)">
+                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>help new users quickly understand and trust Ecosia while keeping their experience familiar</div>
+              </div>
+            </div>
             <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Project timeline</figcaption>
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[#275243]" />
             </figure>
           </div>
 
