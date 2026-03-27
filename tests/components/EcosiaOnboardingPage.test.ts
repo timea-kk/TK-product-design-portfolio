@@ -1,7 +1,8 @@
 /**
  * Component tests for EcosiaOnboardingPage.vue.
- * Scroll spy uses a scroll event listener — tests trigger scroll events
- * and mock getBoundingClientRect to control which sections are "active".
+ * Scroll spy uses a scroll event listener — tests mock document.getElementById
+ * and getBoundingClientRect to control which sections are "active", then
+ * dispatch a scroll event on the panel ref.
  * Tests cover: nav rendering, scroll-spy active-section logic,
  * scrollToSection behaviour, listener teardown, and section card structure.
  */
@@ -19,63 +20,56 @@ const SECTION_IDS = [
 
 // ── Setup / teardown ──────────────────────────────────────────────────────────
 
-let attachTarget: HTMLDivElement
-
 beforeEach(() => {
   Element.prototype.scrollTo = vi.fn()
-  // Default: all rects return top: 500 (above threshold when panel top = 0, clientHeight = 0)
   Element.prototype.getBoundingClientRect = vi.fn().mockReturnValue({
     top: 500, bottom: 600, left: 0, right: 0, width: 800, height: 100,
   })
-  attachTarget = document.createElement('div')
-  document.body.appendChild(attachTarget)
 })
 
 afterEach(() => {
-  attachTarget.remove()
   vi.restoreAllMocks()
 })
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-/**
- * Mount the component attached to the document so document.getElementById
- * finds the real section elements rendered by the component.
- */
-function mountAttached() {
-  return mount(EcosiaOnboardingPage, { attachTo: attachTarget })
+type Wrapper = ReturnType<typeof mount<typeof EcosiaOnboardingPage>>
+
+function getPanelEl(wrapper: Wrapper): HTMLElement {
+  return (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
 }
 
 /**
- * Mock section getBoundingClientRect so that the listed sections have
- * top ≤ threshold (panel.top + clientHeight * 0.4).
- * With jsdom clientHeight = 0, threshold = panel.getBoundingClientRect().top.
- * We mock the panel to return top: 0 → threshold = 0.
+ * Mock panel and section elements so the scroll spy resolves correctly.
+ * threshold = panel.getBoundingClientRect().top + clientHeight * 0.4
+ * jsdom clientHeight = 0, so threshold = panel top.
+ * Panel mocked to top: 0 → threshold = 0.
  * Active sections get top: -1 (≤ 0), inactive get top: 500 (> 0).
  */
-function setupScrollPositions(
-  wrapper: ReturnType<typeof mountAttached>,
-  activeSectionIds: string[],
-) {
-  const panelEl = (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
+function setupScrollPositions(wrapper: Wrapper, activeSectionIds: string[]) {
+  const panelEl = getPanelEl(wrapper)
   vi.spyOn(panelEl, 'getBoundingClientRect').mockReturnValue({
     top: 0, bottom: 800, left: 0, right: 0, width: 1200, height: 0,
   } as DOMRect)
 
+  const mockEls: Record<string, HTMLElement> = {}
   SECTION_IDS.forEach(id => {
-    const el = document.getElementById(id)
-    if (el) {
-      vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
-        top: activeSectionIds.includes(id) ? -1 : 500,
-        bottom: 0, left: 0, right: 0, width: 0, height: 0,
-      } as DOMRect)
-    }
+    const el = document.createElement('div')
+    el.id = id
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      top: activeSectionIds.includes(id) ? -1 : 500,
+      bottom: 0, left: 0, right: 0, width: 0, height: 0,
+    } as DOMRect)
+    mockEls[id] = el
   })
+
+  vi.spyOn(document, 'getElementById').mockImplementation(
+    (id: string) => mockEls[id] ?? null,
+  )
 }
 
-async function triggerScroll(wrapper: ReturnType<typeof mountAttached>) {
-  const panelEl = (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
-  panelEl.dispatchEvent(new Event('scroll'))
+async function triggerScroll(wrapper: Wrapper) {
+  getPanelEl(wrapper).dispatchEvent(new Event('scroll'))
   await wrapper.vm.$nextTick()
 }
 
@@ -108,7 +102,7 @@ describe('EcosiaOnboardingPage — nav rendering', () => {
 
 describe('EcosiaOnboardingPage — scroll spy', () => {
   it('activates the last section whose top edge has passed the threshold', async () => {
-    const wrapper = mountAttached()
+    const wrapper = mount(EcosiaOnboardingPage)
     setupScrollPositions(wrapper, ['overview', 'problem', 'challenge', 'research'])
     await triggerScroll(wrapper)
 
@@ -117,16 +111,16 @@ describe('EcosiaOnboardingPage — scroll spy', () => {
   })
 
   it('activates overview when no section has passed the threshold', async () => {
-    const wrapper = mountAttached()
-    setupScrollPositions(wrapper, []) // no section active
+    const wrapper = mount(EcosiaOnboardingPage)
+    setupScrollPositions(wrapper, [])
     await triggerScroll(wrapper)
 
     expect(wrapper.findAll('nav button')[0].classes()).toContain('font-semibold')
   })
 
   it('activates the last section when scrolled to the bottom', async () => {
-    const wrapper = mountAttached()
-    setupScrollPositions(wrapper, SECTION_IDS) // all sections passed
+    const wrapper = mount(EcosiaOnboardingPage)
+    setupScrollPositions(wrapper, SECTION_IDS)
     await triggerScroll(wrapper)
 
     const resultsBtn = wrapper.findAll('nav button').find(b => b.text() === 'Results')
@@ -134,21 +128,19 @@ describe('EcosiaOnboardingPage — scroll spy', () => {
   })
 
   it('updates active section on each scroll event', async () => {
-    const wrapper = mountAttached()
+    const wrapper = mount(EcosiaOnboardingPage)
 
     setupScrollPositions(wrapper, ['overview', 'problem'])
     await triggerScroll(wrapper)
-    const problemBtn = wrapper.findAll('nav button').find(b => b.text() === 'The Problem')
-    expect(problemBtn?.classes()).toContain('font-semibold')
+    expect(wrapper.findAll('nav button').find(b => b.text() === 'The Problem')?.classes()).toContain('font-semibold')
 
     setupScrollPositions(wrapper, ['overview', 'problem', 'challenge', 'research', 'opportunities'])
     await triggerScroll(wrapper)
-    const opportunitiesBtn = wrapper.findAll('nav button').find(b => b.text() === 'Opportunities')
-    expect(opportunitiesBtn?.classes()).toContain('font-semibold')
+    expect(wrapper.findAll('nav button').find(b => b.text() === 'Opportunities')?.classes()).toContain('font-semibold')
   })
 
   it('activates a mid-page section correctly', async () => {
-    const wrapper = mountAttached()
+    const wrapper = mount(EcosiaOnboardingPage)
     setupScrollPositions(wrapper, ['overview', 'problem', 'challenge'])
     await triggerScroll(wrapper)
 
@@ -161,10 +153,16 @@ describe('EcosiaOnboardingPage — scroll spy', () => {
 
 describe('EcosiaOnboardingPage — scrollToSection', () => {
   it('calls scrollTo on the panel when a nav button is clicked', async () => {
-    const wrapper = mountAttached()
-    const panelEl = (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
+    const wrapper = mount(EcosiaOnboardingPage)
+    const panelEl = getPanelEl(wrapper)
     const scrollToMock = vi.fn()
     panelEl.scrollTo = scrollToMock
+
+    const problemEl = document.createElement('div')
+    problemEl.id = 'problem'
+    vi.spyOn(document, 'getElementById').mockImplementation(
+      (id: string) => id === 'problem' ? problemEl : null,
+    )
 
     await wrapper.findAll('nav button')[1].trigger('click') // "The Problem"
     expect(scrollToMock).toHaveBeenCalledWith(expect.objectContaining({ behavior: 'smooth' }))
@@ -176,13 +174,13 @@ describe('EcosiaOnboardingPage — scrollToSection', () => {
 describe('EcosiaOnboardingPage — lifecycle', () => {
   it('adds a scroll listener on mount', () => {
     const addSpy = vi.spyOn(HTMLElement.prototype, 'addEventListener')
-    mountAttached()
+    mount(EcosiaOnboardingPage)
     expect(addSpy).toHaveBeenCalledWith('scroll', expect.any(Function), expect.objectContaining({ passive: true }))
   })
 
   it('removes the scroll listener on unmount', () => {
+    const wrapper = mount(EcosiaOnboardingPage)
     const removeSpy = vi.spyOn(HTMLElement.prototype, 'removeEventListener')
-    const wrapper = mountAttached()
     wrapper.unmount()
     expect(removeSpy).toHaveBeenCalledWith('scroll', expect.any(Function))
   })
