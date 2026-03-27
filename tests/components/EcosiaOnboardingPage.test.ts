@@ -1,88 +1,91 @@
 /**
  * Component tests for EcosiaOnboardingPage.vue.
- * IntersectionObserver is mocked — jsdom doesn't implement it.
+ * Scroll spy uses a scroll event listener — tests mock document.getElementById
+ * and getBoundingClientRect to control which sections are "active", then
+ * dispatch a scroll event on the panel ref.
  * Tests cover: nav rendering, scroll-spy active-section logic,
- * scrollToSection behaviour, observer teardown, and section card structure.
+ * scrollToSection behaviour, listener teardown, and section card structure.
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EcosiaOnboardingPage from '@/pages/EcosiaOnboardingPage.vue'
 
-// ── IntersectionObserver mock ─────────────────────────────────────────────────
-
-let observerCallback: IntersectionObserverCallback | null = null
-let disconnectSpy = vi.fn()
-
-class MockIntersectionObserver {
-  observe = vi.fn()
-  disconnect: ReturnType<typeof vi.fn>
-
-  constructor(cb: IntersectionObserverCallback) {
-    observerCallback = cb
-    disconnectSpy = vi.fn()
-    // assign after updating disconnectSpy so both references point to the same fn
-    this.disconnect = disconnectSpy
-  }
-}
-
 // ── Section IDs (must match component) ───────────────────────────────────────
 
 const SECTION_IDS = [
-  'overview', 'context', 'problem', 'challenge', 'research',
+  'overview', 'problem', 'challenge', 'research',
   'opportunities', 'experimentation', 'strategy', 'execution', 'results',
 ]
 
 // ── Setup / teardown ──────────────────────────────────────────────────────────
 
 beforeEach(() => {
-  observerCallback = null
-  vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
-
   Element.prototype.scrollTo = vi.fn()
   Element.prototype.getBoundingClientRect = vi.fn().mockReturnValue({
-    top: 100, bottom: 200, left: 0, right: 0, width: 800, height: 100,
-  })
-
-  SECTION_IDS.forEach(id => {
-    if (!document.getElementById(id)) {
-      const el = document.createElement('div')
-      el.id = id
-      document.body.appendChild(el)
-    }
+    top: 500, bottom: 600, left: 0, right: 0, width: 800, height: 100,
   })
 })
 
 afterEach(() => {
-  SECTION_IDS.forEach(id => document.getElementById(id)?.remove())
+  vi.restoreAllMocks()
 })
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function fireIntersection(entries: { id: string; intersecting: boolean }[]) {
-  observerCallback!(
-    entries.map(({ id, intersecting }) => ({
-      isIntersecting: intersecting,
-      target: document.getElementById(id)!,
-    }) as IntersectionObserverEntry),
-    {} as IntersectionObserver,
+type Wrapper = ReturnType<typeof mount<typeof EcosiaOnboardingPage>>
+
+function getPanelEl(wrapper: Wrapper): HTMLElement {
+  return (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
+}
+
+/**
+ * Mock panel and section elements so the scroll spy resolves correctly.
+ * threshold = panel.getBoundingClientRect().top + clientHeight * 0.4
+ * jsdom clientHeight = 0, so threshold = panel top.
+ * Panel mocked to top: 0 → threshold = 0.
+ * Active sections get top: -1 (≤ 0), inactive get top: 500 (> 0).
+ */
+function setupScrollPositions(wrapper: Wrapper, activeSectionIds: string[]) {
+  const panelEl = getPanelEl(wrapper)
+  vi.spyOn(panelEl, 'getBoundingClientRect').mockReturnValue({
+    top: 0, bottom: 800, left: 0, right: 0, width: 1200, height: 0,
+  } as DOMRect)
+
+  const mockEls: Record<string, HTMLElement> = {}
+  SECTION_IDS.forEach(id => {
+    const el = document.createElement('div')
+    el.id = id
+    vi.spyOn(el, 'getBoundingClientRect').mockReturnValue({
+      top: activeSectionIds.includes(id) ? -1 : 500,
+      bottom: 0, left: 0, right: 0, width: 0, height: 0,
+    } as DOMRect)
+    mockEls[id] = el
+  })
+
+  vi.spyOn(document, 'getElementById').mockImplementation(
+    (id: string) => mockEls[id] ?? null,
   )
 }
 
-// ── Tests ─────────────────────────────────────────────────────────────────────
+async function triggerScroll(wrapper: Wrapper) {
+  getPanelEl(wrapper).dispatchEvent(new Event('scroll'))
+  await wrapper.vm.$nextTick()
+}
+
+// ── Nav rendering ─────────────────────────────────────────────────────────────
 
 describe('EcosiaOnboardingPage — nav rendering', () => {
   it('renders a button for every section', () => {
     const wrapper = mount(EcosiaOnboardingPage)
-    const buttons = wrapper.findAll('nav button')
-    expect(buttons.length).toBe(10)
+    expect(wrapper.findAll('nav button').length).toBe(9)
   })
 
   it('renders labels in the correct order', () => {
     const wrapper = mount(EcosiaOnboardingPage)
     const labels = wrapper.findAll('nav button').map(b => b.text())
     expect(labels).toEqual([
-      'Overview', 'Context', 'The Problem', 'The Challenge', 'Research',
+      'Overview', 'The Problem', 'The Approach', 'Research',
       'Opportunities', 'Experimentation', 'Strategy', 'Execution', 'Results',
     ])
   })
@@ -95,101 +98,95 @@ describe('EcosiaOnboardingPage — nav rendering', () => {
   })
 })
 
+// ── Scroll spy ────────────────────────────────────────────────────────────────
+
 describe('EcosiaOnboardingPage — scroll spy', () => {
-  it('selects the topmost section when multiple are intersecting simultaneously', async () => {
+  it('activates the last section whose top edge has passed the threshold', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
-
-    fireIntersection([
-      { id: 'overview', intersecting: true },
-      { id: 'context',  intersecting: true },
-    ])
-    await wrapper.vm.$nextTick()
-
-    const buttons = wrapper.findAll('nav button')
-    expect(buttons[0].classes()).toContain('font-semibold')     // overview wins
-    expect(buttons[1].classes()).not.toContain('font-semibold')
-  })
-
-  it('activates a mid-page section when only it is intersecting', async () => {
-    const wrapper = mount(EcosiaOnboardingPage)
-
-    fireIntersection([{ id: 'research', intersecting: true }])
-    await wrapper.vm.$nextTick()
+    setupScrollPositions(wrapper, ['overview', 'problem', 'challenge', 'research'])
+    await triggerScroll(wrapper)
 
     const researchBtn = wrapper.findAll('nav button').find(b => b.text() === 'Research')
     expect(researchBtn?.classes()).toContain('font-semibold')
   })
 
-  it('falls through to context when overview leaves and context stays', async () => {
+  it('activates overview when no section has passed the threshold', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
+    setupScrollPositions(wrapper, [])
+    await triggerScroll(wrapper)
 
-    fireIntersection([
-      { id: 'overview', intersecting: true },
-      { id: 'context',  intersecting: true },
-    ])
-    fireIntersection([{ id: 'overview', intersecting: false }])
-    await wrapper.vm.$nextTick()
-
-    const buttons = wrapper.findAll('nav button')
-    expect(buttons[1].classes()).toContain('font-semibold')
-  })
-
-  it('does not change active section when no sections are intersecting', async () => {
-    const wrapper = mount(EcosiaOnboardingPage)
-
-    fireIntersection([{ id: 'strategy', intersecting: true }])
-    await wrapper.vm.$nextTick()
-
-    // All leave — active should remain 'strategy' (last known)
-    fireIntersection([{ id: 'strategy', intersecting: false }])
-    await wrapper.vm.$nextTick()
-
-    const strategyBtn = wrapper.findAll('nav button').find(b => b.text() === 'Strategy')
-    expect(strategyBtn?.classes()).toContain('font-semibold')
+    expect(wrapper.findAll('nav button')[0].classes()).toContain('font-semibold')
   })
 
   it('activates the last section when scrolled to the bottom', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
-
-    fireIntersection([{ id: 'results', intersecting: true }])
-    await wrapper.vm.$nextTick()
+    setupScrollPositions(wrapper, SECTION_IDS)
+    await triggerScroll(wrapper)
 
     const resultsBtn = wrapper.findAll('nav button').find(b => b.text() === 'Results')
     expect(resultsBtn?.classes()).toContain('font-semibold')
   })
+
+  it('updates active section on each scroll event', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+
+    setupScrollPositions(wrapper, ['overview', 'problem'])
+    await triggerScroll(wrapper)
+    expect(wrapper.findAll('nav button').find(b => b.text() === 'The Problem')?.classes()).toContain('font-semibold')
+
+    setupScrollPositions(wrapper, ['overview', 'problem', 'challenge', 'research', 'opportunities'])
+    await triggerScroll(wrapper)
+    expect(wrapper.findAll('nav button').find(b => b.text() === 'Opportunities')?.classes()).toContain('font-semibold')
+  })
+
+  it('activates a mid-page section correctly', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+    setupScrollPositions(wrapper, ['overview', 'problem', 'challenge'])
+    await triggerScroll(wrapper)
+
+    const approachBtn = wrapper.findAll('nav button').find(b => b.text() === 'The Approach')
+    expect(approachBtn?.classes()).toContain('font-semibold')
+  })
 })
+
+// ── scrollToSection ───────────────────────────────────────────────────────────
 
 describe('EcosiaOnboardingPage — scrollToSection', () => {
   it('calls scrollTo on the panel when a nav button is clicked', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
+    const panelEl = getPanelEl(wrapper)
     const scrollToMock = vi.fn()
-    const panel = wrapper.find('[style*="background-color"]').element as HTMLElement
-    panel.scrollTo = scrollToMock
+    panelEl.scrollTo = scrollToMock
 
-    await wrapper.findAll('nav button')[2].trigger('click') // "The Problem"
+    const problemEl = document.createElement('div')
+    problemEl.id = 'problem'
+    vi.spyOn(document, 'getElementById').mockImplementation(
+      (id: string) => id === 'problem' ? problemEl : null,
+    )
+
+    await wrapper.findAll('nav button')[1].trigger('click') // "The Problem"
     expect(scrollToMock).toHaveBeenCalledWith(expect.objectContaining({ behavior: 'smooth' }))
   })
 })
 
-describe('EcosiaOnboardingPage — lifecycle', () => {
-  it('observes all sections on mount', () => {
-    const observeSpy = vi.fn()
-    class SpyObserver extends MockIntersectionObserver {
-      observe = observeSpy
-    }
-    vi.stubGlobal('IntersectionObserver', SpyObserver)
+// ── Lifecycle ─────────────────────────────────────────────────────────────────
 
+describe('EcosiaOnboardingPage — lifecycle', () => {
+  it('adds a scroll listener on mount', () => {
+    const addSpy = vi.spyOn(HTMLElement.prototype, 'addEventListener')
     mount(EcosiaOnboardingPage)
-    expect(observeSpy).toHaveBeenCalledTimes(10)
+    expect(addSpy).toHaveBeenCalledWith('scroll', expect.any(Function), expect.objectContaining({ passive: true }))
   })
 
-  it('disconnects the observer on unmount', () => {
+  it('removes the scroll listener on unmount', () => {
     const wrapper = mount(EcosiaOnboardingPage)
-    const dc = disconnectSpy
+    const removeSpy = vi.spyOn(HTMLElement.prototype, 'removeEventListener')
     wrapper.unmount()
-    expect(dc).toHaveBeenCalledOnce()
+    expect(removeSpy).toHaveBeenCalledWith('scroll', expect.any(Function))
   })
 })
+
+// ── Section cards ─────────────────────────────────────────────────────────────
 
 describe('EcosiaOnboardingPage — section cards', () => {
   it('renders a card for every section', () => {
@@ -201,7 +198,7 @@ describe('EcosiaOnboardingPage — section cards', () => {
 
   it('renders the main heading', () => {
     const wrapper = mount(EcosiaOnboardingPage)
-    expect(wrapper.find('h1').text()).toContain("Ecosia")
+    expect(wrapper.find('h1').text()).toContain('Ecosia')
   })
 
   it('renders the TL;DR section', () => {
