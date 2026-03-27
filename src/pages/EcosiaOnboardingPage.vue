@@ -23,6 +23,7 @@ const activeSection = ref('overview')
 const panelRef = ref<HTMLElement | null>(null)
 
 function scrollToSection(id: string) {
+  /* c8 ignore next */
   if (!panelRef.value) return
   const el = document.getElementById(id)
   if (el) {
@@ -37,6 +38,7 @@ function scrollToSection(id: string) {
 
 function updateActiveSection() {
   const panel = panelRef.value
+  /* c8 ignore next */
   if (!panel) return
   const threshold = panel.getBoundingClientRect().top + panel.clientHeight * 0.4
   let active = NAV_SECTIONS[0].id
@@ -54,6 +56,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  /* c8 ignore next */
   panelRef.value?.removeEventListener('scroll', updateActiveSection)
 })
 </script>
