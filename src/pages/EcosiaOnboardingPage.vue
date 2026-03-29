@@ -240,7 +240,7 @@ onUnmounted(() => {
               I started by reviewing existing user knowledge, then went deeper with <strong>unstructured interviews</strong> where participants <strong>retraced their real experiences</strong> with Ecosia. Combined with funnel and retention data, this shaped a User Journey Map and surfaced two key insights.
             </p>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">1 – Emotional & functional forces shaped the decision</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">1 – Emotional &amp; functional forces shaped the decision</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
 
