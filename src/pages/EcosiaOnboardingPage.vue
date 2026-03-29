@@ -235,12 +235,12 @@ onUnmounted(() => {
           <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Research</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Research insight: switching was emotional, not just functional</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Switching to Ecosia was functional, not just emotional</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               I started by reviewing existing user knowledge, then went deeper with <strong>unstructured interviews</strong> where participants <strong>retraced their real experiences</strong> with Ecosia. Combined with funnel and retention data, this shaped a User Journey Map and surfaced two key insights.
             </p>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Insight 1: emotional forces shaped the decision</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">1 – Emotional & functional forces shaped the decision</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
 
@@ -308,7 +308,7 @@ onUnmounted(() => {
 
             </div>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Insight 2: users made two separate decisions</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">2 – Users made two separate decisions</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
 
@@ -366,10 +366,26 @@ onUnmounted(() => {
 
             </div>
 
-            <!-- Key learning -->
-            <div class="rounded-xl border border-black/[0.06] p-5 space-y-2" style="background:#fcf4e2">
-              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Key learning</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">Landing pages and product touchpoints covered the emotional side well but never addressed the <strong>functional blockers</strong>. The first checklist was handled. The second was not.</p>
+            <div class="flex justify-center py-4">
+              <img src="/project-pages/ecosia-onboarding/arrow.svg" alt="" aria-hidden="true" width="108" height="143" />
+            </div>
+
+            <!-- Trade-off and impact -->
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Trade-off and impact</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
+            <div class="flex flex-col sm:flex-row gap-6 pt-2 items-start">
+              <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
+                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
+              </div>
+              <div class="relative flex-1 mt-3" style="transform: rotate(1deg)">
+                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(-1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
+              </div>
+              <div class="relative flex-1 mt-3" style="transform: rotate(-0.5deg)">
+                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
+              </div>
             </div>
 
           </div>
@@ -378,15 +394,16 @@ onUnmounted(() => {
           <div id="opportunities" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Opportunities</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧭 Mapping Opportunities</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Small calculated changes built our strategy</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              The User Journey Map showed that most users decided whether to stay or leave within a few searches. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.
+              In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
             </p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Timing constraints</p>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              In order to build confidence in my decisions, I created an Opportunity Solution Tree (OST) where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
+              Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.
             </p>
             <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
           </div>
