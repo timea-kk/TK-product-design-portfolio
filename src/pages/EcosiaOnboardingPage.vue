@@ -235,48 +235,143 @@ onUnmounted(() => {
           <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Research</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🔍 Research Insights</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Research insight: switching was emotional, not just functional</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              I began by reviewing what we already knew about Ecosia users. Most of the new users valued the mission but still compared Ecosia to Google or used both search engines side by side.
+              I started by reviewing existing user knowledge, then went deeper with <strong>unstructured interviews</strong> where participants <strong>retraced their real experiences</strong> with Ecosia. Combined with funnel and retention data, this shaped a User Journey Map and surfaced two key insights.
             </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Search quality and relevance were the main deciding factors, and few people made Ecosia their default search engine.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Ryan, a representative user persona already defined within the company, captured this mindset well. He is motivated by purpose, but cares a lot about convenience and finds it difficult to change his habits.
-            </p>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">New user persona</figcaption>
-            </figure>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              To go deeper, I led a set of unstructured interviews where I explored how people actually evaluated Ecosia for the first time. Instead of going through scripted questions, I asked participants to retrace their real experiences and describe how they discovered Ecosia, what convinced them to try it, and what made them stay or leave. I combined these stories with funnel and retention data and created a new User Journey Map which guided all of our future experiments.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              The research revealed two key insights that shaped the onboarding direction: the emotional forces behind user behavior and the criteria they used to evaluate Ecosia.
-            </p>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Emotional forces</figcaption>
-            </figure>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🟡 Push: frustration with Google's data policies and curiosity for alternatives</li>
-              <li class="text-[var(--color-muted)]">🟡 Pull: motivation from Ecosia's tree-planting mission and its ease of switching</li>
-              <li class="text-[var(--color-muted)]">🔵 Inertia: reluctance to change habits or risk losing bookmarks and convenience</li>
-              <li class="text-[var(--color-muted)]">🔵 Anxiety: uncertainty about search quality, privacy, and performance</li>
-            </ul>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Criteria to evaluate Ecosia</figcaption>
-            </figure>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🌿 To try: trusted recommendations, low effort to start, and clear climate value</li>
-              <li class="text-[var(--color-muted)]">⚙️ To stay: relevance, easy setup, Chrome compatibility and minimal disruptions</li>
-            </ul>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Push – Pull – Anxiety – Inertia map</figcaption>
-            </figure>
+
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Insight 1: emotional forces shaped the decision</p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+
+              <!-- Left column: drives -->
+              <div class="flex flex-col gap-4 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[#826520]">What drives the switch</p>
+
+                <!-- Push -->
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
+                    <span class="font-semibold text-[var(--color-headline)]">Push</span>
+                  </div>
+                  <p class="text-sm text-[var(--color-muted)]">Frustration with Google's data policies and curiosity for alternatives</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                    "People I know and trust are using it" · "I'm frustrated with Google's data policy"
+                  </blockquote>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
+                </div>
+
+                <!-- Pull -->
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
+                    <span class="font-semibold text-[var(--color-headline)]">Pull</span>
+                  </div>
+                  <p class="text-sm text-[var(--color-muted)]">Motivation from Ecosia's tree-planting mission and ease of switching</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                    "Tree planting impact is impressive" · "Switching sounded easy to do"
+                  </blockquote>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
+                </div>
+              </div>
+
+              <!-- Right column: holds back -->
+              <div class="flex flex-col gap-4 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[#2A6864]">What holds them back</p>
+
+                <!-- Inertia -->
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
+                    <span class="font-semibold text-[var(--color-headline)]">Inertia</span>
+                  </div>
+                  <p class="text-sm text-[var(--color-muted)]">Reluctance to change habits or risk losing bookmarks and convenience</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                    "I need easy access to my emails and drive" · "Don't want to lose my bookmarks"
+                  </blockquote>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
+                </div>
+
+                <!-- Anxiety -->
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
+                    <span class="font-semibold text-[var(--color-headline)]">Anxiety</span>
+                  </div>
+                  <p class="text-sm text-[var(--color-muted)]">Uncertainty about search quality, privacy, and performance</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                    "I want to know how it compares to Google" · "I need fast answers without disruptions"
+                  </blockquote>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
+                </div>
+              </div>
+
+            </div>
+
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Insight 2: users made two separate decisions</p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+
+              <!-- Left column: try it -->
+              <div class="flex flex-col gap-4 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[#9966AA]">Decision 1: try Ecosia out</p>
+
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <p class="font-semibold text-[var(--color-headline)]">I'll give it a try if...</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                      </span>
+                      Someone I trust recommended it
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                      </span>
+                      The climate impact feels real and clear
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                        <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                      </span>
+                      Switching looks easy and low effort
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Right column: stay -->
+              <div class="flex flex-col gap-4 flex-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Decision 2: keep using Ecosia</p>
+
+                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                  <p class="font-semibold text-[var(--color-headline)]">I'll stick with it if...</p>
+                  <ul class="space-y-2">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
+                      Search results are relevant and fast
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
+                      Setup works smoothly with Chrome
+                    </li>
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                      <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
+                      My bookmarks and workflow stay intact
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Key learning -->
+            <div class="rounded-xl border border-black/[0.06] p-5 space-y-2" style="background:#fcf4e2">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Key learning</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Landing pages and product touchpoints covered the emotional side well but never addressed the <strong>functional blockers</strong>. The first checklist was handled. The second was not.</p>
+            </div>
+
           </div>
 
           <!-- ── Opportunities ── -->
