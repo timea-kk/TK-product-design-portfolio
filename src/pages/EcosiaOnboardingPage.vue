@@ -21,6 +21,7 @@ const NAV_SECTIONS = [
 
 const activeSection = ref('overview')
 const panelRef = ref<HTMLElement | null>(null)
+const activeStrategyStep = ref(0)
 
 function scrollToSection(id: string) {
   /* c8 ignore next */
@@ -414,28 +415,55 @@ onUnmounted(() => {
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Experimentation</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧪 Experimentation</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Having a limited A/B testing volume was a major challenge, so I divided experimentation into two parallel tracks to learn faster and cover more ground.
+              Having a limited A/B testing volume was a major challenge, so I divided experimentation into two parallel tracks to learn faster and cover more ground. One track focused on improving conversion, helping new users make Ecosia their default faster. The other focused on SERP education, using the search results page to explain Ecosia's mission in context.
             </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              One track focused on improving conversion, helping new users make Ecosia their default faster. The other focused on SERP education, using the search results page to explain Ecosia's mission in context.
-            </p>
+            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
+            <table class="w-full text-sm border border-black/[0.08] rounded-xl overflow-hidden">
+              <thead>
+                <tr class="divide-x divide-black/[0.08] border-b border-black/[0.08]">
+                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)] w-1/2">Experiment</th>
+                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)] w-1/2">Result</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-black/[0.08]">
+                <tr class="divide-x divide-black/[0.08]">
+                  <td class="px-5 py-3 text-[var(--color-muted)]">Headline copy test</td>
+                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+3.2%</strong> installs</td>
+                </tr>
+                <tr class="divide-x divide-black/[0.08]">
+                  <td class="px-5 py-3 text-[var(--color-muted)]">Product imagery</td>
+                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+5.4%</strong> CTA clicks</td>
+                </tr>
+                <tr class="divide-x divide-black/[0.08]">
+                  <td class="px-5 py-3 text-[var(--color-muted)]">Visual install guide</td>
+                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+25%</strong> conversion</td>
+                </tr>
+                <tr class="divide-x divide-black/[0.08]">
+                  <td class="px-5 py-3 text-[var(--color-muted)]">Action-focused CTA</td>
+                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+19.69%</strong> conversion</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="rounded-xl bg-[var(--color-brand)]/[0.06] border border-[var(--color-brand)]/20 px-5 py-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">3 of 4 experiments were released to 100% of users.</p>
+              </div>
+              <div class="space-y-1">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Friction</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">One experiment was rolled back after a partner objected to the change. Another performed well but couldn't fully ship because the CTA copy was too long to translate into all supported languages.</p>
+              </div>
+            </div>
             <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-5.png" alt="Conversion experiment track" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Conversion track</figcaption>
             </figure>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              This track focused on reducing friction and clarifying value at the moment of install.
-            </p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">💬 "Familiar search, greener impact" as a headline lifted installs by +3.2%</li>
-              <li class="text-[var(--color-muted)]">🖼️ Product imagery increased familiarity and lifted CTA clicks by +5.4%</li>
-              <li class="text-[var(--color-muted)]">⚙️ A short visual install guide simplified setup and increased conversion by +25%</li>
-            </ul>
             <figure class="pt-2 space-y-3">
               <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Conversion experiment track outcomes</figcaption>
             </figure>
-            <h3 class="pt-4 font-heading text-xl font-bold text-[var(--color-headline)]">SERP education track</h3>
+            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 2: SERP Education</p>
             <p class="text-[var(--color-muted)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
@@ -461,26 +489,45 @@ onUnmounted(() => {
             <p class="text-[var(--color-muted)] leading-relaxed">
               After several successful experiments that improved conversion and a bit of D1 retention, I realized that we needed a more holistic approach. I structured onboarding around three connected phases that aligned user behavior with Ecosia's mission:
             </p>
-            <div class="space-y-4 pt-2">
-              <div class="rounded-xl border border-black/10 bg-black/[0.03] px-8 py-6 space-y-2">
-                <p class="font-semibold text-[var(--color-headline)]">1. Value perception</p>
-                <p class="text-[var(--color-muted)] leading-relaxed">Focus on helping new users see Ecosia's value in context. Familiar layouts, before-and-after imagery, and clearer navigation made the experience feel both recognizable and impactful.</p>
-                <p class="text-sm text-[var(--color-brand)] font-medium">→ Goal: make a search</p>
-              </div>
-              <div class="rounded-xl border border-black/10 bg-black/[0.03] px-8 py-6 space-y-2">
-                <p class="font-semibold text-[var(--color-headline)]">2. Value experience</p>
-                <p class="text-[var(--color-muted)] leading-relaxed">Use the search results page as an onboarding tool. Contextual onboarding and curated answers helped users understand where and how Ecosia plants trees, reducing early skepticism.</p>
-                <p class="text-sm text-[var(--color-brand)] font-medium">→ Goal: return for a second session</p>
-              </div>
-              <div class="rounded-xl border border-black/10 bg-black/[0.03] px-8 py-6 space-y-2">
-                <p class="font-semibold text-[var(--color-headline)]">3. Value adoption</p>
-                <p class="text-[var(--color-muted)] leading-relaxed">Encourage users to integrate Ecosia into their daily routine. High affordance prompts, customization options, and repeated prompting explored how to turn curiosity into a lasting habit.</p>
-                <p class="text-sm text-[var(--color-brand)] font-medium">→ Goal: activate and convert</p>
-              </div>
+            <!-- Horizontal step cards -->
+            <div class="flex gap-3 pt-4">
+              <button
+                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeStrategyStep = 0"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
+                <p class="font-semibold text-[var(--color-headline)]">Value Perception</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">See the product's value in context of their situation, enough to get them to try it.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: make a search</p>
+              </button>
+              <button
+                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeStrategyStep = 1"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
+                <p class="font-semibold text-[var(--color-headline)]">Value Experience</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">Experience how Ecosia helps them reach their goals and builds confidence.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: return for a second session</p>
+              </button>
+              <button
+                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeStrategyStep = 2"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
+                <p class="font-semibold text-[var(--color-headline)]">Value Adoption</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">Adopt Ecosia into their daily life and start forming lasting habits.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: activate and convert</p>
+              </button>
             </div>
+
+            <!-- Active step image -->
             <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Strategic direction and ideas to execute it</figcaption>
+              <img v-if="activeStrategyStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-9.png" alt="Value Perception" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img v-if="activeStrategyStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png" alt="Value Experience" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img v-if="activeStrategyStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png" alt="Value Adoption" class="w-full rounded-xl border-2 border-[#275243]" />
             </figure>
           </div>
 
