@@ -213,4 +213,18 @@ describe('EcosiaOnboardingPage — section cards', () => {
     expect(strategySection.html()).toContain('Value Experience')
     expect(strategySection.html()).toContain('Value Adoption')
   })
+
+  it('switches strategy image when step cards are clicked', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+    const buttons = wrapper.findAll('#strategy button')
+
+    await buttons[1].trigger('click')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-10.png')
+
+    await buttons[2].trigger('click')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-11.png')
+
+    await buttons[0].trigger('click')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-9.png')
+  })
 })
