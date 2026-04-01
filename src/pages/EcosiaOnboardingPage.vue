@@ -67,22 +67,21 @@ onUnmounted(() => {
 
 <template>
   <section
-    class="h-screen p-[40px] flex flex-col"
+    class="h-screen p-0 sm:p-6 lg:p-[40px] flex flex-col"
     aria-labelledby="project-heading"
   >
     <!-- Whiteboard panel: fixed to viewport with 60px inset, content scrolls inside -->
     <div
       ref="panelRef"
-      class="h-full w-full overflow-y-auto rounded-3xl"
+      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
       style="
         background-color: #f7f6f2;
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
-        border: 1px solid rgba(0,0,0,0.06);
       "
     >
       <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 px-10 lg:px-14 justify-center" style="padding-top: 40px; padding-bottom: 56px;">
+      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center" style="padding-top: 40px; padding-bottom: 56px;">
 
         <!-- ── Left nav (desktop only) — floating white card ── -->
         <nav class="hidden lg:block w-52 shrink-0" aria-label="Page sections">
@@ -122,7 +121,7 @@ onUnmounted(() => {
           <!-- mt-[35px]: first child gets no space-y gap, so we add 35px manually -->
           <!-- 40px flex padding-top + 35px margin-top = 75px from panel top -->
           <!-- label is 35px above card → label lands at 40px = nav sticky top ✓ -->
-          <div id="overview" class="mt-[35px] scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-14 space-y-8">
+          <div id="overview" class="mt-[35px] scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-14 space-y-8">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Overview</p>
 
@@ -130,7 +129,7 @@ onUnmounted(() => {
             <div class="space-y-4">
               <h1
                 id="project-heading"
-                class="font-heading text-5xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-6xl"
+                class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-6xl"
               >
                 Building Ecosia's Onboarding Experience
               </h1>
@@ -141,7 +140,7 @@ onUnmounted(() => {
                   class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-muted)]"
                 >{{ tag }}</span>
               </div>
-              <div class="flex flex-wrap gap-12 pt-2">
+              <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Timeline</p>
                   <p class="mt-1 text-[var(--color-muted)]">2024 → 2025</p>
@@ -181,7 +180,7 @@ onUnmounted(() => {
           <!-- ── Context ── -->
 
           <!-- ── The Problem ── -->
-          <div id="problem" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="problem" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Problem</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Users left before understanding what Ecosia was</h2>
@@ -193,18 +192,18 @@ onUnmounted(() => {
             </p>
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business and user problems</p>
             <div class="pt-5">
-            <div class="flex gap-4">
+            <div class="flex gap-3">
               <div class="relative flex-1" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
+                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
               </div>
               <div class="relative flex-1" style="transform: rotate(1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(-2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
+                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
               </div>
               <div class="relative flex-1" style="transform: rotate(-0.5deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(1.5deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
+                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
               </div>
             </div>
             </div>
@@ -215,19 +214,19 @@ onUnmounted(() => {
           </div>
 
           <!-- ── The Challenge ── -->
-          <div id="challenge" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="challenge" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Approach</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Injecting tool evaluation insights into the product</h2>
-            <div class="flex gap-8 items-start">
+            <div class="flex flex-col sm:flex-row gap-8 items-start">
               <div class="flex flex-col gap-4 flex-1 text-[var(--color-muted)] leading-relaxed">
                 <p>We realized that users arrived curious, but left before realizing how Ecosia worked and what made it different.</p>
                 <p>The <strong>challenge</strong> was to design an onboarding experience that built trust, encouraged action, and fit naturally into existing user behavior.</p>
                 <p>To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.</p>
               </div>
-              <div class="relative shrink-0 w-56 mt-4" style="transform: rotate(-1deg)">
+              <div class="relative w-1/2 mx-auto sm:w-56 sm:mx-0 sm:shrink-0 sm:mt-4" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>help new users quickly understand and trust Ecosia while keeping their experience familiar</div>
+                <div class="flex flex-col items-center justify-center gap-3 px-4 py-4 text-sm leading-relaxed text-center aspect-square sm:aspect-auto text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>help new users quickly understand and trust Ecosia while keeping their experience familiar</div>
               </div>
             </div>
             <figure class="pt-2 space-y-3">
@@ -236,7 +235,7 @@ onUnmounted(() => {
           </div>
 
           <!-- ── Research ── -->
-          <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Research</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Switching to Ecosia was functional, not just emotional</h2>
@@ -379,25 +378,25 @@ onUnmounted(() => {
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Trade-off and impact</p>
               <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
             </div>
-            <div class="flex flex-col sm:flex-row gap-6 pt-2 items-start">
+            <div class="flex gap-3 pt-2 items-start">
               <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
+                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
               </div>
               <div class="relative flex-1 mt-3" style="transform: rotate(1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(-1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
+                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
               </div>
               <div class="relative flex-1 mt-3" style="transform: rotate(-0.5deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
+                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
               </div>
             </div>
 
           </div>
 
           <!-- ── Opportunities ── -->
-          <div id="opportunities" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="opportunities" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Opportunities</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Small calculated changes built our strategy</h2>
@@ -415,7 +414,7 @@ onUnmounted(() => {
           </div>
 
           <!-- ── Experimentation ── -->
-          <div id="experimentation" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="experimentation" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Experimentation</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Constrained by volume, structured by design</h2>
@@ -424,7 +423,7 @@ onUnmounted(() => {
             </p>
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
             <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
-            <div class="flex gap-3">
+            <div class="grid grid-cols-2 sm:flex gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Headline copy</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3.2%</p>
@@ -452,18 +451,18 @@ onUnmounted(() => {
             </div>
             <figure class="pt-2 space-y-3">
               <div class="flex justify-center mb-2">
-                <div class="relative inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
+                <div class="relative inline-grid grid-cols-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
                   <div
-                    class="absolute top-1 bottom-1 w-1/2 rounded-full bg-[var(--color-brand)] transition-transform duration-300 ease-in-out"
+                    class="absolute left-1 top-1 bottom-1 w-[calc(50%_-_4px)] rounded-full bg-[var(--color-brand)] transition-transform duration-300 ease-in-out"
                     :style="{ transform: beforeAfterStep === 0 ? 'translateX(0)' : 'translateX(100%)' }"
                   ></div>
                   <button
-                    class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                    class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
                     :class="beforeAfterStep === 0 ? 'text-white' : 'text-[var(--color-muted)]'"
                     @click="beforeAfterStep = 0"
                   >Before</button>
                   <button
-                    class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                    class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
                     :class="beforeAfterStep === 1 ? 'text-white' : 'text-[var(--color-muted)]'"
                     @click="beforeAfterStep = 1"
                   >After</button>
@@ -481,7 +480,7 @@ onUnmounted(() => {
             <p class="text-[var(--color-muted)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
-            <div class="flex gap-3">
+            <div class="grid grid-cols-2 sm:flex gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">How it works</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
@@ -526,7 +525,7 @@ onUnmounted(() => {
           </div>
 
           <!-- ── Strategy ── -->
-          <div id="strategy" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="strategy" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Strategy</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three connected phases built on what we learned</h2>
@@ -534,7 +533,7 @@ onUnmounted(() => {
               After several successful experiments that improved conversion and a bit of D1 retention, I realized that we needed a more holistic approach. I structured onboarding around three connected phases that aligned user behavior with Ecosia's mission:
             </p>
             <!-- Horizontal step cards -->
-            <div class="flex gap-3 pt-4">
+            <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
                 :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
@@ -580,7 +579,7 @@ onUnmounted(() => {
           </div>
 
           <!-- ── Execution ── -->
-          <div id="execution" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="execution" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Execution</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three experiments: two launched, one ready to go</h2>
@@ -588,7 +587,7 @@ onUnmounted(() => {
               Using the strategic framework as a guide, <strong>I translated each phase into a focused experiment.</strong> Two shipped and generated results. A third was fully scoped and asset-ready but never launched. The team was reassigned before it could run, leaving a clean handoff for whoever picks it up next.
             </p>
             <!-- Horizontal step cards -->
-            <div class="flex gap-3 pt-4">
+            <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
                 :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
@@ -634,7 +633,7 @@ onUnmounted(() => {
           </div>
 
           <!-- ── Results ── -->
-          <div id="results" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
+          <div id="results" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Results</p>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Results that shaped what comes next</h2>
@@ -643,7 +642,7 @@ onUnmounted(() => {
             </p>
 
             <!-- Stat cards -->
-            <div class="flex gap-3">
+            <div class="grid grid-cols-3 gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Conversion</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+20–25%</p>
@@ -662,7 +661,7 @@ onUnmounted(() => {
             </div>
 
             <!-- What I learned + What I'd do differently -->
-            <div class="flex gap-3 items-start">
+            <div class="flex flex-col sm:flex-row gap-3 items-start">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">What I learned</p>
                 <div class="space-y-3 divide-y divide-black/[0.06]">
