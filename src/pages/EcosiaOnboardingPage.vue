@@ -22,6 +22,9 @@ const NAV_SECTIONS = [
 const activeSection = ref('overview')
 const panelRef = ref<HTMLElement | null>(null)
 const activeStrategyStep = ref(0)
+const activeExecutionStep = ref(0)
+const beforeAfterStep = ref(0)
+const serpStep = ref(0)
 
 function scrollToSection(id: string) {
   /* c8 ignore next */
@@ -250,7 +253,7 @@ onUnmounted(() => {
                 <p class="text-xs font-semibold uppercase tracking-widest text-[#826520]">What drives the switch</p>
 
                 <!-- Push -->
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
                     <span class="font-semibold text-[var(--color-headline)]">Push</span>
@@ -263,7 +266,7 @@ onUnmounted(() => {
                 </div>
 
                 <!-- Pull -->
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
                     <span class="font-semibold text-[var(--color-headline)]">Pull</span>
@@ -281,7 +284,7 @@ onUnmounted(() => {
                 <p class="text-xs font-semibold uppercase tracking-widest text-[#2A6864]">What holds them back</p>
 
                 <!-- Inertia -->
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
                     <span class="font-semibold text-[var(--color-headline)]">Inertia</span>
@@ -294,7 +297,7 @@ onUnmounted(() => {
                 </div>
 
                 <!-- Anxiety -->
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
                     <span class="font-semibold text-[var(--color-headline)]">Anxiety</span>
@@ -317,7 +320,7 @@ onUnmounted(() => {
               <div class="flex flex-col gap-4 flex-1">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[#9966AA]">Decision 1: try Ecosia out</p>
 
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <p class="font-semibold text-[var(--color-headline)]">I'll give it a try if...</p>
                   <ul class="space-y-2">
                     <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
@@ -346,7 +349,7 @@ onUnmounted(() => {
               <div class="flex flex-col gap-4 flex-1">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Decision 2: keep using Ecosia</p>
 
-                <div class="rounded-xl border border-black/[0.06] bg-white p-5 space-y-3">
+                <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <p class="font-semibold text-[var(--color-headline)]">I'll stick with it if...</p>
                   <ul class="space-y-2">
                     <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
@@ -372,8 +375,10 @@ onUnmounted(() => {
             </div>
 
             <!-- Trade-off and impact -->
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Trade-off and impact</p>
-            <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
+            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Trade-off and impact</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
+            </div>
             <div class="flex flex-col sm:flex-row gap-6 pt-2 items-start">
               <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
@@ -399,85 +404,124 @@ onUnmounted(() => {
             <p class="text-[var(--color-muted)] leading-relaxed">
               In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
             </p>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Timing constraints</p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.
-            </p>
             <figure class="pt-2 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
+            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Timing was everything</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
+            </div>
           </div>
 
           <!-- ── Experimentation ── -->
           <div id="experimentation" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Experimentation</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🧪 Experimentation</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Constrained by volume, structured by design</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Having a limited A/B testing volume was a major challenge, so I divided experimentation into two parallel tracks to learn faster and cover more ground. One track focused on improving conversion, helping new users make Ecosia their default faster. The other focused on SERP education, using the search results page to explain Ecosia's mission in context.
+              With limited A/B testing volume, running experiments sequentially would have been too slow. I split the work into two parallel tracks so we could cover more ground without losing focus. Each experiment fed into the next, building on real learnings as we went.
             </p>
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
             <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
-            <table class="w-full text-sm border border-black/[0.08] rounded-xl overflow-hidden">
-              <thead>
-                <tr class="divide-x divide-black/[0.08] border-b border-black/[0.08]">
-                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)] w-1/2">Experiment</th>
-                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)] w-1/2">Result</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-black/[0.08]">
-                <tr class="divide-x divide-black/[0.08]">
-                  <td class="px-5 py-3 text-[var(--color-muted)]">Headline copy test</td>
-                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+3.2%</strong> installs</td>
-                </tr>
-                <tr class="divide-x divide-black/[0.08]">
-                  <td class="px-5 py-3 text-[var(--color-muted)]">Product imagery</td>
-                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+5.4%</strong> CTA clicks</td>
-                </tr>
-                <tr class="divide-x divide-black/[0.08]">
-                  <td class="px-5 py-3 text-[var(--color-muted)]">Visual install guide</td>
-                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+25%</strong> conversion</td>
-                </tr>
-                <tr class="divide-x divide-black/[0.08]">
-                  <td class="px-5 py-3 text-[var(--color-muted)]">Action-focused CTA</td>
-                  <td class="px-5 py-3 text-[var(--color-muted)]"><strong>+19.69%</strong> conversion</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="rounded-xl bg-[var(--color-brand)]/[0.06] border border-[var(--color-brand)]/20 px-5 py-4 space-y-3">
-              <div class="space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">3 of 4 experiments were released to 100% of users.</p>
+            <div class="flex gap-3">
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Headline copy</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3.2%</p>
+                <p class="text-sm text-[var(--color-muted)]">conversion</p>
               </div>
-              <div class="space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Friction</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">One experiment was rolled back after a partner objected to the change. Another performed well but couldn't fully ship because the CTA copy was too long to translate into all supported languages.</p>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product imagery</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+5.4%</p>
+                <p class="text-sm text-[var(--color-muted)]">CTA clicks</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Install guide</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+25%</p>
+                <p class="text-sm text-[var(--color-muted)]">conversion</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Action CTA</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+19.69%</p>
+                <p class="text-sm text-[var(--color-muted)]">conversion</p>
               </div>
             </div>
+            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
+            </div>
             <figure class="pt-2 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-5.png" alt="Conversion experiment track" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Conversion track</figcaption>
-            </figure>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Conversion experiment track outcomes</figcaption>
+              <div class="flex justify-center mb-2">
+                <div class="relative inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
+                  <div
+                    class="absolute top-1 bottom-1 w-1/2 rounded-full bg-[var(--color-brand)] transition-transform duration-300 ease-in-out"
+                    :style="{ transform: beforeAfterStep === 0 ? 'translateX(0)' : 'translateX(100%)' }"
+                  ></div>
+                  <button
+                    class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                    :class="beforeAfterStep === 0 ? 'text-white' : 'text-[var(--color-muted)]'"
+                    @click="beforeAfterStep = 0"
+                  >Before</button>
+                  <button
+                    class="relative z-10 px-4 py-1.5 text-sm font-medium transition-colors duration-200"
+                    :class="beforeAfterStep === 1 ? 'text-white' : 'text-[var(--color-muted)]'"
+                    @click="beforeAfterStep = 1"
+                  >After</button>
+                </div>
+              </div>
+              <img
+                :src="beforeAfterStep === 0 ? '/project-pages/ecosia-onboarding/ecosia-onboarding-5.png' : '/project-pages/ecosia-onboarding/ecosia-onboarding-6.png'"
+                :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
+                width="2400"
+                height="1300"
+                class="w-full rounded-xl border-2 border-[#275243]"
+              />
             </figure>
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 2: SERP Education</p>
             <p class="text-[var(--color-muted)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🌍 A "How it works" card improved D1 retention by 3%</li>
-              <li class="text-[var(--color-muted)]">🧩 Same card with an extra illustration lifted retention overall but dropped -5% in DE</li>
-              <li class="text-[var(--color-muted)]">🔐 Privacy messaging raised engagement but reduced retention by -2%</li>
-            </ul>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that small content tweaks were not enough, and we needed a broader redesign to move our success metrics further.
-            </p>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">SERP education experiment track outcomes</figcaption>
+            <div class="flex gap-3">
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">How it works</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
+                <p class="text-sm text-[var(--color-muted)]">D1 retention</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">With illustration</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">-5%</p>
+                <p class="text-sm text-[var(--color-muted)]">retention in DE</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Privacy messaging</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">-2%</p>
+                <p class="text-sm text-[var(--color-muted)]">D1 retention</p>
+              </div>
+            </div>
+            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
+            </div>
+            <figure class="pt-2">
+              <div class="relative">
+                <img
+                  :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-7.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-8.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-9.png'][serpStep]"
+                  :alt="['Experiment 1', 'Experiment 2', 'Experiment 3'][serpStep]"
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl border-2 border-[#275243]"
+                />
+                <button
+                  v-if="serpStep > 0"
+                  class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
+                  @click="serpStep--"
+                >&#8592;</button>
+                <button
+                  v-if="serpStep < 2"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
+                  @click="serpStep++"
+                >&#8594;</button>
+              </div>
             </figure>
           </div>
 
@@ -485,49 +529,53 @@ onUnmounted(() => {
           <div id="strategy" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Strategy</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🏔️ Strategic Direction</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three connected phases built on what we learned</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               After several successful experiments that improved conversion and a bit of D1 retention, I realized that we needed a more holistic approach. I structured onboarding around three connected phases that aligned user behavior with Ecosia's mission:
             </p>
             <!-- Horizontal step cards -->
             <div class="flex gap-3 pt-4">
               <button
-                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
                 :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 0"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
                 <p class="font-semibold text-[var(--color-headline)]">Value Perception</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">See the product's value in context of their situation, enough to get them to try it.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: make a search</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
               </button>
               <button
-                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
                 :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 1"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
                 <p class="font-semibold text-[var(--color-headline)]">Value Experience</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">Experience how Ecosia helps them reach their goals and builds confidence.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: return for a second session</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
               </button>
               <button
-                class="flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
                 :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 2"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
                 <p class="font-semibold text-[var(--color-headline)]">Value Adoption</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">Adopt Ecosia into their daily life and start forming lasting habits.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium pt-1">Goal: activate and convert</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
               </button>
             </div>
 
             <!-- Active step image -->
             <figure class="pt-2 space-y-3">
-              <img v-if="activeStrategyStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-9.png" alt="Value Perception" class="w-full rounded-xl border-2 border-[#275243]" />
-              <img v-if="activeStrategyStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png" alt="Value Experience" class="w-full rounded-xl border-2 border-[#275243]" />
-              <img v-if="activeStrategyStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png" alt="Value Adoption" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img
+                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-10.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png'][activeStrategyStep]"
+                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeStrategyStep]"
+                width="2400"
+                height="1300"
+                class="w-full rounded-xl border-2 border-[#275243]"
+              />
             </figure>
           </div>
 
@@ -535,32 +583,53 @@ onUnmounted(() => {
           <div id="execution" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Execution</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🚧 Executing Strategy</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three experiments: two launched, one ready to go</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              By using this strategic framework, I focused on translating the adoption phase into concrete experiments around install prompts. The goal was to understand when and how users would be most open to setting Ecosia as default.
+              Using the strategic framework as a guide, <strong>I translated each phase into a focused experiment.</strong> Two shipped and generated results. A third was fully scoped and asset-ready but never launched. The team was reassigned before it could run, leaving a clean handoff for whoever picks it up next.
             </p>
+            <!-- Horizontal step cards -->
+            <div class="flex gap-3 pt-4">
+              <button
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeExecutionStep = 0"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
+                <p class="font-semibold text-[var(--color-headline)]">Experiment: Flip the funnel</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">A search-focused and Google-like layout which sets a new baseline for conversion tracking.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
+              </button>
+              <button
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeExecutionStep = 1"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
+                <p class="font-semibold text-[var(--color-headline)]">Experiment: Before / After</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">A high-impact mission-focused showcase of a planting site as the entry point to the product.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
+              </button>
+              <button
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                @click="activeExecutionStep = 2"
+              >
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
+                <p class="font-semibold text-[var(--color-headline)]">Experiment: Prompt install</p>
+                <p class="text-sm text-[var(--color-muted)] leading-relaxed">An intervention during the 1st search where we ask new users to switch to Ecosia.</p>
+                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
+              </button>
+            </div>
+
+            <!-- Active step image -->
             <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Install prompt experiments</figcaption>
-            </figure>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🧠 First session prompt increased CTA clicks by 17% but did not improve install rate</li>
-              <li class="text-[var(--color-muted)]">🔁 Second session prompt lifted CTA clicks by 14% and improved retention (+1.5%)</li>
-              <li class="text-[var(--color-muted)]">⚙️ Results showed timing and context were key to driving meaningful conversion</li>
-            </ul>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">First session install prompt experiment</figcaption>
-            </figure>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              The next planned experiment aimed to test before and after imagery of reforestation projects, shown above the fold. The goal was to strengthen emotional connection and make Ecosia's real world impact instantly visible during setup.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              This final test was paused when my team was reassigned, so it was never executed. However, the concept and assets were fully prepared, allowing any future team to continue testing and build on the work.
-            </p>
-            <figure class="pt-2 space-y-3">
-              <div class="w-full rounded-xl bg-black/[0.06] aspect-video"></div>
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Future direction</figcaption>
+              <img
+                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-13.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png'][activeExecutionStep]"
+                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeExecutionStep]"
+                width="2400"
+                height="1300"
+                class="w-full rounded-xl border-2 border-[#275243]"
+              />
             </figure>
           </div>
 
@@ -568,30 +637,67 @@ onUnmounted(() => {
           <div id="results" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-10 py-10 space-y-4">
             <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
               style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Results</p>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">🌱 Results & Learnings</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Results that shaped what comes next</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              The onboarding work delivered measurable growth and created a scalable foundation for future experimentation. Conversion increased by +20–25%, and D1 retention improved by +3%, setting a new baseline for activation across products. More importantly, the project connected design decisions directly to Ecosia's environmental mission, turning every conversion into both a product and impact win.
+              The work delivered measurable growth and a foundation for future experimentation. Every conversion became both a product win and an environmental one, turning onboarding into a direct expression of Ecosia's mission.
             </p>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Biggest challenges</p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">⚙️ Limited A/B testing volume required creative testing methods</li>
-              <li class="text-[var(--color-muted)]">🌍 Regional differences, especially in Germany, complicated interpretation of results</li>
-              <li class="text-[var(--color-muted)]">⏱️ High early churn meant only seconds to communicate value</li>
-              <li class="text-[var(--color-muted)]">🚧 Small scale experiments risked blocking bigger strategic bets</li>
-            </ul>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Key learnings</p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🧩 Running parallel tracks accelerated learning and validated strategy faster</li>
-              <li class="text-[var(--color-muted)]">💬 Listening to how users talked about Ecosia led to stronger messaging</li>
-              <li class="text-[var(--color-muted)]">🔍 Monitoring market differences helped us adapt and stay confident amid uncertainty</li>
-              <li class="text-[var(--color-muted)]">📘 Establishing a long term onboarding playbook allowed others to build on the work</li>
-            </ul>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Future opportunities</p>
-            <ul class="space-y-2">
-              <li class="text-[var(--color-muted)]">🇩🇪 Analyze core markets individually to uncover regional patterns</li>
-              <li class="text-[var(--color-muted)]">💚 Expand use of user insights deeper into the funnel</li>
-              <li class="text-[var(--color-muted)]">🪴 Apply the onboarding strategy logic to new product domains</li>
-            </ul>
+
+            <!-- Stat cards -->
+            <div class="flex gap-3">
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Conversion</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+20–25%</p>
+                <p class="text-sm text-[var(--color-muted)]">increase</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">D1 retention</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
+                <p class="text-sm text-[var(--color-muted)]">improvement</p>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Experiments</p>
+                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">9 of 12</p>
+                <p class="text-sm text-[var(--color-muted)]">shipped to 100%</p>
+              </div>
+            </div>
+
+            <!-- What I learned + What I'd do differently -->
+            <div class="flex gap-3 items-start">
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">What I learned</p>
+                <div class="space-y-3 divide-y divide-black/[0.06]">
+                  <div class="pt-3 first:pt-0">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">Parallel tracks accelerate learning</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">Running two tracks simultaneously let us cover more ground without waiting for sequential results. Limited volume stopped being a blocker.</p>
+                  </div>
+                  <div class="pt-3">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">User language shapes stronger messaging</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">Listening to how users talked about Ecosia, not how we described it internally, led directly to copy that converted better.</p>
+                  </div>
+                  <div class="pt-3">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">Regional differences need their own lens</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">Germany consistently behaved differently. Our best monetized market needed closer observation and investigation.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">What I'd do differently</p>
+                <div class="space-y-3 divide-y divide-black/[0.06]">
+                  <div class="pt-3 first:pt-0">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">Start with the strategic framework</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">Our three-phase strategy was the right framework, but it came too late to shape the experiments that informed it.</p>
+                  </div>
+                  <div class="pt-3">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">Learn about conflicting results</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">Next time, I'd seek more experienced support early when experiments start producing conflicting results across markets.</p>
+                  </div>
+                  <div class="pt-3">
+                    <p class="font-semibold text-[var(--color-headline)] text-sm">Design for the full journey</p>
+                    <p class="text-sm text-[var(--color-muted)] mt-1">The experiments tested discrete touchpoints. Designing for the connected arc earlier might have moved the bigger retention metrics faster.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div><!-- /content -->

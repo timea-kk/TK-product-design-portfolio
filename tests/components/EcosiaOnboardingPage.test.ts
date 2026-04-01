@@ -219,12 +219,12 @@ describe('EcosiaOnboardingPage — section cards', () => {
     const buttons = wrapper.findAll('#strategy button')
 
     await buttons[1].trigger('click')
-    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-10.png')
-
-    await buttons[2].trigger('click')
     expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-11.png')
 
+    await buttons[2].trigger('click')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-12.png')
+
     await buttons[0].trigger('click')
-    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-9.png')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-10.png')
   })
 })
