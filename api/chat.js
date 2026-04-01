@@ -8,14 +8,23 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { TIMEA_SYSTEM_PROMPT } from './timeaSystemPrompt.js';
 
-function cors(res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+const ALLOWED_ORIGINS = [
+  'https://tk-product-design-portfolio.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
+function cors(req, res) {
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
 
 export default async function handler(req, res) {
-  cors(res);
+  cors(req, res);
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -28,7 +37,12 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     message = body?.message;
-    history = Array.isArray(body?.history) ? body.history : [];
+    history = Array.isArray(body?.history)
+      ? body.history.filter(msg =>
+          (msg?.role === 'user' || msg?.role === 'assistant') &&
+          typeof msg?.text === 'string'
+        )
+      : [];
   } catch {
     return res.status(400).json({ error: 'Invalid JSON body' });
   }
@@ -68,8 +82,9 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('Gemini error:', err?.message || err);
     const code = err?.status === 429 ? 429 : 500;
-    return res.status(code).json({
-      error: err?.message || 'Something went wrong. Please try again or email work@timea.cc.',
-    });
+    const message = code === 429
+      ? 'Too many requests. Please try again later.'
+      : 'Something went wrong. Please try again or email work@timea.cc.';
+    return res.status(code).json({ error: message });
   }
 }
