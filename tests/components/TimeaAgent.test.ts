@@ -17,6 +17,7 @@ function mockFetch(reply: string) {
   vi.stubGlobal(
     'fetch',
     vi.fn().mockResolvedValue({
+      ok: true,
       json: () => Promise.resolve({ reply }),
     }),
   )

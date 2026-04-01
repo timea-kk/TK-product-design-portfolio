@@ -73,6 +73,7 @@ async function sendMessage(text: string) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text, history }),
     })
+    if (!res.ok) throw new Error(`API error: ${res.status}`)
     const data = await res.json()
     reply = data.reply || getAnswerForQuestion(text)
   } catch {
