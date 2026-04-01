@@ -81,7 +81,7 @@ onUnmounted(() => {
       "
     >
       <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center" style="padding-top: 40px; padding-bottom: 56px;">
+      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
 
         <!-- ── Left nav (desktop only) — floating white card ── -->
         <nav class="hidden lg:block w-52 shrink-0" aria-label="Page sections">
@@ -191,19 +191,26 @@ onUnmounted(() => {
               I joined Ecosia in 2020 as a Product Designer in a cross functional team focused on user engagement. The onboarding project was part of a broader effort to reduce early drop off and build a scalable way to introduce new users to Ecosia.
             </p>
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business and user problems</p>
-            <div class="pt-5">
+            <!-- Mobile: bullet list -->
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Low conversion and retention</strong> with limited insight into why users dropped off</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Unclear value</strong> — users didn't understand what Ecosia was or how it worked</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">No install guidance</strong> on how to set Ecosia as the default search engine</span></li>
+            </ul>
+            <!-- Desktop: sticky notes -->
+            <div class="hidden sm:block pt-5">
             <div class="flex gap-3">
               <div class="relative flex-1" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
               </div>
               <div class="relative flex-1" style="transform: rotate(1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(-2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
               </div>
               <div class="relative flex-1" style="transform: rotate(-0.5deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(1.5deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
+                <div class="flex flex-col items-center gap-3 px-5 py-6 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
               </div>
             </div>
             </div>
@@ -378,18 +385,25 @@ onUnmounted(() => {
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Trade-off and impact</p>
               <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
             </div>
-            <div class="flex gap-3 pt-2 items-start">
+            <!-- Mobile: bullet list -->
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-headline)]">12 onboarding experiments</strong> that followed</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It introduced a shared push/pull framework that <strong class="text-[var(--color-headline)]">2 other teams</strong> used for their own experiments</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It shifted team thinking toward <strong class="text-[var(--color-headline)]">"how do we reduce the cost of switching"</strong></span></li>
+            </ul>
+            <!-- Desktop: sticky notes -->
+            <div class="hidden sm:flex gap-3 pt-2 items-start">
               <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
               </div>
               <div class="relative flex-1 mt-3" style="transform: rotate(1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(-1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
               </div>
               <div class="relative flex-1 mt-3" style="transform: rotate(-0.5deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
+                <div class="px-5 py-5 text-sm leading-relaxed text-center text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
               </div>
             </div>
 
@@ -430,7 +444,7 @@ onUnmounted(() => {
                 <p class="text-sm text-[var(--color-muted)]">conversion</p>
               </div>
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product imagery</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product image</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+5.4%</p>
                 <p class="text-sm text-[var(--color-muted)]">CTA clicks</p>
               </div>
@@ -480,7 +494,7 @@ onUnmounted(() => {
             <p class="text-[var(--color-muted)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
-            <div class="grid grid-cols-2 sm:flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">How it works</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
@@ -535,8 +549,8 @@ onUnmounted(() => {
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 0"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
@@ -545,8 +559,8 @@ onUnmounted(() => {
                 <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 1"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
@@ -555,8 +569,8 @@ onUnmounted(() => {
                 <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 2"
               >
                 <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
@@ -566,16 +580,12 @@ onUnmounted(() => {
               </button>
             </div>
 
-            <!-- Active step image -->
-            <figure class="pt-2 space-y-3">
-              <img
-                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-10.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png'][activeStrategyStep]"
-                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeStrategyStep]"
-                width="2400"
-                height="1300"
-                class="w-full rounded-xl border-2 border-[#275243]"
-              />
-            </figure>
+            <!-- Cross-fade image (all breakpoints) -->
+            <div class="relative w-full mt-4 rounded-xl overflow-hidden border-2 border-[#275243]" style="aspect-ratio: 2400/1300">
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png" alt="Value Perception" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeStrategyStep === 0 ? 'opacity-100' : 'opacity-0'" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png" alt="Value Experience" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeStrategyStep === 1 ? 'opacity-100' : 'opacity-0'" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-12.png" alt="Value Adoption" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeStrategyStep === 2 ? 'opacity-100' : 'opacity-0'" />
+            </div>
           </div>
 
           <!-- ── Execution ── -->
@@ -589,47 +599,43 @@ onUnmounted(() => {
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 0"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeExecutionStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Value perception</p>
                 <p class="font-semibold text-[var(--color-headline)]">Experiment: Flip the funnel</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">A search-focused and Google-like layout which sets a new baseline for conversion tracking.</p>
                 <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 1"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeExecutionStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Value experience</p>
                 <p class="font-semibold text-[var(--color-headline)]">Experiment: Before / After</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">A high-impact mission-focused showcase of a planting site as the entry point to the product.</p>
                 <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
-                :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-all duration-200"
+                :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04] shadow-md' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 2"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
+                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeExecutionStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Value adoption</p>
                 <p class="font-semibold text-[var(--color-headline)]">Experiment: Prompt install</p>
                 <p class="text-sm text-[var(--color-muted)] leading-relaxed">An intervention during the 1st search where we ask new users to switch to Ecosia.</p>
                 <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
               </button>
             </div>
 
-            <!-- Active step image -->
-            <figure class="pt-2 space-y-3">
-              <img
-                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-13.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png'][activeExecutionStep]"
-                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeExecutionStep]"
-                width="2400"
-                height="1300"
-                class="w-full rounded-xl border-2 border-[#275243]"
-              />
-            </figure>
+            <!-- Cross-fade image (all breakpoints) -->
+            <div class="relative w-full mt-4 rounded-xl overflow-hidden border-2 border-[#275243]" style="aspect-ratio: 2400/1300">
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-13.png" alt="Flip the funnel" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeExecutionStep === 0 ? 'opacity-100' : 'opacity-0'" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-15.png" alt="Before / After" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeExecutionStep === 1 ? 'opacity-100' : 'opacity-0'" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-14.png" alt="Prompt install" class="absolute inset-0 w-full h-full transition-opacity duration-400" :class="activeExecutionStep === 2 ? 'opacity-100' : 'opacity-0'" />
+            </div>
           </div>
 
           <!-- ── Results ── -->
@@ -642,7 +648,7 @@ onUnmounted(() => {
             </p>
 
             <!-- Stat cards -->
-            <div class="grid grid-cols-3 gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Conversion</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+20–25%</p>
