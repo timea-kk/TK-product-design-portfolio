@@ -81,7 +81,7 @@ onUnmounted(() => {
       "
     >
       <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center" style="padding-top: 40px; padding-bottom: 56px;">
+      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
 
         <!-- ── Left nav (desktop only) — floating white card ── -->
         <nav class="hidden lg:block w-52 shrink-0" aria-label="Page sections">
@@ -191,7 +191,14 @@ onUnmounted(() => {
               I joined Ecosia in 2020 as a Product Designer in a cross functional team focused on user engagement. The onboarding project was part of a broader effort to reduce early drop off and build a scalable way to introduce new users to Ecosia.
             </p>
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business and user problems</p>
-            <div class="pt-5">
+            <!-- Mobile: bullet list -->
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Low conversion and retention</strong> with limited insight into why users dropped off</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Unclear value</strong> as users didn't understand what Ecosia was or how it worked</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">No install guidance</strong> on how to set Ecosia as the default search engine</span></li>
+            </ul>
+            <!-- Desktop: sticky notes -->
+            <div class="hidden sm:block pt-5">
             <div class="flex gap-3">
               <div class="relative flex-1" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
@@ -378,7 +385,14 @@ onUnmounted(() => {
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Trade-off and impact</p>
               <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
             </div>
-            <div class="flex gap-3 pt-2 items-start">
+            <!-- Mobile: bullet list -->
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-headline)]">12 onboarding experiments</strong> that followed</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It introduced a shared push/pull framework that <strong class="text-[var(--color-headline)]">2 other teams</strong> used for their own experiments</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It shifted team thinking toward <strong class="text-[var(--color-headline)]">"how do we reduce the cost of switching"</strong></span></li>
+            </ul>
+            <!-- Desktop: sticky notes -->
+            <div class="hidden sm:flex gap-3 pt-2 items-start">
               <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
                 <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
                 <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
@@ -430,7 +444,7 @@ onUnmounted(() => {
                 <p class="text-sm text-[var(--color-muted)]">conversion</p>
               </div>
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product imagery</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product image</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+5.4%</p>
                 <p class="text-sm text-[var(--color-muted)]">CTA clicks</p>
               </div>
@@ -480,7 +494,7 @@ onUnmounted(() => {
             <p class="text-[var(--color-muted)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
-            <div class="grid grid-cols-2 sm:flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">How it works</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
@@ -660,7 +674,7 @@ onUnmounted(() => {
             </p>
 
             <!-- Stat cards -->
-            <div class="grid grid-cols-3 gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Conversion</p>
                 <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+20–25%</p>
