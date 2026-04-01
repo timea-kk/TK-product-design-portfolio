@@ -219,12 +219,59 @@ describe('EcosiaOnboardingPage — section cards', () => {
     const buttons = wrapper.findAll('#strategy button')
 
     await buttons[1].trigger('click')
-    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-10.png')
-
-    await buttons[2].trigger('click')
     expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-11.png')
 
+    await buttons[2].trigger('click')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-12.png')
+
     await buttons[0].trigger('click')
-    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-9.png')
+    expect(wrapper.find('#strategy').html()).toContain('ecosia-onboarding-10.png')
+  })
+
+  it('switches execution image when step cards are clicked', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+    const buttons = wrapper.findAll('#execution button')
+
+    await buttons[1].trigger('click')
+    expect(wrapper.find('#execution').html()).toContain('ecosia-onboarding-15.png')
+
+    await buttons[2].trigger('click')
+    expect(wrapper.find('#execution').html()).toContain('ecosia-onboarding-14.png')
+
+    await buttons[0].trigger('click')
+    expect(wrapper.find('#execution').html()).toContain('ecosia-onboarding-13.png')
+  })
+
+  it('switches before/after image in experimentation section', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+    const experimentationSection = wrapper.find('#experimentation')
+    const buttons = experimentationSection.findAll('button')
+    const afterBtn = buttons.find(b => b.text() === 'After')!
+    const beforeBtn = buttons.find(b => b.text() === 'Before')!
+
+    await afterBtn.trigger('click')
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-6.png')
+
+    await beforeBtn.trigger('click')
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-5.png')
+  })
+
+  it('navigates SERP images with arrow buttons', async () => {
+    const wrapper = mount(EcosiaOnboardingPage)
+    const experimentationSection = wrapper.find('#experimentation')
+
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-7.png')
+
+    const nextBtn = experimentationSection.findAll('button').find(b => b.html().includes('→'))!
+    await nextBtn.trigger('click')
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-8.png')
+
+    const nextBtn2 = experimentationSection.findAll('button').find(b => b.html().includes('→'))!
+    await nextBtn2.trigger('click')
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-9.png')
+
+    const prevBtn = experimentationSection.findAll('button').find(b => b.html().includes('←'))!
+    await prevBtn.trigger('click')
+    expect(experimentationSection.html()).toContain('ecosia-onboarding-8.png')
   })
 })
