@@ -535,39 +535,48 @@ onUnmounted(() => {
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 0"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
-                <p class="font-semibold text-[var(--color-headline)]">Value Perception</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">See the product's value in context of their situation, enough to get them to try it.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Value Perception</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">See the product's value in context of their situation, enough to get them to try it.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
+                </div>
+                <img v-show="activeStrategyStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png" alt="Value Perception" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 1"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
-                <p class="font-semibold text-[var(--color-headline)]">Value Experience</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">Experience how Ecosia helps them reach their goals and builds confidence.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Value Experience</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">Experience how Ecosia helps them reach their goals and builds confidence.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
+                </div>
+                <img v-show="activeStrategyStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png" alt="Value Experience" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeStrategyStep = 2"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
-                <p class="font-semibold text-[var(--color-headline)]">Value Adoption</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">Adopt Ecosia into their daily life and start forming lasting habits.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Value Adoption</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">Adopt Ecosia into their daily life and start forming lasting habits.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
+                </div>
+                <img v-show="activeStrategyStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-12.png" alt="Value Adoption" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
             </div>
 
-            <!-- Active step image -->
-            <figure class="pt-2 space-y-3">
+            <!-- Active step image — desktop only -->
+            <figure class="hidden sm:block pt-2 space-y-3">
               <img
                 :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-10.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png'][activeStrategyStep]"
                 :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeStrategyStep]"
@@ -589,39 +598,48 @@ onUnmounted(() => {
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 0"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
-                <p class="font-semibold text-[var(--color-headline)]">Experiment: Flip the funnel</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">A search-focused and Google-like layout which sets a new baseline for conversion tracking.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Flip the funnel</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">A search-focused and Google-like layout which sets a new baseline for conversion tracking.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
+                </div>
+                <img v-show="activeExecutionStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-13.png" alt="Flip the funnel" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 1"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
-                <p class="font-semibold text-[var(--color-headline)]">Experiment: Before / After</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">A high-impact mission-focused showcase of a planting site as the entry point to the product.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Before / After</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">A high-impact mission-focused showcase of a planting site as the entry point to the product.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
+                </div>
+                <img v-show="activeExecutionStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-15.png" alt="Before / After" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
               <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 px-5 py-4 space-y-1 transition-colors duration-200"
+                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
                 @click="activeExecutionStep = 2"
               >
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
-                <p class="font-semibold text-[var(--color-headline)]">Experiment: Prompt install</p>
-                <p class="text-sm text-[var(--color-muted)] leading-relaxed">An intervention during the 1st search where we ask new users to switch to Ecosia.</p>
-                <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
+                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
+                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Prompt install</p>
+                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">An intervention during the 1st search where we ask new users to switch to Ecosia.</p>
+                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
+                </div>
+                <img v-show="activeExecutionStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-14.png" alt="Prompt install" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
               </button>
             </div>
 
-            <!-- Active step image -->
-            <figure class="pt-2 space-y-3">
+            <!-- Active step image — desktop only -->
+            <figure class="hidden sm:block pt-2 space-y-3">
               <img
                 :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-13.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png'][activeExecutionStep]"
                 :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeExecutionStep]"
