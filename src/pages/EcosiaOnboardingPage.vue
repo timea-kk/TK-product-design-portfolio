@@ -576,7 +576,7 @@ onUnmounted(() => {
                 />
                 <img
                   ref="beforeAfterBackRef"
-                  :src="beforeAfterBackSrc"
+                  src=""
                   :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
                   width="2400"
                   height="1300"
