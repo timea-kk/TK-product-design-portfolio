@@ -17,6 +17,7 @@ vi.mock('gsap', () => {
     default: {
       to: vi.fn((_el: unknown, vars: { onComplete?: () => void }) => { vars.onComplete?.() }),
       set: vi.fn(),
+      killTweensOf: vi.fn(),
       timeline: vi.fn(() => tl),
     },
   }
