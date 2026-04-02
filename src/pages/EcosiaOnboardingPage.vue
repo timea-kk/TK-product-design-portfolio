@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import gsap from 'gsap'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -25,6 +26,88 @@ const activeStrategyStep = ref(0)
 const activeExecutionStep = ref(0)
 const beforeAfterStep = ref(0)
 const serpStep = ref(0)
+
+const serpFrontRef = ref<HTMLImageElement | null>(null)
+const serpBackRef = ref<HTMLImageElement | null>(null)
+const serpFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-7.png')
+
+const strategyFrontRef = ref<HTMLImageElement | null>(null)
+const strategyBackRef = ref<HTMLImageElement | null>(null)
+const strategyFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-10.png')
+
+const executionFrontRef = ref<HTMLImageElement | null>(null)
+const executionBackRef = ref<HTMLImageElement | null>(null)
+const executionFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-13.png')
+
+const beforeAfterFrontRef = ref<HTMLImageElement | null>(null)
+const beforeAfterBackRef = ref<HTMLImageElement | null>(null)
+const beforeAfterFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-5.png')
+
+const SERP_SRCS = [
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-7.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-8.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-9.png',
+]
+const STRATEGY_SRCS = [
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-10.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png',
+]
+const EXECUTION_SRCS = [
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-13.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png',
+]
+
+function dissolve(
+  front: HTMLImageElement | null,
+  back: HTMLImageElement | null,
+  newSrc: string,
+  onComplete: () => void
+) {
+  if (!front || !back) {
+    onComplete()
+    return
+  }
+  back.src = newSrc
+  gsap.set(back, { opacity: 0 })
+  const tl = gsap.timeline()
+  tl.to(front, { opacity: 0, duration: 0.25 }, 0)
+  tl.to(back, { opacity: 1, duration: 0.25 }, 0)
+  tl.add(() => {
+    onComplete()
+    gsap.set(front, { opacity: 1 })
+    gsap.set(back, { opacity: 0 })
+  })
+}
+
+function serpDissolveStep(newStep: number) {
+  serpStep.value = newStep
+  dissolve(serpFrontRef.value, serpBackRef.value, SERP_SRCS[newStep], () => {
+    serpFrontSrc.value = SERP_SRCS[newStep]
+  })
+}
+
+function strategyDissolveStep(newStep: number) {
+  activeStrategyStep.value = newStep
+  dissolve(strategyFrontRef.value, strategyBackRef.value, STRATEGY_SRCS[newStep], () => {
+    strategyFrontSrc.value = STRATEGY_SRCS[newStep]
+  })
+}
+
+function executionDissolveStep(newStep: number) {
+  activeExecutionStep.value = newStep
+  dissolve(executionFrontRef.value, executionBackRef.value, EXECUTION_SRCS[newStep], () => {
+    executionFrontSrc.value = EXECUTION_SRCS[newStep]
+  })
+}
+
+function beforeAfterDissolve(newSrc: string, newStep: number) {
+  beforeAfterStep.value = newStep
+  dissolve(beforeAfterFrontRef.value, beforeAfterBackRef.value, newSrc, () => {
+    beforeAfterFrontSrc.value = newSrc
+  })
+}
 
 function scrollToSection(id: string) {
   /* c8 ignore next */
@@ -473,22 +556,34 @@ onUnmounted(() => {
                   <button
                     class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
                     :class="beforeAfterStep === 0 ? 'text-white' : 'text-[var(--color-muted)]'"
-                    @click="beforeAfterStep = 0"
+                    @click="beforeAfterDissolve('/project-pages/ecosia-onboarding/ecosia-onboarding-5.png', 0)"
                   >Before</button>
                   <button
                     class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
                     :class="beforeAfterStep === 1 ? 'text-white' : 'text-[var(--color-muted)]'"
-                    @click="beforeAfterStep = 1"
+                    @click="beforeAfterDissolve('/project-pages/ecosia-onboarding/ecosia-onboarding-6.png', 1)"
                   >After</button>
                 </div>
               </div>
-              <img
-                :src="beforeAfterStep === 0 ? '/project-pages/ecosia-onboarding/ecosia-onboarding-5.png' : '/project-pages/ecosia-onboarding/ecosia-onboarding-6.png'"
-                :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
-                width="2400"
-                height="1300"
-                class="w-full rounded-xl border-2 border-[#275243]"
-              />
+              <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+                <img
+                  ref="beforeAfterFrontRef"
+                  :src="beforeAfterFrontSrc"
+                  :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl"
+                />
+                <img
+                  ref="beforeAfterBackRef"
+                  :src="beforeAfterBackSrc"
+                  :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl absolute inset-0"
+                  style="opacity:0"
+                />
+              </div>
             </figure>
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 2: SERP Education</p>
             <p class="text-[var(--color-muted)] leading-relaxed">
@@ -517,22 +612,34 @@ onUnmounted(() => {
             </div>
             <figure class="pt-2">
               <div class="relative">
-                <img
-                  :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-7.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-8.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-9.png'][serpStep]"
-                  :alt="['Experiment 1', 'Experiment 2', 'Experiment 3'][serpStep]"
-                  width="2400"
-                  height="1300"
-                  class="w-full rounded-xl border-2 border-[#275243]"
-                />
+                <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+                  <img
+                    ref="serpFrontRef"
+                    :src="serpFrontSrc"
+                    :alt="['Experiment 1', 'Experiment 2', 'Experiment 3'][serpStep]"
+                    width="2400"
+                    height="1300"
+                    class="w-full rounded-xl"
+                  />
+                  <img
+                    ref="serpBackRef"
+                    src=""
+                    alt=""
+                    width="2400"
+                    height="1300"
+                    class="w-full rounded-xl absolute inset-0"
+                    style="opacity:0"
+                  />
+                </div>
                 <button
                   v-if="serpStep > 0"
                   class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-                  @click="serpStep--"
+                  @click="serpDissolveStep(serpStep - 1)"
                 >&#8592;</button>
                 <button
                   v-if="serpStep < 2"
                   class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-                  @click="serpStep++"
+                  @click="serpDissolveStep(serpStep + 1)"
                 >&#8594;</button>
               </div>
             </figure>
@@ -551,7 +658,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeStrategyStep = 0"
+                @click="strategyDissolveStep(0)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
@@ -564,7 +671,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeStrategyStep = 1"
+                @click="strategyDissolveStep(1)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
@@ -577,7 +684,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeStrategyStep = 2"
+                @click="strategyDissolveStep(2)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
@@ -591,13 +698,25 @@ onUnmounted(() => {
 
             <!-- Active step image — desktop only -->
             <figure class="hidden sm:block pt-2 space-y-3">
-              <img
-                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-10.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png'][activeStrategyStep]"
-                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeStrategyStep]"
-                width="2400"
-                height="1300"
-                class="w-full rounded-xl border-2 border-[#275243]"
-              />
+              <div class="relative w-full rounded-xl border-2 border-[#275243]">
+                <img
+                  ref="strategyFrontRef"
+                  :src="strategyFrontSrc"
+                  :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeStrategyStep]"
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl"
+                />
+                <img
+                  ref="strategyBackRef"
+                  src=""
+                  alt=""
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl absolute inset-0"
+                  style="opacity:0"
+                />
+              </div>
             </figure>
           </div>
 
@@ -614,7 +733,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeExecutionStep = 0"
+                @click="executionDissolveStep(0)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
@@ -627,7 +746,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeExecutionStep = 1"
+                @click="executionDissolveStep(1)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
@@ -640,7 +759,7 @@ onUnmounted(() => {
               <button
                 class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
                 :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
-                @click="activeExecutionStep = 2"
+                @click="executionDissolveStep(2)"
               >
                 <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
@@ -654,13 +773,25 @@ onUnmounted(() => {
 
             <!-- Active step image — desktop only -->
             <figure class="hidden sm:block pt-2 space-y-3">
-              <img
-                :src="['/project-pages/ecosia-onboarding/ecosia-onboarding-13.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png', '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png'][activeExecutionStep]"
-                :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeExecutionStep]"
-                width="2400"
-                height="1300"
-                class="w-full rounded-xl border-2 border-[#275243]"
-              />
+              <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+                <img
+                  ref="executionFrontRef"
+                  :src="executionFrontSrc"
+                  :alt="['Value Perception', 'Value Experience', 'Value Adoption'][activeExecutionStep]"
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl"
+                />
+                <img
+                  ref="executionBackRef"
+                  src=""
+                  alt=""
+                  width="2400"
+                  height="1300"
+                  class="w-full rounded-xl absolute inset-0"
+                  style="opacity:0"
+                />
+              </div>
             </figure>
           </div>
 

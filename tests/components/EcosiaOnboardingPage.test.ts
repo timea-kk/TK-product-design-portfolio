@@ -11,6 +11,18 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import EcosiaOnboardingPage from '@/pages/EcosiaOnboardingPage.vue'
 
+vi.mock('gsap', () => {
+  const tl = { to: vi.fn().mockReturnThis(), add: vi.fn((fn: () => void) => { fn(); return tl }) }
+  return {
+    default: {
+      to: vi.fn((_el: unknown, vars: { onComplete?: () => void }) => { vars.onComplete?.() }),
+      set: vi.fn(),
+      timeline: vi.fn(() => tl),
+    },
+  }
+})
+
+
 // ── Section IDs (must match component) ───────────────────────────────────────
 
 const SECTION_IDS = [
@@ -22,6 +34,7 @@ const SECTION_IDS = [
 
 beforeEach(() => {
   Element.prototype.scrollTo = vi.fn()
+  window.matchMedia = vi.fn().mockReturnValue({ matches: false })
   Element.prototype.getBoundingClientRect = vi.fn().mockReturnValue({
     top: 500, bottom: 600, left: 0, right: 0, width: 800, height: 100,
   })
