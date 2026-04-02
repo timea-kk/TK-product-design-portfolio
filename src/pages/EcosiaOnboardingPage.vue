@@ -5,7 +5,7 @@
 -->
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
 const NAV_SECTIONS = [
@@ -109,6 +109,42 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
   })
 }
 
+const navHoverIndicatorRef = ref<HTMLElement | null>(null)
+const navActiveIndicatorRef = ref<HTMLElement | null>(null)
+const navClickLock = ref(false)
+const navItemRefs: (HTMLElement | null)[] = []
+
+function setNavItemRef(el: unknown, i: number) {
+  navItemRefs[i] = el as HTMLElement | null
+}
+
+function getIndicatorTop(id: string): number | null {
+  const index = NAV_SECTIONS.findIndex(s => s.id === id)
+  const el = navItemRefs[index]
+  const indicator = navHoverIndicatorRef.value
+  if (!el || !indicator) return null
+  const track = indicator.parentElement
+  if (!track) return null
+  const trackRect = track.getBoundingClientRect()
+  const elRect = el.getBoundingClientRect()
+  return elRect.top - trackRect.top + (elRect.height - 20) / 2
+}
+
+function updateNavIndicator(id: string) {
+  const top = getIndicatorTop(id)
+  const indicator = navHoverIndicatorRef.value
+  if (top === null || !indicator) return
+  gsap.killTweensOf(indicator)
+  gsap.to(indicator, { top, duration: 0.25, ease: 'power1.inOut' })
+}
+
+function updateNavActiveIndicator(id: string) {
+  const top = getIndicatorTop(id)
+  const indicator = navActiveIndicatorRef.value
+  if (top === null || !indicator) return
+  gsap.to(indicator, { top, duration: 0.25, ease: 'power1.inOut' })
+}
+
 function scrollToSection(id: string) {
   /* c8 ignore next */
   if (!panelRef.value) return
@@ -140,11 +176,26 @@ function updateActiveSection() {
 onMounted(() => {
   panelRef.value?.addEventListener('scroll', updateActiveSection, { passive: true })
   updateActiveSection()
+  nextTick(() => {
+    updateNavIndicator(activeSection.value)
+    updateNavActiveIndicator(activeSection.value)
+  })
 })
 
 onUnmounted(() => {
   /* c8 ignore next */
   panelRef.value?.removeEventListener('scroll', updateActiveSection)
+})
+
+function navClick(id: string) {
+  updateNavActiveIndicator(id)
+  navClickLock.value = true
+  scrollToSection(id)
+  setTimeout(() => { navClickLock.value = false }, 800)
+}
+
+watch(activeSection, (id) => {
+  if (!navClickLock.value) updateNavActiveIndicator(id)
 })
 </script>
 
@@ -179,20 +230,36 @@ onUnmounted(() => {
                 box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.07);
               "
             >
-              <ul class="space-y-0.5">
-                <li v-for="s in NAV_SECTIONS" :key="s.id">
-                  <button
-                    type="button"
-                    @click="scrollToSection(s.id)"
-                    :class="[
-                      'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-150',
-                      activeSection === s.id
-                        ? 'font-semibold text-[var(--color-headline)] bg-black/[0.04]'
-                        : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:bg-black/[0.03]'
-                    ]"
-                  >{{ s.label }}</button>
-                </li>
-              </ul>
+              <div class="flex gap-2">
+                <div class="relative w-0.5 bg-black/[0.08] rounded-full my-1 shrink-0">
+                  <div
+                    ref="navHoverIndicatorRef"
+                    class="absolute w-1 h-5 rounded-full left-1/2 -translate-x-1/2"
+                    style="top:0; background:#c7abd1"
+                  ></div>
+                  <div
+                    ref="navActiveIndicatorRef"
+                    class="absolute w-1 h-5 bg-[var(--color-brand)] rounded-full left-1/2 -translate-x-1/2"
+                    style="top:0"
+                  ></div>
+                </div>
+                <ul class="flex-1 space-y-0.5">
+                  <li v-for="(s, i) in NAV_SECTIONS" :key="s.id">
+                    <button
+                      type="button"
+                      :ref="(el) => setNavItemRef(el, i)"
+                      @click="navClick(s.id)"
+                      @mouseenter="updateNavIndicator(s.id)"
+                      :class="[
+                        'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
+                        activeSection === s.id
+                          ? 'font-semibold text-[var(--color-headline)]'
+                          : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:translate-x-1'
+                      ]"
+                    >{{ s.label }}</button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
@@ -565,7 +632,7 @@ onUnmounted(() => {
                   >After</button>
                 </div>
               </div>
-              <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+              <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
                 <img
                   ref="beforeAfterFrontRef"
                   :src="beforeAfterFrontSrc"
@@ -580,7 +647,7 @@ onUnmounted(() => {
                   :alt="beforeAfterStep === 0 ? 'Before' : 'After'"
                   width="2400"
                   height="1300"
-                  class="w-full rounded-xl absolute inset-0"
+                  class="w-full h-full rounded-xl absolute inset-0 object-cover"
                   style="opacity:0"
                 />
               </div>
@@ -612,7 +679,7 @@ onUnmounted(() => {
             </div>
             <figure class="pt-2">
               <div class="relative">
-                <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+                <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
                   <img
                     ref="serpFrontRef"
                     :src="serpFrontSrc"
@@ -627,7 +694,7 @@ onUnmounted(() => {
                     alt=""
                     width="2400"
                     height="1300"
-                    class="w-full rounded-xl absolute inset-0"
+                    class="w-full h-full rounded-xl absolute inset-0 object-cover"
                     style="opacity:0"
                   />
                 </div>
@@ -863,6 +930,10 @@ onUnmounted(() => {
           </div>
 
         </div><!-- /content -->
+
+        <!-- Balances the left nav so content stays centered -->
+        <div class="hidden lg:block w-52 shrink-0"></div>
+
       </div><!-- /sidebar + content -->
     </div><!-- /whiteboard panel -->
   </section>
