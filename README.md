@@ -108,6 +108,7 @@ Hooks in `~/.claude/settings.json` run automatically and enforce rules without r
 | Write approval | Before any Write | Prompts for approval and suggests using Edit instead for existing files |
 | Read approval | Before any Read | Prompts for approval and warns if reading a full file without offset/limit |
 | Grep reminder | Before any Grep | Prompts a check of claude-mem before searching |
+| Pre-commit test runner | Before any commit | Runs the full test suite and blocks the commit if any test fails |
 
 **Git rule:** never work directly on `main`. All work happens on feature branches.
 
