@@ -96,9 +96,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-              </div>
+              <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Design System structure</figcaption>
             </figure>
           </CaseStudySection>
@@ -113,9 +111,7 @@ const panelRef = ref<HTMLElement | null>(null)
               Without a single owner, we needed to find new ways to keep Flora consistent, efficient, and transparent, while also balancing DS work with our individual product responsibilities. At first, this seemed like an intimidating and uncertain path, but I took on the role of leading the coordination and structure of this new shared ownership model.
             </p>
             <figure class="pt-2">
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-              </div>
+              <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership transition: old vs. new</figcaption>
             </figure>
           </CaseStudySection>
