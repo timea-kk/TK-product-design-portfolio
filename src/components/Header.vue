@@ -1,7 +1,7 @@
 <!--
   Header.vue – Floating pill navigation bar (Option 1: centered panel).
   Panel state is owned here so the panel can be positioned as an absolute child of the
-  header element — letting left-1/2 / -translate-x-1/2 center it under the pill regardless
+  header element, letting left-1/2 / -translate-x-1/2 center it under the pill regardless
   of which icon triggered it. ThemeSwitcher.vue and A11yPanel.vue are unused in this variant.
 -->
 

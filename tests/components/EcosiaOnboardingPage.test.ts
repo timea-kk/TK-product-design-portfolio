@@ -168,6 +168,7 @@ describe('EcosiaOnboardingPage — scroll spy', () => {
 describe('EcosiaOnboardingPage — scrollToSection', () => {
   it('calls scrollTo on the panel when a nav button is clicked', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
+    await wrapper.vm.$nextTick()
     const panelEl = getPanelEl(wrapper)
     const scrollToMock = vi.fn()
     panelEl.scrollTo = scrollToMock
@@ -186,14 +187,16 @@ describe('EcosiaOnboardingPage — scrollToSection', () => {
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
 
 describe('EcosiaOnboardingPage — lifecycle', () => {
-  it('adds a scroll listener on mount', () => {
+  it('adds a scroll listener on mount', async () => {
     const addSpy = vi.spyOn(HTMLElement.prototype, 'addEventListener')
-    mount(EcosiaOnboardingPage)
+    const wrapper = mount(EcosiaOnboardingPage)
+    await wrapper.vm.$nextTick()
     expect(addSpy).toHaveBeenCalledWith('scroll', expect.any(Function), expect.objectContaining({ passive: true }))
   })
 
-  it('removes the scroll listener on unmount', () => {
+  it('removes the scroll listener on unmount', async () => {
     const wrapper = mount(EcosiaOnboardingPage)
+    await wrapper.vm.$nextTick()
     const removeSpy = vi.spyOn(HTMLElement.prototype, 'removeEventListener')
     wrapper.unmount()
     expect(removeSpy).toHaveBeenCalledWith('scroll', expect.any(Function))
