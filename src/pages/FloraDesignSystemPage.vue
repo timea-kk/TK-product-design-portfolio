@@ -282,20 +282,20 @@ const panelRef = ref<HTMLElement | null>(null)
                 <p class="text-sm text-[var(--color-muted)]">Increased across browser and search projects</p>
               </div>
             </div>
-            <figure class="pt-2 space-y-4">
-              <div>
+            <div class="pt-2 space-y-4">
+              <figure>
                 <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
                   <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
                 </div>
                 <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component contribution</figcaption>
-              </div>
-              <div>
+              </figure>
+              <figure>
                 <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
                   <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
                 </div>
                 <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component options in use</figcaption>
-              </div>
-            </figure>
+              </figure>
+            </div>
           </CaseStudySection>
 
           <!-- Results -->
