@@ -92,7 +92,7 @@ const PLACEHOLDER_PROJECTS = [
       </div>
 
       <!-- =====================================================================
-        OPTION B — POLAROID (parked, may revisit)
+        OPTION B: POLAROID (parked, may revisit)
         Square polaroid frame, white border thicker at bottom, tape on top.
         To restore: uncomment the block below and remove the sticky note block.
       ======================================================================

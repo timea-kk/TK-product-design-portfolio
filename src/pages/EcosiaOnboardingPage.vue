@@ -5,8 +5,12 @@
 -->
 
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import gsap from 'gsap'
+import CaseStudyNav from '@/components/CaseStudyNav.vue'
+import CaseStudySection from '@/components/CaseStudySection.vue'
+import StickyNote from '@/components/StickyNote.vue'
+import StatCard from '@/components/StatCard.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -20,7 +24,6 @@ const NAV_SECTIONS = [
   { id: 'results',         label: 'Results' },
 ]
 
-const activeSection = ref('overview')
 const panelRef = ref<HTMLElement | null>(null)
 const activeStrategyStep = ref(0)
 const activeExecutionStep = ref(0)
@@ -109,94 +112,6 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
   })
 }
 
-const navHoverIndicatorRef = ref<HTMLElement | null>(null)
-const navActiveIndicatorRef = ref<HTMLElement | null>(null)
-const navClickLock = ref(false)
-const navItemRefs: (HTMLElement | null)[] = []
-
-function setNavItemRef(el: unknown, i: number) {
-  navItemRefs[i] = el as HTMLElement | null
-}
-
-function getIndicatorTop(id: string): number | null {
-  const index = NAV_SECTIONS.findIndex(s => s.id === id)
-  const el = navItemRefs[index]
-  const indicator = navHoverIndicatorRef.value
-  if (!el || !indicator) return null
-  const track = indicator.parentElement
-  if (!track) return null
-  const trackRect = track.getBoundingClientRect()
-  const elRect = el.getBoundingClientRect()
-  return elRect.top - trackRect.top + (elRect.height - 20) / 2
-}
-
-function updateNavIndicator(id: string) {
-  const top = getIndicatorTop(id)
-  const indicator = navHoverIndicatorRef.value
-  if (top === null || !indicator) return
-  gsap.killTweensOf(indicator)
-  gsap.to(indicator, { top, duration: 0.25, ease: 'power1.inOut' })
-}
-
-function updateNavActiveIndicator(id: string) {
-  const top = getIndicatorTop(id)
-  const indicator = navActiveIndicatorRef.value
-  if (top === null || !indicator) return
-  gsap.to(indicator, { top, duration: 0.25, ease: 'power1.inOut' })
-}
-
-function scrollToSection(id: string) {
-  /* c8 ignore next */
-  if (!panelRef.value) return
-  const el = document.getElementById(id)
-  if (el) {
-    const panelRect = panelRef.value.getBoundingClientRect()
-    const elRect = el.getBoundingClientRect()
-    const labelAboveCard = 35
-    const navStickyTop = 40
-    const target = Math.max(0, panelRef.value.scrollTop + elRect.top - panelRect.top - labelAboveCard - navStickyTop)
-    panelRef.value.scrollTo({ top: target, behavior: 'smooth' })
-  }
-}
-
-function updateActiveSection() {
-  const panel = panelRef.value
-  /* c8 ignore next */
-  if (!panel) return
-  const threshold = panel.getBoundingClientRect().top + panel.clientHeight * 0.4
-  let active = NAV_SECTIONS[0].id
-  for (const { id } of NAV_SECTIONS) {
-    const el = document.getElementById(id)
-    if (!el) continue
-    if (el.getBoundingClientRect().top <= threshold) active = id
-  }
-  activeSection.value = active
-}
-
-onMounted(() => {
-  panelRef.value?.addEventListener('scroll', updateActiveSection, { passive: true })
-  updateActiveSection()
-  nextTick(() => {
-    updateNavIndicator(activeSection.value)
-    updateNavActiveIndicator(activeSection.value)
-  })
-})
-
-onUnmounted(() => {
-  /* c8 ignore next */
-  panelRef.value?.removeEventListener('scroll', updateActiveSection)
-})
-
-function navClick(id: string) {
-  updateNavActiveIndicator(id)
-  navClickLock.value = true
-  scrollToSection(id)
-  setTimeout(() => { navClickLock.value = false }, 800)
-}
-
-watch(activeSection, (id) => {
-  if (!navClickLock.value) updateNavActiveIndicator(id)
-})
 </script>
 
 <template>
@@ -217,52 +132,8 @@ watch(activeSection, (id) => {
       <!-- Inner: sidebar + content -->
       <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
 
-        <!-- ── Left nav (desktop only) — floating white card ── -->
-        <nav class="hidden lg:block w-52 shrink-0" aria-label="Page sections">
-          <div class="sticky top-10">
-            <div
-              class="rounded-2xl px-3 py-4"
-              style="
-                background: rgba(255, 255, 255, 0.3);
-                backdrop-filter: blur(2px);
-                -webkit-backdrop-filter: blur(2px);
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.07);
-              "
-            >
-              <div class="flex gap-2">
-                <div class="relative w-0.5 bg-black/[0.08] rounded-full my-1 shrink-0">
-                  <div
-                    ref="navHoverIndicatorRef"
-                    class="absolute w-1 h-5 rounded-full left-1/2 -translate-x-1/2"
-                    style="top:0; background:#c7abd1"
-                  ></div>
-                  <div
-                    ref="navActiveIndicatorRef"
-                    class="absolute w-1 h-5 bg-[var(--color-brand)] rounded-full left-1/2 -translate-x-1/2"
-                    style="top:0"
-                  ></div>
-                </div>
-                <ul class="flex-1 space-y-0.5">
-                  <li v-for="(s, i) in NAV_SECTIONS" :key="s.id">
-                    <button
-                      type="button"
-                      :ref="(el) => setNavItemRef(el, i)"
-                      @click="navClick(s.id)"
-                      @mouseenter="updateNavIndicator(s.id)"
-                      :class="[
-                        'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
-                        activeSection === s.id
-                          ? 'font-semibold text-[var(--color-headline)]'
-                          : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:translate-x-1'
-                      ]"
-                    >{{ s.label }}</button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <!-- ── Left nav (desktop only) ── -->
+        <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
 
         <!-- ── Main content ── -->
         <div class="w-full min-w-0 max-w-4xl space-y-24">
@@ -271,9 +142,7 @@ watch(activeSection, (id) => {
           <!-- mt-[35px]: first child gets no space-y gap, so we add 35px manually -->
           <!-- 40px flex padding-top + 35px margin-top = 75px from panel top -->
           <!-- label is 35px above card → label lands at 40px = nav sticky top ✓ -->
-          <div id="overview" class="mt-[35px] scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-14 space-y-8">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Overview</p>
+          <CaseStudySection id="overview" label="Overview" first>
 
             <!-- Title block -->
             <div class="space-y-4">
@@ -325,14 +194,12 @@ watch(activeSection, (id) => {
               <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Ecosia Landing Page snapshot</figcaption>
             </figure>
 
-          </div>
+          </CaseStudySection>
 
           <!-- ── Context ── -->
 
           <!-- ── The Problem ── -->
-          <div id="problem" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Problem</p>
+          <CaseStudySection id="problem" label="The Problem">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Users left before understanding what Ecosia was</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               Ecosia is a search engine that dedicates 100% of its profits to planting trees all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission. After switching to Google as a search partner, Ecosia needed to improve retention by helping users make it their default search engine. Despite strong awareness, many <strong>new users left after their first search</strong>, often before understanding its mission or impact.
@@ -349,31 +216,29 @@ watch(activeSection, (id) => {
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:block pt-5">
-            <div class="flex gap-3">
-              <div class="relative flex-1" style="transform: rotate(-1deg)">
-                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>Low conversion and retention rates with limited insight into why users dropped off</div>
+              <div class="flex gap-3">
+                <StickyNote :rotate="-1" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>
+                  Low conversion and retention rates with limited insight into why users dropped off
+                </StickyNote>
+                <StickyNote :rotate="1" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>
+                  Unclear value as users didn't understand what Ecosia was or how it worked
+                </StickyNote>
+                <StickyNote :rotate="-0.5" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>
+                  No guidance on how to install or set Ecosia as the default search engine
+                </StickyNote>
               </div>
-              <div class="relative flex-1" style="transform: rotate(1deg)">
-                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(-2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>Unclear value as users didn't understand what Ecosia was or how it worked</div>
-              </div>
-              <div class="relative flex-1" style="transform: rotate(-0.5deg)">
-                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(1.5deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center gap-3 px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-6 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>No guidance on how to install or set Ecosia as the default search engine</div>
-              </div>
-            </div>
             </div>
             <figure class="pt-4 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Product landscape</figcaption>
             </figure>
-          </div>
+          </CaseStudySection>
 
           <!-- ── The Challenge ── -->
-          <div id="challenge" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">The Approach</p>
+          <CaseStudySection id="challenge" label="The Approach">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Injecting tool evaluation insights into the product</h2>
             <div class="flex flex-col sm:flex-row gap-8 items-start">
               <div class="flex flex-col gap-4 flex-1 text-[var(--color-muted)] leading-relaxed">
@@ -381,20 +246,18 @@ watch(activeSection, (id) => {
                 <p>The <strong>challenge</strong> was to design an onboarding experience that built trust, encouraged action, and fit naturally into existing user behavior.</p>
                 <p>To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.</p>
               </div>
-              <div class="relative w-1/2 mx-auto sm:w-56 sm:mx-0 sm:shrink-0 sm:mt-4" style="transform: rotate(-1deg)">
-                <div class="absolute z-10" style="width: 4rem; height: 1.6rem; top: -0.8rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="flex flex-col items-center justify-center gap-3 px-4 py-4 text-sm leading-relaxed text-center aspect-square sm:aspect-auto text-[var(--color-headline)]" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"><span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>help new users quickly understand and trust Ecosia while keeping their experience familiar</div>
-              </div>
+              <StickyNote :rotate="-1" square class="w-1/2 mx-auto sm:w-56 sm:mx-0 sm:shrink-0 sm:mt-4">
+                <span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>
+                help new users quickly understand and trust Ecosia while keeping their experience familiar
+              </StickyNote>
             </div>
             <figure class="pt-2 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[#275243]" />
             </figure>
-          </div>
+          </CaseStudySection>
 
           <!-- ── Research ── -->
-          <div id="research" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Research</p>
+          <CaseStudySection id="research" label="Research">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Switching to Ecosia was functional, not just emotional</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               I started by reviewing existing user knowledge, then went deeper with <strong>unstructured interviews</strong> where participants <strong>retraced their real experiences</strong> with Ecosia. Combined with funnel and retention data, this shaped a User Journey Map and surfaced two key insights.
@@ -543,26 +406,21 @@ watch(activeSection, (id) => {
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:flex gap-3 pt-2 items-start">
-              <div class="relative flex-1 mt-3" style="transform: rotate(-1deg)">
-                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">This reframing directly shaped <strong>12 onboarding experiments</strong> that followed</div>
-              </div>
-              <div class="relative flex-1 mt-3" style="transform: rotate(1deg)">
-                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(-1deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments</div>
-              </div>
-              <div class="relative flex-1 mt-3" style="transform: rotate(-0.5deg)">
-                <div class="absolute z-10" style="width: 3.5rem; height: 1.4rem; top: -0.7rem; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.10);"></div>
-                <div class="px-3 py-4 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:py-5 sm:text-sm" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);">It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong></div>
-              </div>
+              <StickyNote :rotate="-1" small class="flex-1 mt-3">
+                This reframing directly shaped <strong>12 onboarding experiments</strong> that followed
+              </StickyNote>
+              <StickyNote :rotate="1" small class="flex-1 mt-3">
+                It introduced a shared push/pull framework that <strong>2 other teams</strong> used for their own experiments
+              </StickyNote>
+              <StickyNote :rotate="-0.5" small class="flex-1 mt-3">
+                It shifted team thinking toward <strong>"how do we reduce the cost of switching"</strong>
+              </StickyNote>
             </div>
 
-          </div>
+          </CaseStudySection>
 
           <!-- ── Opportunities ── -->
-          <div id="opportunities" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Opportunities</p>
+          <CaseStudySection id="opportunities" label="Opportunities">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Small calculated changes built our strategy</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
@@ -575,12 +433,10 @@ watch(activeSection, (id) => {
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Timing was everything</p>
               <p class="text-[var(--color-muted)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
             </div>
-          </div>
+          </CaseStudySection>
 
           <!-- ── Experimentation ── -->
-          <div id="experimentation" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Experimentation</p>
+          <CaseStudySection id="experimentation" label="Experimentation">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Constrained by volume, structured by design</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               With limited A/B testing volume, running experiments sequentially would have been too slow. I split the work into two parallel tracks so we could cover more ground without losing focus. Each experiment fed into the next, building on real learnings as we went.
@@ -588,26 +444,10 @@ watch(activeSection, (id) => {
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
             <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
             <div class="grid grid-cols-2 sm:flex gap-3">
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Headline copy</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3.2%</p>
-                <p class="text-sm text-[var(--color-muted)]">conversion</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Product image</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+5.4%</p>
-                <p class="text-sm text-[var(--color-muted)]">CTA clicks</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Install guide</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+25%</p>
-                <p class="text-sm text-[var(--color-muted)]">conversion</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Action CTA</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+19.69%</p>
-                <p class="text-sm text-[var(--color-muted)]">conversion</p>
-              </div>
+              <StatCard label="Headline copy" value="+3.2%" description="conversion" />
+              <StatCard label="Product image" value="+5.4%" description="CTA clicks" />
+              <StatCard label="Install guide" value="+25%" description="conversion" />
+              <StatCard label="Action CTA" value="+19.69%" description="conversion" />
             </div>
             <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
@@ -657,21 +497,9 @@ watch(activeSection, (id) => {
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
             <div class="flex flex-col sm:flex-row gap-3">
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">How it works</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
-                <p class="text-sm text-[var(--color-muted)]">D1 retention</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">With illustration</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">-5%</p>
-                <p class="text-sm text-[var(--color-muted)]">retention in DE</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Privacy messaging</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">-2%</p>
-                <p class="text-sm text-[var(--color-muted)]">D1 retention</p>
-              </div>
+              <StatCard label="How it works" value="+3%" description="D1 retention" />
+              <StatCard label="With illustration" value="-5%" description="retention in DE" />
+              <StatCard label="Privacy messaging" value="-2%" description="D1 retention" />
             </div>
             <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
@@ -710,12 +538,10 @@ watch(activeSection, (id) => {
                 >&#8594;</button>
               </div>
             </figure>
-          </div>
+          </CaseStudySection>
 
           <!-- ── Strategy ── -->
-          <div id="strategy" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Strategy</p>
+          <CaseStudySection id="strategy" label="Strategy">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three connected phases built on what we learned</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               After several successful experiments that improved conversion and a bit of D1 retention, I realized that we needed a more holistic approach. I structured onboarding around three connected phases that aligned user behavior with Ecosia's mission:
@@ -785,12 +611,10 @@ watch(activeSection, (id) => {
                 />
               </div>
             </figure>
-          </div>
+          </CaseStudySection>
 
           <!-- ── Execution ── -->
-          <div id="execution" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Execution</p>
+          <CaseStudySection id="execution" label="Execution">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three experiments: two launched, one ready to go</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               Using the strategic framework as a guide, <strong>I translated each phase into a focused experiment.</strong> Two shipped and generated results. A third was fully scoped and asset-ready but never launched. The team was reassigned before it could run, leaving a clean handoff for whoever picks it up next.
@@ -860,12 +684,10 @@ watch(activeSection, (id) => {
                 />
               </div>
             </figure>
-          </div>
+          </CaseStudySection>
 
           <!-- ── Results ── -->
-          <div id="results" class="scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10 sm:py-10 space-y-4">
-            <p class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
-              style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);">Results</p>
+          <CaseStudySection id="results" label="Results">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Results that shaped what comes next</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
               The work delivered measurable growth and a foundation for future experimentation. Every conversion became both a product win and an environmental one, turning onboarding into a direct expression of Ecosia's mission.
@@ -873,21 +695,9 @@ watch(activeSection, (id) => {
 
             <!-- Stat cards -->
             <div class="flex flex-col sm:flex-row gap-3">
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Conversion</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+20–25%</p>
-                <p class="text-sm text-[var(--color-muted)]">increase</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">D1 retention</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">+3%</p>
-                <p class="text-sm text-[var(--color-muted)]">improvement</p>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Experiments</p>
-                <p class="text-2xl font-extrabold text-[var(--color-headline)] my-2">9 of 12</p>
-                <p class="text-sm text-[var(--color-muted)]">shipped to 100%</p>
-              </div>
+              <StatCard label="Conversion" value="+20–25%" description="increase" />
+              <StatCard label="D1 retention" value="+3%" description="improvement" />
+              <StatCard label="Experiments" value="9 of 12" description="shipped to 100%" />
             </div>
 
             <!-- What I learned + What I'd do differently -->
@@ -927,7 +737,7 @@ watch(activeSection, (id) => {
                 </div>
               </div>
             </div>
-          </div>
+          </CaseStudySection>
 
         </div><!-- /content -->
 

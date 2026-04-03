@@ -49,7 +49,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'is this timea',
     ],
     answer:
-      "Hi! I'm Timea, a Senior Product Designer based in Berlin. Happy to tell you about my work — you could ask about my time at Ecosia, specific projects like the onboarding experiments or the Ecosia Browser launch, how I work, my background, or how to get in touch.",
+      "Hi! I'm Timea, a Senior Product Designer based in Berlin. Happy to tell you about my work. You could ask about my time at Ecosia, specific projects like the onboarding experiments or the Ecosia Browser launch, how I work, my background, or how to get in touch.",
   },
 
   // Location
