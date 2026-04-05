@@ -9,12 +9,12 @@ import { ref } from 'vue'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
+import CalloutCard from '@/components/CalloutCard.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
   { id: 'context',      label: 'Context' },
   { id: 'problem',      label: 'The Problem' },
-  { id: 'challenge',    label: 'The Challenge' },
   { id: 'process',      label: 'My Approach' },
   { id: 'initiatives',  label: 'Key Initiatives' },
   { id: 'contribution', label: 'Card Component' },
@@ -91,7 +91,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <div class="space-y-3">
               <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TL;DR</h2>
               <p class="text-[var(--color-muted)] leading-relaxed">
-                I led the transition of Ecosia's Flora Design System from single-lead ownership to a shared model across five product designers. I introduced contribution workflows, health tracking, governance processes, and documentation that kept Flora consistent, scalable, and transparent throughout 2025.
+                I led the transition of Ecosia's Flora Design System from single-lead ownership to a <strong>shared ownership model</strong> across six product designers. I introduced contribution workflows, health tracking, governance processes, and documentation that kept Flora self-sustaining throughout 2025. Within six months, designers were contributing independently and component knowledge was spread across at least three people per component.
               </p>
             </div>
 
@@ -103,12 +103,12 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- Context -->
           <CaseStudySection id="context" label="Context">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">A design system without a home</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">From one owner to six</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              At the start of 2025, Ecosia entered a transitional period: our Design System, Flora, no longer had a dedicated team or lead. The responsibility for maintaining and evolving it shifted to the five product designers across different product areas.
+              At the start of 2025, Ecosia's Design System, Flora, lost its dedicated team and lead. Responsibility shifted to the six product designers across our product areas, each of us balancing DS work alongside our own roadmaps.
             </p>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Without a single owner, we needed to find new ways to keep Flora consistent, efficient, and transparent, while also balancing DS work with our individual product responsibilities. At first, this seemed like an intimidating and uncertain path, but I took on the role of leading the coordination and structure of this new shared ownership model.
+              Without a single owner, we needed a new way to keep Flora moving. <strong>I stepped in to structure and coordinate the transition to a shared ownership model.</strong>
             </p>
             <figure class="pt-2">
               <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[#275243]" />
@@ -118,51 +118,39 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- The Problem -->
           <CaseStudySection id="problem" label="The Problem">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">No process, no ownership, no consistency</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Ownership became everyone's problem</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Our Design System lead had been the single source of truth for how to contribute, build, and maintain components, and most designers relied on working directly with him. He also mentored and guided us in times of uncertainty, so navigating DS work on our own seemed scary at first.
+              Our Design System lead had been the single source of truth for how to contribute, build, and maintain components, and most designers relied on working directly with him. He also mentored and guided us in times of uncertainty, so navigating through DS work on our own seemed scary at first.
             </p>
             <p class="text-[var(--color-muted)] leading-relaxed">
-              Without this structure, we suddenly had no clear process or ownership to fall back on. Each designer approached contributions differently and used different accessibility plugins, naming conventions, and review steps. Knowledge about best practices was scattered, and quality varied from one library to another.
+              Without this structure, we suddenly had <strong>no clear process or ownership to fall back on.</strong> Each designer approached contributions differently and used different accessibility plugins, naming conventions, and review steps. Knowledge about best practices was scattered, and quality varied from one library to another.
             </p>
             <!-- Mobile: bullet list -->
             <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">No clear process</strong> or ownership to fall back on</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Inconsistent contributions</strong> with different plugins, naming, and review steps per designer</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Scattered knowledge</strong> and variable quality across libraries</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> create a shared process for contributing to Flora?</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> align six designers on the same standards and tools?</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> turn scattered knowledge into something shared?</span></li>
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:block pt-5">
               <div class="flex gap-3">
                 <StickyNote :rotate="-1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>
-                  No clear process or ownership to fall back on
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  create a shared process for contributing to Flora?
                 </StickyNote>
                 <StickyNote :rotate="1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>
-                  Inconsistent contributions across designers with different plugins, naming, and review steps
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  align six designers on the same standards and tools?
                 </StickyNote>
                 <StickyNote :rotate="-0.5" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>
-                  Scattered knowledge and variable quality across design libraries
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  turn scattered knowledge into something shared?
                 </StickyNote>
               </div>
             </div>
-          </CaseStudySection>
-
-          <!-- The Challenge -->
-          <CaseStudySection id="challenge" label="The Challenge">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Rebuilding clarity without a central owner</h2>
-            <div class="flex flex-col sm:flex-row gap-8 items-start">
-              <div class="flex flex-col gap-4 flex-1 text-[var(--color-muted)] leading-relaxed">
-                <p>The goal was to keep Flora running while creating a structure that allowed every designer to contribute confidently, review each other's work, and maintain shared standards, all while balancing their own product responsibilities.</p>
-                <p>The biggest challenge was turning fragmented, individual knowledge into a scalable, transparent system. We needed clear documentation, defined ownership, and a way to measure quality across all design libraries.</p>
-              </div>
-              <StickyNote :rotate="-1" square class="w-1/2 mx-auto sm:w-56 sm:mx-0 sm:shrink-0 sm:mt-4">
-                <span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>
-                turn fragmented individual knowledge into a scalable, transparent design system
-              </StickyNote>
-            </div>
+            <CalloutCard label="Shared goal">
+              <p class="text-[var(--color-muted)] leading-relaxed">Keep Flora running as a shared system where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
+            </CalloutCard>
           </CaseStudySection>
 
           <!-- My Approach -->
@@ -172,22 +160,18 @@ const panelRef = ref<HTMLElement | null>(null)
               When defining our new ways of working, I covered how we would collaborate, document, and measure success. At the same time, I made sure that everyone felt equipped to contribute, even without a dedicated Design System team.
             </p>
             <div class="flex flex-col gap-3 pt-2">
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Establish structure</p>
-                <p class="text-sm text-[var(--color-muted)]">I set up the Flora Jira board, workflows, and review process so we could track, prioritize, and assign DS tasks clearly.</p>
-              </div>
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Document everything</p>
-                <p class="text-sm text-[var(--color-muted)]">I wrote and organized guidelines in Confluence, including ownership rules, contribution checklists, and detailed guides for naming, accessibility, and component decisions.</p>
-              </div>
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Create visibility</p>
-                <p class="text-sm text-[var(--color-muted)]">I built a Design System health dashboard in Google Sheets to track quality across all libraries and visualize monthly progress.</p>
-              </div>
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Support collaboration</p>
-                <p class="text-sm text-[var(--color-muted)]">I facilitated retrospectives, shared monthly updates, and clarified ownership by mapping who was most experienced with specific components.</p>
-              </div>
+              <CalloutCard label="Establish structure">
+                <p class="text-[var(--color-muted)] leading-relaxed">I set up the Flora Jira board, workflows, and review process so we could track, prioritize, and assign DS tasks clearly.</p>
+              </CalloutCard>
+              <CalloutCard label="Document everything">
+                <p class="text-[var(--color-muted)] leading-relaxed">I wrote and organized guidelines in Confluence, including ownership rules, contribution checklists, and detailed guides for naming, accessibility, and component decisions.</p>
+              </CalloutCard>
+              <CalloutCard label="Create visibility">
+                <p class="text-[var(--color-muted)] leading-relaxed">I built a Design System health dashboard in Google Sheets to track quality across all libraries and visualize monthly progress.</p>
+              </CalloutCard>
+              <CalloutCard label="Support collaboration">
+                <p class="text-[var(--color-muted)] leading-relaxed">I facilitated retrospectives, shared monthly updates, and clarified ownership by mapping who was most experienced with specific components.</p>
+              </CalloutCard>
             </div>
           </CaseStudySection>
 
@@ -265,18 +249,15 @@ const panelRef = ref<HTMLElement | null>(null)
               I designed a flexible card component with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our most frequently used elements, improved alignment between design and development, and reduced design time for future product pages.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Structure</p>
-                <p class="text-sm text-[var(--color-muted)]">Modular card with multiple display variants</p>
-              </div>
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Workflow</p>
-                <p class="text-sm text-[var(--color-muted)]">Simplified handoff between designers and developers</p>
-              </div>
-              <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Consistency</p>
-                <p class="text-sm text-[var(--color-muted)]">Increased across browser and search projects</p>
-              </div>
+              <CalloutCard label="Structure">
+                <p class="text-[var(--color-muted)] leading-relaxed">Modular card with multiple display variants</p>
+              </CalloutCard>
+              <CalloutCard label="Workflow">
+                <p class="text-[var(--color-muted)] leading-relaxed">Simplified handoff between designers and developers</p>
+              </CalloutCard>
+              <CalloutCard label="Consistency">
+                <p class="text-[var(--color-muted)] leading-relaxed">Increased across browser and search projects</p>
+              </CalloutCard>
             </div>
             <div class="pt-2 space-y-4">
               <figure>
@@ -301,48 +282,26 @@ const panelRef = ref<HTMLElement | null>(null)
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 pt-2">
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Results</p>
-                <div class="space-y-3 divide-y divide-black/[0.06]">
-                  <div class="pt-3 first:pt-0">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Confident, independent contributors</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Designers became comfortable contributing without needing a dedicated DS lead.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">DS health scores improved quarter over quarter</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Tracked monthly, health scores across all libraries improved consistently throughout 2025.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Stronger decision-making</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Clear prioritization and tracking gave the team a shared framework for making calls.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Higher contribution quality</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Shared standards and reviews raised the bar across all contributions.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Learnings</p>
-                <div class="space-y-3 divide-y divide-black/[0.06]">
-                  <div class="pt-3 first:pt-0">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Shared ownership builds stronger culture than centralization</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Distributed responsibility improved org-wide resilience without sacrificing quality.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Clear documentation reduces friction and dependency</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Writing things down meant no knowledge was locked in one person's head.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Lightweight governance keeps consistency without slowing teams</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Just enough process was the right call; heavy governance would have created more drag than value.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Transparency improves collective responsibility</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Regular updates and visible progress made the whole team feel accountable and motivated.</p>
-                  </div>
-                </div>
-              </div>
+              <CalloutCard
+                label="Results"
+                class="flex-1"
+                :items="[
+                  { title: 'Confident, independent contributors', description: 'Designers became comfortable contributing without needing a dedicated DS lead.' },
+                  { title: 'DS health scores improved quarter over quarter', description: 'Tracked monthly, health scores across all libraries improved consistently throughout 2025.' },
+                  { title: 'Stronger decision-making', description: 'Clear prioritization and tracking gave the team a shared framework for making calls.' },
+                  { title: 'Higher contribution quality', description: 'Shared standards and reviews raised the bar across all contributions.' }
+                ]"
+              />
+              <CalloutCard
+                label="Learnings"
+                class="flex-1"
+                :items="[
+                  { title: 'Shared ownership builds stronger culture than centralization', description: 'Distributed responsibility improved org-wide resilience without sacrificing quality.' },
+                  { title: 'Clear documentation reduces friction and dependency', description: 'Writing things down meant no knowledge was locked in one person\'s head.' },
+                  { title: 'Lightweight governance keeps consistency without slowing teams', description: 'Just enough process was the right call; heavy governance would have created more drag than value.' },
+                  { title: 'Transparency improves collective responsibility', description: 'Regular updates and visible progress made the whole team feel accountable and motivated.' }
+                ]"
+              />
             </div>
           </CaseStudySection>
 

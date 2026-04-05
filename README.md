@@ -109,6 +109,22 @@ Hooks in `~/.claude/settings.json` run automatically and enforce rules without r
 | Read approval | Before any Read | Prompts for approval and warns if reading a full file without offset/limit |
 | Grep reminder | Before any Grep | Prompts a check of claude-mem before searching |
 | Pre-commit test runner | Before any commit | Runs the full test suite and blocks the commit if any test fails |
+| Memory check | Before every response | Injects a mandatory reminder to call smart_outline and smart_search before responding |
+
+### Skills
+
+| Skill | Source | Purpose |
+|---|---|---|
+| `update-config` | claude-plugins-official | Safely edits `settings.json` -- reads first, merges hooks and permissions without replacing existing config |
+| `keybindings-help` | claude-plugins-official | Configures keyboard shortcuts in `~/.claude/keybindings.json` |
+| `simplify` | claude-plugins-official | Reviews changed code for reuse and quality, then fixes issues found |
+| `loop` | claude-plugins-official | Runs a prompt or slash command on a recurring interval |
+| `schedule` | claude-plugins-official | Creates and manages scheduled remote agents on a cron schedule |
+| `claude-api` | claude-plugins-official | Builds apps using the Claude API or Anthropic SDK |
+| `claude-mem:mem-search` | claude-mem | Searches persistent cross-session memory for past decisions and context |
+| `claude-mem:smart-explore` | claude-mem | Token-efficient structural code search using AST parsing |
+| `claude-mem:make-plan` | claude-mem | Creates a phased implementation plan before executing a task |
+| `claude-mem:do` | claude-mem | Executes a phased plan using subagents |
 
 **Git rule:** never work directly on `main`. All work happens on feature branches.
 
