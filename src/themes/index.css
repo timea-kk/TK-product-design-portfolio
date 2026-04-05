@@ -9,16 +9,16 @@
    Warm peachy surface from Burnt Orange 50 (#FEF5EE), Golden Honey 50 elevated (#FDF8EC),
    Dusty Violet accent (#9966AA), warm honey border (#EDD9B8), Bricolage Grotesque headings. */
 html.theme-default {
-  --color-brand: #9966AA;
-  --color-brand-secondary: #7A4E8A;
-  --color-surface: #d9c7e0;
-  --color-surface-elevated: #FDF8EC;
-  --color-muted: #6B5464;
-  --color-headline: #2B1A33;
+  --color-brand: var(--color-dusty-violet-500);
+  --color-brand-secondary: var(--color-dusty-violet-600);
+  --color-surface: var(--color-dusty-violet-200);
+  --color-surface-elevated: var(--color-golden-honey-50);
+  --color-muted: var(--color-deep-maroon-600);
+  --color-headline: var(--color-dusty-violet-900);
   --color-descriptor-bg: rgba(153, 102, 170, 0.10);
-  --color-border: #EDD9B8;
-  --color-logo: #9966AA;
-  --color-cta-bg: #9966AA;
+  --color-border: var(--color-golden-honey-200);
+  --color-logo: var(--color-dusty-violet-500);
+  --color-cta-bg: var(--color-dusty-violet-500);
   --color-cta-text: #ffffff;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Bricolage Grotesque', Georgia, serif;

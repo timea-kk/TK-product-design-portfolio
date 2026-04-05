@@ -29,6 +29,42 @@
    src/themes/index.css overrides these variables. */
 @layer base {
   :root {
+    /* Primitive color scales */
+    --color-white: #ffffff;
+
+    --color-dusty-violet-50: #f0e9f3;
+    --color-dusty-violet-100: #e7dbeb;
+    --color-dusty-violet-200: #d9c7e0;
+    --color-dusty-violet-300: #c7abd1;
+    --color-dusty-violet-400: #b089bd;
+    --color-dusty-violet-500: #9966AA;
+    --color-dusty-violet-600: #7b5288;
+    --color-dusty-violet-700: #62416d;
+    --color-dusty-violet-800: #4a3152;
+    --color-dusty-violet-900: #312036;
+
+    --color-golden-honey-50: #fefbf5;
+    --color-golden-honey-100: #fcf4e2;
+    --color-golden-honey-200: #fae9c4;
+    --color-golden-honey-300: #f6db9d;
+    --color-golden-honey-400: #f2c96c;
+    --color-golden-honey-500: #EDB73B;
+    --color-golden-honey-600: #b2892c;
+    --color-golden-honey-700: #826520;
+    --color-golden-honey-800: #534015;
+    --color-golden-honey-900: #241b09;
+
+    --color-deep-maroon-50: #F9F7F7;
+    --color-deep-maroon-100: #EEE8E8;
+    --color-deep-maroon-200: #D9CACA;
+    --color-deep-maroon-300: #C4ACAC;
+    --color-deep-maroon-400: #AE8F8F;
+    --color-deep-maroon-500: #997171;
+    --color-deep-maroon-600: #7D5A5A;
+    --color-deep-maroon-700: #604444;
+    --color-deep-maroon-800: #422F2F;
+    --color-deep-maroon-900: #241A1A;
+
     /* Semantic colors – themes override these in themes/index.css */
     --color-brand: #0f766e;
     --color-surface: #ffffff;

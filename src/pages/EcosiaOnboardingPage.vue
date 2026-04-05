@@ -11,6 +11,8 @@ import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import StatCard from '@/components/StatCard.vue'
+import CalloutCard from '@/components/CalloutCard.vue'
+import InteractiveCard from '@/components/InteractiveCard.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -394,10 +396,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
 
             <!-- Trade-off and impact -->
-            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
-              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Trade-off and impact</p>
+            <CalloutCard label="Trade-off and impact">
               <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
-            </div>
+            </CalloutCard>
             <!-- Mobile: bullet list -->
             <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
               <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-headline)]">12 onboarding experiments</strong> that followed</span></li>
@@ -429,10 +430,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
-            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
-              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Timing was everything</p>
+            <CalloutCard label="Timing was everything">
               <p class="text-[var(--color-muted)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
-            </div>
+            </CalloutCard>
           </CaseStudySection>
 
           <!-- ── Experimentation ── -->
@@ -449,10 +449,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <StatCard label="Install guide" value="+25%" description="conversion" />
               <StatCard label="Action CTA" value="+19.69%" description="conversion" />
             </div>
-            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
-              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
+            <CalloutCard label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-muted)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
-            </div>
+            </CalloutCard>
             <figure class="pt-2 space-y-3">
               <div class="flex justify-center mb-2">
                 <div class="relative inline-grid grid-cols-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
@@ -501,10 +500,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <StatCard label="With illustration" value="-5%" description="retention in DE" />
               <StatCard label="Privacy messaging" value="-2%" description="D1 retention" />
             </div>
-            <div class="rounded-xl bg-black/[0.03] px-5 py-4 space-y-2">
-              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Outcomes &amp; trade-offs</p>
+            <CalloutCard label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-muted)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
-            </div>
+            </CalloutCard>
             <figure class="pt-2">
               <div class="relative">
                 <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
@@ -548,45 +546,36 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </p>
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeStrategyStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              <InteractiveCard
+                label="Step 1"
+                title="Value Perception"
+                description="See the product's value in context of their situation, enough to get them to try it."
+                goal="Goal: make a search"
+                :active="activeStrategyStep === 0"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png"
+                image-alt="Value Perception"
                 @click="strategyDissolveStep(0)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 0 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 1</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Value Perception</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">See the product's value in context of their situation, enough to get them to try it.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
-                </div>
-                <img v-show="activeStrategyStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png" alt="Value Perception" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeStrategyStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              />
+              <InteractiveCard
+                label="Step 2"
+                title="Value Experience"
+                description="Experience how Ecosia helps them reach their goals and builds confidence."
+                goal="Goal: return for a second session"
+                :active="activeStrategyStep === 1"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png"
+                image-alt="Value Experience"
                 @click="strategyDissolveStep(1)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 1 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 2</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Value Experience</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">Experience how Ecosia helps them reach their goals and builds confidence.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
-                </div>
-                <img v-show="activeStrategyStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png" alt="Value Experience" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeStrategyStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              />
+              <InteractiveCard
+                label="Step 3"
+                title="Value Adoption"
+                description="Adopt Ecosia into their daily life and start forming lasting habits."
+                goal="Goal: activate and convert"
+                :active="activeStrategyStep === 2"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-12.png"
+                image-alt="Value Adoption"
                 @click="strategyDissolveStep(2)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest" :class="activeStrategyStep === 2 ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)]'">Step 3</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Value Adoption</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">Adopt Ecosia into their daily life and start forming lasting habits.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
-                </div>
-                <img v-show="activeStrategyStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-12.png" alt="Value Adoption" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
+              />
             </div>
 
             <!-- Active step image — desktop only -->
@@ -621,45 +610,36 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </p>
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeExecutionStep === 0 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              <InteractiveCard
+                label="Value perception"
+                title="Experiment: Flip the funnel"
+                description="A search-focused and Google-like layout which sets a new baseline for conversion tracking."
+                goal="Goal: make a search"
+                :active="activeExecutionStep === 0"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-13.png"
+                image-alt="Flip the funnel"
                 @click="executionDissolveStep(0)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value perception</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Flip the funnel</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">A search-focused and Google-like layout which sets a new baseline for conversion tracking.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: make a search</p>
-                </div>
-                <img v-show="activeExecutionStep === 0" src="/project-pages/ecosia-onboarding/ecosia-onboarding-13.png" alt="Flip the funnel" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeExecutionStep === 1 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              />
+              <InteractiveCard
+                label="Value experience"
+                title="Experiment: Before / After"
+                description="A high-impact mission-focused showcase of a planting site as the entry point to the product."
+                goal="Goal: return for a second session"
+                :active="activeExecutionStep === 1"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-15.png"
+                image-alt="Before / After"
                 @click="executionDissolveStep(1)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value experience</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Before / After</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">A high-impact mission-focused showcase of a planting site as the entry point to the product.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: return for a second session</p>
-                </div>
-                <img v-show="activeExecutionStep === 1" src="/project-pages/ecosia-onboarding/ecosia-onboarding-15.png" alt="Before / After" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
-              <button
-                class="flex flex-col justify-start flex-1 text-left rounded-xl border-2 overflow-hidden transition-colors duration-200"
-                :class="activeExecutionStep === 2 ? 'border-[var(--color-brand)] bg-[var(--color-brand)]/[0.04]' : 'border-black/[0.08] bg-transparent hover:border-black/20'"
+              />
+              <InteractiveCard
+                label="Value adoption"
+                title="Experiment: Prompt install"
+                description="An intervention during the 1st search where we ask new users to switch to Ecosia."
+                goal="Goal: activate and convert"
+                :active="activeExecutionStep === 2"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-14.png"
+                image-alt="Prompt install"
                 @click="executionDissolveStep(2)"
-              >
-                <div class="flex flex-col flex-1 w-full px-5 py-4 space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Value adoption</p>
-                  <p class="font-semibold text-[var(--color-headline)]">Experiment: Prompt install</p>
-                  <p class="text-sm text-[var(--color-muted)] leading-relaxed">An intervention during the 1st search where we ask new users to switch to Ecosia.</p>
-                  <p class="text-xs text-[var(--color-brand)] font-medium !mt-auto pt-3">Goal: activate and convert</p>
-                </div>
-                <img v-show="activeExecutionStep === 2" src="/project-pages/ecosia-onboarding/ecosia-onboarding-14.png" alt="Prompt install" width="2400" height="1300" class="sm:hidden w-full block mt-4" />
-              </button>
+              />
             </div>
 
             <!-- Active step image — desktop only -->
@@ -702,40 +682,24 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- What I learned + What I'd do differently -->
             <div class="flex flex-col sm:flex-row gap-3 items-start">
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">What I learned</p>
-                <div class="space-y-3 divide-y divide-black/[0.06]">
-                  <div class="pt-3 first:pt-0">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Parallel tracks accelerate learning</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Running two tracks simultaneously let us cover more ground without waiting for sequential results. Limited volume stopped being a blocker.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">User language shapes stronger messaging</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Listening to how users talked about Ecosia, not how we described it internally, led directly to copy that converted better.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Regional differences need their own lens</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Germany consistently behaved differently. Our best monetized market needed closer observation and investigation.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="flex-1 rounded-xl bg-black/[0.03] px-5 py-4 space-y-4">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">What I'd do differently</p>
-                <div class="space-y-3 divide-y divide-black/[0.06]">
-                  <div class="pt-3 first:pt-0">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Start with the strategic framework</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Our three-phase strategy was the right framework, but it came too late to shape the experiments that informed it.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Learn about conflicting results</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">Next time, I'd seek more experienced support early when experiments start producing conflicting results across markets.</p>
-                  </div>
-                  <div class="pt-3">
-                    <p class="font-semibold text-[var(--color-headline)] text-sm">Design for the full journey</p>
-                    <p class="text-sm text-[var(--color-muted)] mt-1">The experiments tested discrete touchpoints. Designing for the connected arc earlier might have moved the bigger retention metrics faster.</p>
-                  </div>
-                </div>
-              </div>
+              <CalloutCard
+                label="What I learned"
+                class="flex-1"
+                :items="[
+                  { title: 'Parallel tracks accelerate learning', description: 'Running two tracks simultaneously let us cover more ground without waiting for sequential results. Limited volume stopped being a blocker.' },
+                  { title: 'User language shapes stronger messaging', description: 'Listening to how users talked about Ecosia, not how we described it internally, led directly to copy that converted better.' },
+                  { title: 'Regional differences need their own lens', description: 'Germany consistently behaved differently. Our best monetized market needed closer observation and investigation.' }
+                ]"
+              />
+              <CalloutCard
+                label="What I'd do differently"
+                class="flex-1"
+                :items="[
+                  { title: 'Start with the strategic framework', description: 'Our three-phase strategy was the right framework, but it came too late to shape the experiments that informed it.' },
+                  { title: 'Learn about conflicting results', description: 'Next time, I\'d seek more experienced support early when experiments start producing conflicting results across markets.' },
+                  { title: 'Design for the full journey', description: 'The experiments tested discrete touchpoints. Designing for the connected arc earlier might have moved the bigger retention metrics faster.' }
+                ]"
+              />
             </div>
           </CaseStudySection>
 
