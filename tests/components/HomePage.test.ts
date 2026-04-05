@@ -33,4 +33,12 @@ describe('HomePage', () => {
     const img = wrapper.find('img[alt="Timea Konya"]')
     expect(img.exists()).toBe(true)
   })
+
+  it('responds to scroll events via onScroll', async () => {
+    const wrapper = mount(HomePage, { global: { stubs: STUBS } })
+    Object.defineProperty(window, 'scrollY', { value: 100, writable: true, configurable: true })
+    window.dispatchEvent(new Event('scroll'))
+    await wrapper.vm.$nextTick()
+    expect(wrapper.exists()).toBe(true)
+  })
 })

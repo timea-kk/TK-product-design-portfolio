@@ -41,4 +41,31 @@ describe('DesignSystemPage', () => {
       expect(wrapper.find(`#${id}`).exists()).toBe(true)
     }
   })
+
+  it('triggers hoverPrimitive and clearHover on mouseenter/mouseleave of a primitive item', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const grid = wrapper.find('.grid-cols-3')
+    const primItems = grid.findAll('.space-y-1')[0].findAll('.cursor-default')
+    expect(primItems.length).toBeGreaterThan(0)
+    await primItems[0].trigger('mouseenter')
+    await primItems[0].trigger('mouseleave')
+  })
+
+  it('triggers hoverToken and clearHover on mouseenter/mouseleave of a token item', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const grid = wrapper.find('.grid-cols-3')
+    const tokenItems = grid.findAll('.space-y-1')[1].findAll('.cursor-default')
+    expect(tokenItems.length).toBeGreaterThan(0)
+    await tokenItems[0].trigger('mouseenter')
+    await tokenItems[0].trigger('mouseleave')
+  })
+
+  it('triggers hoverComponent and clearHover on mouseenter/mouseleave of a component item', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const grid = wrapper.find('.grid-cols-3')
+    const compItems = grid.findAll('.space-y-1')[2].findAll('.cursor-default')
+    expect(compItems.length).toBeGreaterThan(0)
+    await compItems[0].trigger('mouseenter')
+    await compItems[0].trigger('mouseleave')
+  })
 })
