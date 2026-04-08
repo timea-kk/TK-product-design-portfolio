@@ -5,7 +5,7 @@ import { ref, watch, nextTick, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
 const props = defineProps<{
-  sections: { id: string; label: string }[]
+  sections: { id: string; label: string; group?: string }[]
   panel: HTMLElement | null
 }>()
 
@@ -137,20 +137,25 @@ onUnmounted(() => {
             ></div>
           </div>
           <ul class="flex-1 space-y-0.5" @mouseleave="hideNavIndicator">
-            <li v-for="(s, i) in sections" :key="s.id">
-              <button
-                type="button"
-                :ref="(el) => setNavItemRef(el, i)"
-                @click="navClick(s.id)"
-                @mouseenter="updateNavIndicator(s.id)"
-                :class="[
-                  'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
-                  activeSection === s.id
-                    ? 'font-semibold text-[var(--color-headline)]'
-                    : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:translate-x-1'
-                ]"
-              >{{ s.label }}</button>
-            </li>
+            <template v-for="(s, i) in sections" :key="s.id">
+              <li v-if="s.group && s.group !== sections[i - 1]?.group" class="px-3 pb-1" :class="i === 0 ? 'pt-0' : 'pt-3'">
+                <span class="text-xs font-semibold uppercase tracking-wider opacity-50 text-[var(--color-headline)]">{{ s.group }}</span>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  :ref="(el) => setNavItemRef(el, i)"
+                  @click="navClick(s.id)"
+                  @mouseenter="updateNavIndicator(s.id)"
+                  :class="[
+                    'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
+                    activeSection === s.id
+                      ? 'font-semibold text-[var(--color-headline)]'
+                      : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:translate-x-1'
+                  ]"
+                >{{ s.label }}</button>
+              </li>
+            </template>
           </ul>
         </div>
       </div>

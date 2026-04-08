@@ -76,6 +76,8 @@
     --color-logo: var(--color-brand);
     --color-cta-bg: var(--color-brand);
     --color-cta-text: #ffffff;
+    --color-sticky-note-bg: var(--color-golden-honey-400);
+    --color-sticky-note-label: var(--color-golden-honey-500);
     --font-sans: system-ui, -apple-system, sans-serif;
     --font-mono: ui-monospace, monospace;
     /* A11yContext writes these; we use them for scale, motion, and contrast. */

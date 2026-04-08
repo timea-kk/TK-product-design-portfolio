@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import InteractiveCard from '@/components/InteractiveCard.vue'
+import CardInteractive from '@/components/CardInteractive.vue'
 
 const baseProps = {
   label: 'Step 1',
@@ -10,9 +10,9 @@ const baseProps = {
   active: false,
 }
 
-describe('InteractiveCard', () => {
+describe('CardInteractive', () => {
   it('renders the label, title, description, and goal', () => {
-    const wrapper = mount(InteractiveCard, { props: baseProps })
+    const wrapper = mount(CardInteractive, { props: baseProps })
     expect(wrapper.text()).toContain('Step 1')
     expect(wrapper.text()).toContain('Card title')
     expect(wrapper.text()).toContain('Card description')
@@ -20,23 +20,23 @@ describe('InteractiveCard', () => {
   })
 
   it('applies active border class when active is true', () => {
-    const wrapper = mount(InteractiveCard, { props: { ...baseProps, active: true } })
+    const wrapper = mount(CardInteractive, { props: { ...baseProps, active: true } })
     expect(wrapper.classes().join(' ')).toContain('border-[var(--color-brand)]')
   })
 
   it('applies inactive border class when active is false', () => {
-    const wrapper = mount(InteractiveCard, { props: baseProps })
+    const wrapper = mount(CardInteractive, { props: baseProps })
     expect(wrapper.classes().join(' ')).toContain('border-black/[0.08]')
   })
 
   it('emits click when the button is clicked', async () => {
-    const wrapper = mount(InteractiveCard, { props: baseProps })
+    const wrapper = mount(CardInteractive, { props: baseProps })
     await wrapper.trigger('click')
     expect(wrapper.emitted('click')).toBeTruthy()
   })
 
   it('does not render an image when image prop is not provided', () => {
-    const wrapper = mount(InteractiveCard, { props: baseProps })
+    const wrapper = mount(CardInteractive, { props: baseProps })
     expect(wrapper.find('img').exists()).toBe(false)
   })
 })

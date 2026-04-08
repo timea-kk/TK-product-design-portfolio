@@ -10,9 +10,9 @@ import gsap from 'gsap'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import StatCard from '@/components/StatCard.vue'
-import CalloutCard from '@/components/CalloutCard.vue'
-import InteractiveCard from '@/components/InteractiveCard.vue'
+import CardStat from '@/components/CardStat.vue'
+import CardCallout from '@/components/CardCallout.vue'
+import CardInteractive from '@/components/CardInteractive.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -396,9 +396,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
 
             <!-- Trade-off and impact -->
-            <CalloutCard label="Trade-off and impact">
+            <CardCallout label="Trade-off and impact">
               <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
-            </CalloutCard>
+            </CardCallout>
             <!-- Mobile: bullet list -->
             <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
               <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-headline)]">12 onboarding experiments</strong> that followed</span></li>
@@ -430,9 +430,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
-            <CalloutCard label="Timing was everything">
+            <CardCallout label="Timing was everything">
               <p class="text-[var(--color-muted)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
-            </CalloutCard>
+            </CardCallout>
           </CaseStudySection>
 
           <!-- ── Experimentation ── -->
@@ -444,14 +444,14 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
             <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
             <div class="grid grid-cols-2 sm:flex gap-3">
-              <StatCard label="Headline copy" value="+3.2%" description="conversion" />
-              <StatCard label="Product image" value="+5.4%" description="CTA clicks" />
-              <StatCard label="Install guide" value="+25%" description="conversion" />
-              <StatCard label="Action CTA" value="+19.69%" description="conversion" />
+              <CardStat label="Headline copy" value="+3.2%" description="conversion" />
+              <CardStat label="Product image" value="+5.4%" description="CTA clicks" />
+              <CardStat label="Install guide" value="+25%" description="conversion" />
+              <CardStat label="Action CTA" value="+19.69%" description="conversion" />
             </div>
-            <CalloutCard label="Outcomes &amp; trade-offs">
+            <CardCallout label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-muted)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
-            </CalloutCard>
+            </CardCallout>
             <figure class="pt-2 space-y-3">
               <div class="flex justify-center mb-2">
                 <div class="relative inline-grid grid-cols-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
@@ -496,13 +496,13 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
             <div class="flex flex-col sm:flex-row gap-3">
-              <StatCard label="How it works" value="+3%" description="D1 retention" />
-              <StatCard label="With illustration" value="-5%" description="retention in DE" />
-              <StatCard label="Privacy messaging" value="-2%" description="D1 retention" />
+              <CardStat label="How it works" value="+3%" description="D1 retention" />
+              <CardStat label="With illustration" value="-5%" description="retention in DE" />
+              <CardStat label="Privacy messaging" value="-2%" description="D1 retention" />
             </div>
-            <CalloutCard label="Outcomes &amp; trade-offs">
+            <CardCallout label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-muted)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
-            </CalloutCard>
+            </CardCallout>
             <figure class="pt-2">
               <div class="relative">
                 <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
@@ -546,7 +546,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </p>
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
-              <InteractiveCard
+              <CardInteractive
                 label="Step 1"
                 title="Value Perception"
                 description="See the product's value in context of their situation, enough to get them to try it."
@@ -556,7 +556,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 image-alt="Value Perception"
                 @click="strategyDissolveStep(0)"
               />
-              <InteractiveCard
+              <CardInteractive
                 label="Step 2"
                 title="Value Experience"
                 description="Experience how Ecosia helps them reach their goals and builds confidence."
@@ -566,7 +566,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 image-alt="Value Experience"
                 @click="strategyDissolveStep(1)"
               />
-              <InteractiveCard
+              <CardInteractive
                 label="Step 3"
                 title="Value Adoption"
                 description="Adopt Ecosia into their daily life and start forming lasting habits."
@@ -610,7 +610,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </p>
             <!-- Horizontal step cards -->
             <div class="flex flex-col sm:flex-row gap-3 pt-4">
-              <InteractiveCard
+              <CardInteractive
                 label="Value perception"
                 title="Experiment: Flip the funnel"
                 description="A search-focused and Google-like layout which sets a new baseline for conversion tracking."
@@ -620,7 +620,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 image-alt="Flip the funnel"
                 @click="executionDissolveStep(0)"
               />
-              <InteractiveCard
+              <CardInteractive
                 label="Value experience"
                 title="Experiment: Before / After"
                 description="A high-impact mission-focused showcase of a planting site as the entry point to the product."
@@ -630,7 +630,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 image-alt="Before / After"
                 @click="executionDissolveStep(1)"
               />
-              <InteractiveCard
+              <CardInteractive
                 label="Value adoption"
                 title="Experiment: Prompt install"
                 description="An intervention during the 1st search where we ask new users to switch to Ecosia."
@@ -675,14 +675,14 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- Stat cards -->
             <div class="flex flex-col sm:flex-row gap-3">
-              <StatCard label="Conversion" value="+20–25%" description="increase" />
-              <StatCard label="D1 retention" value="+3%" description="improvement" />
-              <StatCard label="Experiments" value="9 of 12" description="shipped to 100%" />
+              <CardStat label="Conversion" value="+20–25%" description="increase" />
+              <CardStat label="D1 retention" value="+3%" description="improvement" />
+              <CardStat label="Experiments" value="9 of 12" description="shipped to 100%" />
             </div>
 
             <!-- What I learned + What I'd do differently -->
             <div class="flex flex-col sm:flex-row gap-3 items-start">
-              <CalloutCard
+              <CardCallout
                 label="What I learned"
                 class="flex-1"
                 :items="[
@@ -691,7 +691,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   { title: 'Regional differences need their own lens', description: 'Germany consistently behaved differently. Our best monetized market needed closer observation and investigation.' }
                 ]"
               />
-              <CalloutCard
+              <CardCallout
                 label="What I'd do differently"
                 class="flex-1"
                 :items="[

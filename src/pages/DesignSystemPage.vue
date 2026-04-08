@@ -8,31 +8,31 @@
 import { ref, computed } from 'vue'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
-import CalloutCard from '@/components/CalloutCard.vue'
-import InteractiveCard from '@/components/InteractiveCard.vue'
+import CardCallout from '@/components/CardCallout.vue'
+import CardInteractive from '@/components/CardInteractive.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import StatCard from '@/components/StatCard.vue'
+import CardStat from '@/components/CardStat.vue'
 
 const NAV_SECTIONS = [
-  { id: 'foundations',        label: 'Foundations' },
-  { id: 'callout-card',       label: 'CalloutCard' },
-  { id: 'interactive-card',   label: 'InteractiveCard' },
-  { id: 'sticky-note',        label: 'StickyNote' },
-  { id: 'stat-card',          label: 'StatCard' },
-  { id: 'case-study-section', label: 'CaseStudySection' },
-  { id: 'case-study-nav',     label: 'CaseStudyNav' },
-  { id: 'header',             label: 'Header' },
-  { id: 'timea-agent',        label: 'TimeaAgent' },
-  { id: 'patterns',           label: 'Patterns' },
+  { id: 'colors',             label: 'Colors',           group: 'Foundations' },
+  { id: 'typography',         label: 'Typography',       group: 'Foundations' },
+  { id: 'card-callout',        label: 'CardCallout',      group: 'Components' },
+  { id: 'card-interactive',   label: 'CardInteractive',  group: 'Components' },
+  { id: 'card-stat',          label: 'CardStat',         group: 'Components' },
+  { id: 'case-study-nav',     label: 'CaseStudyNav',     group: 'Components' },
+  { id: 'case-study-section', label: 'CaseStudySection', group: 'Components' },
+  { id: 'header',             label: 'Header',           group: 'Components' },
+  { id: 'sticky-note',        label: 'StickyNote',       group: 'Components' },
+  { id: 'timea-agent',        label: 'TimeaAgent',       group: 'Components' },
 ]
 
 const panelRef = ref<HTMLElement | null>(null)
 
-// CalloutCard demo state
+// CardCallout demo state
 const calloutDivided = ref(true)
 const calloutUseItems = ref(false)
 
-// InteractiveCard demo state
+// CardInteractive demo state
 const activeInteractiveStep = ref(0)
 
 // StickyNote demo state
@@ -228,14 +228,14 @@ function hoverComponent(comp: string) {
 
 const SEMANTIC_MAP = [
   {
-    primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
-    token:     { name: '--color-brand',            hex: 'var(--color-dusty-violet-500)',  label: 'Brand' },
-    usedIn:    ['CalloutCard', 'InteractiveCard', 'StatCard', 'CaseStudySection', 'CaseStudyNav', 'Header', 'TimeaAgent', 'RotatingDescriptor'],
+    primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
+    token:     { name: '--color-cta-text',         hex: '#ffffff',                        label: 'CTA Text' },
+    usedIn:    ['TimeaAgent'],
   },
   {
-    primitive: { group: 'Dusty Violet', step: '600', hex: '#7b5288', varName: '--color-dusty-violet-600' },
-    token:     { name: '--color-brand-secondary',  hex: 'var(--color-dusty-violet-600)',  label: 'Brand Secondary' },
-    usedIn:    ['Theme'],
+    primitive: { group: 'Dusty Violet', step: '50',  hex: '#f0e9f3', varName: '--color-dusty-violet-50' },
+    token:     { name: '--color-descriptor-bg',    hex: 'rgba(153,102,170,0.1)',          label: 'Descriptor BG' },
+    usedIn:    ['RotatingDescriptor'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '200', hex: '#d9c7e0', varName: '--color-dusty-violet-200' },
@@ -243,33 +243,13 @@ const SEMANTIC_MAP = [
     usedIn:    ['AppLayout', 'Header', 'TimeaAgent'],
   },
   {
-    primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
-    token:     { name: '--color-surface-elevated', hex: 'var(--color-golden-honey-50)',   label: 'Surface Elevated' },
-    usedIn:    ['Header', 'TimeaAgent'],
-  },
-  {
-    primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
-    token:     { name: '--color-headline',         hex: 'var(--color-dusty-violet-900)',  label: 'Headline' },
-    usedIn:    ['CalloutCard', 'InteractiveCard', 'StatCard', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
-  },
-  {
-    primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
-    token:     { name: '--color-muted',            hex: 'var(--color-deep-maroon-600)',   label: 'Muted' },
-    usedIn:    ['CalloutCard', 'InteractiveCard', 'StatCard', 'CaseStudyNav', 'Header', 'TimeaAgent'],
-  },
-  {
-    primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
-    token:     { name: '--color-border',           hex: 'var(--color-golden-honey-200)',  label: 'Border' },
-    usedIn:    ['Header', 'TimeaAgent'],
+    primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
+    token:     { name: '--color-brand',            hex: 'var(--color-dusty-violet-500)',  label: 'Brand' },
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'CaseStudySection', 'CaseStudyNav', 'Header', 'TimeaAgent', 'RotatingDescriptor'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-cta-bg',           hex: 'var(--color-dusty-violet-500)',  label: 'CTA Background' },
-    usedIn:    ['TimeaAgent'],
-  },
-  {
-    primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
-    token:     { name: '--color-cta-text',         hex: '#ffffff',                        label: 'CTA Text' },
     usedIn:    ['TimeaAgent'],
   },
   {
@@ -278,9 +258,39 @@ const SEMANTIC_MAP = [
     usedIn:    ['Header'],
   },
   {
-    primitive: { group: 'Dusty Violet', step: '50',  hex: '#f0e9f3', varName: '--color-dusty-violet-50' },
-    token:     { name: '--color-descriptor-bg',    hex: 'rgba(153,102,170,0.1)',          label: 'Descriptor BG' },
-    usedIn:    ['RotatingDescriptor'],
+    primitive: { group: 'Dusty Violet', step: '600', hex: '#7b5288', varName: '--color-dusty-violet-600' },
+    token:     { name: '--color-brand-secondary',  hex: 'var(--color-dusty-violet-600)',  label: 'Brand Secondary' },
+    usedIn:    ['Theme'],
+  },
+  {
+    primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
+    token:     { name: '--color-headline',         hex: 'var(--color-dusty-violet-900)',  label: 'Headline' },
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
+  },
+  {
+    primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
+    token:     { name: '--color-surface-elevated', hex: 'var(--color-golden-honey-50)',   label: 'Surface Elevated' },
+    usedIn:    ['Header', 'TimeaAgent'],
+  },
+  {
+    primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
+    token:     { name: '--color-border',           hex: 'var(--color-golden-honey-200)',  label: 'Border' },
+    usedIn:    ['Header', 'TimeaAgent'],
+  },
+  {
+    primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
+    token:     { name: '--color-sticky-note-bg',   hex: 'var(--color-golden-honey-400)',  label: 'Sticky Note BG' },
+    usedIn:    ['StickyNote'],
+  },
+  {
+    primitive: { group: 'Golden Honey', step: '500', hex: '#EDB73B', varName: '--color-golden-honey-500' },
+    token:     { name: '--color-sticky-note-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Note Label' },
+    usedIn:    ['StickyNote'],
+  },
+  {
+    primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
+    token:     { name: '--color-muted',            hex: 'var(--color-deep-maroon-600)',   label: 'Muted' },
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'CaseStudyNav', 'Header', 'TimeaAgent'],
   },
 ]
 
@@ -309,7 +319,7 @@ const uniqueComponents = computed(() => {
       if (!seen.has(comp)) { seen.add(comp); result.push(comp) }
     }
   }
-  return result
+  return result.sort((a, b) => a.localeCompare(b))
 })
 </script>
 
@@ -334,15 +344,8 @@ const uniqueComponents = computed(() => {
         <div class="w-full min-w-0 max-w-4xl space-y-24">
 
           <!-- ── Foundations ── -->
-          <CaseStudySection id="foundations" label="Foundations" first>
-            <h1 id="ds-heading" class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-headline)]">
-              Portfolio Design System
-            </h1>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              This page documents the foundations, shared components, and patterns used across the portfolio. It serves as a reference for building new pages consistently.
-            </p>
-
-            <div class="space-y-10 pt-2">
+          <CaseStudySection id="colors" label="Colors" first>
+            <div class="space-y-10">
               <div class="space-y-6">
                 <div>
                   <h2 class="font-heading text-xl font-bold text-[var(--color-headline)]">Primitive Colors</h2>
@@ -467,33 +470,36 @@ const uniqueComponents = computed(() => {
                 </div>
               </div>
 
-              <h2 class="font-heading text-xl font-bold text-[var(--color-headline)] pt-4">Typography</h2>
-              <div class="space-y-4">
-                <div class="rounded-xl bg-white border border-black/[0.06] px-6 py-5 space-y-4">
-                  <div class="space-y-1">
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Heading font</p>
-                    <p class="font-mono text-xs text-[var(--color-muted)]">--font-heading: 'Bricolage Grotesque', Georgia, serif</p>
-                    <p class="font-heading text-4xl font-black text-[var(--color-headline)] mt-2">The quick brown fox</p>
-                    <p class="font-heading text-2xl font-bold text-[var(--color-headline)]">The quick brown fox</p>
-                    <p class="font-heading text-xl font-semibold text-[var(--color-headline)]">The quick brown fox</p>
-                  </div>
-                  <hr class="border-black/[0.06]" />
-                  <div class="space-y-1">
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Body font</p>
-                    <p class="font-mono text-xs text-[var(--color-muted)]">--font-sans: 'Inter', system-ui, sans-serif</p>
-                    <p class="text-base text-[var(--color-headline)] mt-2">Body text - regular (16px)</p>
-                    <p class="text-sm text-[var(--color-muted)]">Small body text - muted (14px)</p>
-                    <p class="text-xs text-[var(--color-muted)]">Caption / label text (12px)</p>
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Label uppercase tracking</p>
-                  </div>
+            </div>
+          </CaseStudySection>
+
+          <!-- ── Typography ── -->
+          <CaseStudySection id="typography" label="Typography">
+            <div class="space-y-4">
+              <div class="rounded-xl bg-white border border-black/[0.06] px-6 py-5 space-y-4">
+                <div class="space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Heading font</p>
+                  <p class="font-mono text-xs text-[var(--color-muted)]">--font-heading: 'Bricolage Grotesque', Georgia, serif</p>
+                  <p class="font-heading text-4xl font-black text-[var(--color-headline)] mt-2">The quick brown fox</p>
+                  <p class="font-heading text-2xl font-bold text-[var(--color-headline)]">The quick brown fox</p>
+                  <p class="font-heading text-xl font-semibold text-[var(--color-headline)]">The quick brown fox</p>
+                </div>
+                <hr class="border-black/[0.06]" />
+                <div class="space-y-1">
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Body font</p>
+                  <p class="font-mono text-xs text-[var(--color-muted)]">--font-sans: 'Inter', system-ui, sans-serif</p>
+                  <p class="text-base text-[var(--color-headline)] mt-2">Body text - regular (16px)</p>
+                  <p class="text-sm text-[var(--color-muted)]">Small body text - muted (14px)</p>
+                  <p class="text-xs text-[var(--color-muted)]">Caption / label text (12px)</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Label uppercase tracking</p>
                 </div>
               </div>
             </div>
           </CaseStudySection>
 
-          <!-- ── CalloutCard ── -->
-          <CaseStudySection id="callout-card" label="CalloutCard">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CalloutCard</h2>
+          <!-- ── CardCallout ── -->
+          <CaseStudySection id="card-callout" label="CardCallout">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardCallout</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">A labeled content card used for callouts, summaries, and structured lists. Accepts a slot for freeform content or an <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">items</code> prop for a divider list.</p>
 
             <!-- Controls -->
@@ -510,13 +516,13 @@ const uniqueComponents = computed(() => {
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-              <CalloutCard
+              <CardCallout
                 v-if="!calloutUseItems"
                 label="Trade-off and impact"
               >
                 <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>.</p>
-              </CalloutCard>
-              <CalloutCard
+              </CardCallout>
+              <CardCallout
                 v-else
                 label="What I learned"
                 :divided="calloutDivided"
@@ -530,12 +536,12 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-if="!calloutUseItems">&lt;CalloutCard label="Trade-off and impact"&gt;
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-if="!calloutUseItems">&lt;CardCallout label="Trade-off and impact"&gt;
   &lt;p class="text-[var(--color-muted)] leading-relaxed"&gt;
     Content goes here.
   &lt;/p&gt;
-&lt;/CalloutCard&gt;</pre>
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-else>&lt;CalloutCard
+&lt;/CardCallout&gt;</pre>
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-else>&lt;CardCallout
   label="What I learned"
   :divided="{{ calloutDivided }}"
   :items="[
@@ -565,15 +571,15 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
-          <!-- ── InteractiveCard ── -->
-          <CaseStudySection id="interactive-card" label="InteractiveCard">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">InteractiveCard</h2>
+          <!-- ── CardInteractive ── -->
+          <CaseStudySection id="card-interactive" label="CardInteractive">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardInteractive</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">A selectable button card used to represent steps or options. Shows active state with brand border and tinted background. Click a card below to toggle it.</p>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
               <div class="flex flex-col sm:flex-row gap-3">
-                <InteractiveCard
+                <CardInteractive
                   v-for="(step, i) in [
                     { label: 'Step 1', title: 'Value Perception', description: 'See the product value in context of their situation.', goal: 'Goal: make a search' },
                     { label: 'Step 2', title: 'Value Experience', description: 'Experience how the product helps them reach their goals.', goal: 'Goal: return for a second session' },
@@ -592,7 +598,7 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;InteractiveCard
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardInteractive
   label="Step 1"
   title="Value Perception"
   description="See the product value in context."
@@ -627,6 +633,48 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
+          <!-- ── CardStat ── -->
+          <CaseStudySection id="card-stat" label="CardStat">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardStat</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">A metric display card. Used in experimentation and results sections to highlight key numbers. Always renders with <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">flex-1</code> built in.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
+              <div class="flex gap-3">
+                <CardStat label="Conversion" value="+20–25%" description="increase" />
+                <CardStat label="D1 retention" value="+3%" description="improvement" />
+                <CardStat label="Experiments" value="9 of 12" description="shipped to 100%" />
+              </div>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardStat
+  label="Conversion"
+  value="+20-25%"
+  description="increase"
+/&gt;</pre>
+            </div>
+
+            <!-- Props table -->
+            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-black/[0.06]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Uppercase label above the value</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">value</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Large bold number or metric</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Small muted label below the value</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CaseStudySection>
+
           <!-- ── StickyNote ── -->
           <CaseStudySection id="sticky-note" label="StickyNote">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">StickyNote</h2>
@@ -647,7 +695,7 @@ const uniqueComponents = computed(() => {
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex justify-center">
               <StickyNote :rotate="-1" :small="stickySmall" :square="stickySquare" class="w-40">
-                <span v-if="stickySquare" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>
+                <span v-if="stickySquare" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">How might we</span>
                 Keep Flora self-sustaining throughout 2025.
               </StickyNote>
             </div>
@@ -683,27 +731,37 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
-          <!-- ── StatCard ── -->
-          <CaseStudySection id="stat-card" label="StatCard">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">StatCard</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A metric display card. Used in experimentation and results sections to highlight key numbers. Always renders with <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">flex-1</code> built in.</p>
+          <!-- ── CaseStudyNav ── -->
+          <CaseStudySection id="case-study-nav" label="CaseStudyNav">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CaseStudyNav</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">The sticky left navigation panel used on all case study pages. Handles scroll spy via a scroll listener on the scrollable panel element, and animates the active and hover indicators with GSAP. Only visible on desktop (lg and above).</p>
+
+            <p class="text-sm text-[var(--color-muted)]">Scroll inside the demo box to see the active indicator update.</p>
 
             <!-- Demo -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-              <div class="flex gap-3">
-                <StatCard label="Conversion" value="+20–25%" description="increase" />
-                <StatCard label="D1 retention" value="+3%" description="improvement" />
-                <StatCard label="Experiments" value="9 of 12" description="shipped to 100%" />
+            <div
+              ref="navDemoPanelRef"
+              class="rounded-xl border-2 border-dashed border-black/[0.10] h-64 overflow-y-auto flex gap-6 px-6 py-6"
+            >
+              <CaseStudyNav :sections="NAV_DEMO_SECTIONS" :panel="navDemoPanelRef" />
+              <div class="flex flex-col gap-8 flex-1 min-w-0">
+                <div :id="s.id" v-for="s in NAV_DEMO_SECTIONS" :key="s.id" class="scroll-mt-4 rounded-xl bg-white border border-black/[0.06] px-4 py-5">
+                  <p class="font-semibold text-[var(--color-headline)] text-sm">{{ s.label }}</p>
+                  <p class="text-sm text-[var(--color-muted)] mt-1">Demo section content for {{ s.label }}.</p>
+                </div>
               </div>
             </div>
 
-            <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;StatCard
-  label="Conversion"
-  value="+20-25%"
-  description="increase"
-/&gt;</pre>
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">const NAV_SECTIONS = [
+  &#123; id: 'overview', label: 'Overview' &#125;,
+  &#123; id: 'problem',  label: 'The Problem' &#125;,
+]
+const panelRef = ref&lt;HTMLElement | null&gt;(null)
+
+&lt;div ref="panelRef" class="overflow-y-auto"&gt;
+  &lt;CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" /&gt;
+&lt;/div&gt;</pre>
             </div>
 
             <!-- Props table -->
@@ -717,9 +775,8 @@ const uniqueComponents = computed(() => {
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-black/[0.04]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Uppercase label above the value</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">value</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Large bold number or metric</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Small muted label below the value</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">sections</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">&#123; id: string; label: string &#125;[]</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">List of sections to render as nav items</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">panel</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">HTMLElement | null</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">The scrollable container element. The scroll listener attaches to this.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -788,57 +845,6 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
-          <!-- ── CaseStudyNav ── -->
-          <CaseStudySection id="case-study-nav" label="CaseStudyNav">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CaseStudyNav</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">The sticky left navigation panel used on all case study pages. Handles scroll spy via a scroll listener on the scrollable panel element, and animates the active and hover indicators with GSAP. Only visible on desktop (lg and above).</p>
-
-            <p class="text-sm text-[var(--color-muted)]">Scroll inside the demo box to see the active indicator update.</p>
-
-            <!-- Demo -->
-            <div
-              ref="navDemoPanelRef"
-              class="rounded-xl border-2 border-dashed border-black/[0.10] h-64 overflow-y-auto flex gap-6 px-6 py-6"
-            >
-              <CaseStudyNav :sections="NAV_DEMO_SECTIONS" :panel="navDemoPanelRef" />
-              <div class="flex flex-col gap-8 flex-1 min-w-0">
-                <div :id="s.id" v-for="s in NAV_DEMO_SECTIONS" :key="s.id" class="scroll-mt-4 rounded-xl bg-white border border-black/[0.06] px-4 py-5">
-                  <p class="font-semibold text-[var(--color-headline)] text-sm">{{ s.label }}</p>
-                  <p class="text-sm text-[var(--color-muted)] mt-1">Demo section content for {{ s.label }}.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">const NAV_SECTIONS = [
-  &#123; id: 'overview', label: 'Overview' &#125;,
-  &#123; id: 'problem',  label: 'The Problem' &#125;,
-]
-const panelRef = ref&lt;HTMLElement | null&gt;(null)
-
-&lt;div ref="panelRef" class="overflow-y-auto"&gt;
-  &lt;CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" /&gt;
-&lt;/div&gt;</pre>
-            </div>
-
-            <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="border-b border-black/[0.06]">
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-black/[0.04]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">sections</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">&#123; id: string; label: string &#125;[]</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">List of sections to render as nav items</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">panel</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">HTMLElement | null</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">The scrollable container element. The scroll listener attaches to this.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </CaseStudySection>
-
           <!-- ── Header ── -->
           <CaseStudySection id="header" label="Header">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Header</h2>
@@ -859,7 +865,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
               </div>
             </div>
 
-            <CalloutCard
+            <CardCallout
               label="Key internals"
               :items="[
                 { title: 'Theme switcher', description: 'Opens a dropdown that lists all available themes. Calls useThemeStore().setTheme(id) on selection.' },
@@ -874,37 +880,36 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TimeaAgent</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">A sticky chat widget rendered globally via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Sends questions to the Gemini API via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">api/chat.js</code> and falls back to a local scoring-based knowledge base when the API is unavailable. No props.</p>
 
-            <!-- Static visual mockup: collapsed state -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex flex-col gap-6 items-center">
-              <div class="space-y-1 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Collapsed</p>
-              </div>
-              <button class="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-3 text-sm font-medium text-[var(--color-muted)] shadow-lg pointer-events-none select-none">
+            <!-- Static visual mockup -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex flex-col gap-6 items-center pointer-events-none select-none">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Collapsed</p>
+              <button class="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-3 text-sm font-medium text-[var(--color-muted)] shadow-lg">
                 <img src="/main-page/timeaAgent.jpg" alt="" aria-hidden="true" class="h-6 w-6 rounded-full object-cover" />
-                Ask me anything about Timea
+                Get to know Timea
               </button>
 
-              <div class="space-y-1 text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Expanded</p>
-              </div>
-              <div class="w-full max-w-sm flex flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-xl pointer-events-none select-none">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Expanded</p>
+              <div class="w-full max-w-md flex flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-xl">
                 <div class="flex items-center gap-3 bg-[var(--color-brand)] px-4 py-3">
-                  <img src="/main-page/timeaAgent.jpg" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-white" />
+                  <img src="/main-page/timeaAgent.jpg" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-cta-text)]" />
                   <div class="flex flex-col leading-tight">
-                    <span class="text-base font-semibold text-white">TimeaAgent</span>
-                    <span class="text-sm text-white opacity-75">AI assistant · Powered by Gemini</span>
+                    <span class="text-base font-semibold text-[var(--color-cta-text)]">TimeaAgent</span>
+                    <span class="text-sm text-[var(--color-cta-text)] opacity-75">AI assistant · Powered by Gemini</span>
                   </div>
-                  <span class="ml-auto rounded-full border border-white/50 px-3 py-1 text-sm text-white">Close</span>
+                  <span class="ml-auto rounded-full border border-[var(--color-cta-text)] px-3 py-1 text-sm text-[var(--color-cta-text)]">Close</span>
                 </div>
-                <div class="flex flex-col gap-3 px-4 pt-5 pb-4">
+                <div class="flex flex-col gap-3 px-4 pt-5 pb-3">
                   <p class="text-base font-semibold text-[var(--color-headline)]">Curious about Timea? Start here.</p>
-                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]">What has Timea been working on?</div>
-                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]">What is Timea's design process?</div>
+                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: #e7dbeb;">What has Timea been working on?</div>
+                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: #e7dbeb;">What is Timea's design process?</div>
+                </div>
+                <div class="flex items-center gap-2 px-2 py-1 mx-2 mb-2 rounded-full border bg-white border-[var(--color-border)]">
+                  <span class="min-w-0 flex-1 px-3 py-1.5 text-sm text-[var(--color-muted)]">Type your question...</span>
                 </div>
               </div>
             </div>
 
-            <CalloutCard
+            <CardCallout
               label="Key internals"
               :items="[
                 { title: 'API + local fallback', description: 'Sends to Gemini API first. On failure or unavailability, scores the query against KNOWLEDGE entries in timeaAgentKnowledge.ts.' },
@@ -914,49 +919,6 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             />
           </CaseStudySection>
 
-          <!-- ── Patterns ── -->
-          <CaseStudySection id="patterns" label="Patterns">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Patterns</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">Recurring markup patterns used inline across pages. These are not components but should be copied consistently.</p>
-
-            <div class="space-y-6">
-              <div class="space-y-3">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Bullet list (mobile)</p>
-                <p class="text-sm text-[var(--color-muted)]">Used in mobile-only bullet list sections alongside desktop sticky note groups.</p>
-                <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-                  <ul class="space-y-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
-                    <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Bold label</strong> followed by supporting text</span></li>
-                    <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>Plain text item with no bold label</span></li>
-                  </ul>
-                </div>
-                <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-                  <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;ul class="sm:hidden space-y-2 text-sm text-[var(--color-muted)] leading-relaxed list-none"&gt;
-  &lt;li class="flex gap-2"&gt;
-    &lt;span class="text-[var(--color-brand)] shrink-0"&gt;•&lt;/span&gt;
-    &lt;span&gt;&lt;strong class="text-[var(--color-headline)]"&gt;Bold label&lt;/strong&gt; supporting text&lt;/span&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</pre>
-                </div>
-              </div>
-
-              <div class="space-y-3">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Figure with caption</p>
-                <p class="text-sm text-[var(--color-muted)]">Used for all project images. Border color is always the Flora green <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">#275243</code>.</p>
-                <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-                  <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;figure class="pt-2 space-y-3"&gt;
-  &lt;img
-    src="/project-pages/..."
-    alt="Description"
-    class="w-full rounded-xl border-2 border-[#275243]"
-  /&gt;
-  &lt;figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]"&gt;
-    Caption text
-  &lt;/figcaption&gt;
-&lt;/figure&gt;</pre>
-                </div>
-              </div>
-            </div>
-          </CaseStudySection>
 
         </div><!-- /content -->
 
