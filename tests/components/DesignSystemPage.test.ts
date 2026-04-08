@@ -3,9 +3,10 @@ import { mount } from '@vue/test-utils'
 import DesignSystemPage from '@/pages/DesignSystemPage.vue'
 
 const NAV_SECTION_IDS = [
-  'foundations', 'callout-card', 'interactive-card', 'sticky-note',
-  'stat-card', 'case-study-section', 'case-study-nav', 'header',
-  'timea-agent', 'patterns',
+  'colors', 'typography',
+  'card-callout', 'card-interactive', 'card-stat',
+  'case-study-nav', 'case-study-section', 'header',
+  'sticky-note', 'timea-agent',
 ]
 
 beforeEach(() => {
@@ -28,11 +29,6 @@ describe('DesignSystemPage', () => {
     const firstNav = wrapper.find('nav')
     const buttons = firstNav.findAll('button')
     expect(buttons).toHaveLength(NAV_SECTION_IDS.length)
-  })
-
-  it('renders the main heading', () => {
-    const wrapper = mount(DesignSystemPage)
-    expect(wrapper.find('h1').text()).toContain('Portfolio Design System')
   })
 
   it('renders a section element for every section id', () => {

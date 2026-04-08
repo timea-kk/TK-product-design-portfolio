@@ -9,7 +9,7 @@ import { ref } from 'vue'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import CalloutCard from '@/components/CalloutCard.vue'
+import CardCallout from '@/components/CardCallout.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
@@ -148,9 +148,9 @@ const panelRef = ref<HTMLElement | null>(null)
                 </StickyNote>
               </div>
             </div>
-            <CalloutCard label="Shared goal">
+            <CardCallout label="Shared goal">
               <p class="text-[var(--color-muted)] leading-relaxed">Keep Flora running as a shared system where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
-            </CalloutCard>
+            </CardCallout>
           </CaseStudySection>
 
           <!-- My Approach -->
@@ -160,18 +160,18 @@ const panelRef = ref<HTMLElement | null>(null)
               When defining our new ways of working, I covered how we would collaborate, document, and measure success. At the same time, I made sure that everyone felt equipped to contribute, even without a dedicated Design System team.
             </p>
             <div class="flex flex-col gap-3 pt-2">
-              <CalloutCard label="Establish structure">
+              <CardCallout label="Establish structure">
                 <p class="text-[var(--color-muted)] leading-relaxed">I set up the Flora Jira board, workflows, and review process so we could track, prioritize, and assign DS tasks clearly.</p>
-              </CalloutCard>
-              <CalloutCard label="Document everything">
+              </CardCallout>
+              <CardCallout label="Document everything">
                 <p class="text-[var(--color-muted)] leading-relaxed">I wrote and organized guidelines in Confluence, including ownership rules, contribution checklists, and detailed guides for naming, accessibility, and component decisions.</p>
-              </CalloutCard>
-              <CalloutCard label="Create visibility">
+              </CardCallout>
+              <CardCallout label="Create visibility">
                 <p class="text-[var(--color-muted)] leading-relaxed">I built a Design System health dashboard in Google Sheets to track quality across all libraries and visualize monthly progress.</p>
-              </CalloutCard>
-              <CalloutCard label="Support collaboration">
+              </CardCallout>
+              <CardCallout label="Support collaboration">
                 <p class="text-[var(--color-muted)] leading-relaxed">I facilitated retrospectives, shared monthly updates, and clarified ownership by mapping who was most experienced with specific components.</p>
-              </CalloutCard>
+              </CardCallout>
             </div>
           </CaseStudySection>
 
@@ -249,15 +249,15 @@ const panelRef = ref<HTMLElement | null>(null)
               I designed a flexible card component with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our most frequently used elements, improved alignment between design and development, and reduced design time for future product pages.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <CalloutCard label="Structure">
+              <CardCallout label="Structure">
                 <p class="text-[var(--color-muted)] leading-relaxed">Modular card with multiple display variants</p>
-              </CalloutCard>
-              <CalloutCard label="Workflow">
+              </CardCallout>
+              <CardCallout label="Workflow">
                 <p class="text-[var(--color-muted)] leading-relaxed">Simplified handoff between designers and developers</p>
-              </CalloutCard>
-              <CalloutCard label="Consistency">
+              </CardCallout>
+              <CardCallout label="Consistency">
                 <p class="text-[var(--color-muted)] leading-relaxed">Increased across browser and search projects</p>
-              </CalloutCard>
+              </CardCallout>
             </div>
             <div class="pt-2 space-y-4">
               <figure>
@@ -282,7 +282,7 @@ const panelRef = ref<HTMLElement | null>(null)
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 pt-2">
-              <CalloutCard
+              <CardCallout
                 label="Results"
                 class="flex-1"
                 :items="[
@@ -292,7 +292,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   { title: 'Higher contribution quality', description: 'Shared standards and reviews raised the bar across all contributions.' }
                 ]"
               />
-              <CalloutCard
+              <CardCallout
                 label="Learnings"
                 class="flex-1"
                 :items="[
