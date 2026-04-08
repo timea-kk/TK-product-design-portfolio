@@ -675,62 +675,6 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
-          <!-- ── StickyNote ── -->
-          <CaseStudySection id="sticky-note" label="StickyNote">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">StickyNote</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A yellow post-it note with a tape element. Used for highlights, HMW prompts, and key takeaways. Outer layout classes pass through via class fallthrough.</p>
-
-            <!-- Controls -->
-            <div class="flex flex-wrap gap-4 pt-2">
-              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
-                <input type="checkbox" v-model="stickySmall" class="rounded" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">small</code>
-              </label>
-              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
-                <input type="checkbox" v-model="stickySquare" class="rounded" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">square</code>
-              </label>
-            </div>
-
-            <!-- Demo -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex justify-center">
-              <StickyNote :rotate="-1" :small="stickySmall" :square="stickySquare" class="w-40">
-                <span v-if="stickySquare" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">How might we</span>
-                Keep Flora self-sustaining throughout 2025.
-              </StickyNote>
-            </div>
-
-            <!-- Code -->
-            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;StickyNote
-  :rotate="-1"
-  :small="{{ stickySmall }}"
-  :square="{{ stickySquare }}"
-  class="flex-1"
-&gt;
-  Note content goes here.
-&lt;/StickyNote&gt;</pre>
-            </div>
-
-            <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="border-b border-black/[0.06]">
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
-                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-black/[0.04]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">rotate</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Rotation in degrees (e.g. -1, 1, -0.5). Also controls tape angle.</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">small</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Smaller tape strip, used for text-only notes</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">square</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Forces aspect-square layout on mobile, used for HMW prompt notes</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </CaseStudySection>
-
           <!-- ── CaseStudyNav ── -->
           <CaseStudySection id="case-study-nav" label="CaseStudyNav">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CaseStudyNav</h2>
@@ -873,6 +817,62 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 { title: 'Active panel management', description: 'Only one panel (theme or a11y) can be open at a time. Clicking outside closes both.' },
               ]"
             />
+          </CaseStudySection>
+
+          <!-- ── StickyNote ── -->
+          <CaseStudySection id="sticky-note" label="StickyNote">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">StickyNote</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">A yellow post-it note with a tape element. Used for highlights, HMW prompts, and key takeaways. Outer layout classes pass through via class fallthrough.</p>
+
+            <!-- Controls -->
+            <div class="flex flex-wrap gap-4 pt-2">
+              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
+                <input type="checkbox" v-model="stickySmall" class="rounded" />
+                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">small</code>
+              </label>
+              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
+                <input type="checkbox" v-model="stickySquare" class="rounded" />
+                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">square</code>
+              </label>
+            </div>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex justify-center">
+              <StickyNote :rotate="-1" :small="stickySmall" :square="stickySquare" class="w-40">
+                <span v-if="stickySquare" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">How might we</span>
+                Keep Flora self-sustaining throughout 2025.
+              </StickyNote>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;StickyNote
+  :rotate="-1"
+  :small="{{ stickySmall }}"
+  :square="{{ stickySquare }}"
+  class="flex-1"
+&gt;
+  Note content goes here.
+&lt;/StickyNote&gt;</pre>
+            </div>
+
+            <!-- Props table -->
+            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-black/[0.06]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">rotate</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Rotation in degrees (e.g. -1, 1, -0.5). Also controls tape angle.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">small</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Smaller tape strip, used for text-only notes</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">square</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Forces aspect-square layout on mobile, used for HMW prompt notes</td></tr>
+                </tbody>
+              </table>
+            </div>
           </CaseStudySection>
 
           <!-- ── TimeaAgent ── -->
