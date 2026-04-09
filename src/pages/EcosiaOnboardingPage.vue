@@ -13,6 +13,7 @@ import StickyNote from '@/components/StickyNote.vue'
 import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardInteractive from '@/components/CardInteractive.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -30,12 +31,6 @@ const panelRef = ref<HTMLElement | null>(null)
 const activeStrategyStep = ref(0)
 const activeExecutionStep = ref(0)
 const beforeAfterStep = ref(0)
-const serpStep = ref(0)
-
-const serpFrontRef = ref<HTMLImageElement | null>(null)
-const serpBackRef = ref<HTMLImageElement | null>(null)
-const serpFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-7.png')
-
 const strategyFrontRef = ref<HTMLImageElement | null>(null)
 const strategyBackRef = ref<HTMLImageElement | null>(null)
 const strategyFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-10.png')
@@ -83,13 +78,6 @@ function dissolve(
     onComplete()
     gsap.set(front, { opacity: 1 })
     gsap.set(back, { opacity: 0 })
-  })
-}
-
-function serpDissolveStep(newStep: number) {
-  serpStep.value = newStep
-  dissolve(serpFrontRef.value, serpBackRef.value, SERP_SRCS[newStep], () => {
-    serpFrontSrc.value = SERP_SRCS[newStep]
   })
 }
 
@@ -504,37 +492,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <p class="text-[var(--color-muted)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
             </CardCallout>
             <figure class="pt-2">
-              <div class="relative">
-                <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
-                  <img
-                    ref="serpFrontRef"
-                    :src="serpFrontSrc"
-                    :alt="['Experiment 1', 'Experiment 2', 'Experiment 3'][serpStep]"
-                    width="2400"
-                    height="1300"
-                    class="w-full rounded-xl"
-                  />
-                  <img
-                    ref="serpBackRef"
-                    src=""
-                    alt=""
-                    width="2400"
-                    height="1300"
-                    class="w-full h-full rounded-xl absolute inset-0 object-cover"
-                    style="opacity:0"
-                  />
-                </div>
-                <button
-                  v-if="serpStep > 0"
-                  class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-                  @click="serpDissolveStep(serpStep - 1)"
-                >&#8592;</button>
-                <button
-                  v-if="serpStep < 2"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-                  @click="serpDissolveStep(serpStep + 1)"
-                >&#8594;</button>
-              </div>
+              <ImageCarousel
+                :images="SERP_SRCS"
+                :alts="['Experiment 1', 'Experiment 2', 'Experiment 3']"
+              />
             </figure>
           </CaseStudySection>
 

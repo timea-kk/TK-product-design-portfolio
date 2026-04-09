@@ -56,7 +56,7 @@ describe('StickyNote', () => {
     const wrapper = mount(StickyNote, {
       props: { rotate: 1 },
     })
-    const inner = wrapper.find('.flex.flex-col')
+    const inner = wrapper.find('.text-center')
     expect(inner.classes()).not.toContain('aspect-square')
   })
 
