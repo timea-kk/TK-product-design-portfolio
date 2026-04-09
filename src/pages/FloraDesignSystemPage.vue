@@ -10,13 +10,17 @@ import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
+import CardTimeline from '@/components/CardTimeline.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
   { id: 'context',      label: 'Context' },
   { id: 'problem',      label: 'The Problem' },
   { id: 'process',      label: 'My Approach' },
-  { id: 'initiatives',  label: 'Key Initiatives' },
+  { id: 'establishing-ownership', label: 'Ownership' },
+  { id: 'contribution-model',    label: 'Contribution' },
+  { id: 'ds-health',             label: 'DS Health' },
+  { id: 'evolving-system',       label: 'Evolution' },
   { id: 'contribution', label: 'Card Component' },
   { id: 'results',      label: 'Results' },
 ]
@@ -149,7 +153,7 @@ const panelRef = ref<HTMLElement | null>(null)
               </div>
             </div>
             <CardCallout label="Shared goal">
-              <p class="text-[var(--color-muted)] leading-relaxed">Keep Flora running as a shared system where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
+              <p class="text-[var(--color-muted)] leading-relaxed">Keep <strong>Flora running as a shared system</strong> where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
             </CardCallout>
           </CaseStudySection>
 
@@ -159,84 +163,82 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-muted)] leading-relaxed">
               When defining our new ways of working, I covered how we would collaborate, document, and measure success. At the same time, I made sure that everyone felt equipped to contribute, even without a dedicated Design System team.
             </p>
-            <div class="flex flex-col gap-3 pt-2">
-              <CardCallout label="Establish structure">
-                <p class="text-[var(--color-muted)] leading-relaxed">I set up the Flora Jira board, workflows, and review process so we could track, prioritize, and assign DS tasks clearly.</p>
-              </CardCallout>
-              <CardCallout label="Document everything">
-                <p class="text-[var(--color-muted)] leading-relaxed">I wrote and organized guidelines in Confluence, including ownership rules, contribution checklists, and detailed guides for naming, accessibility, and component decisions.</p>
-              </CardCallout>
-              <CardCallout label="Create visibility">
-                <p class="text-[var(--color-muted)] leading-relaxed">I built a Design System health dashboard in Google Sheets to track quality across all libraries and visualize monthly progress.</p>
-              </CardCallout>
-              <CardCallout label="Support collaboration">
-                <p class="text-[var(--color-muted)] leading-relaxed">I facilitated retrospectives, shared monthly updates, and clarified ownership by mapping who was most experienced with specific components.</p>
-              </CardCallout>
-            </div>
+            <CardTimeline
+              :steps="[
+                { label: 'Establish structure', description: 'I set up the <strong>Flora Jira board, workflows, and review process</strong> so we could track, prioritize, and assign DS tasks clearly.' },
+                { label: 'Document everything', description: 'I wrote and organized guidelines in Confluence, including <strong>ownership rules, contribution checklists</strong>, and detailed guides for naming, accessibility, and component decisions.' },
+                { label: 'Create visibility', description: 'I built a <strong>Design System health dashboard</strong> in Google Sheets to track quality across all libraries and visualize monthly progress.' },
+                { label: 'Support collaboration', description: 'I facilitated <strong>retrospectives, shared monthly updates, and clarified ownership</strong> by mapping who was most experienced with specific components.' },
+              ]"
+              class="pt-2"
+            />
+            <figure>
+              <img
+                src="/project-pages/flora-design-system/flora-design-system-3.png"
+                alt="Detailed new process without a DS Lead"
+                class="w-full rounded-xl"
+              />
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Detailed new process without a DS Lead</figcaption>
+            </figure>
           </CaseStudySection>
 
-          <!-- Key Initiatives -->
-          <CaseStudySection id="initiatives" label="Key Initiatives" loose>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Five initiatives that rebuilt Flora</h2>
+          <!-- Establishing ownership -->
+          <CaseStudySection id="establishing-ownership" label="Ownership" loose>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Every designer knew their role</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              To replace the missing single point of contact, I clarified responsibilities across the design team. Each designer took ownership of specific component areas, and we discussed the intricacies of reviews and how we would handle bigger contributions. I also set up a bi-weekly Design System meeting where we could align priorities, review contributions, and keep Flora's work transparent across teams.
+            </p>
+            <figure>
+              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
+                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
+              </div>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership discussion &amp; Jira board setup</figcaption>
+            </figure>
+          </CaseStudySection>
 
-            <div class="space-y-3">
-              <p class="text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">1. Establishing shared ownership</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
-                To replace the missing single point of contact, I clarified responsibilities across the design team. Each designer took ownership of specific component areas, and we discussed the intricacies of reviews and how we would handle bigger contributions. I also set up a bi-weekly Design System meeting where we could align priorities, review contributions, and keep Flora's work transparent across teams.
-              </p>
-              <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership discussion &amp; Jira board setup</figcaption>
-              </figure>
-            </div>
+          <!-- Contribution model -->
+          <CaseStudySection id="contribution-model" label="Contribution" loose>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Consistent, higher-quality contributions</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Designers were contributing components in inconsistent ways and using different plugins to follow scattered rules. I created a detailed contribution checklist that broke down every step, including naming conventions, accessibility considerations, variable usage, and much more. It became the shared playbook for contributions and helped everyone work with the same standards, while also making reviews quicker and more efficient.
+            </p>
+            <figure>
+              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
+                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
+              </div>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Contribution checklist snapshot</figcaption>
+            </figure>
+          </CaseStudySection>
 
-            <div class="space-y-3">
-              <p class="text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">2. Creating the Flora checklist</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
-                Designers were contributing components in inconsistent ways and using different plugins to follow scattered rules. I created a detailed contribution checklist that broke down every step, including naming conventions, accessibility considerations, variable usage, and much more. It became the shared playbook for contributions and helped everyone work with the same standards, while also making reviews quicker and more efficient.
-              </p>
-              <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Contribution checklist snapshot</figcaption>
-              </figure>
-            </div>
+          <!-- DS health -->
+          <CaseStudySection id="ds-health" label="DS Health" loose>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Progress tied to real numbers</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              I built a Google Sheets dashboard that tracked the health status of all our global and domain-specific libraries. Each library had its own sheet with criteria for what made a component "healthy," aligned with the contribution checklist. The tracker measured progress month by month and linked directly to OKRs, so we could quantify improvements and keep ourselves accountable.
+            </p>
+            <figure>
+              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
+                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
+              </div>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Health Check spreadsheet</figcaption>
+            </figure>
+          </CaseStudySection>
 
-            <div class="space-y-3">
-              <p class="text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">3. Tracking Design System health</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
-                I built a Google Sheets dashboard that tracked the health status of all our global and domain-specific libraries. Each library had its own sheet with criteria for what made a component "healthy," aligned with the contribution checklist. The tracker measured progress month by month and linked directly to OKRs, so we could quantify improvements and keep ourselves accountable.
-              </p>
-              <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Health Check spreadsheet</figcaption>
-              </figure>
-            </div>
-
-            <div class="space-y-3">
-              <p class="text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">4. Strengthening documentation</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
-                I documented every new process in Confluence: how to contribute, how to use the health tracker, and even how to write documentation itself. I also shared regular updates in Slack to keep the org informed, clarify expectations, and make our progress visible. This made our roles clear to everyone and ensured no knowledge lived in just one person's head again.
-              </p>
-              <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">New processes in Confluence</figcaption>
-              </figure>
-            </div>
-
-            <div class="space-y-3">
-              <p class="text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">5. Improving on new processes over time</p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
-                Design System retros became regular rituals so we could continuously improve these new practices. We uncovered ways of working with engineers, planned how to handle bigger contributions, and identified topics to learn about as a group: accessibility, AI tools, color system builds, and more.
-              </p>
-            </div>
+          <!-- Evolving the system -->
+          <CaseStudySection id="evolving-system" label="Evolution" loose>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Practices that compounded over time</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              I documented every new process in Confluence: how to contribute, how to use the health tracker, and even how to write documentation itself. I also shared regular updates in Slack to keep the org informed, clarify expectations, and make our progress visible. This made our roles clear to everyone and ensured no knowledge lived in just one person's head again.
+            </p>
+            <figure>
+              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
+                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
+              </div>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">New processes in Confluence</figcaption>
+            </figure>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Design System retros became regular rituals so we could continuously improve these new practices. We uncovered ways of working with engineers, planned how to handle bigger contributions, and identified topics to learn about as a group: accessibility, AI tools, color system builds, and more.
+            </p>
           </CaseStudySection>
 
           <!-- Card Component -->

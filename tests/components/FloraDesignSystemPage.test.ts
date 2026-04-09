@@ -18,7 +18,8 @@ vi.mock('gsap', () => ({
 
 const SECTION_IDS = [
   'overview', 'context', 'problem',
-  'process', 'initiatives', 'contribution', 'results',
+  'process', 'establishing-ownership', 'contribution-model', 'ds-health', 'evolving-system',
+  'contribution', 'results',
 ]
 
 beforeEach(() => {
@@ -45,7 +46,8 @@ describe('FloraDesignSystemPage', () => {
     const labels = wrapper.findAll('nav button').map(b => b.text())
     expect(labels).toEqual([
       'Overview', 'Context', 'The Problem',
-      'My Approach', 'Key Initiatives', 'Card Component', 'Results',
+      'My Approach', 'Ownership', 'Contribution', 'DS Health', 'Evolution',
+      'Card Component', 'Results',
     ])
   })
 
