@@ -11,6 +11,7 @@ import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardTimeline from '@/components/CardTimeline.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
@@ -185,13 +186,44 @@ const panelRef = ref<HTMLElement | null>(null)
           <!-- Establishing ownership -->
           <CaseStudySection id="establishing-ownership" label="Ownership" loose>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Every designer knew their role</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              To replace the missing single point of contact, I clarified responsibilities across the design team. Each designer took ownership of specific component areas, and we discussed the intricacies of reviews and how we would handle bigger contributions. I also set up a bi-weekly Design System meeting where we could align priorities, review contributions, and keep Flora's work transparent across teams.
-            </p>
-            <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
+            <div class="space-y-4">
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                To replace the missing single point of contact, I <strong>clarified responsibilities</strong> across the design team. Each designer took ownership of specific component areas, and we discussed the intricacies of reviews and how we would handle bigger contributions.
+              </p>
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                I also set up a bi-weekly <strong>Design System planning meeting</strong> where we could align priorities, review contributions, and keep Flora's work transparent across teams.
+              </p>
+            </div>
+            <CardCallout label="Outcomes">
+              <p class="text-[var(--color-muted)] leading-relaxed">With ownership mapped and recurring planning sessions in place:</p>
+              <div class="flex gap-3 pt-3">
+                <StickyNote :rotate="-1" small class="flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span>Designers knew exactly <strong>what to work on</strong></span>
+                </StickyNote>
+                <StickyNote :rotate="1" small class="flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span>Everyone was aligned on what our <strong>priorities</strong> were</span>
+                </StickyNote>
+                <StickyNote :rotate="-0.5" small class="flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span>Always clear who to reach out to for <strong>reviews</strong></span>
+                </StickyNote>
+                <StickyNote :rotate="0.75" small class="flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span>Nothing needing <strong>collective attention</strong> fell through</span>
+                </StickyNote>
               </div>
+            </CardCallout>
+            <figure>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/flora-design-system/flora-design-system-4.png',
+                  '/project-pages/flora-design-system/flora-design-system-5.png',
+                  '/project-pages/flora-design-system/flora-design-system-6.png',
+                ]"
+                :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
+              />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership discussion &amp; Jira board setup</figcaption>
             </figure>
           </CaseStudySection>

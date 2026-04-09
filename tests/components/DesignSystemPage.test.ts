@@ -2,10 +2,22 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import DesignSystemPage from '@/pages/DesignSystemPage.vue'
 
+vi.mock('gsap', () => {
+  const tl = { to: vi.fn().mockReturnThis(), add: vi.fn((fn: () => void) => { fn(); return tl }) }
+  return {
+    default: {
+      to: vi.fn(),
+      set: vi.fn(),
+      killTweensOf: vi.fn(),
+      timeline: vi.fn(() => tl),
+    },
+  }
+})
+
 const NAV_SECTION_IDS = [
   'colors', 'typography',
-  'card-callout', 'card-interactive', 'card-stat',
-  'case-study-nav', 'case-study-section', 'header',
+  'card-callout', 'card-interactive', 'card-stat', 'card-timeline',
+  'case-study-nav', 'case-study-section', 'header', 'image-carousel',
   'sticky-note', 'timea-agent',
 ]
 

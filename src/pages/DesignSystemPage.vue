@@ -10,8 +10,10 @@ import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardInteractive from '@/components/CardInteractive.vue'
+import CardTimeline from '@/components/CardTimeline.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardStat from '@/components/CardStat.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
 
 const NAV_SECTIONS = [
   { id: 'colors',             label: 'Colors',           group: 'Foundations' },
@@ -19,9 +21,11 @@ const NAV_SECTIONS = [
   { id: 'card-callout',        label: 'CardCallout',      group: 'Components' },
   { id: 'card-interactive',   label: 'CardInteractive',  group: 'Components' },
   { id: 'card-stat',          label: 'CardStat',         group: 'Components' },
+  { id: 'card-timeline',      label: 'CardTimeline',     group: 'Components' },
   { id: 'case-study-nav',     label: 'CaseStudyNav',     group: 'Components' },
   { id: 'case-study-section', label: 'CaseStudySection', group: 'Components' },
   { id: 'header',             label: 'Header',           group: 'Components' },
+  { id: 'image-carousel',     label: 'ImageCarousel',    group: 'Components' },
   { id: 'sticky-note',        label: 'StickyNote',       group: 'Components' },
   { id: 'timea-agent',        label: 'TimeaAgent',       group: 'Components' },
 ]
@@ -675,6 +679,46 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
+          <!-- ── CardTimeline ── -->
+          <CaseStudySection id="card-timeline" label="CardTimeline">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardTimeline</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">A numbered vertical timeline. Used for process and initiative sections to show sequential steps with labels and descriptions. Accepts HTML in descriptions via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">v-html</code>.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
+              <CardTimeline :steps="[
+                { label: 'Discovery', description: 'Map the problem space and identify the key constraints.' },
+                { label: 'Define', description: 'Set clear goals and success criteria with stakeholders.' },
+                { label: 'Deliver', description: 'Ship iteratively and measure against defined outcomes.' },
+              ]" />
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardTimeline :steps="[
+  { label: 'Discovery', description: 'Map the problem space.' },
+  { label: 'Define',    description: 'Set goals and criteria.' },
+  { label: 'Deliver',   description: 'Ship and measure.' },
+]" /&gt;</pre>
+            </div>
+
+            <!-- Props table -->
+            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-black/[0.06]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">steps</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">&#123; label: string; description: string &#125;[]</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Ordered list of steps. Descriptions support HTML via v-html.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </CaseStudySection>
+
           <!-- ── CaseStudyNav ── -->
           <CaseStudySection id="case-study-nav" label="CaseStudyNav">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CaseStudyNav</h2>
@@ -817,6 +861,49 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 { title: 'Active panel management', description: 'Only one panel (theme or a11y) can be open at a time. Clicking outside closes both.' },
               ]"
             />
+          </CaseStudySection>
+
+          <!-- ── ImageCarousel ── -->
+          <CaseStudySection id="image-carousel" label="ImageCarousel">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">ImageCarousel</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">A crossfade image carousel with GSAP dissolve transitions and prev/next arrow buttons. Used in case study sections to show sequences of screenshots. Buttons hide automatically at the first and last slide.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
+              <ImageCarousel
+                :images="[
+                  '/project-pages/flora-design-system/flora-design-system-4.png',
+                  '/project-pages/flora-design-system/flora-design-system-5.png',
+                  '/project-pages/flora-design-system/flora-design-system-6.png',
+                ]"
+                :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
+              />
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;ImageCarousel
+  :images="['/img-1.png', '/img-2.png', '/img-3.png']"
+  :alts="['Alt 1', 'Alt 2', 'Alt 3']"
+/&gt;</pre>
+            </div>
+
+            <!-- Props table -->
+            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-black/[0.06]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">images</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string[]</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Required. Array of image paths to cycle through.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">alts</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string[] (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Alt text per slide, indexed to match images. Defaults to empty string.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </CaseStudySection>
 
           <!-- ── StickyNote ── -->
