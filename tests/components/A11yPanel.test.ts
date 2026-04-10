@@ -75,10 +75,10 @@ describe('A11yPanel', () => {
     const store = useA11yStore()
     await wrapper.find('button').trigger('click')
 
-    await wrapper.find('select').setValue('1.2')
+    await wrapper.find('select').setValue('1.1')
     await nextTick()
 
-    expect(store.textScale).toBe(1.2)
+    expect(store.textScale).toBe(1.1)
   })
 
   it('closes the panel when clicking outside the component', async () => {

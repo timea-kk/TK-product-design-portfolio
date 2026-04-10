@@ -21,13 +21,13 @@ describe('useA11yStore', () => {
     const store = useA11yStore()
     expect(store.reduceMotion).toBe(false)
     expect(store.highContrast).toBe(false)
-    expect(store.textScale).toBe(1)
+    expect(store.textScale).toBe(0.9)
     expect(store.dyslexia).toBe(false)
   })
 
   it('applies the default CSS variables on init', () => {
     useA11yStore()
-    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('1')
+    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('0.9')
     expect(document.documentElement.style.getPropertyValue('--a11y-motion')).toBe('1')
     expect(document.documentElement.style.getPropertyValue('--a11y-contrast')).toBe('0')
   })
@@ -65,12 +65,12 @@ describe('useA11yStore', () => {
     expect(document.documentElement.classList.contains('a11y-dyslexia')).toBe(true)
   })
 
-  it('update({ textScale: 1.2 }) sets the CSS variable', async () => {
+  it('update({ textScale: 1.1 }) sets the CSS variable', async () => {
     const store = useA11yStore()
-    store.update({ textScale: 1.2 })
+    store.update({ textScale: 1.1 })
     await nextTick()
-    expect(store.textScale).toBe(1.2)
-    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('1.2')
+    expect(store.textScale).toBe(1.1)
+    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('1.1')
   })
 
   it('persists preferences to localStorage after update', async () => {
@@ -89,13 +89,13 @@ describe('useA11yStore', () => {
     )
     const store = useA11yStore()
     expect(store.reduceMotion).toBe(true)
-    expect(store.textScale).toBe(1.3)
+    expect(store.textScale).toBe(1.1)
   })
 
   it('clamps textScale to valid range when loaded from storage', () => {
     localStorage.setItem('portfolio-a11y', JSON.stringify({ textScale: 99 }))
     const store = useA11yStore()
-    expect(store.textScale).toBe(1.3) // clamped to max
+    expect(store.textScale).toBe(1.1) // clamped to max
   })
 
   it('update() only changes the specified keys, leaving others unchanged', async () => {
@@ -104,7 +104,7 @@ describe('useA11yStore', () => {
     await nextTick()
     // reduceMotion, textScale, dyslexia should still be at defaults
     expect(store.reduceMotion).toBe(false)
-    expect(store.textScale).toBe(1)
+    expect(store.textScale).toBe(0.9)
     expect(store.dyslexia).toBe(false)
   })
 })

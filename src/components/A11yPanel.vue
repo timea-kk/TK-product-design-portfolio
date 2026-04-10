@@ -4,7 +4,7 @@
     • Reduce motion – disables CSS transitions/animations
     • High contrast – stronger borders and focus ring
     • Dyslexia-friendly – OpenDyslexic font with wider letter/word spacing
-    • Text size – scale from 90% to 130%
+    • Text size – scale from 100% to 120%
   All state lives in the a11y Pinia store, which persists to localStorage and applies
   CSS classes and variables to <html> immediately on change.
 -->
@@ -97,7 +97,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
       <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-decorative)]">
         <div>
           <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
-          <span class="block text-xs opacity-60">Scale from 90% to 130%</span>
+          <span class="block text-xs opacity-60">Scale from 100% to 120%</span>
         </div>
         <select
           :value="a11y.textScale"
@@ -105,11 +105,9 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
           class="rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] px-2 py-1 text-sm text-[var(--color-text-secondary)]"
           aria-label="Text size"
         >
-          <option :value="0.9">90%</option>
-          <option :value="1">100%</option>
-          <option :value="1.1">110%</option>
-          <option :value="1.2">120%</option>
-          <option :value="1.3">130%</option>
+          <option :value="0.9">100%</option>
+          <option :value="1">110%</option>
+          <option :value="1.1">120%</option>
         </select>
       </div>
     </div>
