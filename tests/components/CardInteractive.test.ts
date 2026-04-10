@@ -21,7 +21,7 @@ describe('CardInteractive', () => {
 
   it('applies active border class when active is true', () => {
     const wrapper = mount(CardInteractive, { props: { ...baseProps, active: true } })
-    expect(wrapper.classes().join(' ')).toContain('border-[var(--color-brand)]')
+    expect(wrapper.classes().join(' ')).toContain('border-[var(--color-brand-primary)]')
   })
 
   it('applies inactive border class when active is false', () => {

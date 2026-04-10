@@ -60,7 +60,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <div class="space-y-4">
               <h1
                 id="project-heading"
-                class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-6xl"
+                class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-text-primary)] lg:text-6xl"
               >
                 Scaling Design Operations at Ecosia
               </h1>
@@ -68,26 +68,26 @@ const panelRef = ref<HTMLElement | null>(null)
                 <span
                   v-for="tag in ['Design System', 'Documentation', 'Design Operations', 'Workflows &amp; Processes']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-muted)]"
+                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
                   v-html="tag"
                 ></span>
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Timeline</p>
-                  <p class="mt-1 text-[var(--color-muted)]">2025 – ongoing</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Timeline</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">2025 – ongoing</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">My role</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Product Designer</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">My role</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Product Designer</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Collaborated with</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Product Designers, Engineers</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Collaborated with</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Product Designers, Engineers</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Company</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Ecosia</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Company</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Ecosia</p>
                 </div>
               </div>
             </div>
@@ -95,47 +95,47 @@ const panelRef = ref<HTMLElement | null>(null)
             <hr class="border-black/[0.06]" />
 
             <div class="space-y-3">
-              <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TL;DR</h2>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">TL;DR</h2>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I led the transition of Ecosia's Flora Design System from single-lead ownership to a <strong>shared ownership model</strong> across six product designers. I introduced contribution workflows, health tracking, governance processes, and documentation that kept Flora self-sustaining throughout 2025. Within six months, designers were contributing independently and component knowledge was spread across at least three people per component.
               </p>
             </div>
 
             <figure>
               <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Design System structure</figcaption>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Design System structure</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- Context -->
           <CaseStudySection id="context" label="Context">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">From one owner to six</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">From one owner to six</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               At the start of 2025, Ecosia's Design System, Flora, lost its dedicated team and lead. Responsibility shifted to the six product designers across our product areas, each of us balancing DS work alongside our own roadmaps.
             </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Without a single owner, we needed a new way to keep Flora moving. <strong>I stepped in to structure and coordinate the transition to a shared ownership model.</strong>
             </p>
             <figure class="pt-2">
               <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership transition: old vs. new</figcaption>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">DS Ownership transition: old vs. new</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- The Problem -->
           <CaseStudySection id="problem" label="The Problem">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Ownership became everyone's problem</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Ownership became everyone's problem</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Our Design System lead had been the single source of truth for how to contribute, build, and maintain components, and most designers relied on working directly with him. He also mentored and guided us in times of uncertainty, so navigating through DS work on our own seemed scary at first.
             </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Without this structure, we suddenly had <strong>no clear process or ownership to fall back on.</strong> Each designer approached contributions differently and used different accessibility plugins, naming conventions, and review steps. Knowledge about best practices was scattered, and quality varied from one library to another.
             </p>
             <!-- Mobile: bullet list -->
-            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> create a shared process for contributing to Flora?</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> align six designers on the same standards and tools?</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">How might we</strong> turn scattered knowledge into something shared?</span></li>
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">How might we</strong> create a shared process for contributing to Flora?</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">How might we</strong> align six designers on the same standards and tools?</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">How might we</strong> turn scattered knowledge into something shared?</span></li>
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:block pt-5">
@@ -155,14 +155,14 @@ const panelRef = ref<HTMLElement | null>(null)
               </div>
             </div>
             <CardCallout label="Shared goal">
-              <p class="text-[var(--color-muted)] leading-relaxed">Keep <strong>Flora running as a shared system</strong> where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">Keep <strong>Flora running as a shared system</strong> where every designer can contribute confidently, review each other's work, and maintain consistent quality. Clear documentation, defined ownership, and shared standards across all libraries would make that possible.</p>
             </CardCallout>
           </CaseStudySection>
 
           <!-- My Approach -->
           <CaseStudySection id="process" label="My Approach">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Systematic by design</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Systematic by design</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               When defining our new ways of working, I covered how we would collaborate, document, and measure success. At the same time, I made sure that everyone felt equipped to contribute, even without a dedicated Design System team.
             </p>
             <CardTimeline
@@ -180,23 +180,23 @@ const panelRef = ref<HTMLElement | null>(null)
                 alt="Detailed new process without a DS Lead"
                 class="w-full rounded-xl"
               />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Detailed new process without a DS Lead</figcaption>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Detailed new process without a DS Lead</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- Establishing ownership -->
           <CaseStudySection id="establishing-ownership" label="Ownership" loose>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Every designer knew their role</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Every designer knew their role</h2>
             <div class="space-y-4">
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 To replace the missing single point of contact, I <strong>clarified responsibilities</strong> across the design team. Each designer took ownership of specific component areas, and we discussed the intricacies of reviews and how we would handle bigger contributions.
               </p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I also set up a bi-weekly <strong>Design System planning meeting</strong> where we could align priorities, review contributions, and keep Flora's work transparent across teams.
               </p>
             </div>
             <CardCallout label="Outcomes">
-              <p class="text-[var(--color-muted)] leading-relaxed">With ownership mapped and recurring planning sessions in place:</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">With ownership mapped and recurring planning sessions in place:</p>
               <div class="flex gap-3 pt-3">
                 <StickyNote :rotate="-1" small class="flex-1">
                   <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
@@ -225,18 +225,18 @@ const panelRef = ref<HTMLElement | null>(null)
                 ]"
                 :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
               />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">DS Ownership discussion &amp; Jira board setup</figcaption>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">DS Ownership discussion &amp; Jira board setup</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- Contribution model -->
           <CaseStudySection id="contribution-model" label="Contribution" loose>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Consistent, higher-quality contributions</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Consistent, higher-quality contributions</h2>
             <div class="space-y-4">
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 Designers were contributing components in <strong>inconsistent ways</strong> and using different plugins to follow <strong>scattered rules</strong>. I created a detailed <strong>contribution checklist</strong> that broke down every step, including naming conventions, accessibility considerations, variable usage, and much more.
               </p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 It became the <strong>shared playbook for contributions</strong> and helped everyone work with the same standards, while also making reviews quicker and more efficient.
               </p>
             </div>
@@ -249,7 +249,7 @@ const panelRef = ref<HTMLElement | null>(null)
               ]"
             />
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">Flora Contribution checklist snapshot</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Contribution checklist snapshot</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-7.png',
@@ -263,12 +263,12 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- DS health -->
           <CaseStudySection id="ds-health" label="DS Health" loose>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Progress tied to real numbers</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Progress tied to real numbers</h2>
             <div class="space-y-4">
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I built a <strong>Google Sheets dashboard</strong> that tracked the <strong>health status</strong> of all our global and domain-specific libraries. Each library had its own sheet with criteria for what made a component <strong>"healthy,"</strong> aligned with the contribution checklist.
               </p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 The tracker measured progress <strong>month by month</strong> and linked directly to <strong>OKRs</strong>, so we could quantify improvements and keep ourselves accountable.
               </p>
             </div>
@@ -278,7 +278,7 @@ const panelRef = ref<HTMLElement | null>(null)
               <CardStat value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
             </div>
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">Flora Health Check spreadsheet</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Health Check spreadsheet</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-10.png',
@@ -291,12 +291,12 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- Evolving the system -->
           <CaseStudySection id="evolving-system" label="Evolution" loose>
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Practices that compounded over time</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Practices that compounded over time</h2>
             <div class="space-y-4">
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I documented every new process in <strong>Confluence</strong>: how to contribute, how to use the health tracker, and even how to write documentation itself. I also shared <strong>regular updates in Slack</strong> to keep the org informed, clarify expectations, and make our progress visible. This made our roles clear to everyone and ensured <strong>no knowledge lived in just one person's head</strong> again.
               </p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 <strong>Design System retros</strong> became regular rituals so we could continuously improve these new practices. We uncovered ways of working with engineers, planned how to handle bigger contributions, and identified topics to learn about as a group: <strong>accessibility, AI tools, color system builds,</strong> and more.
               </p>
             </div>
@@ -309,7 +309,7 @@ const panelRef = ref<HTMLElement | null>(null)
               ]"
             />
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">New processes in Confluence</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">New processes in Confluence</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-12.png',
@@ -322,12 +322,12 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- Card Component -->
           <CaseStudySection id="contribution" label="Highlight">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Standardized cards across every product</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Standardized cards across every product</h2>
             <div class="space-y-4">
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 As our group evolved, we contributed bigger and more complex components to Flora. At the time, there was <strong>no unified way to build content cards</strong>, and each designer had to create them from scratch, which slowed us down and led to <strong>visual inconsistencies</strong>.
               </p>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I designed a <strong>flexible card component</strong> with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our <strong>most frequently used elements</strong>, improved alignment between design and development, and reduced design time for future product pages.
               </p>
             </div>
@@ -346,7 +346,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   alt="Card component contribution in Flora"
                   class="w-full rounded-xl"
                 />
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component contribution</figcaption>
+                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component contribution</figcaption>
               </figure>
               <figure>
                 <video
@@ -356,15 +356,15 @@ const panelRef = ref<HTMLElement | null>(null)
                   playsinline
                   class="w-full rounded-xl"
                 ></video>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component options in use</figcaption>
+                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component options in use</figcaption>
               </figure>
             </div>
           </CaseStudySection>
 
           <!-- Results -->
           <CaseStudySection id="results" label="Results">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">A stronger, more resilient design system</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">A stronger, more resilient design system</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
             <div class="flex gap-3">

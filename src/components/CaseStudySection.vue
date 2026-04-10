@@ -20,7 +20,7 @@ defineProps<{
     ]"
   >
     <p
-      class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand)] rounded-lg px-2.5 py-1 select-none"
+      class="absolute -top-[35px] left-0 text-xs font-medium text-white bg-[var(--color-brand-primary)] rounded-lg px-2.5 py-1 select-none"
       style="box-shadow: 0 1px 4px rgba(0,0,0,0.06);"
     >{{ label }}</p>
     <slot />

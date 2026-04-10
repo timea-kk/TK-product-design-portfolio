@@ -9,17 +9,15 @@
    Warm peachy surface from Burnt Orange 50 (#FEF5EE), Golden Honey 50 elevated (#FDF8EC),
    Dusty Violet accent (#9966AA), warm honey border (#EDD9B8), Bricolage Grotesque headings. */
 html.theme-default {
-  --color-brand: var(--color-dusty-violet-500);
-  --color-brand-secondary: var(--color-dusty-violet-600);
-  --color-surface: var(--color-dusty-violet-200);
-  --color-surface-elevated: var(--color-golden-honey-50);
-  --color-muted: var(--color-deep-maroon-600);
-  --color-headline: var(--color-dusty-violet-900);
-  --color-descriptor-surface: rgba(153, 102, 170, 0.10);
+  --color-brand-primary: var(--color-dusty-violet-500);
+  --color-surface-decorative: var(--color-dusty-violet-200);
+  --color-surface-elevation-1: var(--color-golden-honey-50);
+  --color-text-secondary: var(--color-deep-maroon-600);
+  --color-text-primary: var(--color-dusty-violet-900);
+  --color-highlight: rgba(153, 102, 170, 0.10);
   --color-border: var(--color-golden-honey-200);
-  --color-logo: var(--color-dusty-violet-500);
-  --color-primary-surface: var(--color-dusty-violet-500);
-  --color-primary-text: #ffffff;
+  --color-button-bg-primary: var(--color-dusty-violet-500);
+  --color-button-text-primary: #ffffff;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Bricolage Grotesque', Georgia, serif;
   --radius: 0.5rem;
@@ -31,17 +29,15 @@ html.theme-default {
    hard offset shadows, thick black borders, geometric Outfit typeface.
    Refs: designprompts.dev/bauhaus, Bauhaus color theory. */
 html.theme-bauhaus {
-  --color-brand: #D02020;
-  --color-brand-secondary: #1040C0;
-  --color-surface: #F0F0F0;
-  --color-surface-elevated: #FFFFFF;
-  --color-muted: #121212;
-  --color-headline: #121212;
-  --color-descriptor-surface: rgba(208, 32, 32, 0.10);
+  --color-brand-primary: #D02020;
+  --color-surface-decorative: #F0F0F0;
+  --color-surface-elevation-1: #FFFFFF;
+  --color-text-secondary: #121212;
+  --color-text-primary: #121212;
+  --color-highlight: rgba(208, 32, 32, 0.10);
   --color-border: #121212;
-  --color-logo: #D02020;
-  --color-primary-surface: #D02020;
-  --color-primary-text: #ffffff;
+  --color-button-bg-primary: #D02020;
+  --color-button-text-primary: #ffffff;
   --font-sans: 'Outfit', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-heading: 'Outfit', sans-serif;
   --radius: 0;
@@ -88,17 +84,15 @@ html.theme-bauhaus footer {
 /* ========== TERMINAL ==========
    CLI aesthetic: dark background, green text, monospace, box-drawing feel. */
 html.theme-terminal {
-  --color-brand: #39ff14;
-  --color-brand-secondary: #00ff00;
-  --color-surface: #0d1117;
-  --color-surface-elevated: #161b22;
-  --color-muted: #8b949e;
-  --color-headline: #8b949e;
-  --color-descriptor-surface: rgba(57, 255, 20, 0.1);
+  --color-brand-primary: #39ff14;
+  --color-surface-decorative: #0d1117;
+  --color-surface-elevation-1: #161b22;
+  --color-text-secondary: #8b949e;
+  --color-text-primary: #8b949e;
+  --color-highlight: rgba(57, 255, 20, 0.1);
   --color-border: #30363d;
-  --color-logo: #39ff14;
-  --color-primary-surface: #21262d;
-  --color-primary-text: #0d1117;
+  --color-button-bg-primary: #21262d;
+  --color-button-text-primary: #0d1117;
   --font-sans: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
   --font-heading: 'JetBrains Mono', ui-monospace, monospace;
@@ -109,16 +103,15 @@ html.theme-terminal {
 /* ========== NEO-BRUTALISM ==========
    Bold black borders, hard shadows, no rounded corners, high contrast. */
 html.theme-neo-brutalism {
-  --color-brand: #000000;
-  --color-surface: #ffff00;
-  --color-surface-elevated: #ffffff;
-  --color-muted: #1a1a1a;
-  --color-headline: #1a1a1a;
-  --color-descriptor-surface: rgba(0, 0, 0, 0.06);
+  --color-brand-primary: #000000;
+  --color-surface-decorative: #ffff00;
+  --color-surface-elevation-1: #ffffff;
+  --color-text-secondary: #1a1a1a;
+  --color-text-primary: #1a1a1a;
+  --color-highlight: rgba(0, 0, 0, 0.06);
   --color-border: #000000;
-  --color-logo: #000000;
-  --color-primary-surface: #000000;
-  --color-primary-text: #ffff00;
+  --color-button-bg-primary: #000000;
+  --color-button-text-primary: #ffff00;
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --radius: 0;
@@ -150,17 +143,15 @@ html.theme-neo-brutalism a[href="#projects"] {
 /* ========== SKETCH (Hand-drawn) ==========
    Dot grid, paper feel, clean readable type (not literal hand-drawn). */
 html.theme-sketch {
-  --color-brand: #2d3748;
-  --color-brand-secondary: #4a5568;
-  --color-surface: #f7f5f0;
-  --color-surface-elevated: #ede9e0;
-  --color-muted: #5a534a;
-  --color-headline: #5a534a;
-  --color-descriptor-surface: rgba(45, 55, 72, 0.08);
+  --color-brand-primary: #2d3748;
+  --color-surface-decorative: #f7f5f0;
+  --color-surface-elevation-1: #ede9e0;
+  --color-text-secondary: #5a534a;
+  --color-text-primary: #5a534a;
+  --color-highlight: rgba(45, 55, 72, 0.08);
   --color-border: #c4b8a8;
-  --color-logo: #2d3748;
-  --color-primary-surface: #2d3748;
-  --color-primary-text: #ffffff;
+  --color-button-bg-primary: #2d3748;
+  --color-button-text-primary: #ffffff;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-heading: 'DM Sans', system-ui, sans-serif;
   --radius: 0.5rem;
@@ -169,7 +160,7 @@ html.theme-sketch {
 
 /* Sketch: dot grid on body for a paper/sketch feel. */
 html.theme-sketch body {
-  background-color: var(--color-surface);
+  background-color: var(--color-surface-decorative);
   background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1.5px, transparent 0);
   background-size: 24px 24px;
   background-position: 0 0;
@@ -195,17 +186,15 @@ html.theme-sketch article {
    Arial Black headings, system sans body, outset bevel borders on everything,
    tiled crosshatch background, rainbow h1 animation. Welcome to 1997. */
 html.theme-retro {
-  --color-brand: #0000FF;
-  --color-brand-secondary: #FF0000;
-  --color-surface: #C0C0C0;
-  --color-surface-elevated: #FFFFFF;
-  --color-muted: #000000;
-  --color-headline: #000000;
-  --color-descriptor-surface: #FFFFCC;
+  --color-brand-primary: #0000FF;
+  --color-surface-decorative: #C0C0C0;
+  --color-surface-elevation-1: #FFFFFF;
+  --color-text-secondary: #000000;
+  --color-text-primary: #000000;
+  --color-highlight: #FFFFCC;
   --color-border: #000000;
-  --color-logo: #000080;
-  --color-primary-surface: #C0C0C0;
-  --color-primary-text: #ffffff;
+  --color-button-bg-primary: #C0C0C0;
+  --color-button-text-primary: #ffffff;
   --font-sans: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   --font-mono: "Courier New", Courier, monospace;
   --font-heading: "Arial Black", Impact, Haettenschweiler, sans-serif;
@@ -340,17 +329,15 @@ html.reduced-motion-none.theme-retro h1 {
 /* ========== MATERIAL DESIGN ==========
    Material 3–style colors, Roboto, subtle elevation. */
 html.theme-material {
-  --color-brand: #1976d2;
-  --color-brand-secondary: #1565c0;
-  --color-surface: #ffffff;
-  --color-surface-elevated: #e3f2fd;
-  --color-muted: #616161;
-  --color-headline: #616161;
-  --color-descriptor-surface: rgba(25, 118, 210, 0.1);
+  --color-brand-primary: #1976d2;
+  --color-surface-decorative: #ffffff;
+  --color-surface-elevation-1: #e3f2fd;
+  --color-text-secondary: #616161;
+  --color-text-primary: #616161;
+  --color-highlight: rgba(25, 118, 210, 0.1);
   --color-border: #e0e0e0;
-  --color-logo: #1565c0;
-  --color-primary-surface: #1976d2;
-  --color-primary-text: #ffffff;
+  --color-button-bg-primary: #1976d2;
+  --color-button-text-primary: #ffffff;
   --font-sans: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-heading: 'Roboto', sans-serif;
   --radius: 0.5rem;

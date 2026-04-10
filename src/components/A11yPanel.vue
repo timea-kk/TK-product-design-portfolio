@@ -37,7 +37,7 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
     <button
       type="button"
       @click="open = !open"
-      class="flex items-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
+      class="flex items-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
       aria-haspopup="dialog"
       :aria-expanded="open"
       aria-label="Accessibility options"
@@ -49,60 +49,60 @@ onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
       v-if="open"
       role="dialog"
       aria-label="Accessibility options"
-      class="absolute right-0 top-full z-10 mt-1 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevated)] py-1 shadow-lg"
+      class="absolute right-0 top-full z-10 mt-1 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg"
     >
       <!-- Reduce motion -->
-      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-decorative)]">
         <div>
-          <span class="block text-sm font-medium text-[var(--color-muted)]">Reduce motion</span>
+          <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Reduce motion</span>
           <span class="block text-xs opacity-60">No transitions or animations</span>
         </div>
         <input
           type="checkbox"
           :checked="a11y.reduceMotion"
           @change="a11y.update({ reduceMotion: ($event.target as HTMLInputElement).checked })"
-          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
+          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
         />
       </label>
 
       <!-- High contrast -->
-      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-decorative)]">
         <div>
-          <span class="block text-sm font-medium text-[var(--color-muted)]">High contrast</span>
+          <span class="block text-sm font-medium text-[var(--color-text-secondary)]">High contrast</span>
           <span class="block text-xs opacity-60">Stronger borders and focus ring</span>
         </div>
         <input
           type="checkbox"
           :checked="a11y.highContrast"
           @change="a11y.update({ highContrast: ($event.target as HTMLInputElement).checked })"
-          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
+          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
         />
       </label>
 
       <!-- Dyslexia-friendly -->
-      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+      <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-decorative)]">
         <div>
-          <span class="block text-sm font-medium text-[var(--color-muted)]">Dyslexia-friendly</span>
+          <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Dyslexia-friendly</span>
           <span class="block text-xs opacity-60">OpenDyslexic font, wider spacing</span>
         </div>
         <input
           type="checkbox"
           :checked="a11y.dyslexia"
           @change="a11y.update({ dyslexia: ($event.target as HTMLInputElement).checked })"
-          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
+          class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
         />
       </label>
 
       <!-- Text size -->
-      <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+      <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface-decorative)]">
         <div>
-          <span class="block text-sm font-medium text-[var(--color-muted)]">Text size</span>
+          <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
           <span class="block text-xs opacity-60">Scale from 90% to 130%</span>
         </div>
         <select
           :value="a11y.textScale"
           @change="a11y.update({ textScale: Number(($event.target as HTMLSelectElement).value) })"
-          class="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1 text-sm text-[var(--color-muted)]"
+          class="rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] px-2 py-1 text-sm text-[var(--color-text-secondary)]"
           aria-label="Text size"
         >
           <option :value="0.9">90%</option>

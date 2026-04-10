@@ -16,7 +16,7 @@ describe('CardTimeline', () => {
 
   it('renders numbered circles from 1 to n', () => {
     const wrapper = mount(CardTimeline, { props: { steps } })
-    const circles = wrapper.findAll('.bg-\\[var\\(--color-brand\\)\\]')
+    const circles = wrapper.findAll('.bg-\\[var\\(--color-brand-primary\\)\\]')
     circles.forEach((c, i) => expect(c.text()).toBe(String(i + 1)))
   })
 

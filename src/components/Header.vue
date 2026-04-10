@@ -59,13 +59,13 @@ function selectTheme(id: string) {
 <template>
   <header ref="headerRef" class="fixed top-4 left-1/2 z-50 -translate-x-1/2" role="banner">
     <nav
-      class="flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-2 py-2 shadow-lg"
+      class="flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-2 py-2 shadow-lg"
       aria-label="Main"
     >
       <button
         type="button"
         @click="toggle('theme')"
-        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'theme' ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)] hover:text-[var(--color-brand)]']"
+        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'theme' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
         :aria-expanded="activePanel === 'theme'"
         aria-haspopup="listbox"
         aria-label="Choose theme"
@@ -75,7 +75,7 @@ function selectTheme(id: string) {
 
       <a
         href="/"
-        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
+        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
       >
         Work
       </a>
@@ -84,7 +84,7 @@ function selectTheme(id: string) {
         href="https://www.linkedin.com/in/timea-konya-a3543284/"
         target="_blank"
         rel="noopener noreferrer"
-        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
+        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
       >
         LinkedIn
       </a>
@@ -93,7 +93,7 @@ function selectTheme(id: string) {
         href="https://drive.google.com/file/d/1aeNwj4QkRwouV0SgZ-m-c1h9_PUWALsb/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
-        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
+        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
       >
         Resume
       </a>
@@ -101,7 +101,7 @@ function selectTheme(id: string) {
       <button
         type="button"
         @click="toggle('a11y')"
-        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'a11y' ? 'text-[var(--color-brand)]' : 'text-[var(--color-muted)] hover:text-[var(--color-brand)]']"
+        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'a11y' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
         :aria-expanded="activePanel === 'a11y'"
         aria-haspopup="dialog"
         aria-label="Accessibility options"
@@ -116,7 +116,7 @@ function selectTheme(id: string) {
     -->
     <div
       v-if="activePanel"
-      class="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevated)] py-1 shadow-lg"
+      class="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg"
     >
       <!-- Theme list -->
       <ul v-if="activePanel === 'theme'" role="listbox" aria-label="Theme options">
@@ -128,7 +128,7 @@ function selectTheme(id: string) {
         >
           <button
             type="button"
-            class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--color-surface)] hover:text-[var(--color-brand)] focus:bg-[var(--color-surface)] focus:outline-none"
+            class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--color-highlight)] hover:text-[var(--color-brand-primary)] focus:bg-[var(--color-highlight)] focus:outline-none"
             @click="selectTheme(id)"
           >
             <span class="font-medium">{{ THEME_LABELS[id] ?? id }}</span>
@@ -139,43 +139,43 @@ function selectTheme(id: string) {
 
       <!-- A11y controls -->
       <div v-if="activePanel === 'a11y'" role="dialog" aria-label="Accessibility options">
-        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
           <div>
-            <span class="block text-sm font-medium text-[var(--color-muted)]">Reduce motion</span>
+            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Reduce motion</span>
             <span class="block text-xs opacity-60">No transitions or animations</span>
           </div>
           <input
             type="checkbox"
             :checked="a11y.reduceMotion"
             @change="a11y.update({ reduceMotion: ($event.target as HTMLInputElement).checked })"
-            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
+            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
           />
         </label>
 
-        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
           <div>
-            <span class="block text-sm font-medium text-[var(--color-muted)]">High contrast</span>
+            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">High contrast</span>
             <span class="block text-xs opacity-60">Stronger borders and focus ring</span>
           </div>
           <input
             type="checkbox"
             :checked="a11y.highContrast"
             @change="a11y.update({ highContrast: ($event.target as HTMLInputElement).checked })"
-            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand)]"
+            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
           />
         </label>
 
         <!-- dyslexia-friendly hidden until fixed in a future branch -->
 
-        <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-surface)]">
+        <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
           <div>
-            <span class="block text-sm font-medium text-[var(--color-muted)]">Text size</span>
+            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
             <span class="block text-xs opacity-60">Scale from 90% to 130%</span>
           </div>
           <select
             :value="a11y.textScale"
             @change="a11y.update({ textScale: Number(($event.target as HTMLSelectElement).value) })"
-            class="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-2 py-1 text-sm text-[var(--color-muted)]"
+            class="rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] px-2 py-1 text-sm text-[var(--color-text-secondary)]"
             aria-label="Text size"
           >
             <option :value="0.9">90%</option>

@@ -61,7 +61,7 @@ function selectTheme(id: string) {
     <button
       type="button"
       @click="open = !open"
-      class="flex items-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-brand)] focus-visible:outline-offset-2"
+      class="flex items-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
       aria-haspopup="listbox"
       :aria-expanded="open"
       aria-label="Choose theme"
@@ -72,7 +72,7 @@ function selectTheme(id: string) {
     <ul
       v-if="open"
       role="listbox"
-      class="absolute right-0 top-full z-10 mt-1 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevated)] py-1 shadow-lg"
+      class="absolute right-0 top-full z-10 mt-1 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg"
       aria-label="Theme options"
     >
       <li
@@ -83,7 +83,7 @@ function selectTheme(id: string) {
       >
         <button
           type="button"
-          class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--color-surface)] hover:text-[var(--color-brand)] focus:bg-[var(--color-surface)] focus:text-[var(--color-brand)] focus:outline-none"
+          class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--color-surface-decorative)] hover:text-[var(--color-brand-primary)] focus:bg-[var(--color-surface-decorative)] focus:text-[var(--color-brand-primary)] focus:outline-none"
           @click="selectTheme(id)"
         >
           <span class="font-medium">{{ LABELS[id] ?? id }}</span>

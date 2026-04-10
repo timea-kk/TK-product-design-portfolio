@@ -132,14 +132,14 @@ onUnmounted(() => {
             ></div>
             <div
               ref="navActiveIndicatorRef"
-              class="absolute w-1 h-5 bg-[var(--color-brand)] rounded-full left-1/2 -translate-x-1/2"
+              class="absolute w-1 h-5 bg-[var(--color-brand-primary)] rounded-full left-1/2 -translate-x-1/2"
               style="top:0"
             ></div>
           </div>
           <ul class="flex-1 space-y-0.5" @mouseleave="hideNavIndicator">
             <template v-for="(s, i) in sections" :key="s.id">
               <li v-if="s.group && s.group !== sections[i - 1]?.group" class="px-3 pb-1" :class="i === 0 ? 'pt-0' : 'pt-3'">
-                <span class="text-xs font-semibold uppercase tracking-wider opacity-50 text-[var(--color-headline)]">{{ s.group }}</span>
+                <span class="text-xs font-semibold uppercase tracking-wider opacity-50 text-[var(--color-text-primary)]">{{ s.group }}</span>
               </li>
               <li>
                 <button
@@ -150,8 +150,8 @@ onUnmounted(() => {
                   :class="[
                     'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
                     activeSection === s.id
-                      ? 'font-semibold text-[var(--color-headline)]'
-                      : 'text-[var(--color-muted)] hover:text-[var(--color-headline)] hover:translate-x-1'
+                      ? 'font-semibold text-[var(--color-text-primary)]'
+                      : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:translate-x-1'
                   ]"
                 >{{ s.label }}</button>
               </li>

@@ -1,6 +1,6 @@
 <!--
   Logo.vue – Inline SVG logo.
-  Uses currentColor so it inherits --color-logo from the active theme, keeping the logo
+  Uses currentColor so it inherits --color-brand-primary from the active theme, keeping the logo
   on-brand across all themes (dark green in Terminal, blue in Bauhaus, etc.).
   The parent passes a class (e.g. class="h-8 w-auto") to control size; inheritAttrs: false
   + $attrs.class lets us merge it onto the wrapper span instead of the root element.
@@ -24,7 +24,7 @@ const LOGO_CIRCLE = { cx: 716.611, cy: 324.004, r: 74 }
     $attrs.class forwards the parent's size class (e.g. "h-7 w-auto") onto this wrapper span.
   -->
   <span
-    :class="['inline-block shrink-0 text-[var(--color-logo)]', $attrs.class]"
+    :class="['inline-block shrink-0 text-[var(--color-brand-primary)]', $attrs.class]"
     aria-hidden="true"
   >
     <svg

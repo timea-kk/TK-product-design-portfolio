@@ -10,7 +10,7 @@ import TimeaAgent from '@/components/TimeaAgent.vue'
 </script>
 
 <template>
-  <div class="min-h-screen bg-[var(--color-surface)]">
+  <div class="min-h-screen bg-[var(--color-surface-decorative)]">
     <Header />
     <main>
       <RouterView />

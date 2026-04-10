@@ -55,7 +55,7 @@ const PLACEHOLDER_PROJECTS = [
       <div class="flex-1 w-full lg:w-auto lg:max-w-[720px] min-w-0">
         <h1
           id="hero-heading"
-          class="font-heading mt-2 text-5xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-7xl"
+          class="font-heading mt-2 text-5xl font-black leading-tight tracking-tight text-[var(--color-text-primary)] lg:text-7xl"
         >
           <span class="block">I'm a</span>
           <span class="block"><RotatingDescriptor /></span>
@@ -81,9 +81,9 @@ const PLACEHOLDER_PROJECTS = [
       </div>
 
       <!-- Description: sits below the headline + image row -->
-      <p class="mt-20 text-lg text-[var(--color-muted)] max-w-2xl mx-auto text-center">
+      <p class="mt-20 text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto text-center">
         People describe me as
-        <strong class="font-semibold text-[var(--color-brand)]"
+        <strong class="font-semibold text-[var(--color-brand-primary)]"
           >thoughtful, analytical, and structured</strong
         > – someone who cuts through ambiguity and connects dots others miss. I care about making design inclusive, accessible, and used for something genuinely good.
       </p>

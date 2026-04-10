@@ -61,7 +61,7 @@ const cursorClass = computed(() => {
 })
 
 /** Applied to every revealed character: themed highlight background + brand colour. */
-const highlightClass = 'bg-[var(--color-descriptor-surface)] py-0.5 text-[var(--color-brand)]'
+const highlightClass = 'bg-[var(--color-highlight)] py-0.5 text-[var(--color-brand-primary)]'
 
 // ---- Timer ----
 let timeoutId: ReturnType<typeof setTimeout> | null = null
@@ -174,7 +174,7 @@ onUnmounted(() => {
     >
     <!-- Blinking cursor; hidden from screen readers since it's purely decorative -->
     <span
-      :class="['select-none inline-block text-[var(--color-brand)]', cursorClass]"
+      :class="['select-none inline-block text-[var(--color-brand-primary)]', cursorClass]"
       aria-hidden="true"
       >|</span
     >

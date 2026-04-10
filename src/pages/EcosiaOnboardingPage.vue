@@ -139,7 +139,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             <div class="space-y-4">
               <h1
                 id="project-heading"
-                class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-headline)] lg:text-6xl"
+                class="font-heading text-3xl sm:text-4xl font-black leading-tight tracking-tight text-[var(--color-text-primary)] lg:text-6xl"
               >
                 Building Ecosia's Onboarding Experience
               </h1>
@@ -147,25 +147,25 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <span
                   v-for="tag in ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-muted)]"
+                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
                 >{{ tag }}</span>
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Timeline</p>
-                  <p class="mt-1 text-[var(--color-muted)]">2024 → 2025</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Timeline</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">2024 → 2025</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">My role</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Product Designer</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">My role</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Product Designer</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Collaborated with</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Engineers, Product Manager, UX Researcher</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Collaborated with</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Engineers, Product Manager, UX Researcher</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)] opacity-60">Company</p>
-                  <p class="mt-1 text-[var(--color-muted)]">Ecosia</p>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-60">Company</p>
+                  <p class="mt-1 text-[var(--color-text-secondary)]">Ecosia</p>
                 </div>
               </div>
             </div>
@@ -174,15 +174,15 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- TL;DR -->
             <div class="space-y-3">
-              <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TL;DR</h2>
-              <p class="text-[var(--color-muted)] leading-relaxed">
+              <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">TL;DR</h2>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
                 I built Ecosia's first web onboarding experience, defining how the product introduced itself and communicated its value to new users. Through research and iterative experimentation, I helped users understand the mission, build trust, and return after their first search, resulting in a <strong>20–25% conversion increase</strong> and a <strong>3% lift in D1 retention</strong>.
               </p>
             </div>
 
             <figure>
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Ecosia Landing Page snapshot</figcaption>
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Landing Page snapshot</figcaption>
             </figure>
 
           </CaseStudySection>
@@ -191,19 +191,19 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── The Problem ── -->
           <CaseStudySection id="problem" label="The Problem">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Users left before understanding what Ecosia was</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Users left before understanding what Ecosia was</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Ecosia is a search engine that dedicates 100% of its profits to planting trees all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission. After switching to Google as a search partner, Ecosia needed to improve retention by helping users make it their default search engine. Despite strong awareness, many <strong>new users left after their first search</strong>, often before understanding its mission or impact.
             </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               I joined Ecosia in 2020 as a Product Designer in a cross functional team focused on user engagement. The onboarding project was part of a broader effort to reduce early drop off and build a scalable way to introduce new users to Ecosia.
             </p>
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Business and user problems</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Business and user problems</p>
             <!-- Mobile: bullet list -->
-            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Low conversion and retention</strong> with limited insight into why users dropped off</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">Unclear value</strong> as users didn't understand what Ecosia was or how it worked</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span><strong class="text-[var(--color-headline)]">No install guidance</strong> on how to set Ecosia as the default search engine</span></li>
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Low conversion and retention</strong> with limited insight into why users dropped off</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Unclear value</strong> as users didn't understand what Ecosia was or how it worked</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">No install guidance</strong> on how to set Ecosia as the default search engine</span></li>
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:block pt-5">
@@ -224,15 +224,15 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
             <figure class="pt-4 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Product landscape</figcaption>
+              <figcaption class="text-center text-sm text-[var(--color-text-secondary)] opacity-70">Product landscape</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- ── The Challenge ── -->
           <CaseStudySection id="challenge" label="The Approach">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Injecting tool evaluation insights into the product</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Injecting tool evaluation insights into the product</h2>
             <div class="flex flex-col sm:flex-row gap-8 items-start">
-              <div class="flex flex-col gap-4 flex-1 text-[var(--color-muted)] leading-relaxed">
+              <div class="flex flex-col gap-4 flex-1 text-[var(--color-text-secondary)] leading-relaxed">
                 <p>We realized that users arrived curious, but left before realizing how Ecosia worked and what made it different.</p>
                 <p>The <strong>challenge</strong> was to design an onboarding experience that built trust, encouraged action, and fit naturally into existing user behavior.</p>
                 <p>To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.</p>
@@ -249,12 +249,12 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── Research ── -->
           <CaseStudySection id="research" label="Research">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Switching to Ecosia was functional, not just emotional</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Switching to Ecosia was functional, not just emotional</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               I started by reviewing existing user knowledge, then went deeper with <strong>unstructured interviews</strong> where participants <strong>retraced their real experiences</strong> with Ecosia. Combined with funnel and retention data, this shaped a User Journey Map and surfaced two key insights.
             </p>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">1 – Emotional &amp; functional forces shaped the decision</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">1 – Emotional &amp; functional forces shaped the decision</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
 
@@ -266,10 +266,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
-                    <span class="font-semibold text-[var(--color-headline)]">Push</span>
+                    <span class="font-semibold text-[var(--color-text-primary)]">Push</span>
                   </div>
-                  <p class="text-sm text-[var(--color-muted)]">Frustration with Google's data policies and curiosity for alternatives</p>
-                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                  <p class="text-sm text-[var(--color-text-secondary)]">Frustration with Google's data policies and curiosity for alternatives</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "People I know and trust are using it" · "I'm frustrated with Google's data policy"
                   </blockquote>
                   <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
@@ -279,10 +279,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
-                    <span class="font-semibold text-[var(--color-headline)]">Pull</span>
+                    <span class="font-semibold text-[var(--color-text-primary)]">Pull</span>
                   </div>
-                  <p class="text-sm text-[var(--color-muted)]">Motivation from Ecosia's tree-planting mission and ease of switching</p>
-                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                  <p class="text-sm text-[var(--color-text-secondary)]">Motivation from Ecosia's tree-planting mission and ease of switching</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "Tree planting impact is impressive" · "Switching sounded easy to do"
                   </blockquote>
                   <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
@@ -297,10 +297,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
-                    <span class="font-semibold text-[var(--color-headline)]">Inertia</span>
+                    <span class="font-semibold text-[var(--color-text-primary)]">Inertia</span>
                   </div>
-                  <p class="text-sm text-[var(--color-muted)]">Reluctance to change habits or risk losing bookmarks and convenience</p>
-                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                  <p class="text-sm text-[var(--color-text-secondary)]">Reluctance to change habits or risk losing bookmarks and convenience</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "I need easy access to my emails and drive" · "Don't want to lose my bookmarks"
                   </blockquote>
                   <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
@@ -310,10 +310,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
-                    <span class="font-semibold text-[var(--color-headline)]">Anxiety</span>
+                    <span class="font-semibold text-[var(--color-text-primary)]">Anxiety</span>
                   </div>
-                  <p class="text-sm text-[var(--color-muted)]">Uncertainty about search quality, privacy, and performance</p>
-                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-muted)] opacity-80">
+                  <p class="text-sm text-[var(--color-text-secondary)]">Uncertainty about search quality, privacy, and performance</p>
+                  <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "I want to know how it compares to Google" · "I need fast answers without disruptions"
                   </blockquote>
                   <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
@@ -322,7 +322,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             </div>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">2 – Users made two separate decisions</p>
+            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">2 – Users made two separate decisions</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
 
@@ -331,21 +331,21 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <p class="text-xs font-semibold uppercase tracking-widest text-[#9966AA]">Decision 1: try Ecosia out</p>
 
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
-                  <p class="font-semibold text-[var(--color-headline)]">I'll give it a try if...</p>
+                  <p class="font-semibold text-[var(--color-text-primary)]">I'll give it a try if...</p>
                   <ul class="space-y-2">
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
                       Someone I trust recommended it
                     </li>
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
                       The climate impact feels real and clear
                     </li>
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
@@ -357,20 +357,20 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
               <!-- Right column: stay -->
               <div class="flex flex-col gap-4 flex-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">Decision 2: keep using Ecosia</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)]">Decision 2: keep using Ecosia</p>
 
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
-                  <p class="font-semibold text-[var(--color-headline)]">I'll stick with it if...</p>
+                  <p class="font-semibold text-[var(--color-text-primary)]">I'll stick with it if...</p>
                   <ul class="space-y-2">
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
                       Search results are relevant and fast
                     </li>
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
                       Setup works smoothly with Chrome
                     </li>
-                    <li class="flex items-center gap-3 text-sm text-[var(--color-muted)]">
+                    <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
                       <span class="w-5 h-5 rounded shrink-0 border-2 border-black/20"></span>
                       My bookmarks and workflow stay intact
                     </li>
@@ -386,13 +386,13 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- Trade-off and impact -->
             <CardCallout label="Trade-off and impact">
-              <p class="text-[var(--color-muted)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>. We made a deliberate call to shift onboarding focus toward reducing switching friction rather than reinforcing the mission.</p>
             </CardCallout>
             <!-- Mobile: bullet list -->
-            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-muted)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-headline)]">12 onboarding experiments</strong> that followed</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It introduced a shared push/pull framework that <strong class="text-[var(--color-headline)]">2 other teams</strong> used for their own experiments</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand)] shrink-0">•</span><span>It shifted team thinking toward <strong class="text-[var(--color-headline)]">"how do we reduce the cost of switching"</strong></span></li>
+            <ul class="sm:hidden space-y-2 pt-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>This reframing directly shaped <strong class="text-[var(--color-text-primary)]">12 onboarding experiments</strong> that followed</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>It introduced a shared push/pull framework that <strong class="text-[var(--color-text-primary)]">2 other teams</strong> used for their own experiments</span></li>
+              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>It shifted team thinking toward <strong class="text-[var(--color-text-primary)]">"how do we reduce the cost of switching"</strong></span></li>
             </ul>
             <!-- Desktop: sticky notes -->
             <div class="hidden sm:flex gap-3 pt-2 items-start">
@@ -411,27 +411,27 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── Opportunities ── -->
           <CaseStudySection id="opportunities" label="Opportunities">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Small calculated changes built our strategy</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Small calculated changes built our strategy</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
             </p>
             <figure class="pt-2 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="text-center text-sm text-[var(--color-muted)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
+              <figcaption class="text-center text-sm text-[var(--color-text-secondary)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
             <CardCallout label="Timing was everything">
-              <p class="text-[var(--color-muted)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
             </CardCallout>
           </CaseStudySection>
 
           <!-- ── Experimentation ── -->
           <CaseStudySection id="experimentation" label="Experimentation">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Constrained by volume, structured by design</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Constrained by volume, structured by design</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               With limited A/B testing volume, running experiments sequentially would have been too slow. I split the work into two parallel tracks so we could cover more ground without losing focus. Each experiment fed into the next, building on real learnings as we went.
             </p>
-            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 1: Conversion</p>
-            <p class="text-[var(--color-muted)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
+            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Track 1: Conversion</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
             <div class="grid grid-cols-2 sm:flex gap-3">
               <CardStat label="Headline copy" value="+3.2%" description="conversion" />
               <CardStat label="Product image" value="+5.4%" description="CTA clicks" />
@@ -439,7 +439,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <CardStat label="Action CTA" value="+19.69%" description="conversion" />
             </div>
             <CardCallout label="Outcomes &amp; trade-offs">
-              <p class="text-[var(--color-muted)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
             </CardCallout>
             <figure class="pt-2 space-y-3">
               <div class="flex justify-center mb-2">
@@ -474,8 +474,8 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 />
               </div>
             </figure>
-            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-headline)]">Track 2: SERP Education</p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Track 2: SERP Education</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
             <div class="flex flex-col sm:flex-row gap-3">
@@ -484,7 +484,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               <CardStat label="Privacy messaging" value="-2%" description="D1 retention" />
             </div>
             <CardCallout label="Outcomes &amp; trade-offs">
-              <p class="text-[var(--color-muted)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
             </CardCallout>
             <figure class="pt-2">
               <ImageCarousel
@@ -496,8 +496,8 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── Strategy ── -->
           <CaseStudySection id="strategy" label="Strategy">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three connected phases built on what we learned</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Three connected phases built on what we learned</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               After several successful experiments that improved conversion and a bit of D1 retention, I realized that we needed a more holistic approach. I structured onboarding around three connected phases that aligned user behavior with Ecosia's mission:
             </p>
             <!-- Horizontal step cards -->
@@ -560,8 +560,8 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── Execution ── -->
           <CaseStudySection id="execution" label="Execution">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Three experiments: two launched, one ready to go</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Three experiments: two launched, one ready to go</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Using the strategic framework as a guide, <strong>I translated each phase into a focused experiment.</strong> Two shipped and generated results. A third was fully scoped and asset-ready but never launched. The team was reassigned before it could run, leaving a clean handoff for whoever picks it up next.
             </p>
             <!-- Horizontal step cards -->
@@ -624,8 +624,8 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- ── Results ── -->
           <CaseStudySection id="results" label="Results">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Results that shaped what comes next</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Results that shaped what comes next</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The work delivered measurable growth and a foundation for future experimentation. Every conversion became both a product win and an environmental one, turning onboarding into a direct expression of Ecosia's mission.
             </p>
 

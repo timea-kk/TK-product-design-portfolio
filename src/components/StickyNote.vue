@@ -25,7 +25,7 @@ const tapeRotate = `${-props.rotate * 2}deg`
     ></div>
     <div
       :class="[
-        'px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:text-sm',
+        'px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-text-primary)] sm:px-5 sm:text-sm',
         square
           ? 'flex flex-col items-center justify-center gap-3 aspect-square'
           : 'sm:py-6 [&>span:first-child]:block [&>span:first-child]:w-fit [&>span:first-child]:mx-auto [&>span:first-child]:mb-3',
