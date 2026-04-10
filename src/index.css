@@ -72,12 +72,22 @@
     --color-muted: #64748b;
     --color-border: #e2e8f0;
     --color-headline: #334155;
-    --color-descriptor-bg: rgba(15, 118, 110, 0.12);
+    --color-descriptor-surface: rgba(15, 118, 110, 0.12);
     --color-logo: var(--color-brand);
-    --color-cta-bg: var(--color-brand);
-    --color-cta-text: #ffffff;
-    --color-sticky-note-bg: var(--color-golden-honey-400);
-    --color-sticky-note-label: var(--color-golden-honey-500);
+    --color-primary-surface: var(--color-brand);
+    --color-primary-text: #ffffff;
+    --color-button-surface: #ffffff;
+    --color-button-text: #334155;
+    --color-pill-surface: #ffffff;
+    --color-pill-text: #334155;
+    --color-sticky-surface: var(--color-golden-honey-400);
+    --color-sticky-label: var(--color-golden-honey-500);
+    --color-surface-canvas: #f7f6f2;
+    --color-surface-subtle: rgba(0, 0, 0, 0.03);
+    --color-code-bg: rgba(0, 0, 0, 0.05);
+    --color-border-subtle: rgba(0, 0, 0, 0.06);
+    --color-code-text: rgba(255, 255, 255, 0.8);
+    --color-dot-grid: rgba(0, 0, 0, 0.13);
     --font-sans: system-ui, -apple-system, sans-serif;
     --font-mono: ui-monospace, monospace;
     /* A11yContext writes these; we use them for scale, motion, and contrast. */

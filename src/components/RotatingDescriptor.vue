@@ -61,7 +61,7 @@ const cursorClass = computed(() => {
 })
 
 /** Applied to every revealed character: themed highlight background + brand colour. */
-const highlightClass = 'bg-[var(--color-descriptor-bg)] py-0.5 text-[var(--color-brand)]'
+const highlightClass = 'bg-[var(--color-descriptor-surface)] py-0.5 text-[var(--color-brand)]'
 
 // ---- Timer ----
 let timeoutId: ReturnType<typeof setTimeout> | null = null

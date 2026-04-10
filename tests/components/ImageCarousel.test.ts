@@ -23,20 +23,24 @@ describe('ImageCarousel', () => {
     expect(wrapper.find('img').attributes('alt')).toBe('First')
   })
 
-  it('hides prev button on first slide', () => {
+  it('disables prev button on first slide', () => {
     const wrapper = mount(ImageCarousel, { props: { images: IMAGES } })
     const buttons = wrapper.findAll('button')
-    expect(buttons.find(b => b.html().includes('←'))).toBeUndefined()
-    expect(buttons.find(b => b.html().includes('→'))).toBeDefined()
+    const prev = buttons.find(b => b.html().includes('←'))!
+    const next = buttons.find(b => b.html().includes('→'))!
+    expect(prev.attributes('disabled')).toBeDefined()
+    expect(next.attributes('disabled')).toBeUndefined()
   })
 
-  it('hides next button on last slide', async () => {
+  it('disables next button on last slide', async () => {
     const wrapper = mount(ImageCarousel, { props: { images: IMAGES } })
     await wrapper.findAll('button').find(b => b.html().includes('→'))!.trigger('click')
     await wrapper.findAll('button').find(b => b.html().includes('→'))!.trigger('click')
     const buttons = wrapper.findAll('button')
-    expect(buttons.find(b => b.html().includes('→'))).toBeUndefined()
-    expect(buttons.find(b => b.html().includes('←'))).toBeDefined()
+    const prev = buttons.find(b => b.html().includes('←'))!
+    const next = buttons.find(b => b.html().includes('→'))!
+    expect(next.attributes('disabled')).toBeDefined()
+    expect(prev.attributes('disabled')).toBeUndefined()
   })
 
   it('navigates forward and back with arrows', async () => {

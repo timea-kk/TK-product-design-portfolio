@@ -14,6 +14,7 @@ import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardInteractive from '@/components/CardInteractive.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
+import SegmentedControl from '@/components/SegmentedControl.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -442,22 +443,16 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </CardCallout>
             <figure class="pt-2 space-y-3">
               <div class="flex justify-center mb-2">
-                <div class="relative inline-grid grid-cols-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-1">
-                  <div
-                    class="absolute left-1 top-1 bottom-1 w-[calc(50%_-_4px)] rounded-full bg-[var(--color-brand)] transition-transform duration-300 ease-in-out"
-                    :style="{ transform: beforeAfterStep === 0 ? 'translateX(0)' : 'translateX(100%)' }"
-                  ></div>
-                  <button
-                    class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
-                    :class="beforeAfterStep === 0 ? 'text-white' : 'text-[var(--color-muted)]'"
-                    @click="beforeAfterDissolve('/project-pages/ecosia-onboarding/ecosia-onboarding-5.png', 0)"
-                  >Before</button>
-                  <button
-                    class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
-                    :class="beforeAfterStep === 1 ? 'text-white' : 'text-[var(--color-muted)]'"
-                    @click="beforeAfterDissolve('/project-pages/ecosia-onboarding/ecosia-onboarding-6.png', 1)"
-                  >After</button>
-                </div>
+                <SegmentedControl
+                  :options="['Before', 'After']"
+                  :model-value="beforeAfterStep"
+                  @update:model-value="(i) => beforeAfterDissolve(
+                    i === 0
+                      ? '/project-pages/ecosia-onboarding/ecosia-onboarding-5.png'
+                      : '/project-pages/ecosia-onboarding/ecosia-onboarding-6.png',
+                    i
+                  )"
+                />
               </div>
               <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
                 <img

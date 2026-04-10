@@ -12,6 +12,7 @@ import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardTimeline from '@/components/CardTimeline.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
+import CardStat from '@/components/CardStat.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
@@ -22,7 +23,7 @@ const NAV_SECTIONS = [
   { id: 'contribution-model',    label: 'Contribution' },
   { id: 'ds-health',             label: 'DS Health' },
   { id: 'evolving-system',       label: 'Evolution' },
-  { id: 'contribution', label: 'Card Component' },
+  { id: 'contribution', label: 'Highlight' },
   { id: 'results',      label: 'Results' },
 ]
 
@@ -198,19 +199,19 @@ const panelRef = ref<HTMLElement | null>(null)
               <p class="text-[var(--color-muted)] leading-relaxed">With ownership mapped and recurring planning sessions in place:</p>
               <div class="flex gap-3 pt-3">
                 <StickyNote :rotate="-1" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
                   <span>Designers knew exactly <strong>what to work on</strong></span>
                 </StickyNote>
                 <StickyNote :rotate="1" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
                   <span>Everyone was aligned on what our <strong>priorities</strong> were</span>
                 </StickyNote>
                 <StickyNote :rotate="-0.5" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
                   <span>Always clear who to reach out to for <strong>reviews</strong></span>
                 </StickyNote>
                 <StickyNote :rotate="0.75" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">✅</span>
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
                   <span>Nothing needing <strong>collective attention</strong> fell through</span>
                 </StickyNote>
               </div>
@@ -231,79 +232,130 @@ const panelRef = ref<HTMLElement | null>(null)
           <!-- Contribution model -->
           <CaseStudySection id="contribution-model" label="Contribution" loose>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Consistent, higher-quality contributions</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Designers were contributing components in inconsistent ways and using different plugins to follow scattered rules. I created a detailed contribution checklist that broke down every step, including naming conventions, accessibility considerations, variable usage, and much more. It became the shared playbook for contributions and helped everyone work with the same standards, while also making reviews quicker and more efficient.
-            </p>
+            <div class="space-y-4">
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                Designers were contributing components in <strong>inconsistent ways</strong> and using different plugins to follow <strong>scattered rules</strong>. I created a detailed <strong>contribution checklist</strong> that broke down every step, including naming conventions, accessibility considerations, variable usage, and much more.
+              </p>
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                It became the <strong>shared playbook for contributions</strong> and helped everyone work with the same standards, while also making reviews quicker and more efficient.
+              </p>
+            </div>
+            <CardCallout
+              label="Outcomes"
+              :items="[
+                { title: 'Faster reviews', description: 'Gaps were caught before submissions reached review, reducing back-and-forth.' },
+                { title: 'Consistent quality', description: 'Shared standards meant contributions were held to the same bar regardless of who built them.' },
+                { title: 'A shared definition of done', description: 'Contributors knew exactly what to check before submitting, which reduced ambiguity across the team.' },
+              ]"
+            />
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-              </div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Contribution checklist snapshot</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">Flora Contribution checklist snapshot</figcaption>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/flora-design-system/flora-design-system-7.png',
+                  '/project-pages/flora-design-system/flora-design-system-8.png',
+                  '/project-pages/flora-design-system/flora-design-system-9.png',
+                ]"
+                :alts="['Flora contribution checklist screenshot 1', 'Flora contribution checklist screenshot 2', 'Flora contribution checklist screenshot 3']"
+              />
             </figure>
           </CaseStudySection>
 
           <!-- DS health -->
           <CaseStudySection id="ds-health" label="DS Health" loose>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Progress tied to real numbers</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              I built a Google Sheets dashboard that tracked the health status of all our global and domain-specific libraries. Each library had its own sheet with criteria for what made a component "healthy," aligned with the contribution checklist. The tracker measured progress month by month and linked directly to OKRs, so we could quantify improvements and keep ourselves accountable.
-            </p>
+            <div class="space-y-4">
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                I built a <strong>Google Sheets dashboard</strong> that tracked the <strong>health status</strong> of all our global and domain-specific libraries. Each library had its own sheet with criteria for what made a component <strong>"healthy,"</strong> aligned with the contribution checklist.
+              </p>
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                The tracker measured progress <strong>month by month</strong> and linked directly to <strong>OKRs</strong>, so we could quantify improvements and keep ourselves accountable.
+              </p>
+            </div>
+            <div class="grid grid-cols-3 gap-3">
+              <CardStat value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
+              <CardStat value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
+              <CardStat value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
+            </div>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-              </div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Flora Health Check spreadsheet</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">Flora Health Check spreadsheet</figcaption>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/flora-design-system/flora-design-system-10.png',
+                  '/project-pages/flora-design-system/flora-design-system-11.png',
+                ]"
+                :alts="['Flora health tracker overview', 'Flora health tracker monthly breakdown']"
+              />
             </figure>
           </CaseStudySection>
 
           <!-- Evolving the system -->
           <CaseStudySection id="evolving-system" label="Evolution" loose>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Practices that compounded over time</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              I documented every new process in Confluence: how to contribute, how to use the health tracker, and even how to write documentation itself. I also shared regular updates in Slack to keep the org informed, clarify expectations, and make our progress visible. This made our roles clear to everyone and ensured no knowledge lived in just one person's head again.
-            </p>
+            <div class="space-y-4">
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                I documented every new process in <strong>Confluence</strong>: how to contribute, how to use the health tracker, and even how to write documentation itself. I also shared <strong>regular updates in Slack</strong> to keep the org informed, clarify expectations, and make our progress visible. This made our roles clear to everyone and ensured <strong>no knowledge lived in just one person's head</strong> again.
+              </p>
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                <strong>Design System retros</strong> became regular rituals so we could continuously improve these new practices. We uncovered ways of working with engineers, planned how to handle bigger contributions, and identified topics to learn about as a group: <strong>accessibility, AI tools, color system builds,</strong> and more.
+              </p>
+            </div>
+            <CardCallout
+              label="Outcomes"
+              :items="[
+                { title: 'No single point of failure', description: 'Every process was documented so knowledge was never tied to one person.' },
+                { title: 'Org-wide transparency', description: 'Regular Slack updates kept the wider team aligned on Flora\'s direction and progress.' },
+                { title: 'A culture of continuous improvement', description: 'Retros surfaced friction early and turned it into shared decisions rather than individual workarounds.' },
+              ]"
+            />
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-              </div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">New processes in Confluence</figcaption>
+              <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">New processes in Confluence</figcaption>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/flora-design-system/flora-design-system-12.png',
+                  '/project-pages/flora-design-system/flora-design-system-13.png',
+                ]"
+                :alts="['Flora evolution process documentation', 'Flora evolution Confluence overview']"
+              />
             </figure>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              Design System retros became regular rituals so we could continuously improve these new practices. We uncovered ways of working with engineers, planned how to handle bigger contributions, and identified topics to learn about as a group: accessibility, AI tools, color system builds, and more.
-            </p>
           </CaseStudySection>
 
           <!-- Card Component -->
-          <CaseStudySection id="contribution" label="Card Component">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">One component, many fewer snowflakes</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              As our group evolved, we contributed bigger and more complex components to Flora. At the time, there was no unified way to build content cards, and each designer had to create them from scratch, which slowed us down and led to visual inconsistencies.
-            </p>
-            <p class="text-[var(--color-muted)] leading-relaxed">
-              I designed a flexible card component with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our most frequently used elements, improved alignment between design and development, and reduced design time for future product pages.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <CardCallout label="Structure">
-                <p class="text-[var(--color-muted)] leading-relaxed">Modular card with multiple display variants</p>
-              </CardCallout>
-              <CardCallout label="Workflow">
-                <p class="text-[var(--color-muted)] leading-relaxed">Simplified handoff between designers and developers</p>
-              </CardCallout>
-              <CardCallout label="Consistency">
-                <p class="text-[var(--color-muted)] leading-relaxed">Increased across browser and search projects</p>
-              </CardCallout>
+          <CaseStudySection id="contribution" label="Highlight">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Standardized cards across every product</h2>
+            <div class="space-y-4">
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                As our group evolved, we contributed bigger and more complex components to Flora. At the time, there was <strong>no unified way to build content cards</strong>, and each designer had to create them from scratch, which slowed us down and led to <strong>visual inconsistencies</strong>.
+              </p>
+              <p class="text-[var(--color-muted)] leading-relaxed">
+                I designed a <strong>flexible card component</strong> with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our <strong>most frequently used elements</strong>, improved alignment between design and development, and reduced design time for future product pages.
+              </p>
             </div>
+            <CardCallout
+              label="Outcomes"
+              :items="[
+                { title: 'One source of truth for cards', description: 'Designers stopped building from scratch and adapted a single, documented component across all product surfaces.' },
+                { title: 'Faster design-to-dev handoff', description: 'Shared language and defined variants reduced back-and-forth between design and engineering.' },
+                { title: 'Fewer visual inconsistencies', description: 'Card layouts became predictable and aligned across browser and search projects.' },
+              ]"
+            />
             <div class="pt-2 space-y-4">
               <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
+                <img
+                  src="/project-pages/flora-design-system/flora-design-system-14.png"
+                  alt="Card component contribution in Flora"
+                  class="w-full rounded-xl"
+                />
                 <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component contribution</figcaption>
               </figure>
               <figure>
-                <div class="w-full rounded-xl border-2 border-[#275243] bg-black/[0.03] aspect-video flex items-center justify-center">
-                  <p class="text-sm text-[var(--color-muted)] opacity-50">Image coming soon</p>
-                </div>
+                <video
+                  src="/project-pages/flora-design-system/Default card.mp4"
+                  controls
+                  muted
+                  playsinline
+                  class="w-full rounded-xl"
+                ></video>
                 <figcaption class="mt-2 text-xs text-center text-[var(--color-muted)]">Card component options in use</figcaption>
               </figure>
             </div>
@@ -315,25 +367,28 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-muted)] leading-relaxed">
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
+            <div class="flex gap-3">
+              <CardStat value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
+              <CardStat value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
+              <CardStat value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
+            </div>
             <div class="flex flex-col sm:flex-row gap-3 pt-2">
               <CardCallout
                 label="Results"
                 class="flex-1"
                 :items="[
-                  { title: 'Confident, independent contributors', description: 'Designers became comfortable contributing without needing a dedicated DS lead.' },
-                  { title: 'DS health scores improved quarter over quarter', description: 'Tracked monthly, health scores across all libraries improved consistently throughout 2025.' },
-                  { title: 'Stronger decision-making', description: 'Clear prioritization and tracking gave the team a shared framework for making calls.' },
-                  { title: 'Higher contribution quality', description: 'Shared standards and reviews raised the bar across all contributions.' }
+                  { title: 'Independent contributors', description: 'Designers became comfortable contributing without needing a dedicated DS lead.' },
+                  { title: 'Healthier libraries', description: 'Tracked monthly, health scores across all libraries improved consistently throughout 2025.' },
+                  { title: 'Higher quality', description: 'Shared standards and reviews raised the bar across all contributions.' }
                 ]"
               />
               <CardCallout
                 label="Learnings"
                 class="flex-1"
                 :items="[
-                  { title: 'Shared ownership builds stronger culture than centralization', description: 'Distributed responsibility improved org-wide resilience without sacrificing quality.' },
-                  { title: 'Clear documentation reduces friction and dependency', description: 'Writing things down meant no knowledge was locked in one person\'s head.' },
-                  { title: 'Lightweight governance keeps consistency without slowing teams', description: 'Just enough process was the right call; heavy governance would have created more drag than value.' },
-                  { title: 'Transparency improves collective responsibility', description: 'Regular updates and visible progress made the whole team feel accountable and motivated.' }
+                  { title: 'Documentation reduces friction', description: 'Writing things down ensured no knowledge was locked in one person\'s head.' },
+                  { title: 'Lightweight governance works', description: 'Just enough process was the right call; heavy governance would have created more drag than value.' },
+                  { title: 'Transparency drives accountability', description: 'Regular updates and visible progress made the whole team feel accountable and motivated.' }
                 ]"
               />
             </div>

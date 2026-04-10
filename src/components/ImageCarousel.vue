@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import gsap from 'gsap'
+import CarouselNav from '@/components/CarouselNav.vue'
 
 const props = defineProps<{
   images: string[]
@@ -62,17 +63,12 @@ function goTo(newStep: number) {
         style="opacity:0"
       />
     </div>
-    <button
-      v-if="step > 0"
-      class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-      aria-label="Previous image"
-      @click="goTo(step - 1)"
-    >&#8592;</button>
-    <button
-      v-if="step < images.length - 1"
-      class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white border border-black/[0.08] shadow-sm w-9 h-9 flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-brand)] transition-colors duration-200"
-      aria-label="Next image"
-      @click="goTo(step + 1)"
-    >&#8594;</button>
+    <CarouselNav
+      :step="step"
+      :total="images.length"
+      class="mt-3"
+      @prev="goTo(step - 1)"
+      @next="goTo(step + 1)"
+    />
   </div>
 </template>

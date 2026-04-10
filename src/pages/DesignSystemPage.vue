@@ -14,19 +14,27 @@ import CardTimeline from '@/components/CardTimeline.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardStat from '@/components/CardStat.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
+import CarouselNav from '@/components/CarouselNav.vue'
+import SegmentedControl from '@/components/SegmentedControl.vue'
+import ButtonOutline from '@/components/ButtonOutline.vue'
+import ButtonPrimary from '@/components/ButtonPrimary.vue'
+import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 
 const NAV_SECTIONS = [
   { id: 'colors',             label: 'Colors',           group: 'Foundations' },
   { id: 'typography',         label: 'Typography',       group: 'Foundations' },
+  { id: 'button',             label: 'Button',           group: 'Components' },
   { id: 'card-callout',        label: 'CardCallout',      group: 'Components' },
   { id: 'card-interactive',   label: 'CardInteractive',  group: 'Components' },
   { id: 'card-stat',          label: 'CardStat',         group: 'Components' },
   { id: 'card-timeline',      label: 'CardTimeline',     group: 'Components' },
+  { id: 'carousel-nav',       label: 'CarouselNav',      group: 'Components' },
   { id: 'case-study-nav',     label: 'CaseStudyNav',     group: 'Components' },
   { id: 'case-study-section', label: 'CaseStudySection', group: 'Components' },
   { id: 'header',             label: 'Header',           group: 'Components' },
   { id: 'image-carousel',     label: 'ImageCarousel',    group: 'Components' },
   { id: 'sticky-note',        label: 'StickyNote',       group: 'Components' },
+  { id: 'segmented-control',  label: 'SegmentedControl', group: 'Components' },
   { id: 'timea-agent',        label: 'TimeaAgent',       group: 'Components' },
 ]
 
@@ -40,11 +48,17 @@ const calloutUseItems = ref(false)
 const activeInteractiveStep = ref(0)
 
 // StickyNote demo state
-const stickySmall = ref(false)
 const stickySquare = ref(false)
+const stickyTitle = ref(false)
 
 // CaseStudySection demo state
 const sectionFirst = ref(false)
+
+// CarouselNav demo state
+const carouselNavStep = ref(2)
+
+// SegmentedControl demo state
+const segmentedValue = ref(0)
 const sectionLoose = ref(false)
 
 // CaseStudyNav demo state
@@ -233,12 +247,22 @@ function hoverComponent(comp: string) {
 const SEMANTIC_MAP = [
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
-    token:     { name: '--color-cta-text',         hex: '#ffffff',                        label: 'CTA Text' },
-    usedIn:    ['TimeaAgent'],
+    token:     { name: '--color-primary-text',         hex: '#ffffff',                        label: 'Primary Text' },
+    usedIn:    ['ButtonPrimary', 'TimeaAgent'],
+  },
+  {
+    primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
+    token:     { name: '--color-button-surface',        hex: '#ffffff',                        label: 'Button Surface' },
+    usedIn:    ['ButtonOutline'],
+  },
+  {
+    primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
+    token:     { name: '--color-pill-surface',          hex: '#ffffff',                        label: 'Pill Surface' },
+    usedIn:    ['CarouselNav'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '50',  hex: '#f0e9f3', varName: '--color-dusty-violet-50' },
-    token:     { name: '--color-descriptor-bg',    hex: 'rgba(153,102,170,0.1)',          label: 'Descriptor BG' },
+    token:     { name: '--color-descriptor-surface',    hex: 'rgba(153,102,170,0.1)',          label: 'Descriptor Surface' },
     usedIn:    ['RotatingDescriptor'],
   },
   {
@@ -253,8 +277,8 @@ const SEMANTIC_MAP = [
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
-    token:     { name: '--color-cta-bg',           hex: 'var(--color-dusty-violet-500)',  label: 'CTA Background' },
-    usedIn:    ['TimeaAgent'],
+    token:     { name: '--color-primary-surface',       hex: 'var(--color-dusty-violet-500)',  label: 'Primary Surface' },
+    usedIn:    ['ButtonPrimary', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
@@ -272,6 +296,16 @@ const SEMANTIC_MAP = [
     usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
   },
   {
+    primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
+    token:     { name: '--color-button-text',      hex: 'var(--color-dusty-violet-900)',  label: 'Button Text' },
+    usedIn:    ['ButtonOutline'],
+  },
+  {
+    primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
+    token:     { name: '--color-pill-text',        hex: 'var(--color-dusty-violet-900)',  label: 'Pill Text' },
+    usedIn:    ['CarouselNav'],
+  },
+  {
     primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
     token:     { name: '--color-surface-elevated', hex: 'var(--color-golden-honey-50)',   label: 'Surface Elevated' },
     usedIn:    ['Header', 'TimeaAgent'],
@@ -283,12 +317,12 @@ const SEMANTIC_MAP = [
   },
   {
     primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
-    token:     { name: '--color-sticky-note-bg',   hex: 'var(--color-golden-honey-400)',  label: 'Sticky Note BG' },
+    token:     { name: '--color-sticky-surface',   hex: 'var(--color-golden-honey-400)',  label: 'Sticky Surface' },
     usedIn:    ['StickyNote'],
   },
   {
     primitive: { group: 'Golden Honey', step: '500', hex: '#EDB73B', varName: '--color-golden-honey-500' },
-    token:     { name: '--color-sticky-note-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Note Label' },
+    token:     { name: '--color-sticky-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Label' },
     usedIn:    ['StickyNote'],
   },
   {
@@ -334,10 +368,10 @@ const uniqueComponents = computed(() => {
   >
     <div
       ref="panelRef"
-      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
+      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-[var(--color-border-subtle)]"
       style="
-        background-color: #f7f6f2;
-        background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
+        background-color: var(--color-surface-canvas);
+        background-image: radial-gradient(circle, var(--color-dot-grid) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
     >
@@ -362,10 +396,10 @@ const uniqueComponents = computed(() => {
                       <div
                         v-for="color in group.colors"
                         :key="color.label"
-                        class="rounded-lg border border-black/[0.06] overflow-hidden min-w-0"
+                        class="rounded-lg border border-[var(--color-border-subtle)] overflow-hidden min-w-0"
                       >
                         <div class="h-10 w-full" :style="{ background: color.hex }"></div>
-                        <div class="px-2 py-1.5 bg-white space-y-0.5">
+                        <div class="px-2 py-1.5 bg-[var(--color-white)] space-y-0.5">
                           <p class="text-xs font-semibold text-[var(--color-headline)] leading-tight">{{ color.label }}</p>
                           <p class="font-mono text-[10px] text-[var(--color-muted)] opacity-70 truncate">{{ color.hex }}</p>
                         </div>
@@ -415,7 +449,7 @@ const uniqueComponents = computed(() => {
                           ? 'bg-[var(--color-brand)]/[0.12] ring-1 ring-[var(--color-brand)]/50'
                           : highlightedPrimitives.has(primKey(p))
                             ? 'bg-[var(--color-brand)]/[0.07] ring-1 ring-[var(--color-brand)]/20'
-                            : 'hover:bg-black/[0.03]'"
+                            : 'hover:bg-[var(--color-surface-subtle)]'"
                         @mouseenter="hoverPrimitive(p)"
                         @mouseleave="clearHover()"
                       >
@@ -438,7 +472,7 @@ const uniqueComponents = computed(() => {
                           ? 'bg-[var(--color-brand)]/[0.12] ring-1 ring-[var(--color-brand)]/50'
                           : highlightedTokens.has(entry.token.name)
                             ? 'bg-[var(--color-brand)]/[0.07] ring-1 ring-[var(--color-brand)]/20'
-                            : 'hover:bg-black/[0.03]'"
+                            : 'hover:bg-[var(--color-surface-subtle)]'"
                         @mouseenter="hoverToken(entry)"
                         @mouseleave="clearHover()"
                       >
@@ -462,7 +496,7 @@ const uniqueComponents = computed(() => {
                           ? 'bg-[var(--color-brand)]/[0.12] ring-1 ring-[var(--color-brand)]/50'
                           : highlightedComponents.has(comp)
                             ? 'bg-[var(--color-brand)]/[0.07] ring-1 ring-[var(--color-brand)]/20'
-                            : 'hover:bg-black/[0.03]'"
+                            : 'hover:bg-[var(--color-surface-subtle)]'"
                         @mouseenter="hoverComponent(comp)"
                         @mouseleave="clearHover()"
                       >
@@ -480,7 +514,7 @@ const uniqueComponents = computed(() => {
           <!-- ── Typography ── -->
           <CaseStudySection id="typography" label="Typography">
             <div class="space-y-4">
-              <div class="rounded-xl bg-white border border-black/[0.06] px-6 py-5 space-y-4">
+              <div class="rounded-xl bg-[var(--color-surface-subtle)] border border-[var(--color-border-subtle)] px-6 py-5 space-y-4">
                 <div class="space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Heading font</p>
                   <p class="font-mono text-xs text-[var(--color-muted)]">--font-heading: 'Bricolage Grotesque', Georgia, serif</p>
@@ -488,7 +522,7 @@ const uniqueComponents = computed(() => {
                   <p class="font-heading text-2xl font-bold text-[var(--color-headline)]">The quick brown fox</p>
                   <p class="font-heading text-xl font-semibold text-[var(--color-headline)]">The quick brown fox</p>
                 </div>
-                <hr class="border-black/[0.06]" />
+                <hr class="border-[var(--color-border-subtle)]" />
                 <div class="space-y-1">
                   <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Body font</p>
                   <p class="font-mono text-xs text-[var(--color-muted)]">--font-sans: 'Inter', system-ui, sans-serif</p>
@@ -501,20 +535,156 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
+          <!-- ── Button ── -->
+          <CaseStudySection id="button" label="Button">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Button</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">The shared button component used across the portfolio. Supports text-only, icon+text, and icon-only layouts, with default, hover, active, and disabled states.</p>
+
+            <!-- ButtonPrimary -->
+            <h3 class="text-base font-semibold text-[var(--color-headline)]">ButtonPrimary</h3>
+            <div class="rounded-xl border border-[var(--color-border-subtle)] overflow-hidden">
+              <div class="grid grid-cols-5 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-subtle)]">
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Default</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Hover</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Active</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Focus</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Disabled</span>
+              </div>
+              <div class="grid grid-cols-5">
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonPrimary>Label</ButtonPrimary>
+                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
+                  <ButtonPrimary icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start [&_button]:opacity-90">
+                  <ButtonPrimary>Label</ButtonPrimary>
+                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
+                  <ButtonPrimary icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonPrimary active>Label</ButtonPrimary>
+                  <ButtonPrimary active>&#8592; Previous</ButtonPrimary>
+                  <ButtonPrimary icon-only active aria-label="Active"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start [&_button]:ring-2 [&_button]:ring-[var(--color-brand)] [&_button]:ring-offset-2">
+                  <ButtonPrimary>Label</ButtonPrimary>
+                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
+                  <ButtonPrimary icon-only aria-label="Focus"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonPrimary disabled>Label</ButtonPrimary>
+                  <ButtonPrimary disabled>&#8592; Previous</ButtonPrimary>
+                  <ButtonPrimary icon-only disabled aria-label="Disabled"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                </div>
+              </div>
+            </div>
+
+            <!-- Props -->
+            <div class="rounded-xl border border-[var(--color-border-subtle)] overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-[var(--color-surface-subtle)]">
+                  <tr>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Prop</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Type</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--color-border-subtle)]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">icon-only</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Square padding (p-2.5) for icon-only layout.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Reduces opacity to indicate a selected/pressed state.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">disabled</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Reduces opacity and blocks interaction.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;ButtonPrimary&gt;Label&lt;/ButtonPrimary&gt;
+&lt;ButtonPrimary icon-only aria-label="..."&gt;&lt;IconSvg /&gt;&lt;/ButtonPrimary&gt;
+&lt;ButtonPrimary :active="true"&gt;Label&lt;/ButtonPrimary&gt;
+&lt;ButtonPrimary :disabled="true"&gt;Label&lt;/ButtonPrimary&gt;</pre>
+            </div>
+
+            <!-- ButtonOutline -->
+            <h3 class="text-base font-semibold text-[var(--color-headline)]">ButtonOutline</h3>
+            <div class="rounded-xl border border-[var(--color-border-subtle)] overflow-hidden">
+              <div class="grid grid-cols-5 bg-[var(--color-surface-subtle)] border-b border-[var(--color-border-subtle)]">
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Default</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Hover</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Active</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Focus</span>
+                <span class="px-4 py-2 text-xs font-semibold text-[var(--color-headline)]">Disabled</span>
+              </div>
+              <div class="grid grid-cols-5">
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonOutline>Label</ButtonOutline>
+                  <ButtonOutline>&#8592; Previous</ButtonOutline>
+                  <ButtonOutline icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start [&_button]:text-[var(--color-brand)]">
+                  <ButtonOutline>Label</ButtonOutline>
+                  <ButtonOutline>&#8592; Previous</ButtonOutline>
+                  <ButtonOutline icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonOutline active>Label</ButtonOutline>
+                  <ButtonOutline active>&#8592; Previous</ButtonOutline>
+                  <ButtonOutline icon-only active aria-label="Active"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start [&_button]:ring-2 [&_button]:ring-[var(--color-brand)] [&_button]:ring-offset-2">
+                  <ButtonOutline>Label</ButtonOutline>
+                  <ButtonOutline>&#8592; Previous</ButtonOutline>
+                  <ButtonOutline icon-only aria-label="Focus"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
+                </div>
+                <div class="px-4 py-4 flex flex-col gap-4 items-start">
+                  <ButtonOutline disabled>Label</ButtonOutline>
+                  <ButtonOutline disabled>&#8592; Previous</ButtonOutline>
+                  <ButtonOutline icon-only disabled aria-label="Disabled"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
+                </div>
+              </div>
+            </div>
+
+            <!-- Props -->
+            <div class="rounded-xl border border-[var(--color-border-subtle)] overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-[var(--color-surface-subtle)]">
+                  <tr>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Prop</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Type</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--color-border-subtle)]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">icon-only</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Square padding (p-2.5) for icon-only layout.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Forces brand color on the text to indicate a selected state.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">disabled</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Reduces opacity and blocks interaction.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;ButtonOutline&gt;Label&lt;/ButtonOutline&gt;
+&lt;ButtonOutline icon-only aria-label="..."&gt;&lt;IconSvg /&gt;&lt;/ButtonOutline&gt;
+&lt;ButtonOutline :active="true"&gt;Label&lt;/ButtonOutline&gt;
+&lt;ButtonOutline :disabled="true"&gt;Label&lt;/ButtonOutline&gt;</pre>
+            </div>
+          </CaseStudySection>
+
           <!-- ── CardCallout ── -->
           <CaseStudySection id="card-callout" label="CardCallout">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardCallout</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A labeled content card used for callouts, summaries, and structured lists. Accepts a slot for freeform content or an <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">items</code> prop for a divider list.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">A labeled content card used for callouts, summaries, and structured lists. Accepts a slot for freeform content or an <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">items</code> prop for a divider list.</p>
 
             <!-- Controls -->
             <div class="flex flex-wrap gap-4 pt-2">
               <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
                 <input type="checkbox" v-model="calloutUseItems" class="rounded" />
-                Use <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">items</code> prop
+                Use <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">items</code> prop
               </label>
               <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none" :class="!calloutUseItems && 'opacity-40 pointer-events-none'">
                 <input type="checkbox" v-model="calloutDivided" :disabled="!calloutUseItems" class="rounded" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">:divided</code>
+                <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">:divided</code>
               </label>
             </div>
 
@@ -540,12 +710,12 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-if="!calloutUseItems">&lt;CardCallout label="Trade-off and impact"&gt;
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre" v-if="!calloutUseItems">&lt;CardCallout label="Trade-off and impact"&gt;
   &lt;p class="text-[var(--color-muted)] leading-relaxed"&gt;
     Content goes here.
   &lt;/p&gt;
 &lt;/CardCallout&gt;</pre>
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre" v-else>&lt;CardCallout
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre" v-else>&lt;CardCallout
   label="What I learned"
   :divided="{{ calloutDivided }}"
   :items="[
@@ -555,10 +725,10 @@ const uniqueComponents = computed(() => {
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Default</th>
@@ -602,7 +772,7 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardInteractive
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;CardInteractive
   label="Step 1"
   title="Value Perception"
   description="See the product value in context."
@@ -615,10 +785,10 @@ const uniqueComponents = computed(() => {
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -640,7 +810,7 @@ const uniqueComponents = computed(() => {
           <!-- ── CardStat ── -->
           <CaseStudySection id="card-stat" label="CardStat">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardStat</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A metric display card. Used in experimentation and results sections to highlight key numbers. Always renders with <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">flex-1</code> built in.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">A metric display card. Used in experimentation and results sections to highlight key numbers. Always renders with <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">flex-1</code> built in.</p>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
@@ -653,7 +823,7 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardStat
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;CardStat
   label="Conversion"
   value="+20-25%"
   description="increase"
@@ -661,10 +831,10 @@ const uniqueComponents = computed(() => {
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -682,7 +852,7 @@ const uniqueComponents = computed(() => {
           <!-- ── CardTimeline ── -->
           <CaseStudySection id="card-timeline" label="CardTimeline">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CardTimeline</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A numbered vertical timeline. Used for process and initiative sections to show sequential steps with labels and descriptions. Accepts HTML in descriptions via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">v-html</code>.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">A numbered vertical timeline. Used for process and initiative sections to show sequential steps with labels and descriptions. Accepts HTML in descriptions via <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">v-html</code>.</p>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
@@ -695,7 +865,7 @@ const uniqueComponents = computed(() => {
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CardTimeline :steps="[
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;CardTimeline :steps="[
   { label: 'Discovery', description: 'Map the problem space.' },
   { label: 'Define',    description: 'Set goals and criteria.' },
   { label: 'Deliver',   description: 'Ship and measure.' },
@@ -703,10 +873,10 @@ const uniqueComponents = computed(() => {
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -719,29 +889,61 @@ const uniqueComponents = computed(() => {
             </div>
           </CaseStudySection>
 
+          <!-- ── CarouselNav ── -->
+          <CaseStudySection id="carousel-nav" label="CarouselNav">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CarouselNav</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">Pagination navigation for the ImageCarousel component. Renders a Previous button, a current/total count pill, and a Next button. Previous disables on the first slide, Next disables on the last.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
+              <CarouselNav
+                :step="carouselNavStep"
+                :total="5"
+                @prev="carouselNavStep--"
+                @next="carouselNavStep++"
+              />
+            </div>
+
+            <!-- Props -->
+            <div class="rounded-xl border border-black/[0.08] overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-[var(--color-surface-subtle)]">
+                  <tr>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Prop</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Type</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.05]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">step</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Current zero-indexed slide position.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">total</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Total number of slides.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;CarouselNav
+  :step="step"
+  :total="images.length"
+  @prev="goTo(step - 1)"
+  @next="goTo(step + 1)"
+/&gt;</pre>
+            </div>
+          </CaseStudySection>
+
           <!-- ── CaseStudyNav ── -->
           <CaseStudySection id="case-study-nav" label="CaseStudyNav">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">CaseStudyNav</h2>
             <p class="text-[var(--color-muted)] leading-relaxed">The sticky left navigation panel used on all case study pages. Handles scroll spy via a scroll listener on the scrollable panel element, and animates the active and hover indicators with GSAP. Only visible on desktop (lg and above).</p>
 
-            <p class="text-sm text-[var(--color-muted)]">Scroll inside the demo box to see the active indicator update.</p>
-
             <!-- Demo -->
-            <div
-              ref="navDemoPanelRef"
-              class="rounded-xl border-2 border-dashed border-black/[0.10] h-64 overflow-y-auto flex gap-6 px-6 py-6"
-            >
-              <CaseStudyNav :sections="NAV_DEMO_SECTIONS" :panel="navDemoPanelRef" />
-              <div class="flex flex-col gap-8 flex-1 min-w-0">
-                <div :id="s.id" v-for="s in NAV_DEMO_SECTIONS" :key="s.id" class="scroll-mt-4 rounded-xl bg-white border border-black/[0.06] px-4 py-5">
-                  <p class="font-semibold text-[var(--color-headline)] text-sm">{{ s.label }}</p>
-                  <p class="text-sm text-[var(--color-muted)] mt-1">Demo section content for {{ s.label }}.</p>
-                </div>
-              </div>
+            <div class="rounded-xl border border-[var(--color-border-subtle)] px-6 py-6 flex justify-center">
+              <CaseStudyNav :sections="NAV_DEMO_SECTIONS" :panel="null" />
             </div>
 
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">const NAV_SECTIONS = [
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">const NAV_SECTIONS = [
   &#123; id: 'overview', label: 'Overview' &#125;,
   &#123; id: 'problem',  label: 'The Problem' &#125;,
 ]
@@ -753,10 +955,10 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -779,16 +981,16 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <div class="flex flex-wrap gap-4 pt-2">
               <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
                 <input type="checkbox" v-model="sectionFirst" class="rounded" @change="sectionLoose = false" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">first</code>
+                <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">first</code>
               </label>
               <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
                 <input type="checkbox" v-model="sectionLoose" class="rounded" @change="sectionFirst = false" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">loose</code>
+                <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">loose</code>
               </label>
             </div>
 
             <!-- Demo -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5 pt-12">
+            <div class="rounded-xl p-5 pt-12" style="background-color: var(--color-surface-canvas); background-image: radial-gradient(circle, var(--color-dot-grid) 1.2px, transparent 1.2px); background-size: 22px 22px;">
               <CaseStudySection
                 id="ds-section-demo"
                 label="Demo Section"
@@ -796,14 +998,14 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 :loose="sectionLoose"
               >
                 <h3 class="font-heading text-xl font-bold text-[var(--color-headline)]">Section title goes here</h3>
-                <p class="text-[var(--color-muted)] leading-relaxed">This is a live demo of CaseStudySection. Toggle <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">first</code> and <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">loose</code> above to see how spacing changes.</p>
+                <p class="text-[var(--color-muted)] leading-relaxed">This is a live demo of CaseStudySection. Toggle <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">first</code> and <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">loose</code> above to see how spacing changes.</p>
                 <p class="text-[var(--color-muted)] leading-relaxed">A second paragraph showing internal spacing.</p>
               </CaseStudySection>
             </div>
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;CaseStudySection
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;CaseStudySection
   id="overview"
   label="Overview"
   :first="{{ sectionFirst }}"
@@ -814,10 +1016,10 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -836,21 +1038,17 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
           <!-- ── Header ── -->
           <CaseStudySection id="header" label="Header">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">Header</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">The sticky site header rendered globally via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Contains the logo, navigation links, theme switcher, and accessibility panel. No props -- connects to <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">useThemeStore</code> and <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">useA11yStore</code> directly.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">The sticky site header rendered globally via <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Contains the logo, navigation links, theme switcher, and accessibility panel. No props -- connects to <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">useThemeStore</code> and <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">useA11yStore</code> directly.</p>
 
-            <!-- Static visual mockup -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex justify-center">
-              <div class="flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-2 py-2 shadow-lg pointer-events-none select-none">
-                <button class="rounded-full p-2 text-[var(--color-muted)]">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                </button>
+            <!-- Static mockup -->
+            <div class="rounded-xl border border-[var(--color-border-subtle)] p-8 flex justify-center">
+              <nav class="flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-2 py-2 shadow-lg pointer-events-none select-none" aria-hidden="true">
+                <span class="rounded-full p-2 text-[var(--color-muted)]"><IconPalette class="h-4 w-4" /></span>
                 <span class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)]">Work</span>
-                <span class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-brand)] font-semibold">Design System</span>
-                <span class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)]">About</span>
-                <button class="rounded-full p-2 text-[var(--color-muted)]">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                </button>
-              </div>
+                <span class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)]">LinkedIn</span>
+                <span class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-muted)]">Resume</span>
+                <span class="rounded-full p-2 text-[var(--color-muted)]"><IconAccessible class="h-4 w-4" /></span>
+              </nav>
             </div>
 
             <CardCallout
@@ -866,33 +1064,36 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
           <!-- ── ImageCarousel ── -->
           <CaseStudySection id="image-carousel" label="ImageCarousel">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">ImageCarousel</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A crossfade image carousel with GSAP dissolve transitions and prev/next arrow buttons. Used in case study sections to show sequences of screenshots. Buttons hide automatically at the first and last slide.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">A crossfade image carousel with GSAP dissolve transitions. Uses CarouselNav for pagination. Used in case study sections to show sequences of screenshots.</p>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-              <ImageCarousel
-                :images="[
-                  '/project-pages/flora-design-system/flora-design-system-4.png',
-                  '/project-pages/flora-design-system/flora-design-system-5.png',
-                  '/project-pages/flora-design-system/flora-design-system-6.png',
-                ]"
-                :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
-              />
+              <figure>
+                <figcaption class="mb-2 text-xs text-center text-[var(--color-muted)]">Example caption</figcaption>
+                <ImageCarousel
+                  :images="[
+                    '/project-pages/flora-design-system/flora-design-system-4.png',
+                    '/project-pages/flora-design-system/flora-design-system-5.png',
+                    '/project-pages/flora-design-system/flora-design-system-6.png',
+                  ]"
+                  :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
+                />
+              </figure>
             </div>
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;ImageCarousel
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;ImageCarousel
   :images="['/img-1.png', '/img-2.png', '/img-3.png']"
   :alts="['Alt 1', 'Alt 2', 'Alt 3']"
 /&gt;</pre>
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
@@ -912,60 +1113,110 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <p class="text-[var(--color-muted)] leading-relaxed">A yellow post-it note with a tape element. Used for highlights, HMW prompts, and key takeaways. Outer layout classes pass through via class fallthrough.</p>
 
             <!-- Controls -->
-            <div class="flex flex-wrap gap-4 pt-2">
-              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
-                <input type="checkbox" v-model="stickySmall" class="rounded" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">small</code>
+            <div class="flex flex-wrap gap-6 pt-2">
+              <label class="flex items-center gap-3 text-sm text-[var(--color-muted)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">title</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="stickyTitle"
+                  @click="stickyTitle = !stickyTitle"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', stickyTitle ? 'bg-[var(--color-brand)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface)] shadow transition-transform duration-200', stickyTitle ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
               </label>
-              <label class="flex items-center gap-2 text-sm text-[var(--color-muted)] cursor-pointer select-none">
-                <input type="checkbox" v-model="stickySquare" class="rounded" />
-                <code class="font-mono bg-black/[0.05] px-1 rounded text-xs">square</code>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-muted)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-code-bg)] px-1 rounded text-xs">square</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="stickySquare"
+                  @click="stickySquare = !stickySquare"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', stickySquare ? 'bg-[var(--color-brand)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface)] shadow transition-transform duration-200', stickySquare ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
               </label>
             </div>
 
             <!-- Demo -->
-            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex justify-center">
-              <StickyNote :rotate="-1" :small="stickySmall" :square="stickySquare" class="w-40">
-                <span v-if="stickySquare" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-note-label);">How might we</span>
+            <div class="rounded-xl border border-[var(--color-border-subtle)] p-8 flex justify-center">
+              <StickyNote :rotate="-1" :square="stickySquare" class="w-40">
+                <span v-if="stickyTitle" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">How might we</span>
                 Keep Flora self-sustaining throughout 2025.
               </StickyNote>
             </div>
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-white/80 leading-relaxed font-mono whitespace-pre">&lt;StickyNote
-  :rotate="-1"
-  :small="{{ stickySmall }}"
-  :square="{{ stickySquare }}"
-  class="flex-1"
-&gt;
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;StickyNote :rotate="-1" :square="{{ stickySquare }}" class="flex-1"&gt;
+  &lt;span class="..."&gt;How might we&lt;/span&gt;
   Note content goes here.
 &lt;/StickyNote&gt;</pre>
             </div>
 
             <!-- Props table -->
-            <div class="rounded-xl bg-black/[0.03] overflow-hidden">
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="border-b border-black/[0.06]">
+                  <tr class="border-b border-[var(--color-border-subtle)]">
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Prop</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Type</th>
                     <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Description</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-black/[0.04]">
+                <tbody class="divide-y divide-[var(--color-border-subtle)]">
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">rotate</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Rotation in degrees (e.g. -1, 1, -0.5). Also controls tape angle.</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">small</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Smaller tape strip, used for text-only notes</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">square</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Forces aspect-square layout on mobile, used for HMW prompt notes</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">square</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Forces aspect-square layout, used for HMW prompt notes.</td></tr>
                 </tbody>
               </table>
+            </div>
+          </CaseStudySection>
+
+          <!-- ── SegmentedControl ── -->
+          <CaseStudySection id="segmented-control" label="SegmentedControl">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">SegmentedControl</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">A pill-shaped toggle with a sliding brand-colored indicator. Used to switch between two labeled states, such as Before and After. Supports any number of options via the <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">options</code> prop and works with <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">v-model</code>.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5 flex justify-center">
+              <SegmentedControl
+                :options="['Before', 'After']"
+                v-model="segmentedValue"
+              />
+            </div>
+
+            <!-- Props -->
+            <div class="rounded-xl border border-black/[0.08] overflow-hidden">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-[var(--color-surface-subtle)]">
+                  <tr>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Prop</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Type</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-headline)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.05]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">options</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">string[]</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Labels for each segment.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-headline)]">modelValue</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">number</td><td class="px-4 py-3 text-xs text-[var(--color-muted)]">Zero-indexed active segment. Use with v-model.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-headline)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-code-text)] leading-relaxed font-mono whitespace-pre">&lt;SegmentedControl
+  :options="['Before', 'After']"
+  v-model="activeStep"
+/&gt;</pre>
             </div>
           </CaseStudySection>
 
           <!-- ── TimeaAgent ── -->
           <CaseStudySection id="timea-agent" label="TimeaAgent">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-headline)]">TimeaAgent</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed">A sticky chat widget rendered globally via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Sends questions to the Gemini API via <code class="font-mono bg-black/[0.05] px-1.5 py-0.5 rounded text-xs">api/chat.js</code> and falls back to a local scoring-based knowledge base when the API is unavailable. No props.</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">A sticky chat widget rendered globally via <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Sends questions to the Gemini API via <code class="font-mono bg-[var(--color-code-bg)] px-1.5 py-0.5 rounded text-xs">api/chat.js</code> and falls back to a local scoring-based knowledge base when the API is unavailable. No props.</p>
 
             <!-- Static visual mockup -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex flex-col gap-6 items-center pointer-events-none select-none">
@@ -978,19 +1229,19 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand)]">Expanded</p>
               <div class="w-full max-w-md flex flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-xl">
                 <div class="flex items-center gap-3 bg-[var(--color-brand)] px-4 py-3">
-                  <img src="/main-page/timeaAgent.jpg" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-cta-text)]" />
+                  <img src="/main-page/timeaAgent.jpg" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-primary-text)]" />
                   <div class="flex flex-col leading-tight">
-                    <span class="text-base font-semibold text-[var(--color-cta-text)]">TimeaAgent</span>
-                    <span class="text-sm text-[var(--color-cta-text)] opacity-75">AI assistant · Powered by Gemini</span>
+                    <span class="text-base font-semibold text-[var(--color-primary-text)]">TimeaAgent</span>
+                    <span class="text-sm text-[var(--color-primary-text)] opacity-75">AI assistant · Powered by Gemini</span>
                   </div>
-                  <span class="ml-auto rounded-full border border-[var(--color-cta-text)] px-3 py-1 text-sm text-[var(--color-cta-text)]">Close</span>
+                  <span class="ml-auto rounded-full border border-[var(--color-primary-text)] px-3 py-1 text-sm text-[var(--color-primary-text)]">Close</span>
                 </div>
                 <div class="flex flex-col gap-3 px-4 pt-5 pb-3">
                   <p class="text-base font-semibold text-[var(--color-headline)]">Curious about Timea? Start here.</p>
-                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: #e7dbeb;">What has Timea been working on?</div>
-                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: #e7dbeb;">What is Timea's design process?</div>
+                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: var(--color-dusty-violet-100);">What has Timea been working on?</div>
+                  <div class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-headline)]" style="background-color: var(--color-dusty-violet-100);">What is Timea's design process?</div>
                 </div>
-                <div class="flex items-center gap-2 px-2 py-1 mx-2 mb-2 rounded-full border bg-white border-[var(--color-border)]">
+                <div class="flex items-center gap-2 px-2 py-1 mx-2 mb-2 rounded-full border bg-[var(--color-surface)] border-[var(--color-border)]">
                   <span class="min-w-0 flex-1 px-3 py-1.5 text-sm text-[var(--color-muted)]">Type your question...</span>
                 </div>
               </div>

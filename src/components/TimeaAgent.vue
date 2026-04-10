@@ -153,16 +153,16 @@ function onPanelLeave(el: Element, done: () => void) {
           src="/main-page/timeaAgent.jpg"
           alt=""
           aria-hidden="true"
-          class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-cta-text)]"
+          class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-primary-text)]"
         />
         <div class="flex flex-col leading-tight">
-          <span class="text-base font-semibold text-[var(--color-cta-text)]">TimeaAgent</span>
-          <span class="text-sm text-[var(--color-cta-text)] opacity-75">AI assistant · Powered by Gemini</span>
+          <span class="text-base font-semibold text-[var(--color-primary-text)]">TimeaAgent</span>
+          <span class="text-sm text-[var(--color-primary-text)] opacity-75">AI assistant · Powered by Gemini</span>
         </div>
         <button
           type="button"
           @click="expanded = false"
-          class="ml-auto rounded-full border border-[var(--color-cta-text)] px-3 py-1 text-sm text-[var(--color-cta-text)] hover:bg-[var(--color-cta-text)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-cta-text)]"
+          class="ml-auto rounded-full border border-[var(--color-primary-text)] px-3 py-1 text-sm text-[var(--color-primary-text)] hover:bg-[var(--color-primary-text)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary-text)]"
           aria-label="Close chat"
         >
           Close
@@ -193,7 +193,7 @@ function onPanelLeave(el: Element, done: () => void) {
         <template v-for="(m, i) in messages" :key="i">
           <div
             v-if="m.role === 'user'"
-            class="ml-auto max-w-[85%] rounded-lg bg-[var(--color-brand)] px-3 py-2 text-sm text-[var(--color-cta-text)]"
+            class="ml-auto max-w-[85%] rounded-lg bg-[var(--color-brand)] px-3 py-2 text-sm text-[var(--color-primary-text)]"
           >
             {{ m.text }}
           </div>
@@ -228,7 +228,7 @@ function onPanelLeave(el: Element, done: () => void) {
         />
         <button
           type="submit"
-          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-brand)] transition-colors group-focus-within:bg-[var(--color-brand)] group-focus-within:text-[var(--color-cta-text)] hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)] disabled:opacity-40 ml-1 mr-[-2px]"
+          class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-brand)] transition-colors group-focus-within:bg-[var(--color-brand)] group-focus-within:text-[var(--color-primary-text)] hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand)] disabled:opacity-40 ml-1 mr-[-2px]"
           aria-label="Send message"
           :disabled="!input.trim() || isThinking"
         >
