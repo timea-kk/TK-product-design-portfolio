@@ -47,7 +47,7 @@ describe('FloraDesignSystemPage', () => {
     expect(labels).toEqual([
       'Overview', 'Context', 'The Problem',
       'My Approach', 'Ownership', 'Contribution', 'DS Health', 'Evolution',
-      'Card Component', 'Results',
+      'Highlight', 'Results',
     ])
   })
 

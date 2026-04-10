@@ -3,13 +3,9 @@
 <script setup lang="ts">
 const props = defineProps<{
   rotate: number    // degrees, e.g. -1, 1, -0.5
-  small?: boolean   // smaller tape (3.5rem vs 4rem) for text-only notes
   square?: boolean  // aspect-square layout for "How might we" notes
 }>()
 
-const tapeW = props.small ? '3.5rem' : '4rem'
-const tapeH = props.small ? '1.4rem' : '1.6rem'
-const tapeTop = props.small ? '-0.7rem' : '-0.8rem'
 const tapeRotate = `${-props.rotate * 2}deg`
 </script>
 
@@ -18,9 +14,9 @@ const tapeRotate = `${-props.rotate * 2}deg`
     <div
       class="absolute z-10"
       :style="{
-        width: tapeW,
-        height: tapeH,
-        top: tapeTop,
+        width: '4rem',
+        height: '1.6rem',
+        top: '-0.8rem',
         left: '50%',
         transform: `translateX(-50%) rotate(${tapeRotate})`,
         background: 'rgba(210, 228, 255, 0.68)',
@@ -31,10 +27,10 @@ const tapeRotate = `${-props.rotate * 2}deg`
       :class="[
         'px-3 py-5 text-xs leading-relaxed text-center text-[var(--color-headline)] sm:px-5 sm:text-sm',
         square
-          ? 'flex flex-col items-center justify-center gap-3 aspect-square sm:aspect-auto sm:py-5'
+          ? 'flex flex-col items-center justify-center gap-3 aspect-square'
           : 'sm:py-6 [&>span:first-child]:block [&>span:first-child]:w-fit [&>span:first-child]:mx-auto [&>span:first-child]:mb-3',
       ]"
-      style="background: var(--color-sticky-note-bg); box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"
+      style="background: var(--color-sticky-surface); box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"
     >
       <slot />
     </div>

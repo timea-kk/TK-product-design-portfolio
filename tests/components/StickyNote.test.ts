@@ -33,16 +33,6 @@ describe('StickyNote', () => {
     expect(tape.attributes('style')).toContain('top: -0.8rem')
   })
 
-  it('uses smaller tape dimensions when small prop is set', () => {
-    const wrapper = mount(StickyNote, {
-      props: { rotate: 1, small: true },
-    })
-    const tape = wrapper.find('.absolute.z-10')
-    expect(tape.attributes('style')).toContain('width: 3.5rem')
-    expect(tape.attributes('style')).toContain('height: 1.4rem')
-    expect(tape.attributes('style')).toContain('top: -0.7rem')
-  })
-
   it('applies aspect-square class when square prop is set', () => {
     const wrapper = mount(StickyNote, {
       props: { rotate: -1, square: true },
