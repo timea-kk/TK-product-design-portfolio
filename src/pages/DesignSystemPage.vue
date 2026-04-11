@@ -479,7 +479,7 @@ const groupedComponents = computed(() => {
                   <div class="grid gap-6" style="grid-template-columns: 1fr 1fr auto">
 
                     <!-- primitives -->
-                    <div class="space-y-4">
+                    <div data-testid="prim-col" class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Primitive</p>
                       <div v-for="primGroup in groupedPrimitives" :key="primGroup.group" class="space-y-1">
                         <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ primGroup.group }}</p>
@@ -504,7 +504,7 @@ const groupedComponents = computed(() => {
                     </div>
 
                     <!-- tokens -->
-                    <div class="space-y-4">
+                    <div data-testid="token-col" class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Token</p>
                       <div v-for="tokenGroup in groupedTokens" :key="tokenGroup.group" class="space-y-1">
                         <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ tokenGroup.group }}</p>
@@ -529,7 +529,7 @@ const groupedComponents = computed(() => {
                     </div>
 
                     <!-- components -->
-                    <div class="space-y-4">
+                    <div data-testid="comp-col" class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Used in</p>
                       <div v-for="compGroup in groupedComponents" :key="compGroup.group" class="space-y-1">
                         <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ compGroup.group }}</p>
