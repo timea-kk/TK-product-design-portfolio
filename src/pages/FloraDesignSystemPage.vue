@@ -46,7 +46,7 @@ const panelRef = ref<HTMLElement | null>(null)
       "
     >
       <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
+      <div class="flex gap-8 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14" style="padding-left: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(2rem, 4vw, 3.5rem);">
 
         <!-- Left nav (desktop only) -->
         <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
@@ -374,21 +374,21 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
             <div class="flex flex-col sm:flex-row gap-3 pt-2">
               <CardCallout
-                label="Results"
+                label="What I learned"
                 class="flex-1"
                 :items="[
-                  { title: 'Independent contributors', description: 'Designers became comfortable contributing without needing a dedicated DS lead.' },
-                  { title: 'Healthier libraries', description: 'Tracked monthly, health scores across all libraries improved consistently throughout 2025.' },
-                  { title: 'Higher quality', description: 'Shared standards and reviews raised the bar across all contributions.' }
+                  { title: 'Documentation reduces friction', description: 'Writing things down ensured no knowledge was locked in one person\'s head, which made the system far more resilient.' },
+                  { title: 'Lightweight governance works', description: 'Just enough process was the right call. Heavy governance would have created more drag than value for a small team.' },
+                  { title: 'Transparency drives accountability', description: 'Regular updates and visible health scores made the whole team feel invested in the outcome.' }
                 ]"
               />
               <CardCallout
-                label="Learnings"
+                label="What I'd do differently"
                 class="flex-1"
                 :items="[
-                  { title: 'Documentation reduces friction', description: 'Writing things down ensured no knowledge was locked in one person\'s head.' },
-                  { title: 'Lightweight governance works', description: 'Just enough process was the right call; heavy governance would have created more drag than value.' },
-                  { title: 'Transparency drives accountability', description: 'Regular updates and visible progress made the whole team feel accountable and motivated.' }
+                  { title: 'Establish contribution guidelines earlier', description: 'The checklist and review process came mid-project. Setting those expectations from the start would have improved consistency in the early contributions.' },
+                  { title: 'Quantify impact sooner', description: 'Health tracking started later than it should have. Earlier baselines would have made the story clearer and easier to communicate to stakeholders.' },
+                  { title: 'Involve more voices in token decisions', description: 'Token naming and structure decisions were made quickly. More input from engineers and other designers early on would have reduced rework later.' }
                 ]"
               />
             </div>
@@ -397,7 +397,7 @@ const panelRef = ref<HTMLElement | null>(null)
         </div><!-- /content -->
 
         <!-- Balances the left nav so content stays centered -->
-        <div class="hidden lg:block w-52 shrink-0"></div>
+        <div class="hidden min-[1568px]:block w-52 shrink-0"></div>
 
       </div><!-- /sidebar + content -->
     </div><!-- /whiteboard panel -->

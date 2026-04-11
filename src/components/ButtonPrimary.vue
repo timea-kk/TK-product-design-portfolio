@@ -14,7 +14,7 @@ defineEmits<{ click: [] }>()
     :type="type ?? 'button'"
     :disabled="disabled"
     :class="[
-      'inline-flex items-center justify-center gap-2 rounded-full transition-colors duration-200 bg-[var(--color-button-bg-primary)] shadow-sm',
+      'inline-flex items-center justify-center gap-2 rounded-full transition-colors duration-200 bg-[var(--color-button-bg-primary)] shadow-sm whitespace-nowrap',
       iconOnly ? 'p-2.5' : 'px-5 py-2.5 text-sm font-medium',
       'text-[var(--color-button-text-primary)] hover:opacity-90',
       active ? 'opacity-75' : '',

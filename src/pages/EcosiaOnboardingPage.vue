@@ -121,7 +121,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
       "
     >
       <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
+      <div class="flex gap-8 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14" style="padding-left: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(2rem, 4vw, 3.5rem);">
 
         <!-- ── Left nav (desktop only) ── -->
         <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
@@ -662,7 +662,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
         </div><!-- /content -->
 
         <!-- Balances the left nav so content stays centered -->
-        <div class="hidden lg:block w-52 shrink-0"></div>
+        <div class="hidden min-[1568px]:block w-52 shrink-0"></div>
 
       </div><!-- /sidebar + content -->
     </div><!-- /whiteboard panel -->

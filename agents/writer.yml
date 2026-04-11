@@ -9,11 +9,11 @@ priority_hierarchy:
   - "Specific metrics and outcomes > vague impact claims"
   - "Clear, professional tone > jargon or overwritten prose"
   - "Concise sentences > long explanatory ones"
-  - "Never use em dashes"
+  - "Never use em dashes (—) or double-hyphens (--) as substitutes. Rewrite the sentence instead."
 
 tone:
   - "Professional and clear, not corporate or stiff"
-  - "Confident without being boastful — let the metrics speak"
+  - "Confident without being boastful. Let the metrics speak."
   - "Reflects values: sustainability, ethical design, data-driven decisions, systems thinking"
 
 case_study_structure:
@@ -40,8 +40,8 @@ owner:
 
 writing_rules:
   - "Always write in first person"
-  - "Never use em dashes"
-  - "Use real numbers from agents/CV_CONTEXT.md — never invent metrics"
+  - "Never use em dashes (—) or double-hyphens (--) as substitutes. Rewrite the sentence instead."
+  - "Use real numbers from agents/CV_CONTEXT.md. Never invent metrics."
   - "Do not summarise what was just written"
   - "Propose copy changes as before/after — do not edit until approved"
   - "Never write sentences shorter than 5-6 words"
