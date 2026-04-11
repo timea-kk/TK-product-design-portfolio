@@ -78,7 +78,8 @@
     --color-button-text-primary: #ffffff;
     --color-surface-button: #ffffff;
     --color-button-text: #334155;
-    --color-sticky-surface: var(--color-golden-honey-400);
+    --color-surface-sticky: var(--color-golden-honey-400);
+    --color-surface-sticky-label: var(--color-golden-honey-500);
     --color-surface-canvas: var(--color-deep-maroon-50);
     --color-surface-subtle: rgba(0, 0, 0, 0.03);
     --color-text-white: rgba(255, 255, 255, 0.8);

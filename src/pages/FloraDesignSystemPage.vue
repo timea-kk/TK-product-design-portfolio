@@ -185,7 +185,7 @@ const panelRef = ref<HTMLElement | null>(null)
           </CaseStudySection>
 
           <!-- Establishing ownership -->
-          <CaseStudySection id="establishing-ownership" label="Ownership" loose>
+          <CaseStudySection id="establishing-ownership" label="Ownership">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Every designer knew their role</h2>
             <div class="space-y-4">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">
@@ -197,21 +197,21 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
             <CardCallout label="Outcomes">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">With ownership mapped and recurring planning sessions in place:</p>
-              <div class="flex gap-3 pt-3">
-                <StickyNote :rotate="-1" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
+              <div class="grid grid-cols-2 sm:flex gap-x-3 gap-y-6 sm:gap-3 pt-3">
+                <StickyNote :rotate="-1" small class="sm:flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">✅</span>
                   <span>Designers knew exactly <strong>what to work on</strong></span>
                 </StickyNote>
-                <StickyNote :rotate="1" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
+                <StickyNote :rotate="1" small class="sm:flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">✅</span>
                   <span>Everyone was aligned on what our <strong>priorities</strong> were</span>
                 </StickyNote>
-                <StickyNote :rotate="-0.5" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
+                <StickyNote :rotate="-0.5" small class="sm:flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">✅</span>
                   <span>Always clear who to reach out to for <strong>reviews</strong></span>
                 </StickyNote>
-                <StickyNote :rotate="0.75" small class="flex-1">
-                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-label);">✅</span>
+                <StickyNote :rotate="0.75" small class="sm:flex-1">
+                  <span class="font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">✅</span>
                   <span>Nothing needing <strong>collective attention</strong> fell through</span>
                 </StickyNote>
               </div>
@@ -230,7 +230,7 @@ const panelRef = ref<HTMLElement | null>(null)
           </CaseStudySection>
 
           <!-- Contribution model -->
-          <CaseStudySection id="contribution-model" label="Contribution" loose>
+          <CaseStudySection id="contribution-model" label="Contribution">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Consistent, higher-quality contributions</h2>
             <div class="space-y-4">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">
@@ -262,7 +262,7 @@ const panelRef = ref<HTMLElement | null>(null)
           </CaseStudySection>
 
           <!-- DS health -->
-          <CaseStudySection id="ds-health" label="DS Health" loose>
+          <CaseStudySection id="ds-health" label="DS Health">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Progress tied to real numbers</h2>
             <div class="space-y-4">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">
@@ -290,7 +290,7 @@ const panelRef = ref<HTMLElement | null>(null)
           </CaseStudySection>
 
           <!-- Evolving the system -->
-          <CaseStudySection id="evolving-system" label="Evolution" loose>
+          <CaseStudySection id="evolving-system" label="Evolution">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Practices that compounded over time</h2>
             <div class="space-y-4">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">

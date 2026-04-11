@@ -21,12 +21,12 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       include: ['src/**/*.{ts,vue}'],
       exclude: ['src/main.ts', 'src/data/**'],
-      // Fail the CI run if any coverage metric drops below 70%
+      // Fail the CI run (and pre-commit hook) if coverage drops below these levels.
       thresholds: {
-        lines: 70,
-        functions: 70,
-        branches: 70,
-        statements: 70,
+        lines: 95,
+        functions: 75,
+        branches: 85,
+        statements: 95,
       },
     },
   },

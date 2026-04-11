@@ -30,7 +30,7 @@ const tapeRotate = `${-props.rotate * 2}deg`
           ? 'flex flex-col items-center justify-center gap-3 aspect-square'
           : 'sm:py-6 [&>span:first-child]:block [&>span:first-child]:w-fit [&>span:first-child]:mx-auto [&>span:first-child]:mb-3',
       ]"
-      style="background: var(--color-sticky-surface); box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"
+      style="background: var(--color-surface-sticky); box-shadow: 1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18);"
     >
       <slot />
     </div>

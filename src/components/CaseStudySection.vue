@@ -5,7 +5,6 @@ defineProps<{
   id: string
   label: string
   first?: boolean  // hero section: adds top margin, taller padding, looser spacing
-  loose?: boolean  // content-heavy non-hero sections: looser internal spacing
 }>()
 </script>
 
@@ -14,9 +13,7 @@ defineProps<{
     :id="id"
     :class="[
       'scroll-mt-24 relative rounded-2xl bg-white border border-black/[0.06] px-5 py-8 sm:px-10',
-      first  ? 'mt-[35px] sm:py-14 space-y-8' :
-      loose  ? 'sm:py-10 space-y-8' :
-               'sm:py-10 space-y-4',
+      first ? 'mt-[35px] sm:py-14 space-y-8' : 'sm:py-10 space-y-4',
     ]"
   >
     <p
