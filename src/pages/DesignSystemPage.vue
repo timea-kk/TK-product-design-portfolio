@@ -59,8 +59,6 @@ const carouselNavStep = ref(2)
 
 // SegmentedControl demo state
 const segmentedValue = ref(0)
-const sectionLoose = ref(false)
-
 // CaseStudyNav demo state
 const navDemoPanelRef = ref<HTMLElement | null>(null)
 const NAV_DEMO_SECTIONS = [
@@ -249,68 +247,86 @@ const SEMANTIC_MAP = [
   // ── Neutrals / white ─────────────────────────────────────────────────────
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
-    token:     { name: '--color-button-text-primary', hex: '#ffffff',               label: 'Button Text Primary' },
+    token:     { name: '--color-button-text-primary', hex: '#ffffff',               label: 'Button Text Primary', group: 'Button' },
     usedIn:    ['ButtonPrimary', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
-    token:     { name: '--color-surface-button',      hex: '#ffffff',               label: 'Surface Button' },
+    token:     { name: '--color-surface-button',      hex: '#ffffff',               label: 'Surface Button', group: 'Surface' },
     usedIn:    ['ButtonOutline', 'CarouselNav'],
   },
   // ── Dusty Violet ─────────────────────────────────────────────────────────
   {
     primitive: { group: 'Dusty Violet', step: '50',  hex: '#f0e9f3', varName: '--color-dusty-violet-50' },
-    token:     { name: '--color-highlight',  hex: 'rgba(153,102,170,0.1)', label: 'Highlight' },
+    token:     { name: '--color-highlight',  hex: 'rgba(153,102,170,0.1)', label: 'Highlight', group: 'Brand' },
     usedIn:    ['RotatingDescriptor', 'Header'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '200', hex: '#d9c7e0', varName: '--color-dusty-violet-200' },
-    token:     { name: '--color-surface-decorative',             hex: 'var(--color-dusty-violet-200)', label: 'Surface Decorative' },
+    token:     { name: '--color-surface-decorative',             hex: 'var(--color-dusty-violet-200)', label: 'Surface Decorative', group: 'Surface' },
     usedIn:    ['A11yPanel', 'AppLayout', 'Header', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
-    token:     { name: '--color-brand-primary',       hex: 'var(--color-dusty-violet-500)', label: 'Brand Primary' },
+    token:     { name: '--color-brand-primary',       hex: 'var(--color-dusty-violet-500)', label: 'Brand Primary', group: 'Brand' },
     usedIn:    ['A11yPanel', 'ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardStat', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
-    token:     { name: '--color-button-bg-primary',     hex: 'var(--color-dusty-violet-500)', label: 'Button BG Primary' },
+    token:     { name: '--color-button-bg-primary',     hex: 'var(--color-dusty-violet-500)', label: 'Button BG Primary', group: 'Button' },
     usedIn:    ['ButtonPrimary'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
-    token:     { name: '--color-text-primary',        hex: 'var(--color-dusty-violet-900)', label: 'Text Primary' },
+    token:     { name: '--color-text-primary',        hex: 'var(--color-dusty-violet-900)', label: 'Text Primary', group: 'Text' },
     usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
-    token:     { name: '--color-button-text',         hex: 'var(--color-dusty-violet-900)', label: 'Button Text' },
-    usedIn:    ['ButtonOutline', 'CarouselNav'],
+    token:     { name: '--color-button-text',         hex: 'var(--color-dusty-violet-900)', label: 'Button Text', group: 'Button' },
+    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CarouselNav', 'TimeaAgent'],
   },
   // ── Golden Honey ─────────────────────────────────────────────────────────
   {
     primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
-    token:     { name: '--color-surface-elevation-1',    hex: 'var(--color-golden-honey-50)',  label: 'Surface Elevation 1' },
+    token:     { name: '--color-surface-elevation-1',    hex: 'var(--color-golden-honey-50)',  label: 'Surface Elevation 1', group: 'Surface' },
     usedIn:    ['A11yPanel', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
-    token:     { name: '--color-border',              hex: 'var(--color-golden-honey-200)', label: 'Border' },
+    token:     { name: '--color-border',              hex: 'var(--color-golden-honey-200)', label: 'Border', group: 'Border' },
     usedIn:    ['A11yPanel', 'ButtonOutline', 'CarouselNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
-    token:     { name: '--color-sticky-surface',      hex: 'var(--color-golden-honey-400)', label: 'Sticky Surface' },
+    token:     { name: '--color-surface-sticky',      hex: 'var(--color-golden-honey-400)', label: 'Sticky Surface', group: 'Surface' },
     usedIn:    ['StickyNote'],
+  },
+  {
+    primitive: { group: 'Golden Honey', step: '500', hex: '#EDB73B', varName: '--color-golden-honey-500' },
+    token:     { name: '--color-surface-sticky-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Label', group: 'Surface' },
+    usedIn:    ['FloraDesignSystemPage'],
   },
   // ── Deep Maroon ──────────────────────────────────────────────────────────
   {
     primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
-    token:     { name: '--color-text-secondary',               hex: 'var(--color-deep-maroon-600)',  label: 'Text Secondary' },
+    token:     { name: '--color-text-secondary',               hex: 'var(--color-deep-maroon-600)',  label: 'Text Secondary', group: 'Text' },
     usedIn:    ['A11yPanel', 'CardCallout', 'CardInteractive', 'CardStat', 'CardTimeline', 'CaseStudyNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
 ]
+
+const TOKEN_GROUP_ORDER = ['Brand', 'Surface', 'Text', 'Border', 'Button']
+
+const groupedTokens = computed(() => {
+  const map = new Map<string, (typeof SEMANTIC_MAP)>()
+  for (const g of TOKEN_GROUP_ORDER) map.set(g, [])
+  for (const e of SEMANTIC_MAP) {
+    const g = e.token.group ?? 'Other'
+    if (!map.has(g)) map.set(g, [])
+    map.get(g)!.push(e)
+  }
+  return [...map.entries()].filter(([, entries]) => entries.length > 0).map(([group, entries]) => ({ group, entries }))
+})
 
 const GROUP_ORDER = ['Neutrals', 'Dusty Violet', 'Golden Honey', 'Deep Maroon', '']
 const STEP_ORDER  = ['white', 'black', '50', '100', '200', '300', '400', '500', '600', '700', '800', '900']
@@ -329,6 +345,37 @@ const uniquePrimitives = computed(() => {
   })
 })
 
+const groupedPrimitives = computed(() => {
+  const map = new Map<string, (typeof SEMANTIC_MAP)[0]['primitive'][]>()
+  for (const g of GROUP_ORDER.filter(g => g !== '')) map.set(g, [])
+  for (const p of uniquePrimitives.value) {
+    if (!map.has(p.group)) map.set(p.group, [])
+    map.get(p.group)!.push(p)
+  }
+  return [...map.entries()].filter(([, entries]) => entries.length > 0).map(([group, entries]) => ({ group, entries }))
+})
+
+const COMPONENT_GROUP_MAP: Record<string, string> = {
+  A11yPanel:         'Overlays',
+  AppLayout:         'Layout',
+  ButtonOutline:     'Buttons',
+  ButtonPrimary:     'Buttons',
+  CardCallout:       'Cards',
+  CardInteractive:   'Cards',
+  CardStat:          'Cards',
+  CardTimeline:      'Cards',
+  CarouselNav:       'Navigation',
+  CaseStudyNav:      'Navigation',
+  CaseStudySection:  'Navigation',
+  Header:            'Layout',
+  Logo:              'Decorative',
+  RotatingDescriptor:'Decorative',
+  SegmentedControl:  'Navigation',
+  StickyNote:        'Decorative',
+  ThemeSwitcher:     'Overlays',
+  TimeaAgent:        'Agent',
+}
+
 const uniqueComponents = computed(() => {
   const seen = new Set<string>()
   const result: string[] = []
@@ -338,6 +385,18 @@ const uniqueComponents = computed(() => {
     }
   }
   return result.sort((a, b) => a.localeCompare(b))
+})
+
+const groupedComponents = computed(() => {
+  const map = new Map<string, string[]>()
+  for (const comp of uniqueComponents.value) {
+    const g = COMPONENT_GROUP_MAP[comp] ?? 'Other'
+    if (!map.has(g)) map.set(g, [])
+    map.get(g)!.push(comp)
+  }
+  return [...map.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([group, comps]) => ({ group, comps: comps.sort((a, b) => a.localeCompare(b)) }))
 })
 </script>
 
@@ -355,6 +414,7 @@ const uniqueComponents = computed(() => {
         background-size: 22px 22px;
       "
     >
+      <!-- Inner: sidebar + content -->
       <div class="flex gap-8 px-4 sm:px-8 lg:px-14 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14">
 
         <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
@@ -419,72 +479,76 @@ const uniqueComponents = computed(() => {
                   <div class="grid gap-6" style="grid-template-columns: 1fr 1fr auto">
 
                     <!-- primitives -->
-                    <div class="space-y-1">
+                    <div class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Primitive</p>
-                      <div
-                        v-for="p in uniquePrimitives"
-                        :key="primKey(p)"
-                        :ref="(el) => { if (el) primitiveEls[primKey(p)] = el as HTMLElement }"
-                        class="flex items-center gap-2 px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
-                        :class="hoveredId === `prim:${primKey(p)}`
-                          ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
-                          : highlightedPrimitives.has(primKey(p))
-                            ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
-                            : 'hover:bg-[var(--color-surface-subtle)]'"
-                        @mouseenter="hoverPrimitive(p)"
-                        @mouseleave="clearHover()"
-                        @click.stop="hoveredId === `prim:${primKey(p)}` ? clearHover() : hoverPrimitive(p)"
-                      >
-                        <div class="w-5 h-5 rounded shrink-0 border border-black/[0.10]" :style="{ background: p.hex }"></div>
-                        <div class="min-w-0">
+                      <div v-for="primGroup in groupedPrimitives" :key="primGroup.group" class="space-y-1">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ primGroup.group }}</p>
+                        <div
+                          v-for="p in primGroup.entries"
+                          :key="primKey(p)"
+                          :ref="(el) => { if (el) primitiveEls[primKey(p)] = el as HTMLElement }"
+                          class="flex items-center gap-2 px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
+                          :class="hoveredId === `prim:${primKey(p)}`
+                            ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
+                            : highlightedPrimitives.has(primKey(p))
+                              ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
+                              : 'hover:bg-[var(--color-surface-subtle)]'"
+                          @mouseenter="hoverPrimitive(p)"
+                          @mouseleave="clearHover()"
+                          @click.stop="hoveredId === `prim:${primKey(p)}` ? clearHover() : hoverPrimitive(p)"
+                        >
+                          <div class="w-5 h-5 rounded shrink-0 border border-black/[0.10]" :style="{ background: p.hex }"></div>
                           <p class="font-mono text-[10px] text-[var(--color-text-primary)] leading-tight truncate">{{ p.varName || '#ffffff' }}</p>
                         </div>
                       </div>
                     </div>
 
                     <!-- tokens -->
-                    <div class="space-y-1">
+                    <div class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Token</p>
-                      <div
-                        v-for="entry in SEMANTIC_MAP"
-                        :key="entry.token.name"
-                        :ref="(el) => { if (el) tokenEls[entry.token.name] = el as HTMLElement }"
-                        class="flex items-center gap-2 px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
-                        :class="hoveredId === `token:${entry.token.name}`
-                          ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
-                          : highlightedTokens.has(entry.token.name)
-                            ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
-                            : 'hover:bg-[var(--color-surface-subtle)]'"
-                        @mouseenter="hoverToken(entry)"
-                        @mouseleave="clearHover()"
-                        @click.stop="hoveredId === `token:${entry.token.name}` ? clearHover() : hoverToken(entry)"
-                      >
-                        <div class="w-5 h-5 rounded shrink-0 border border-black/[0.10]" :style="{ background: entry.token.hex }"></div>
-                        <div class="min-w-0">
-                          <p class="text-xs font-semibold text-[var(--color-text-primary)] leading-tight">{{ entry.token.label }}</p>
+                      <div v-for="tokenGroup in groupedTokens" :key="tokenGroup.group" class="space-y-1">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ tokenGroup.group }}</p>
+                        <div
+                          v-for="entry in tokenGroup.entries"
+                          :key="entry.token.name"
+                          :ref="(el) => { if (el) tokenEls[entry.token.name] = el as HTMLElement }"
+                          class="flex items-center gap-2 px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
+                          :class="hoveredId === `token:${entry.token.name}`
+                            ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
+                            : highlightedTokens.has(entry.token.name)
+                              ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
+                              : 'hover:bg-[var(--color-surface-subtle)]'"
+                          @mouseenter="hoverToken(entry)"
+                          @mouseleave="clearHover()"
+                          @click.stop="hoveredId === `token:${entry.token.name}` ? clearHover() : hoverToken(entry)"
+                        >
+                          <div class="w-5 h-5 rounded shrink-0 border border-black/[0.10]" :style="{ background: entry.token.hex }"></div>
                           <p class="font-mono text-[10px] text-[var(--color-text-secondary)] truncate">{{ entry.token.name }}</p>
                         </div>
                       </div>
                     </div>
 
                     <!-- components -->
-                    <div class="space-y-1">
+                    <div class="space-y-4">
                       <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] pb-2">Used in</p>
-                      <div
-                        v-for="comp in uniqueComponents"
-                        :key="comp"
-                        :ref="(el) => { if (el) componentEls[comp] = el as HTMLElement }"
-                        class="flex items-center px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
-                        :class="hoveredId === `comp:${comp}`
-                          ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
-                          : highlightedComponents.has(comp)
-                            ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
-                            : 'hover:bg-[var(--color-surface-subtle)]'"
-                        @mouseenter="hoverComponent(comp)"
-                        @mouseleave="clearHover()"
-                        @click.stop="hoveredId === `comp:${comp}` ? clearHover() : hoverComponent(comp)"
-                      >
-                        <p class="text-xs font-semibold text-[var(--color-text-primary)]">{{ comp }}</p>
+                      <div v-for="compGroup in groupedComponents" :key="compGroup.group" class="space-y-1">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] opacity-50 pb-1">{{ compGroup.group }}</p>
+                        <div
+                          v-for="comp in compGroup.comps"
+                          :key="comp"
+                          :ref="(el) => { if (el) componentEls[comp] = el as HTMLElement }"
+                          class="flex items-center px-2 py-2 rounded-lg cursor-default transition-colors duration-100 ring-inset w-fit"
+                          :class="hoveredId === `comp:${comp}`
+                            ? 'bg-[var(--color-brand-primary)]/[0.12] ring-1 ring-[var(--color-brand-primary)]/50'
+                            : highlightedComponents.has(comp)
+                              ? 'bg-[var(--color-brand-primary)]/[0.07] ring-1 ring-[var(--color-brand-primary)]/20'
+                              : 'hover:bg-[var(--color-surface-subtle)]'"
+                          @mouseenter="hoverComponent(comp)"
+                          @mouseleave="clearHover()"
+                          @click.stop="hoveredId === `comp:${comp}` ? clearHover() : hoverComponent(comp)"
+                        >
+                          <p class="text-xs font-semibold text-[var(--color-text-primary)]">{{ comp }}</p>
+                        </div>
                       </div>
                     </div>
 
@@ -970,13 +1034,17 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
 
             <!-- Controls -->
             <div class="flex flex-wrap gap-4 pt-2">
-              <label class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
-                <input type="checkbox" v-model="sectionFirst" class="rounded" @change="sectionLoose = false" />
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
                 <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">first</code>
-              </label>
-              <label class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
-                <input type="checkbox" v-model="sectionLoose" class="rounded" @change="sectionFirst = false" />
-                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">loose</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="sectionFirst"
+                  @click="sectionFirst = !sectionFirst"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', sectionFirst ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', sectionFirst ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
               </label>
             </div>
 
@@ -986,10 +1054,9 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 id="ds-section-demo"
                 label="Demo Section"
                 :first="sectionFirst"
-                :loose="sectionLoose"
               >
                 <h3 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Section title goes here</h3>
-                <p class="text-[var(--color-text-secondary)] leading-relaxed">This is a live demo of CaseStudySection. Toggle <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">first</code> and <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">loose</code> above to see how spacing changes.</p>
+                <p class="text-[var(--color-text-secondary)] leading-relaxed">This is a live demo of CaseStudySection. Toggle <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">first</code> above to see how spacing changes.</p>
                 <p class="text-[var(--color-text-secondary)] leading-relaxed">A second paragraph showing internal spacing.</p>
               </CaseStudySection>
             </div>
@@ -1000,7 +1067,6 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
   id="overview"
   label="Overview"
   :first="{{ sectionFirst }}"
-  :loose="{{ sectionLoose }}"
 &gt;
   &lt;!-- section content --&gt;
 &lt;/CaseStudySection&gt;</pre>
@@ -1020,7 +1086,6 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">id</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Used for scroll spy and anchor linking</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Floating brand label above the card</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">first</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Hero section: adds top margin, taller padding, looser internal spacing</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">loose</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Content-heavy sections: looser internal spacing without hero treatment</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1134,7 +1199,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <!-- Demo -->
             <div class="rounded-xl border border-[var(--color-surface-subtle)] p-8 flex justify-center">
               <StickyNote :rotate="-1" :square="stickySquare" class="w-40">
-                <span v-if="stickyTitle" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-sticky-surface); opacity: 0.6;">How might we</span>
+                <span v-if="stickyTitle" class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">How might we</span>
                 Keep Flora self-sustaining throughout 2025.
               </StickyNote>
             </div>

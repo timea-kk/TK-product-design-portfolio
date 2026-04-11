@@ -1,6 +1,6 @@
 /**
  * Component tests for CaseStudySection.vue.
- * Covers: rendering, label, id, first prop, loose prop, slot content.
+ * Covers: rendering, label, id, first prop, slot content.
  */
 
 import { describe, it, expect } from 'vitest'
@@ -38,15 +38,7 @@ describe('CaseStudySection', () => {
     expect(wrapper.classes()).toContain('space-y-8')
   })
 
-  it('applies loose variant classes when loose prop is set', () => {
-    const wrapper = mount(CaseStudySection, {
-      props: { id: 'initiatives', label: 'Initiatives', loose: true },
-    })
-    expect(wrapper.classes()).toContain('space-y-8')
-    expect(wrapper.classes()).not.toContain('mt-[35px]')
-  })
-
-  it('applies standard variant classes when neither first nor loose is set', () => {
+  it('applies standard variant classes when first is not set', () => {
     const wrapper = mount(CaseStudySection, {
       props: { id: 'problem', label: 'The Problem' },
     })
