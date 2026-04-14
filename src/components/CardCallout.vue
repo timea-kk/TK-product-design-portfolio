@@ -21,6 +21,6 @@ withDefaults(defineProps<{
         </div>
       </div>
     </template>
-    <slot v-else />
+    <div v-else><slot /></div>
   </div>
 </template>

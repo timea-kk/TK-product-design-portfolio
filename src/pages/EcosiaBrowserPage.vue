@@ -111,47 +111,71 @@ const panelRef = ref<HTMLElement | null>(null)
           <CaseStudySection id="context" label="Context">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">A browser that turns everyday browsing into climate action</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              Ecosia is a search engine that dedicates 100% of its profits to planting trees all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission.
+              Ecosia is a search engine that dedicates <strong>100% of its profits to planting trees</strong> all over the world. Like other search engines, it generates revenue through ads, but this revenue goes towards a unique and sustainable mission.
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              I joined Ecosia in 2020 as a Product Designer, working in a cross-functional team focused on user engagement. In 2024, the company decided to take a bold step beyond search by creating the Ecosia Browser: a privacy-friendly, Chromium-based browser that could serve as a new, independent product line.
+              I joined Ecosia in <strong>2020</strong> as a Product Designer, working in a cross-functional team focused on user engagement. In <strong>2024</strong>, the company decided to take a step beyond search by creating the <strong>Ecosia Browser</strong>: a privacy-friendly, <strong>Chromium-based</strong> browser that could serve as a <strong>new, independent product line</strong>.
             </p>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              My role was to design the browser install funnel and ensure users could easily discover, understand, and adopt Ecosia's new browser.
-            </p>
+            <CardCallout label="My role">
+              I owned the browser install funnel end to end, designing an experience to help users discover, understand, and adopt Ecosia's new browser.
+            </CardCallout>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-2.png</div>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-2.png" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia product offering: Extensions, native apps, Default Search &amp; Desktop browser</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- ── The Problem ── -->
           <CaseStudySection id="problem" label="The Problem">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Building stability in a volatile search landscape</h2>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">We had to build stability in a rocky search landscape</h2>
 
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Business problem</p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              Ecosia's search engine relied on partnerships with providers like Google and Bing to deliver results and generate revenue. These agreements were volatile, often renegotiated or ended within short cycles, creating uncertainty for long-term planning.
+              Ecosia's search engine relied entirely on <strong>partnerships with Google and Bing</strong> to deliver results and generate revenue. These agreements were <strong>short-lived and often renegotiated</strong>, making any long-term planning unpredictable.
             </p>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              To build a more stable foundation, Ecosia decided to create its own desktop browser. A Chromium-based browser gave the company full control over the user experience and offered a new, independent way to generate revenue. Earth Day was chosen as the global launch date, symbolizing Ecosia's environmental commitment and giving the project a clear milestone to work towards.
-            </p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">This led us to identify <strong>three</strong> core business challenges that shaped the project from the start :</p>
+            <div class="flex gap-3 py-6">
+              <StickyNote :rotate="-1" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>
+                Volatile deals with Google and Bing <strong>threatened long-term planning</strong>
+              </StickyNote>
+              <StickyNote :rotate="1" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>
+                Building a browser meant <strong>full UX control</strong> and an <strong>independent revenue stream</strong>
+              </StickyNote>
+              <StickyNote :rotate="-0.5" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>
+                <strong>Earth Day launch</strong>: a meaningful date tied to global climate activism
+              </StickyNote>
+            </div>
 
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-3.png</div>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-3.png" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Partnership landscape &amp; deadline</figcaption>
             </figure>
 
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">User problem</p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              Switching browsers is one of the hardest behaviors to change. Most users rely on Chrome every day and rarely consider alternatives. Their data, extensions, and habits are already deeply integrated, making switching feel inconvenient and risky.
+              Switching browsers is one of the <strong>hardest behaviors to change</strong>. Most users rely on Chrome every day and rarely consider alternatives. Their data, extensions, and habits are <strong>already deeply integrated</strong>, making switching feel <strong>inconvenient and risky</strong>.
             </p>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              For Ecosia, this meant the new browser had to feel instantly familiar, but also clearly communicate its purpose. While diving further into the problem space, I focused on a user segment represented by Ryan, a persona who values both performance and positive impact but struggles to see how everyday browsing could make a difference.
-            </p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">This shaped <strong>three</strong> key user needs we had to address:</p>
+            <div class="flex gap-3 py-6">
+              <StickyNote :rotate="-1" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>
+                The browser had to feel <strong>instantly familiar</strong> to everyday Chrome users
+              </StickyNote>
+              <StickyNote :rotate="1" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>
+                It had to <strong>clearly communicate</strong> Ecosia's unique environmental purpose
+              </StickyNote>
+              <StickyNote :rotate="-0.5" class="flex-1">
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>
+                <strong>Ryan</strong> values positive impact but doesn't see browsing as meaningful
+              </StickyNote>
+            </div>
 
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-4.png</div>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-4.png" alt="New user persona" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">New user persona</figcaption>
             </figure>
           </CaseStudySection>
