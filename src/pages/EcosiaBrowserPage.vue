@@ -10,13 +10,16 @@ import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
+import ImageCarousel from '@/components/ImageCarousel.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',       label: 'Overview' },
   { id: 'context',        label: 'Context' },
   { id: 'problem',        label: 'The Problem' },
-  { id: 'challenge',      label: 'The Challenge' },
+  { id: 'challenge',      label: 'My Approach' },
   { id: 'research',       label: 'Research' },
+  { id: 'features',       label: 'Features' },
+  { id: 'concept',        label: 'Concept' },
   { id: 'refinement',     label: 'Refinement' },
   { id: 'launch',         label: 'Launch' },
   { id: 'design-system',  label: 'Design System' },
@@ -181,53 +184,75 @@ const panelRef = ref<HTMLElement | null>(null)
           </CaseStudySection>
 
           <!-- ── The Challenge ── -->
-          <CaseStudySection id="challenge" label="The Challenge">
+          <CaseStudySection id="challenge" label="My Approach">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Two months to design, prototype, and ship</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              The project came with a strict two-month deadline to design, prototype, and deliver a complete install funnel for the new Ecosia Browser. With limited time and multiple teams involved, efficiency and consistency became the top priorities.
+              The project came with a <strong>strict two-month deadline</strong> to design, prototype, and deliver a complete install funnel for the new Ecosia Browser. With limited time and multiple teams involved, efficiency and consistency became the top priorities.
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              I focused on quick validation and fast iteration while keeping the experience aligned with Ecosia's visual language. Using existing UI patterns wherever possible allowed my team to move quickly, and contributing new components to the design system ensured our work remained scalable and maintainable after launch.
+              I focused on quick validation and fast iteration while keeping the experience aligned with Ecosia's visual language. Using existing UI patterns wherever possible allowed my team to move quickly, and <strong>contributing new components to the design system</strong> ensured our work remained scalable and maintainable after launch.
             </p>
+            <CardCallout label="Systematic speed">
+              I skipped a long discovery phase by building on <strong>existing Ecosia knowledge and competitive research</strong>. I ran <strong>stakeholder and user feedback in parallel</strong>, kept engineers in the loop from day one, and fed every new pattern back into the <strong>design system</strong>.
+            </CardCallout>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-5.png</div>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-5.png" alt="Project timeline" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Project timeline</figcaption>
             </figure>
           </CaseStudySection>
 
           <!-- ── Research ── -->
           <CaseStudySection id="research" label="Research">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Understanding the competitive landscape and validating early concepts</h2>
-
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Competitive landscape</p>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Understanding the competitive landscape</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              Before defining the Ecosia Browser experience, I explored how major browsers positioned themselves in the market. This helped identify where Ecosia could stand out and what users already valued across browsers like Chrome, Brave, and Vivaldi.
+              Before defining the Ecosia Browser experience, I explored <strong>how major browsers positioned themselves in the market</strong>. This helped identify where Ecosia could stand out and what users already valued across browsers like Chrome, Brave, and Vivaldi.
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              Most browsers fell into four main groups: performance-driven, privacy-focused, flexible and customizable, or purpose-led. Ecosia uniquely bridged the last two, balancing usability with an environmental mission.
+              Most browsers fell into four main groups: performance-driven, privacy-focused, flexible and customizable, or purpose-led. <strong>Ecosia uniquely bridged the last two</strong>, balancing usability with an environmental mission.
             </p>
-            <ul class="space-y-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Users expect Chrome-level performance</strong> and familiarity</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Privacy and independence</strong> are strong selling points but lack emotional connection</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Ecosia's mission-driven value</strong> was distinctive but needed clearer articulation</span></li>
-            </ul>
+            <div class="py-6">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)] mb-6">Key takeaways:</p>
+              <!-- Mobile: bullet list -->
+              <ul class="sm:hidden space-y-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
+                <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Chrome-level performance:</strong> users expect speed and familiarity as the baseline</span></li>
+                <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Privacy without emotion:</strong> strong selling point but lacks an emotional hook</span></li>
+                <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Mission needs clarity:</strong> distinctive but needed stronger articulation</span></li>
+              </ul>
+              <!-- Desktop: sticky notes -->
+              <div class="hidden sm:flex gap-8">
+                <StickyNote :rotate="-1" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Chrome-level performance</span>
+                  Users expect speed and familiarity. Performance is the baseline, not a differentiator.
+                </StickyNote>
+                <StickyNote :rotate="1" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Privacy without emotion</span>
+                  Privacy and independence resonate, but lack an emotional hook to drive switching.
+                </StickyNote>
+                <StickyNote :rotate="-0.5" class="flex-1">
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Mission needs clarity</span>
+                  Ecosia's purpose-driven value was distinctive but needed stronger articulation.
+                </StickyNote>
+              </div>
+            </div>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-6.png</div>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-6.png" alt="Competitor map" class="w-full rounded-xl border-2 border-[#275243]" />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Competitor map</figcaption>
             </figure>
+          </CaseStudySection>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Ecosia Browser &amp; Search features</p>
+          <!-- ── Features ── -->
+          <CaseStudySection id="features" label="Features">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Deciding which features to lead with</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               I analyzed both the browser and Ecosia's search engine to decide which features best communicated Ecosia's purpose while keeping the experience familiar for Chrome users. The goal was to show how everyday browsing could have a positive impact without compromising on usability or performance.
             </p>
-
             <div class="flex flex-col sm:flex-row gap-3">
               <CardCallout
                 label="Search features"
                 class="flex-1"
                 :items="[
                   { title: 'Climate Pledge Ratings', description: 'Shows companies\' climate progress directly in results.' },
-                  { title: 'Highlighted answers', description: 'Marks sustainable or harmful brands to guide awareness.' },
+                  { title: 'Highlighted answers', description: 'Marks sustainable or harmful brands to guide.' },
                   { title: 'AI Chat', description: 'Conversational assistant for sustainability topics.' }
                 ]"
               />
@@ -237,17 +262,36 @@ const panelRef = ref<HTMLElement | null>(null)
                 :items="[
                   { title: 'Easy switching', description: 'Importing browser settings directly from Chrome.' },
                   { title: 'Customization', description: 'Wallpapers, themes, and flexible new tab layouts.' },
-                  { title: 'Privacy panel', description: 'Built-in tracker and ad blocking with clear cookie controls.' }
+                  { title: 'Privacy panel', description: 'Built-in tracker and ad blocking with cookie controls.' }
                 ]"
               />
             </div>
-
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-7.png</div>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/ecosia-browser/ecosia-browser-7.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-8.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-9.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-10.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-11.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-12.png',
+                ]"
+                :alts="[
+                  'Ecosia Browser features 7',
+                  'Ecosia Browser features 8',
+                  'Ecosia Browser features 9',
+                  'Ecosia Browser features 10',
+                  'Ecosia Browser features 11',
+                  'Ecosia Browser features 12',
+                ]"
+              />
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Search Engine &amp; Browser features</figcaption>
             </figure>
+          </CaseStudySection>
 
-            <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Concept test &amp; key insights</p>
+          <!-- ── Concept ── -->
+          <CaseStudySection id="concept" label="Concept">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Validating early concepts with real users</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               After exploring the competitive landscape and defining the Ecosia Browser's focus, I shaped a concept that combined performance, familiarity, and purpose. The goal was to make Ecosia's mission visible from the first interaction while showing that everyday browsing would still be fast and intuitive.
             </p>
