@@ -9,12 +9,12 @@ import EcosiaBrowserPage from '@/pages/EcosiaBrowserPage.vue'
 
 const SECTION_IDS = [
   'overview', 'context', 'problem', 'challenge',
-  'research', 'features', 'concept', 'refinement', 'launch', 'design-system', 'results',
+  'research', 'features', 'concept', 'launch', 'design-system', 'results',
 ]
 
 const NAV_LABELS = [
   'Overview', 'Context', 'The Problem', 'My Approach',
-  'Research', 'Features', 'Concept', 'Refinement', 'Launch', 'Design System', 'Results',
+  'Research', 'Features', 'Concept', 'Launch', 'Highlight', 'Results',
 ]
 
 beforeEach(() => {

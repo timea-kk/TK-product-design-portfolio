@@ -20,9 +20,8 @@ const NAV_SECTIONS = [
   { id: 'research',       label: 'Research' },
   { id: 'features',       label: 'Features' },
   { id: 'concept',        label: 'Concept' },
-  { id: 'refinement',     label: 'Refinement' },
   { id: 'launch',         label: 'Launch' },
-  { id: 'design-system',  label: 'Design System' },
+  { id: 'design-system',  label: 'Highlight' },
   { id: 'results',        label: 'Results' },
 ]
 
@@ -304,8 +303,8 @@ const panelRef = ref<HTMLElement | null>(null)
             </figure>
           </CaseStudySection>
 
-          <!-- ── Refinement ── -->
-          <CaseStudySection id="refinement" label="Refinement">
+          <!-- ── Launch ── -->
+          <CaseStudySection id="launch" label="Launch">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Sharpening the message based on what users told us</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The concept test highlighted what worked and what still felt unclear. Using these insights, I refined the prototype to make Ecosia's message, features, and mission easier to understand at a glance.
@@ -342,10 +341,7 @@ const panelRef = ref<HTMLElement | null>(null)
               <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-10.png</div>
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser final landing page</figcaption>
             </figure>
-          </CaseStudySection>
 
-          <!-- ── Launch ── -->
-          <CaseStudySection id="launch" label="Launch">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Launched globally on Earth Day 2024</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The Ecosia Browser launched globally on Earth Day 2024, marking a major milestone for Ecosia by expanding its impact beyond search into a fully independent browsing experience. The release was featured in major publications and on Ecosia's official channels.
@@ -357,28 +353,45 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
           </CaseStudySection>
 
-          <!-- ── Design System ── -->
-          <CaseStudySection id="design-system" label="Design System">
+          <!-- ── Highlight ── -->
+          <CaseStudySection id="design-system" label="Highlight">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Contributing to a scalable, shared design language</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              As the browser evolved, I contributed to Ecosia's design system to make future projects faster and more consistent. At the time, there was no unified way to build content cards. Each designer created them from scratch, which slowed us down and led to visual inconsistencies.
-            </p>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              I designed a flexible card component with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our most frequently used elements, improved alignment between design and development, and reduced design time for future product pages.
-            </p>
-            <ul class="space-y-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Created a modular card structure</strong> with multiple display variants</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Simplified the workflow</strong> between designers and developers</span></li>
-              <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong class="text-[var(--color-text-primary)]">Increased consistency</strong> across browser and search projects</span></li>
-            </ul>
-            <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-11.png</div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component contribution</figcaption>
-            </figure>
-            <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-12.png</div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component options in use</figcaption>
-            </figure>
+            <div class="space-y-4">
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
+                As the browser evolved, I contributed to Ecosia's design system to make future projects faster and more consistent. At the time, there was <strong>no unified way to build content cards</strong>. Each designer created them from scratch, which slowed us down and led to <strong>visual inconsistencies</strong>.
+              </p>
+              <p class="text-[var(--color-text-secondary)] leading-relaxed">
+                I designed a <strong>flexible card component</strong> with adjustable padding, border, and surface options so it could be reused across different contexts while keeping layouts consistent. This standardized one of our <strong>most frequently used elements</strong>, improved alignment between design and development, and reduced design time for future product pages.
+              </p>
+            </div>
+            <CardCallout
+              label="Outcomes"
+              :items="[
+                { title: 'Modular card structure', description: 'Created multiple display variants that covered every content pattern across the product.' },
+                { title: 'Simplified handoff', description: 'A shared component reduced back-and-forth between designers and developers.' },
+                { title: 'Increased consistency', description: 'Card layouts became predictable and aligned across browser and search projects.' },
+              ]"
+            />
+            <div class="pt-2 space-y-4">
+              <figure>
+                <img
+                  src="/project-pages/flora-design-system/flora-design-system-14.png"
+                  alt="Card component contribution in Flora"
+                  class="w-full rounded-xl"
+                />
+                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component contribution</figcaption>
+              </figure>
+              <figure>
+                <video
+                  src="/project-pages/flora-design-system/Default card.mp4"
+                  controls
+                  muted
+                  playsinline
+                  class="w-full rounded-xl"
+                ></video>
+                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component options in use</figcaption>
+              </figure>
+            </div>
           </CaseStudySection>
 
           <!-- ── Results ── -->
