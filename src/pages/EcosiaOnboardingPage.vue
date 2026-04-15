@@ -19,7 +19,7 @@ import SegmentedControl from '@/components/SegmentedControl.vue'
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
   { id: 'problem',         label: 'The Problem' },
-  { id: 'challenge',       label: 'The Approach' },
+  { id: 'challenge',       label: 'My Approach' },
   { id: 'research',        label: 'Research' },
   { id: 'opportunities',   label: 'Opportunities' },
   { id: 'experimentation', label: 'Experimentation' },
@@ -229,7 +229,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
           </CaseStudySection>
 
           <!-- ── The Challenge ── -->
-          <CaseStudySection id="challenge" label="The Approach">
+          <CaseStudySection id="challenge" label="My Approach">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Injecting tool evaluation insights into the product</h2>
             <div class="flex flex-col sm:flex-row gap-8 items-start">
               <div class="flex flex-col gap-4 flex-1 text-[var(--color-text-secondary)] leading-relaxed">

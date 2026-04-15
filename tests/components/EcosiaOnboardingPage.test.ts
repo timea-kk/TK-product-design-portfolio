@@ -99,7 +99,7 @@ describe('EcosiaOnboardingPage — nav rendering', () => {
     const wrapper = mount(EcosiaOnboardingPage)
     const labels = wrapper.findAll('nav button').map(b => b.text())
     expect(labels).toEqual([
-      'Overview', 'The Problem', 'The Approach', 'Research',
+      'Overview', 'The Problem', 'My Approach', 'Research',
       'Opportunities', 'Experimentation', 'Strategy', 'Execution', 'Results',
     ])
   })
@@ -158,7 +158,7 @@ describe('EcosiaOnboardingPage — scroll spy', () => {
     setupScrollPositions(wrapper, ['overview', 'problem', 'challenge'])
     await triggerScroll(wrapper)
 
-    const approachBtn = wrapper.findAll('nav button').find(b => b.text() === 'The Approach')
+    const approachBtn = wrapper.findAll('nav button').find(b => b.text() === 'My Approach')
     expect(approachBtn?.classes()).toContain('font-semibold')
   })
 })
