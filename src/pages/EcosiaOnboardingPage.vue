@@ -662,7 +662,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
         </div><!-- /content -->
 
         <!-- Balances the left nav so content stays centered -->
-        <div class="hidden min-[1568px]:block w-52 shrink-0"></div>
+        <div class="hidden lg:block w-52 shrink-0"></div>
 
       </div><!-- /sidebar + content -->
     </div><!-- /whiteboard panel -->
