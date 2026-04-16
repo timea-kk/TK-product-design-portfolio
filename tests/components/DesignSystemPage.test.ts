@@ -74,4 +74,32 @@ describe('DesignSystemPage', () => {
     await compItems[0].trigger('mouseenter')
     await compItems[0].trigger('mouseleave')
   })
+
+  it('toggles sectionFirst switch to true inside the CaseStudySection demo', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#case-study-section')
+    const toggle = section.find('[role="switch"]')
+    expect(toggle.attributes('aria-checked')).toBe('false')
+    await toggle.trigger('click')
+    expect(toggle.attributes('aria-checked')).toBe('true')
+  })
+
+  it('toggles stickyTitle switch to true and renders the title span', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#sticky-note')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[0].attributes('aria-checked')).toBe('false')
+    await toggles[0].trigger('click')
+    expect(toggles[0].attributes('aria-checked')).toBe('true')
+    expect(section.find('span.font-bold').exists()).toBe(true)
+  })
+
+  it('toggles stickySquare switch to true inside the StickyNote demo', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#sticky-note')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[1].attributes('aria-checked')).toBe('false')
+    await toggles[1].trigger('click')
+    expect(toggles[1].attributes('aria-checked')).toBe('true')
+  })
 })
