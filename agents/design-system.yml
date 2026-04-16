@@ -38,6 +38,7 @@ component_reuse_rules:
   - "Before building anything new, list existing components in src/components/ and check if any can be reused or extended"
   - "Never build a one-off (snowflake) component inline in a page — if a pattern is needed, propose a shared component in src/components/ first"
   - "Propose the shared component to the user and wait for approval before creating it"
+  - "Never override a shared component's typography, spacing, or color from outside. Use the component as-is. If the output looks wrong, fix the component itself — never patch it with wrapper classes or inline styles on its children."
 
 component_api_rules:
   - "Before removing a prop: remove it from the component, all usages across pages, the SEMANTIC_MAP if referenced, the demo controls, the props table, the code snippet, and the test"
