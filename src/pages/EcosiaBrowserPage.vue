@@ -96,11 +96,6 @@ const panelRef = ref<HTMLElement | null>(null)
               </p>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              <CardStat label="DAU" value="100K" description="daily active users" />
-              <CardStat label="Revenue" value="€1M+" description="early stage" />
-              <CardStat label="Launched in" value="2 months" description="from research to launch" />
-            </div>
 
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-1.png" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[#275243]" />
@@ -292,14 +287,15 @@ const panelRef = ref<HTMLElement | null>(null)
           <CaseStudySection id="concept" label="Concept">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Validating early concepts with real users</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              After exploring the competitive landscape and defining the Ecosia Browser's focus, I shaped a concept that combined performance, familiarity, and purpose. The goal was to make Ecosia's mission visible from the first interaction while showing that everyday browsing would still be fast and intuitive.
+              After exploring the competitive landscape and defining the Ecosia Browser's focus, I shaped a concept that combined <strong>performance, familiarity, and purpose</strong>. The goal was to make <strong>Ecosia's mission visible from the first interaction</strong> while showing that everyday browsing would still be <strong>fast and intuitive</strong>.
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              To validate this direction, I created an interactive prototype and ran an unmoderated user test with 10 participants who cared about sustainability but had never heard of Ecosia. They explored the prototype freely and responded to prompts about their expectations, first impressions, and the features they found most appealing.
+              To validate this direction, I created an <strong>interactive prototype</strong> and ran an <strong>unmoderated user test with 10 participants</strong> who cared about sustainability but had never heard of Ecosia. They explored the prototype freely and responded to prompts about their expectations, first impressions, and the features they found most appealing.
             </p>
+            <CardCallout label="Outcomes">Sentiment was positive across all 10 participants, and they understood what Ecosia Browser was, why it was different, and what it offered which gave me the confidence to keep refining.</CardCallout>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-8.png</div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">First concept snapshot and user test questions</figcaption>
+              <img src="/project-pages/ecosia-browser/ecosia-browser-13.png" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[#275243]" />
+              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser concept</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -307,50 +303,50 @@ const panelRef = ref<HTMLElement | null>(null)
           <CaseStudySection id="launch" label="Launch">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Sharpening the message based on what users told us</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              The concept test highlighted what worked and what still felt unclear. Using these insights, I refined the prototype to make Ecosia's message, features, and mission easier to understand at a glance.
+              The concept test highlighted what worked and what still felt unclear. Using these insights, I refined the prototype to make <strong>Ecosia's message, features, and mission</strong> easier to understand at a glance.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3">
               <CardCallout label="Working well" class="flex-1">
-                <ul class="space-y-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>The "green browser" message stood out as unique and interesting</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Users liked the range of features, especially shopping and search</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Installation and navigation were seen as easy and intuitive</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Visuals and USPs above the fold helped users understand the value</span></li>
+                <ul class="space-y-2 list-none">
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>The <strong>"green browser"</strong> message stood out as unique and interesting</span></li>
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Users liked the range of features, especially <strong>shopping and search</strong></span></li>
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Installation and navigation were seen as <strong>easy and intuitive</strong></span></li>
                 </ul>
               </CardCallout>
               <CardCallout label="To improve" class="flex-1">
-                <ul class="space-y-2 text-sm text-[var(--color-text-secondary)] leading-relaxed list-none">
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Performance was mentioned as a key reason to switch but wasn't communicated</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Customization features were not fully understood</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Climate and green search features were appreciated but felt buried</span></li>
-                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>The mission and climate impact needed to be more visible</span></li>
+                <ul class="space-y-2 list-none">
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong>Performance</strong> was mentioned as a key reason to switch but wasn't communicated</span></li>
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span><strong>Customization</strong> features were not fully understood</span></li>
+                  <li class="flex gap-2"><span class="text-[var(--color-brand-primary)] shrink-0">•</span><span>Climate and green search features were appreciated but felt <strong>buried</strong></span></li>
                 </ul>
               </CardCallout>
             </div>
 
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              These learnings led to clearer messaging and a stronger visual hierarchy. The final version introduced a renewable energy claim, simplified performance messaging, and more distinct sections for customization, green search, and mission impact. The result felt cohesive and instantly recognizable as Ecosia.
+              These learnings led to <strong>clearer messaging and a stronger visual hierarchy</strong>. The final version introduced <strong>a renewable energy claim</strong>, simplified performance messaging, and more distinct sections for customization, green search, and mission impact. The result felt cohesive and <strong>instantly recognizable as Ecosia</strong>.
             </p>
 
+            <ImageCarousel
+              :images="[
+                '/project-pages/ecosia-browser/ecosia-browser-14.png',
+                '/project-pages/ecosia-browser/ecosia-browser-15.png',
+                '/project-pages/ecosia-browser/ecosia-browser-16.png',
+              ]"
+            />
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)] !mt-16">Launched globally on Earth Day 2024</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">
+              The Ecosia Browser launched globally on <strong>Earth Day 2024</strong>, marking <strong>a major milestone</strong> for Ecosia by expanding its impact beyond search into <strong>a fully independent browsing experience</strong>. The release was featured in major publications and on Ecosia's official channels.
+            </p>
+            <ul class="space-y-2 list-disc list-inside text-[var(--color-text-secondary)] leading-relaxed">
+              <li><a href="https://blog.ecosia.org/desktop-browser/?utm_source=chatgpt.com" target="_blank" rel="noopener" class="text-[var(--color-brand-primary)] underline hover:opacity-80">Ecosia Blog - Designed for you, built for the planet</a></li>
+              <li><a href="https://www.euronews.com/next/2024/04/23/after-its-tree-planting-search-engine-ecosia-has-launched-a-eco-friendly-web-browser?utm_source=chatgpt.com" target="_blank" rel="noopener" class="text-[var(--color-brand-primary)] underline hover:opacity-80">Euronews - Ecosia launches an eco-friendly web browser</a></li>
+              <li><a href="https://techcrunch.com/2024/04/22/ecosia-launches-a-cross-platform-browser-starts-an-affiliate-link-program/" target="_blank" rel="noopener" class="text-[var(--color-brand-primary)] underline hover:opacity-80">TechCrunch - Ecosia launches a cross-platform browser</a></li>
+            </ul>
             <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-9.png</div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">First concept and final versions of the Ecosia Browser landing page</figcaption>
-            </figure>
-            <figure>
-              <div class="w-full rounded-xl border-2 border-[#275243] bg-[#275243]/10 aspect-video flex items-center justify-center text-xs text-[var(--color-text-secondary)]">ecosia-browser-10.png</div>
+              <video src="/project-pages/ecosia-browser/Browser.mp4" controls class="w-full rounded-xl border-2 border-[#275243]"></video>
               <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser final landing page</figcaption>
             </figure>
-
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Launched globally on Earth Day 2024</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">
-              The Ecosia Browser launched globally on Earth Day 2024, marking a major milestone for Ecosia by expanding its impact beyond search into a fully independent browsing experience. The release was featured in major publications and on Ecosia's official channels.
-            </p>
-            <div class="space-y-3">
-              <CardCallout label="Ecosia Blog">Designed for you, built for the planet</CardCallout>
-              <CardCallout label="Euronews">Ecosia launches an eco-friendly web browser</CardCallout>
-              <CardCallout label="TechCrunch">Ecosia launches a cross-platform browser</CardCallout>
-            </div>
           </CaseStudySection>
 
           <!-- ── Highlight ── -->
@@ -421,7 +417,7 @@ const panelRef = ref<HTMLElement | null>(null)
                 label="What I'd do differently"
                 class="flex-1"
                 :items="[
-                  { title: 'Start with a clearer success definition', description: 'DAU and revenue were tracked post-launch, but defining those targets earlier would have shaped design decisions more directly.' },
+                  { title: 'Encourage earlier stakeholder decisions', description: 'I\'d structure reviews around specific questions rather than open feedback, so the big reactions would have surfaced in round one when there was still time to act.' },
                   { title: 'Build in more user testing time', description: 'The two-month deadline compressed the research phase. A second round of testing after refinements would have validated the direction more confidently.' },
                   { title: 'Document decisions as they happen', description: 'Working at speed meant some rationale was lost. Better documentation during the project would have helped onboard the team faster post-launch.' }
                 ]"

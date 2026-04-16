@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Checking for em dashes...",
+            "command": "FILE=$(python3 -c \"import sys,json; d=json.load(sys.stdin); print(d['tool_input'].get('file_path',''))\"); [ -z \"$FILE\" ] && exit 0; python3 -c \"\nimport sys, re\nf_path = sys.argv[1]\nif not (('/src/pages/' in f_path or '/src/components/' in f_path or 'timeaAgentKnowledge' in f_path) and (f_path.endswith('.vue') or f_path.endswith('.ts'))):\n    sys.exit(0)\ncontent = open(f_path, errors='replace').read()\nif '\\u2014' in content:\n    print('Em dash detected in ' + f_path)\n    sys.exit(2)\nif re.search(r' -- ', content):\n    print('Fake em dash ( -- ) detected in ' + f_path)\n    sys.exit(2)\n\" \"$FILE\""
+          }
+        ]
+      }
+    ]
+  }
+}
