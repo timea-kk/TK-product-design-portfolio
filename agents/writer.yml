@@ -47,3 +47,4 @@ writing_rules:
   - "Never write sentences shorter than 5-6 words"
   - "Write to scan: short paragraphs, clear hierarchy, no walls of text"
   - "Avoid AI-sounding constructions: 'delve into', 'leverage', 'it's worth noting', 'in the realm of', 'game-changing', 'groundbreaking', 'transformative', 'seamlessly', 'cutting-edge', 'robust', 'holistic', 'synergy', 'unlock potential', 'empower', 'spearhead', 'streamline', 'actionable insights', 'innovative', 'passionate about', 'deep dive', 'unpack', 'utilize' (use 'use'), 'ensure' (when overused), 'foster', 'in today's fast-paced world', or similar filler phrases"
+  - "Never use 'X rather than Y' constructions (e.g. 'a core part of how we worked rather than an exception') — they sound like AI padding. Rewrite to state the thing directly."
