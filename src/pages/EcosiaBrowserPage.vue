@@ -8,9 +8,9 @@ import { ref } from 'vue'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
+import TagPill from '@/components/TagPill.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',       label: 'Overview' },
@@ -61,11 +61,11 @@ const panelRef = ref<HTMLElement | null>(null)
                 Install Funnel for the Ecosia Browser
               </h1>
               <div class="flex flex-wrap gap-2">
-                <span
+                <TagPill
                   v-for="tag in ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
-                >{{ tag }}</span>
+                  :label="tag"
+                />
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
@@ -99,7 +99,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-1.png" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser landing page</figcaption>
+              <figcaption>Ecosia Browser landing page</figcaption>
             </figure>
 
           </CaseStudySection>
@@ -118,7 +118,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </CardCallout>
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-2.png" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia product offering: Extensions, native apps, Default Search &amp; Desktop browser</figcaption>
+              <figcaption>Ecosia product offering: Extensions, native apps, Default Search &amp; Desktop browser</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -148,7 +148,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-3.png" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Partnership landscape &amp; deadline</figcaption>
+              <figcaption>Partnership landscape &amp; deadline</figcaption>
             </figure>
 
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">User problem</p>
@@ -173,7 +173,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-4.png" alt="New user persona" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">New user persona</figcaption>
+              <figcaption>New user persona</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -191,7 +191,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </CardCallout>
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-5.png" alt="Project timeline" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Project timeline</figcaption>
+              <figcaption>Project timeline</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -230,7 +230,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-6.png" alt="Competitor map" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Competitor map</figcaption>
+              <figcaption>Competitor map</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -261,6 +261,7 @@ const panelRef = ref<HTMLElement | null>(null)
               />
             </div>
             <figure>
+              <figcaption>Ecosia Search Engine &amp; Browser features</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/ecosia-browser/ecosia-browser-7.png',
@@ -279,7 +280,6 @@ const panelRef = ref<HTMLElement | null>(null)
                   'Ecosia Browser features 12',
                 ]"
               />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Search Engine &amp; Browser features</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -295,7 +295,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <CardCallout label="Outcomes">Sentiment was positive across all 10 participants, and they understood what Ecosia Browser was, why it was different, and what it offered which gave me the confidence to keep refining.</CardCallout>
             <figure>
               <img src="/project-pages/ecosia-browser/ecosia-browser-13.png" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser concept</figcaption>
+              <figcaption>Ecosia Browser concept</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -327,13 +327,16 @@ const panelRef = ref<HTMLElement | null>(null)
               These learnings led to <strong>clearer messaging and a stronger visual hierarchy</strong>. The final version introduced <strong>a renewable energy claim</strong>, simplified performance messaging, and more distinct sections for customization, green search, and mission impact. The result felt cohesive and <strong>instantly recognizable as Ecosia</strong>.
             </p>
 
-            <ImageCarousel
-              :images="[
-                '/project-pages/ecosia-browser/ecosia-browser-14.png',
-                '/project-pages/ecosia-browser/ecosia-browser-15.png',
-                '/project-pages/ecosia-browser/ecosia-browser-16.png',
-              ]"
-            />
+            <figure>
+              <figcaption>Final landing page iterations</figcaption>
+              <ImageCarousel
+                :images="[
+                  '/project-pages/ecosia-browser/ecosia-browser-14.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-15.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-16.png',
+                ]"
+              />
+            </figure>
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)] !mt-16">Launched globally on Earth Day 2024</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The Ecosia Browser launched globally on <strong>Earth Day 2024</strong>, marking <strong>a major milestone</strong> for Ecosia by expanding its impact beyond search into <strong>a fully independent browsing experience</strong>. The release was featured in major publications and on Ecosia's official channels.
@@ -345,7 +348,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </ul>
             <figure>
               <video src="/project-pages/ecosia-browser/Browser.mp4" controls class="w-full rounded-xl border-2 border-[#275243]"></video>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Browser final landing page</figcaption>
+              <figcaption>Ecosia Browser final landing page</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -375,7 +378,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   alt="Card component contribution in Flora"
                   class="w-full rounded-xl"
                 />
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component contribution</figcaption>
+                <figcaption>Card component contribution</figcaption>
               </figure>
               <figure>
                 <video
@@ -385,7 +388,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   playsinline
                   class="w-full rounded-xl"
                 ></video>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component options in use</figcaption>
+                <figcaption>Card component options in use</figcaption>
               </figure>
             </div>
           </CaseStudySection>
@@ -398,9 +401,9 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3">
-              <CardStat label="DAU" value="100K" description="daily active users" />
-              <CardStat label="Revenue" value="€1M+" description="generated" />
-              <CardStat label="Launched in" value="2 months" description="from research to launch" />
+              <CardCallout label="DAU" value="100K" description="daily active users" />
+              <CardCallout label="Revenue" value="€1M+" description="generated" />
+              <CardCallout label="Launched in" value="2 months" description="from research to launch" />
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 items-start">

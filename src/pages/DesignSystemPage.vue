@@ -12,10 +12,11 @@ import CardCallout from '@/components/CardCallout.vue'
 import CardInteractive from '@/components/CardInteractive.vue'
 import CardTimeline from '@/components/CardTimeline.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import CardStat from '@/components/CardStat.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
 import CarouselNav from '@/components/CarouselNav.vue'
 import SegmentedControl from '@/components/SegmentedControl.vue'
+import TagPill from '@/components/TagPill.vue'
+import CardProject from '@/components/CardProject.vue'
 import ButtonOutline from '@/components/ButtonOutline.vue'
 import ButtonPrimary from '@/components/ButtonPrimary.vue'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
@@ -26,7 +27,7 @@ const NAV_SECTIONS = [
   { id: 'button',             label: 'Button',           group: 'Components' },
   { id: 'card-callout',        label: 'CardCallout',      group: 'Components' },
   { id: 'card-interactive',   label: 'CardInteractive',  group: 'Components' },
-  { id: 'card-stat',          label: 'CardStat',         group: 'Components' },
+  { id: 'card-project',       label: 'CardProject',      group: 'Components' },
   { id: 'card-timeline',      label: 'CardTimeline',     group: 'Components' },
   { id: 'carousel-nav',       label: 'CarouselNav',      group: 'Components' },
   { id: 'case-study-nav',     label: 'CaseStudyNav',     group: 'Components' },
@@ -35,12 +36,14 @@ const NAV_SECTIONS = [
   { id: 'image-carousel',     label: 'ImageCarousel',    group: 'Components' },
   { id: 'sticky-note',        label: 'StickyNote',       group: 'Components' },
   { id: 'segmented-control',  label: 'SegmentedControl', group: 'Components' },
+  { id: 'tag-pill',           label: 'TagPill',          group: 'Components' },
   { id: 'timea-agent',        label: 'TimeaAgent',       group: 'Components' },
 ]
 
 const panelRef = ref<HTMLElement | null>(null)
 
 // CardCallout demo state
+const calloutStatMode = ref(false)
 const calloutDivided = ref(true)
 const calloutUseItems = ref(false)
 
@@ -253,7 +256,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
     token:     { name: '--color-surface-button',      hex: '#ffffff',               label: 'Surface Button', group: 'Surface' },
-    usedIn:    ['ButtonOutline', 'CarouselNav'],
+    usedIn:    ['ButtonOutline', 'CardProject', 'CarouselNav'],
+  },
+  {
+    primitive: { group: 'Neutrals', step: 'overlay', hex: 'rgba(0,0,0,0.03)', varName: '--color-surface-subtle' },
+    token:     { name: '--color-surface-subtle', hex: 'rgba(0,0,0,0.03)', label: 'Surface Subtle', group: 'Surface' },
+    usedIn:    ['CardCallout'],
   },
   // ── Dusty Violet ─────────────────────────────────────────────────────────
   {
@@ -269,7 +277,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-brand-primary',       hex: 'var(--color-dusty-violet-500)', label: 'Brand Primary', group: 'Brand' },
-    usedIn:    ['A11yPanel', 'ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardStat', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['A11yPanel', 'ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
@@ -279,12 +287,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
     token:     { name: '--color-text-primary',        hex: 'var(--color-dusty-violet-900)', label: 'Text Primary', group: 'Text' },
-    usedIn:    ['CardCallout', 'CardInteractive', 'CardStat', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardProject', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
     token:     { name: '--color-button-text',         hex: 'var(--color-dusty-violet-900)', label: 'Button Text', group: 'Button' },
-    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CarouselNav', 'TimeaAgent'],
+    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CardProject', 'CarouselNav', 'TimeaAgent'],
   },
   // ── Golden Honey ─────────────────────────────────────────────────────────
   {
@@ -295,7 +303,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
     token:     { name: '--color-border',              hex: 'var(--color-golden-honey-200)', label: 'Border', group: 'Border' },
-    usedIn:    ['A11yPanel', 'ButtonOutline', 'CarouselNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['A11yPanel', 'ButtonOutline', 'CardProject', 'CarouselNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
@@ -305,13 +313,18 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Golden Honey', step: '500', hex: '#EDB73B', varName: '--color-golden-honey-500' },
     token:     { name: '--color-surface-sticky-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Label', group: 'Surface' },
-    usedIn:    ['FloraDesignSystemPage'],
+    usedIn:    [],
   },
   // ── Deep Maroon ──────────────────────────────────────────────────────────
   {
+    primitive: { group: 'Deep Maroon', step: '100', hex: '#EEE8E8', varName: '--color-deep-maroon-100' },
+    token:     { name: '--color-surface-card',        hex: 'var(--color-deep-maroon-100)', label: 'Surface Card', group: 'Surface' },
+    usedIn:    ['CardProject'],
+  },
+  {
     primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
     token:     { name: '--color-text-secondary',               hex: 'var(--color-deep-maroon-600)',  label: 'Text Secondary', group: 'Text' },
-    usedIn:    ['A11yPanel', 'CardCallout', 'CardInteractive', 'CardStat', 'CardTimeline', 'CaseStudyNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['A11yPanel', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'Header', 'SegmentedControl', 'TagPill', 'ThemeSwitcher', 'TimeaAgent'],
   },
 ]
 
@@ -362,7 +375,7 @@ const COMPONENT_GROUP_MAP: Record<string, string> = {
   ButtonPrimary:     'Buttons',
   CardCallout:       'Cards',
   CardInteractive:   'Cards',
-  CardStat:          'Cards',
+  CardProject:       'Cards',
   CardTimeline:      'Cards',
   CarouselNav:       'Navigation',
   CaseStudyNav:      'Navigation',
@@ -372,6 +385,7 @@ const COMPONENT_GROUP_MAP: Record<string, string> = {
   RotatingDescriptor:'Decorative',
   SegmentedControl:  'Navigation',
   StickyNote:        'Decorative',
+  TagPill:           'Cards',
   ThemeSwitcher:     'Overlays',
   TimeaAgent:        'Agent',
 }
@@ -562,25 +576,86 @@ const groupedComponents = computed(() => {
 
           <!-- ── Typography ── -->
           <CaseStudySection id="typography" label="Typography">
-            <div class="space-y-4">
-              <div class="rounded-xl bg-[var(--color-surface-subtle)] border border-[var(--color-surface-subtle)] px-6 py-5 space-y-4">
-                <div class="space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Heading font</p>
-                  <p class="font-mono text-xs text-[var(--color-text-secondary)]">--font-heading: 'Bricolage Grotesque', Georgia, serif</p>
-                  <p class="font-heading text-4xl font-black text-[var(--color-text-primary)] mt-2">The quick brown fox</p>
-                  <p class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">The quick brown fox</p>
-                  <p class="font-heading text-xl font-semibold text-[var(--color-text-primary)]">The quick brown fox</p>
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Typography</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">Two font families. <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">font-heading</code> (Bricolage Grotesque) is used for all display and section headings. <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">font-sans</code> (system-ui) handles all body copy. Both resolve through CSS variables so themes can override the typeface without touching components.</p>
+
+            <!-- Heading scale demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-6 space-y-5">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Heading: Bricolage Grotesque</p>
+              <div class="space-y-4">
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Hero</span>
+                  <p class="font-heading text-5xl font-black leading-tight tracking-tight text-[var(--color-text-primary)]">The quick brown fox</p>
                 </div>
-                <hr class="border-[var(--color-surface-subtle)]" />
-                <div class="space-y-1">
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Body font</p>
-                  <p class="font-mono text-xs text-[var(--color-text-secondary)]">--font-sans: 'Inter', system-ui, sans-serif</p>
-                  <p class="text-base text-[var(--color-text-primary)] mt-2">Body text - regular (16px)</p>
-                  <p class="text-sm text-[var(--color-text-secondary)]">Small body text - muted (14px)</p>
-                  <p class="text-xs text-[var(--color-text-secondary)]">Caption / label text (12px)</p>
-                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Label uppercase tracking</p>
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Page title</span>
+                  <p class="font-heading text-4xl font-black leading-tight tracking-tight text-[var(--color-text-primary)]">The quick brown fox</p>
+                </div>
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Section h2</span>
+                  <p class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">The quick brown fox</p>
+                </div>
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Card title</span>
+                  <p class="font-heading text-xl font-black leading-tight tracking-tight text-[var(--color-text-primary)]">The quick brown fox</p>
                 </div>
               </div>
+            </div>
+
+            <!-- Heading code -->
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;h1 class="font-heading text-5xl font-black leading-tight tracking-tight"&gt;Hero&lt;/h1&gt;
+&lt;h2 class="font-heading text-2xl font-bold"&gt;Section heading&lt;/h2&gt;</pre>
+            </div>
+
+            <!-- Body scale demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-6 space-y-5">
+              <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Body: system-ui</p>
+              <div class="space-y-4">
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Body</span>
+                  <p class="text-base leading-relaxed text-[var(--color-text-primary)]">The quick brown fox jumps over the lazy dog.</p>
+                </div>
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Small</span>
+                  <p class="text-sm text-[var(--color-text-secondary)]">The quick brown fox jumps over the lazy dog.</p>
+                </div>
+                <div class="flex items-baseline gap-4">
+                  <span class="w-24 shrink-0 text-xs text-[var(--color-text-secondary)] font-mono">Label</span>
+                  <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Section label</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Body code -->
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;p class="text-base leading-relaxed text-[var(--color-text-primary)]"&gt;Body&lt;/p&gt;
+&lt;p class="text-sm text-[var(--color-text-secondary)]"&gt;Small / muted&lt;/p&gt;
+&lt;p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]"&gt;Label&lt;/p&gt;</pre>
+            </div>
+
+            <!-- Scale reference table -->
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-[var(--color-surface-subtle)]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Role</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Classes</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Where used</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Hero</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">font-heading text-5xl lg:text-7xl font-black</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">HomePage hero</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Page title</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">font-heading text-4xl lg:text-6xl font-black</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Case study overview h1</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Section h2</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">font-heading text-2xl font-bold</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">All case study section headings</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Card title</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">font-heading text-xl font-black</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">CardProject, CardInteractive</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Body</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">text-base leading-relaxed</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Paragraphs, descriptions</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Small</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">text-sm text-[var(--color-text-secondary)]</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Supporting text, card metadata</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Label</td><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-secondary)]">text-xs font-semibold uppercase tracking-widest</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Section labels, card eyebrows</td></tr>
+
+                </tbody>
+              </table>
             </div>
           </CaseStudySection>
 
@@ -729,54 +804,90 @@ const groupedComponents = computed(() => {
           <!-- ── CardCallout ── -->
           <CaseStudySection id="card-callout" label="CardCallout">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">CardCallout</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">A labeled content card used for callouts, summaries, and structured lists. Accepts a slot for freeform content or an <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">items</code> prop for a divider list.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">A labeled content card with two modes. In callout mode (default): renders freeform slot content or a structured <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">items</code> list, with an optional divider. In stat mode: pass a <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">value</code> prop to render a centered metric with a large number and a muted description line.</p>
 
             <!-- Controls -->
-            <div class="flex flex-wrap gap-4 pt-2">
-              <label class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
-                <input type="checkbox" v-model="calloutUseItems" class="rounded" />
-                Use <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">items</code> prop
+            <div class="flex flex-wrap gap-6 pt-2">
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">stat</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="calloutStatMode"
+                  @click="calloutStatMode = !calloutStatMode"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', calloutStatMode ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', calloutStatMode ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
               </label>
-              <label class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none" :class="!calloutUseItems && 'opacity-40 pointer-events-none'">
-                <input type="checkbox" v-model="calloutDivided" :disabled="!calloutUseItems" class="rounded" />
-                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">:divided</code>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none" :class="calloutStatMode && 'opacity-40 pointer-events-none'">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">items</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="calloutUseItems"
+                  :disabled="calloutStatMode"
+                  @click="calloutUseItems = !calloutUseItems"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', calloutUseItems ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', calloutUseItems ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none" :class="(calloutStatMode || !calloutUseItems) && 'opacity-40 pointer-events-none'">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">divided</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="calloutDivided"
+                  :disabled="calloutStatMode || !calloutUseItems"
+                  @click="calloutDivided = !calloutDivided"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', calloutDivided ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', calloutDivided ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
               </label>
             </div>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-              <CardCallout
-                v-if="!calloutUseItems"
-                label="Trade-off and impact"
-              >
-                <p class="text-[var(--color-text-secondary)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>.</p>
-              </CardCallout>
-              <CardCallout
-                v-else
-                label="What I learned"
-                :divided="calloutDivided"
-                :items="[
-                  { title: 'Parallel tracks accelerate learning', description: 'Running two tracks simultaneously let us cover more ground without waiting for sequential results.' },
-                  { title: 'User language shapes stronger messaging', description: 'Listening to how users talked about Ecosia led directly to copy that converted better.' },
-                  { title: 'Regional differences need their own lens', description: 'Germany consistently behaved differently and needed closer observation.' }
-                ]"
-              />
+              <template v-if="calloutStatMode">
+                <div class="flex flex-wrap gap-3">
+                  <CardCallout label="Conversion" value="+20–25%" description="increase" />
+                  <CardCallout label="D1 retention" value="+3%" description="improvement" />
+                  <CardCallout label="Experiments" value="9 of 12" description="shipped to 100%" />
+                </div>
+              </template>
+              <template v-else-if="calloutUseItems">
+                <CardCallout
+                  label="What I learned"
+                  :divided="calloutDivided"
+                  :items="[
+                    { title: 'Parallel tracks accelerate learning', description: 'Running two tracks simultaneously let us cover more ground without waiting for sequential results.' },
+                    { title: 'User language shapes stronger messaging', description: 'Listening to how users talked about Ecosia led directly to copy that converted better.' },
+                    { title: 'Regional differences need their own lens', description: 'Germany consistently behaved differently and needed closer observation.' }
+                  ]"
+                />
+              </template>
+              <template v-else>
+                <CardCallout label="Trade-off and impact">
+                  <p class="text-[var(--color-text-secondary)] leading-relaxed">Research showed emotional messaging was already working. The real <strong>retention gap</strong> was <strong>functional</strong>.</p>
+                </CardCallout>
+              </template>
             </div>
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre" v-if="!calloutUseItems">&lt;CardCallout label="Trade-off and impact"&gt;
-  &lt;p class="text-[var(--color-text-secondary)] leading-relaxed"&gt;
-    Content goes here.
-  &lt;/p&gt;
-&lt;/CardCallout&gt;</pre>
-              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre" v-else>&lt;CardCallout
+              <pre v-if="calloutStatMode" class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardCallout label="Conversion" value="+20-25%" description="increase" /&gt;</pre>
+              <pre v-else-if="calloutUseItems" class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardCallout
   label="What I learned"
   :divided="{{ calloutDivided }}"
   :items="[
     { title: 'Item title', description: 'Item description.' },
   ]"
 /&gt;</pre>
+              <pre v-else class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardCallout label="Trade-off and impact"&gt;
+  &lt;p&gt;Content goes here.&lt;/p&gt;
+&lt;/CardCallout&gt;</pre>
             </div>
 
             <!-- Props table -->
@@ -791,10 +902,12 @@ const groupedComponents = computed(() => {
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-black/[0.04]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">required</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Uppercase label shown above content</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">gap</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'sm' | 'lg'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'sm'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Internal spacing. Auto-set to 'lg' when items is provided</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">items</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">&#123; title, description &#125;[]</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">undefined</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Renders a structured list instead of the slot</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">divided</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">true</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Shows divider lines between items (only applies when items is set)</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">required</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Uppercase label shown above content in both modes</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">value</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">undefined</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Providing this activates stat mode: renders a centered large metric</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">undefined</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Muted label below the metric value (stat mode only)</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">gap</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'sm' | 'lg'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'sm'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Internal spacing in callout mode. Auto-set to 'lg' when items is provided</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">items</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">&#123; title, description &#125;[]</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">undefined</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Renders a structured list instead of the slot (callout mode only)</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">divided</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">true</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Shows divider lines between items (callout mode with items only)</td></tr>
                 </tbody>
               </table>
             </div>
@@ -862,26 +975,30 @@ const groupedComponents = computed(() => {
             </div>
           </CaseStudySection>
 
-          <!-- ── CardStat ── -->
-          <CaseStudySection id="card-stat" label="CardStat">
-            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">CardStat</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">A metric display card. Used in experimentation and results sections to highlight key numbers. Always renders with <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">flex-1</code> built in.</p>
+          <!-- ── CardProject ── -->
+          <CaseStudySection id="card-project" label="CardProject">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">CardProject</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">A full-width project card used on the home page. Desktop: text left, image right. Below desktop: stacked, displayed in a 2-column grid. The whole card is a <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">RouterLink</code>. Tags are optional.</p>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
-              <div class="flex flex-wrap gap-3">
-                <CardStat label="Conversion" value="+20–25%" description="increase" />
-                <CardStat label="D1 retention" value="+3%" description="improvement" />
-                <CardStat label="Experiments" value="9 of 12" description="shipped to 100%" />
-              </div>
+              <CardProject
+                title="Install Funnel for the Ecosia Browser"
+                image="/project-pages/ecosia-browser/ecosia-browser-1.png"
+                imageAlt="Ecosia Browser landing page"
+                to="/work/ecosia-browser"
+                :tags="['Evaluative Research', 'Prototyping', 'Design System']"
+              />
             </div>
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardStat
-  label="Conversion"
-  value="+20-25%"
-  description="increase"
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardProject
+  title="Install Funnel for the Ecosia Browser"
+  image="/project-pages/ecosia-browser/ecosia-browser-1.png"
+  imageAlt="Ecosia Browser landing page"
+  to="/work/ecosia-browser"
+  :tags="['Evaluative Research', 'Prototyping']"
 /&gt;</pre>
             </div>
 
@@ -896,9 +1013,11 @@ const groupedComponents = computed(() => {
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-black/[0.04]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Uppercase label above the value</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">value</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Large bold number or metric</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Small muted label below the value</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">title</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Project headline displayed on the card</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">image</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Path to the cover image</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">imageAlt</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Alt text for the cover image</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">to</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Vue Router path the card links to</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">tags</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string[] (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Skill/method pills rendered below the title</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1094,7 +1213,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
           <!-- ── Header ── -->
           <CaseStudySection id="header" label="Header">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Header</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">The sticky site header rendered globally via <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Contains the logo, navigation links, theme switcher, and accessibility panel. No props -- connects to <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">useThemeStore</code> and <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">useA11yStore</code> directly.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">The sticky site header rendered globally via <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">AppLayout.vue</code>. Contains the logo, navigation links, theme switcher, and accessibility panel. No props. Connects to <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">useThemeStore</code> and <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">useA11yStore</code> directly.</p>
 
             <!-- Static mockup -->
             <div class="rounded-xl border border-[var(--color-surface-subtle)] p-8 flex justify-center">
@@ -1125,7 +1244,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
               <figure>
-                <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">Example caption</figcaption>
+                <figcaption>Example caption</figcaption>
                 <ImageCarousel
                   :images="[
                     '/project-pages/flora-design-system/flora-design-system-4.png',
@@ -1266,6 +1385,43 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
   :options="['Before', 'After']"
   v-model="activeStep"
 /&gt;</pre>
+            </div>
+          </CaseStudySection>
+
+          <!-- ── TagPill ── -->
+          <CaseStudySection id="tag-pill" label="TagPill">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">TagPill</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">An inline label pill for categorising work. Used in project page headers and project cards to surface skills, methods, and disciplines at a glance.</p>
+
+            <!-- Demo -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
+              <div class="flex flex-wrap gap-2">
+                <TagPill label="Design System" />
+                <TagPill label="User Testing" />
+                <TagPill label="A/B Testing" />
+                <TagPill label="Strategy" />
+              </div>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;TagPill label="Design System" /&gt;</pre>
+            </div>
+
+            <!-- Props table -->
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-[var(--color-surface-subtle)]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Prop</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Type</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Text displayed inside the pill</td></tr>
+                </tbody>
+              </table>
             </div>
           </CaseStudySection>
 

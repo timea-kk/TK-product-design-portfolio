@@ -1,7 +1,7 @@
 /**
  * Component tests for HomePage.vue.
  * Child components are stubbed so tests focus on the page's own logic:
- * hero structure and portrait image.
+ * hero structure, portrait image, and project card rendering.
  */
 
 import { describe, it, expect, beforeEach } from 'vitest'
@@ -9,10 +9,11 @@ import { mount } from '@vue/test-utils'
 import { setActivePinia, createPinia } from 'pinia'
 import HomePage from '@/pages/HomePage.vue'
 
-// Header and TimeaAgent are no longer part of HomePage — they live in AppLayout
+// Header and TimeaAgent are no longer part of HomePage -- they live in AppLayout
 const STUBS = {
   Logo: true,
   RotatingDescriptor: true,
+  RouterLink: { template: '<a><slot /></a>' },
 }
 
 describe('HomePage', () => {
@@ -27,18 +28,14 @@ describe('HomePage', () => {
     expect(wrapper.find('h1').exists()).toBe(true)
   })
 
-
   it('portrait image has an accessible alt attribute', () => {
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
     const img = wrapper.find('img[alt="Timea Konya"]')
     expect(img.exists()).toBe(true)
   })
 
-  it('responds to scroll events via onScroll', async () => {
+  it('renders one CardProject per project', () => {
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    Object.defineProperty(window, 'scrollY', { value: 100, writable: true, configurable: true })
-    window.dispatchEvent(new Event('scroll'))
-    await wrapper.vm.$nextTick()
-    expect(wrapper.exists()).toBe(true)
+    expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
   })
 })

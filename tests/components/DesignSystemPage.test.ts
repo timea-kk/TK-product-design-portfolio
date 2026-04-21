@@ -17,9 +17,9 @@ vi.mock('gsap', () => {
 const NAV_SECTION_IDS = [
   'colors', 'typography',
   'button',
-  'card-callout', 'card-interactive', 'card-stat', 'card-timeline',
+  'card-callout', 'card-interactive', 'card-project', 'card-timeline',
   'carousel-nav', 'case-study-nav', 'case-study-section', 'header', 'image-carousel',
-  'segmented-control', 'sticky-note', 'timea-agent',
+  'segmented-control', 'sticky-note', 'tag-pill', 'timea-agent',
 ]
 
 beforeEach(() => {
@@ -101,5 +101,33 @@ describe('DesignSystemPage', () => {
     expect(toggles[1].attributes('aria-checked')).toBe('false')
     await toggles[1].trigger('click')
     expect(toggles[1].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardCallout demo: stat toggle shows stat cards', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-callout')
+    const toggles = section.findAll('[role="switch"]')
+    // stat toggle is first
+    await toggles[0].trigger('click')
+    expect(toggles[0].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardCallout demo: items toggle shows items card', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-callout')
+    const toggles = section.findAll('[role="switch"]')
+    // items toggle is second
+    await toggles[1].trigger('click')
+    expect(toggles[1].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardCallout demo: divided toggle toggles divided state', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-callout')
+    const toggles = section.findAll('[role="switch"]')
+    // enable items first so divided is active
+    await toggles[1].trigger('click')
+    await toggles[2].trigger('click')
+    expect(toggles[2].attributes('aria-checked')).toBe('false')
   })
 })
