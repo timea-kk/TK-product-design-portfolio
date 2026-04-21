@@ -5,30 +5,37 @@
 -->
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
+import CardProject from '@/components/CardProject.vue'
 
-const hasScrolled = ref(false)
-function onScroll() { hasScrolled.value = window.scrollY > 40 }
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
-
-/** Placeholder project data until real case studies and routes exist. */
-const PLACEHOLDER_PROJECTS = [
+const PROJECTS = [
   {
     title: "Building Ecosia's Onboarding Experience",
-    tagline: 'A smooth first-time experience that boosted conversion by 25%.',
-    slug: 'ecosia-onboarding',
-  },
-  {
-    title: 'Scaling Design Operations at Ecosia',
-    tagline: "Establishing a shared ownership model for Ecosia's Design System – Flora.",
-    slug: 'ecosia-ops',
+    image: '/project-pages/ecosia-onboarding/ecosia-onboarding-1.png',
+    imageAlt: 'Ecosia onboarding screen',
+    to: '/work/ecosia-onboarding',
+    tags: ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy'],
   },
   {
     title: 'Install Funnel for the Ecosia Browser',
-    tagline: "Launched Ecosia's browser in just two months, reaching 100k DAU.",
-    slug: 'ecosia-browser',
+    image: '/project-pages/ecosia-browser/ecosia-browser-1.png',
+    imageAlt: 'Ecosia Browser landing page',
+    to: '/work/ecosia-browser',
+    tags: ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System'],
+  },
+  {
+    title: 'Scaling Design Operations at Ecosia',
+    image: '/project-pages/flora-design-system/flora-design-system-1.png',
+    imageAlt: 'Flora Design System structure',
+    to: '/work/flora-design-system',
+    tags: ['Design System', 'Documentation', 'Design Operations', 'Workflows & Processes'],
+  },
+  {
+    title: 'Lolsumo: a coaching app for League of Legends',
+    image: '/project-pages/lolsumo/lolsumo-1.png',
+    imageAlt: 'Lolsumo Android and iOS apps',
+    to: '/work/lolsumo',
+    tags: ['Community Engagement', 'Design System', 'User Testing'],
   },
 ]
 </script>
@@ -41,7 +48,7 @@ const PLACEHOLDER_PROJECTS = [
   >
     <!-- Whiteboard panel: fills the viewport minus 80px on all sides -->
     <div
-      class="w-full h-full rounded-3xl flex items-start overflow-y-auto px-10 lg:px-20"
+      class="w-full h-full rounded-3xl overflow-y-auto px-10 lg:px-20"
       style="
         background-color: #f7f6f2;
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
@@ -49,7 +56,7 @@ const PLACEHOLDER_PROJECTS = [
         border: 1px solid rgba(0,0,0,0.06);
       "
     >
-      <div class="w-full flex flex-col gap-8 pt-16 mt-20">
+      <div class="w-full max-w-6xl mx-auto flex flex-col gap-8 pt-16 mt-20">
       <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-[102px]">
       <!-- Left: headline -->
       <div class="flex-1 w-full lg:w-auto lg:max-w-[720px] min-w-0">
@@ -63,7 +70,7 @@ const PLACEHOLDER_PROJECTS = [
         </h1>
       </div>
 
-      <!-- OPTION A — STICKY NOTE (active) -->
+      <!-- OPTION A: STICKY NOTE (active) -->
       <div class="relative shrink-0 w-64 lg:w-80" style="aspect-ratio: 1 / 1; transform: rotate(2deg)">
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: #f2c96c; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
@@ -84,10 +91,31 @@ const PLACEHOLDER_PROJECTS = [
       <p class="mt-20 text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto text-center">
         People describe me as
         <strong class="font-semibold text-[var(--color-brand-primary)]"
-          >thoughtful, analytical, and structured</strong
-        > – someone who cuts through ambiguity and connects dots others miss. I care about making design inclusive, accessible, and used for something genuinely good.
+          >thoughtful, analytical, and structured</strong>. I cut through ambiguity and connect dots others miss. I care about making design inclusive, accessible, and used for something genuinely good.
       </p>
 
+
+
+      <!-- Scroll indicator -->
+      <div class="flex justify-center pt-[59px] pb-24" aria-hidden="true">
+        <svg width="26" height="42" viewBox="0 0 26 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="24" height="40" rx="12" stroke="var(--color-brand-primary)" stroke-opacity="0.6" stroke-width="1.5"/>
+          <circle class="scroll-dot" cx="13" cy="10" r="3" fill="var(--color-brand-primary)"/>
+        </svg>
+      </div>
+
+      <!-- Project cards -->
+      <div class="grid grid-cols-1 gap-4 lg:gap-6 pb-16">
+        <CardProject
+          v-for="project in PROJECTS"
+          :key="project.to"
+          :title="project.title"
+          :image="project.image"
+          :image-alt="project.imageAlt"
+          :to="project.to"
+          :tags="project.tags"
+        />
+      </div>
 
       </div>
 
@@ -108,6 +136,7 @@ const PLACEHOLDER_PROJECTS = [
     </div>
 
   </section>
+
 </template>
 
 <style scoped>

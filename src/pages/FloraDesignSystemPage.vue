@@ -12,7 +12,7 @@ import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardTimeline from '@/components/CardTimeline.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
-import CardStat from '@/components/CardStat.vue'
+import TagPill from '@/components/TagPill.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
@@ -65,12 +65,11 @@ const panelRef = ref<HTMLElement | null>(null)
                 Scaling Design Operations at Ecosia
               </h1>
               <div class="flex flex-wrap gap-2">
-                <span
+                <TagPill
                   v-for="tag in ['Design System', 'Documentation', 'Design Operations', 'Workflows &amp; Processes']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
-                  v-html="tag"
-                ></span>
+                  :label="tag"
+                />
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
@@ -103,7 +102,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <figure>
               <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Design System structure</figcaption>
+              <figcaption>Flora Design System structure</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -118,7 +117,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure class="pt-2">
               <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">DS Ownership transition: old vs. new</figcaption>
+              <figcaption>DS Ownership transition: old vs. new</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -180,7 +179,7 @@ const panelRef = ref<HTMLElement | null>(null)
                 alt="Detailed new process without a DS Lead"
                 class="w-full rounded-xl"
               />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Detailed new process without a DS Lead</figcaption>
+              <figcaption>Detailed new process without a DS Lead</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -217,6 +216,7 @@ const panelRef = ref<HTMLElement | null>(null)
               </div>
             </CardCallout>
             <figure>
+              <figcaption>DS Ownership discussion &amp; Jira board setup</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-4.png',
@@ -225,7 +225,6 @@ const panelRef = ref<HTMLElement | null>(null)
                 ]"
                 :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
               />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">DS Ownership discussion &amp; Jira board setup</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -249,7 +248,7 @@ const panelRef = ref<HTMLElement | null>(null)
               ]"
             />
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Contribution checklist snapshot</figcaption>
+              <figcaption>Flora Contribution checklist snapshot</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-7.png',
@@ -273,12 +272,12 @@ const panelRef = ref<HTMLElement | null>(null)
               </p>
             </div>
             <div class="grid grid-cols-3 gap-3">
-              <CardStat value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
-              <CardStat value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
-              <CardStat value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
+              <CardCallout value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
+              <CardCallout value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
+              <CardCallout value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
             </div>
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">Flora Health Check spreadsheet</figcaption>
+              <figcaption>Flora Health Check spreadsheet</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-10.png',
@@ -309,7 +308,7 @@ const panelRef = ref<HTMLElement | null>(null)
               ]"
             />
             <figure>
-              <figcaption class="mb-2 text-xs text-center text-[var(--color-text-secondary)]">New processes in Confluence</figcaption>
+              <figcaption>New processes in Confluence</figcaption>
               <ImageCarousel
                 :images="[
                   '/project-pages/flora-design-system/flora-design-system-12.png',
@@ -346,7 +345,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   alt="Card component contribution in Flora"
                   class="w-full rounded-xl"
                 />
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component contribution</figcaption>
+                <figcaption>Card component contribution</figcaption>
               </figure>
               <figure>
                 <video
@@ -356,7 +355,7 @@ const panelRef = ref<HTMLElement | null>(null)
                   playsinline
                   class="w-full rounded-xl"
                 ></video>
-                <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Card component options in use</figcaption>
+                <figcaption>Card component options in use</figcaption>
               </figure>
             </div>
           </CaseStudySection>
@@ -368,9 +367,9 @@ const panelRef = ref<HTMLElement | null>(null)
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
             <div class="flex gap-3">
-              <CardStat value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
-              <CardStat value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
-              <CardStat value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
+              <CardCallout value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
+              <CardCallout value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
+              <CardCallout value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
             </div>
             <div class="flex flex-col sm:flex-row gap-3 pt-2">
               <CardCallout

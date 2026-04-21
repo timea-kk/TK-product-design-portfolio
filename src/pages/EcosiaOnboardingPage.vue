@@ -10,11 +10,11 @@ import gsap from 'gsap'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
 import CardInteractive from '@/components/CardInteractive.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
 import SegmentedControl from '@/components/SegmentedControl.vue'
+import TagPill from '@/components/TagPill.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',        label: 'Overview' },
@@ -144,11 +144,11 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 Building Ecosia's Onboarding Experience
               </h1>
               <div class="flex flex-wrap gap-2">
-                <span
+                <TagPill
                   v-for="tag in ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
-                >{{ tag }}</span>
+                  :label="tag"
+                />
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
@@ -182,7 +182,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <figure>
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Ecosia Landing Page snapshot</figcaption>
+              <figcaption>Ecosia Landing Page snapshot</figcaption>
             </figure>
 
           </CaseStudySection>
@@ -224,7 +224,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
             <figure class="pt-4 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="text-center text-sm text-[var(--color-text-secondary)] opacity-70">Product landscape</figcaption>
+              <figcaption>Product landscape</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -244,6 +244,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
             <figure class="pt-2 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[#275243]" />
+              <figcaption>Onboarding approach overview</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -417,7 +418,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </p>
             <figure class="pt-2 space-y-3">
               <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
-              <figcaption class="text-center text-sm text-[var(--color-text-secondary)] opacity-70">Opportunity Solution Tree condensed snapshot</figcaption>
+              <figcaption>Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
             <CardCallout label="Timing was everything">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">Most users decided whether to <strong>stay or leave within a few searches</strong>. I only had a very short window of time to work with, so spending time on finding the right thing to show at the right time was incredibly important.</p>
@@ -433,10 +434,10 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Track 1: Conversion</p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">The conversion track tested whether small changes to messaging, visuals, and setup guidance could lower the barrier to installing Ecosia as a default browser.</p>
             <div class="grid grid-cols-2 sm:flex gap-3">
-              <CardStat label="Headline copy" value="+3.2%" description="conversion" />
-              <CardStat label="Product image" value="+5.4%" description="CTA clicks" />
-              <CardStat label="Install guide" value="+25%" description="conversion" />
-              <CardStat label="Action CTA" value="+19.69%" description="conversion" />
+              <CardCallout label="Headline copy" value="+3.2%" description="conversion" />
+              <CardCallout label="Product image" value="+5.4%" description="CTA clicks" />
+              <CardCallout label="Install guide" value="+25%" description="conversion" />
+              <CardCallout label="Action CTA" value="+19.69%" description="conversion" />
             </div>
             <CardCallout label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">Three of four experiments shipped fully, one was pulled after a partner objection. The action-focused CTA revealed a clear trade-off: clearer wording meant fewer clicks, but better conversion. <strong>Clarity cost us clicks, but it earned better intent.</strong> The copy couldn't be fully translated, but action-focused language became our standard going forward.</p>
@@ -473,20 +474,22 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   style="opacity:0"
                 />
               </div>
+              <figcaption>Action CTA: before and after</figcaption>
             </figure>
             <p class="pt-4 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">Track 2: SERP Education</p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               This track focused on helping users understand Ecosia's purpose directly in the search experience.
             </p>
             <div class="flex flex-col sm:flex-row gap-3">
-              <CardStat label="How it works" value="+3%" description="D1 retention" />
-              <CardStat label="With illustration" value="-5%" description="retention in DE" />
-              <CardStat label="Privacy messaging" value="-2%" description="D1 retention" />
+              <CardCallout label="How it works" value="+3%" description="D1 retention" />
+              <CardCallout label="With illustration" value="-5%" description="retention in DE" />
+              <CardCallout label="Privacy messaging" value="-2%" description="D1 retention" />
             </div>
             <CardCallout label="Outcomes &amp; trade-offs">
               <p class="text-[var(--color-text-secondary)] leading-relaxed">Conversion delivered clear gains. SERP education was mixed, and follow up user tests did not explain the retention drop. The results showed that <strong>small content tweaks were not enough</strong>, and we needed a broader redesign to move our success metrics further.</p>
             </CardCallout>
             <figure class="pt-2">
+              <figcaption>SERP education experiments</figcaption>
               <ImageCarousel
                 :images="SERP_SRCS"
                 :alts="['Experiment 1', 'Experiment 2', 'Experiment 3']"
@@ -534,7 +537,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               />
             </div>
 
-            <!-- Active step image — desktop only -->
+            <!-- Active step image (desktop only) -->
             <figure class="hidden sm:block pt-2 space-y-3">
               <div class="relative w-full rounded-xl border-2 border-[#275243]">
                 <img
@@ -555,6 +558,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   style="opacity:0"
                 />
               </div>
+              <figcaption>Three-phase onboarding strategy</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -598,7 +602,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               />
             </div>
 
-            <!-- Active step image — desktop only -->
+            <!-- Active step image (desktop only) -->
             <figure class="hidden sm:block pt-2 space-y-3">
               <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
                 <img
@@ -619,6 +623,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   style="opacity:0"
                 />
               </div>
+              <figcaption>Experiment designs per phase</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -631,9 +636,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- Stat cards -->
             <div class="flex flex-col sm:flex-row gap-3">
-              <CardStat label="Conversion" value="+20–25%" description="increase" />
-              <CardStat label="D1 retention" value="+3%" description="improvement" />
-              <CardStat label="Experiments" value="9 of 12" description="shipped to 100%" />
+              <CardCallout label="Conversion" value="+20–25%" description="increase" />
+              <CardCallout label="D1 retention" value="+3%" description="improvement" />
+              <CardCallout label="Experiments" value="9 of 12" description="shipped to 100%" />
             </div>
 
             <!-- What I learned + What I'd do differently -->

@@ -8,8 +8,8 @@ import { ref } from 'vue'
 import CaseStudyNav from '@/components/CaseStudyNav.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
-import CardStat from '@/components/CardStat.vue'
 import CardCallout from '@/components/CardCallout.vue'
+import TagPill from '@/components/TagPill.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',   label: 'Overview' },
@@ -60,15 +60,12 @@ const panelRef = ref<HTMLElement | null>(null)
               >
                 Lolsumo: a coaching app for League of Legends
               </h1>
-              <p class="text-[var(--color-text-secondary)] leading-relaxed text-lg">
-                Real-time training for LoL players: pre-game, in-game and post-game.
-              </p>
               <div class="flex flex-wrap gap-2">
-                <span
+                <TagPill
                   v-for="tag in ['Community Engagement', 'Design System', 'User Testing']"
                   :key="tag"
-                  class="rounded-full border border-black/10 bg-black/[0.04] px-4 py-1 text-sm text-[var(--color-text-secondary)]"
-                >{{ tag }}</span>
+                  :label="tag"
+                />
               </div>
               <div class="flex flex-wrap gap-6 sm:gap-12 pt-2">
                 <div>
@@ -101,7 +98,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-1.png" alt="Lolsumo Android and iOS apps" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Lolsumo Android &amp; iOS apps</figcaption>
+              <figcaption>Lolsumo Android &amp; iOS apps</figcaption>
             </figure>
 
           </CaseStudySection>
@@ -123,7 +120,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </CardCallout>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-2.png" alt="League of Legends game map" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">League of Legends game map</figcaption>
+              <figcaption>League of Legends game map</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -187,7 +184,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <div class="rounded-[19px] overflow-hidden border-2 border-[#275243]"><img src="/project-pages/lolsumo/lolsumo-3.png" alt="Lolsumo competitors" class="w-full block" /></div>
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Lolsumo competitors</figcaption>
+              <figcaption>Lolsumo competitors</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -210,11 +207,11 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-4.png" alt="Active community on the r/LOLSUMO subreddit" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Active community on the r/LOLSUMO subreddit</figcaption>
+              <figcaption>Active community on the r/LOLSUMO subreddit</figcaption>
             </figure>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-5.png" alt="User testing result sample" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">User testing result sample</figcaption>
+              <figcaption>User testing result sample</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -241,7 +238,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-6.png" alt="In-game item build and match history" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">In-game item build and match history</figcaption>
+              <figcaption>In-game item build and match history</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -268,7 +265,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-7.png" alt="In-depth match analysis and tier lists" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">In-depth match analysis and tier lists</figcaption>
+              <figcaption>In-depth match analysis and tier lists</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -292,7 +289,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-8.png" alt="Lolsumo PRO features" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Lolsumo PRO features</figcaption>
+              <figcaption>Lolsumo PRO features</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -321,7 +318,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <figure>
               <img src="/project-pages/lolsumo/lolsumo-9.png" alt="Lolsumo seasonal offers" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
-              <figcaption class="mt-2 text-xs text-center text-[var(--color-text-secondary)]">Lolsumo seasonal offers</figcaption>
+              <figcaption>Lolsumo seasonal offers</figcaption>
             </figure>
           </CaseStudySection>
 
@@ -333,9 +330,9 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3">
-              <CardStat label="MAU" value="500K+" description="monthly active users" />
-              <CardStat label="Funding" value="$6M" description="secured by Dojo Madness" />
-              <CardStat label="Rating" value="4.5 / 5" description="App Store rating" />
+              <CardCallout label="MAU" value="500K+" description="monthly active users" />
+              <CardCallout label="Funding" value="$6M" description="secured by Dojo Madness" />
+              <CardCallout label="Rating" value="4.5 / 5" description="App Store rating" />
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 items-start">

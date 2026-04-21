@@ -78,6 +78,7 @@
     --color-button-text-primary: #ffffff;
     --color-surface-button: #ffffff;
     --color-button-text: #334155;
+    --color-surface-card: var(--color-deep-maroon-100);
     --color-surface-sticky: var(--color-golden-honey-400);
     --color-surface-sticky-label: var(--color-golden-honey-500);
     --color-surface-canvas: var(--color-deep-maroon-50);
@@ -114,6 +115,21 @@
     :root {
       --a11y-motion: 0;
     }
+  }
+}
+
+/* ========== Figcaption ========== */
+@layer base {
+  figcaption {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+  }
+  figure figcaption:first-child {
+    margin-bottom: 0.5rem;
+  }
+  figure figcaption:last-child {
+    margin-top: 0.5rem;
   }
 }
 
