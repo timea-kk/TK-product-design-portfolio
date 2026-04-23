@@ -1,77 +1,70 @@
 <!--
-  Header.vue – Floating pill navigation bar (Option 1: centered panel).
-  Panel state is owned here so the panel can be positioned as an absolute child of the
-  header element, letting left-1/2 / -translate-x-1/2 center it under the pill regardless
-  of which icon triggered it. ThemeSwitcher.vue and A11yPanel.vue are unused in this variant.
+  Header.vue – Floating pill navigation bar.
+  Uses Dropdown directly for the theme switcher and accessibility panels.
 -->
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { IconPalette, IconAccessible } from '@tabler/icons-vue'
+import { ref } from 'vue'
+import { IconPalette, IconAccessible, IconChevronDown } from '@tabler/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
+import { THEME_LABELS, THEME_DESCRIPTIONS } from '@/constants/themes'
+import Dropdown from './Dropdown.vue'
 
 const themeStore = useThemeStore()
 const a11y = useA11yStore()
-
-const activePanel = ref<'theme' | 'a11y' | null>(null)
-const headerRef = ref<HTMLElement | null>(null)
-
-function toggle(panel: 'theme' | 'a11y') {
-  activePanel.value = activePanel.value === panel ? null : panel
-}
-
-function handleOutsideClick(e: MouseEvent) {
-  if (headerRef.value && !headerRef.value.contains(e.target as Node)) {
-    activePanel.value = null
-  }
-}
-
-onMounted(() => document.addEventListener('click', handleOutsideClick))
-onUnmounted(() => document.removeEventListener('click', handleOutsideClick))
-
-const THEME_LABELS: Record<string, string> = {
-  default: 'Default',
-  bauhaus: 'Bauhaus',
-  terminal: 'Terminal',
-  'neo-brutalism': 'Neo-brutalism',
-  sketch: 'Sketch',
-  retro: 'Retro',
-  material: 'Material Design',
-}
-
-const THEME_DESCRIPTIONS: Record<string, string> = {
-  default: 'Warm, violet, editorial serif',
-  bauhaus: 'Bold, geometric, primary palette',
-  terminal: 'Dark, monospace, hacker green',
-  'neo-brutalism': 'Raw, loud, hard shadows',
-  sketch: 'Soft, paper, dotted grid',
-  retro: 'Silver, beveled, 90s nostalgia',
-  material: 'Clean, elevated, corporate blue',
-}
+const themeDropRef = ref<InstanceType<typeof Dropdown> | null>(null)
 
 function selectTheme(id: string) {
   themeStore.setTheme(id)
-  activePanel.value = null
+  themeDropRef.value?.close()
 }
 </script>
 
 <template>
-  <header ref="headerRef" class="fixed top-4 left-1/2 z-50 -translate-x-1/2" role="banner">
+  <header class="fixed top-4 left-1/2 z-50 -translate-x-1/2" role="banner">
     <nav
       class="flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-2 py-2 shadow-lg"
       aria-label="Main"
     >
-      <button
-        type="button"
-        @click="toggle('theme')"
-        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'theme' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
-        :aria-expanded="activePanel === 'theme'"
-        aria-haspopup="listbox"
-        aria-label="Choose theme"
+      <!-- Theme picker -->
+      <Dropdown
+        ref="themeDropRef"
+        label="Themes"
+        trigger-aria-label="Choose theme"
+        haspopup="listbox"
+        panel-class="left-0 top-full mt-4 w-[322px]"
       >
-        <IconPalette class="h-4 w-4" />
-      </button>
+        <template #trigger="{ open, toggle }">
+          <button
+            type="button"
+            @click="toggle"
+            :class="['rounded-full p-2 focus-visible:outline-offset-2', open ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
+            :aria-expanded="open"
+            aria-haspopup="listbox"
+            aria-label="Choose theme"
+          >
+            <IconPalette class="h-4 w-4" />
+          </button>
+        </template>
+        <ul role="listbox" aria-label="Theme options">
+          <li
+            v-for="id in themeStore.themes.filter(t => ['default', 'neo-brutalism', 'material'].includes(t))"
+            :key="id"
+            role="option"
+            :aria-selected="themeStore.theme === id"
+          >
+            <button
+              type="button"
+              class="w-full px-4 py-3 text-left text-sm hover:bg-[var(--color-highlight)] hover:text-[var(--color-brand-primary)] focus:bg-[var(--color-highlight)] focus:outline-none"
+              @click="selectTheme(id)"
+            >
+              <span class="font-medium">{{ THEME_LABELS[id] }}</span>
+              <span class="block text-xs opacity-60">{{ THEME_DESCRIPTIONS[id] }}</span>
+            </button>
+          </li>
+        </ul>
+      </Dropdown>
 
       <a
         href="/"
@@ -98,49 +91,30 @@ function selectTheme(id: string) {
         Resume
       </a>
 
-      <button
-        type="button"
-        @click="toggle('a11y')"
-        :class="['rounded-full p-2 focus-visible:outline-offset-2', activePanel === 'a11y' ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
-        :aria-expanded="activePanel === 'a11y'"
-        aria-haspopup="dialog"
-        aria-label="Accessibility options"
+      <!-- Accessibility options -->
+      <Dropdown
+        label="Accessibility"
+        trigger-aria-label="Accessibility options"
+        haspopup="dialog"
+        panel-class="right-0 top-full mt-4 w-[322px]"
+        panel-role="dialog"
+        panel-aria-label="Accessibility options"
       >
-        <IconAccessible class="h-4 w-4" />
-      </button>
-    </nav>
-
-    <!--
-      Panel is an absolute child of <header>, not of the icon button.
-      left-1/2 + -translate-x-1/2 centers it under the pill (header width = pill width).
-    -->
-    <div
-      v-if="activePanel"
-      class="absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg"
-    >
-      <!-- Theme list -->
-      <ul v-if="activePanel === 'theme'" role="listbox" aria-label="Theme options">
-        <li
-          v-for="id in themeStore.themes.filter(t => ['default', 'neo-brutalism', 'material'].includes(t))"
-          :key="id"
-          role="option"
-          :aria-selected="themeStore.theme === id"
-        >
+        <template #trigger="{ open, toggle }">
           <button
             type="button"
-            class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--color-highlight)] hover:text-[var(--color-brand-primary)] focus:bg-[var(--color-highlight)] focus:outline-none"
-            @click="selectTheme(id)"
+            @click="toggle"
+            :class="['rounded-full p-2 focus-visible:outline-offset-2', open ? 'text-[var(--color-brand-primary)]' : 'text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)]']"
+            :aria-expanded="open"
+            aria-haspopup="dialog"
+            aria-label="Accessibility options"
           >
-            <span class="font-medium">{{ THEME_LABELS[id] ?? id }}</span>
-            <span v-if="THEME_DESCRIPTIONS[id]" class="block text-xs opacity-60">{{ THEME_DESCRIPTIONS[id] }}</span>
+            <IconAccessible class="h-4 w-4" />
           </button>
-        </li>
-      </ul>
+        </template>
 
-      <!-- A11y controls -->
-      <div v-if="activePanel === 'a11y'" role="dialog" aria-label="Accessibility options">
-        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
-          <div>
+        <label class="flex cursor-pointer items-center px-4 py-3 hover:bg-[var(--color-highlight)]">
+          <div class="flex-1 min-w-0">
             <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Reduce motion</span>
             <span class="block text-xs opacity-60">No transitions or animations</span>
           </div>
@@ -148,42 +122,43 @@ function selectTheme(id: string) {
             type="checkbox"
             :checked="a11y.reduceMotion"
             @change="a11y.update({ reduceMotion: ($event.target as HTMLInputElement).checked })"
-            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
+            class="ml-4 shrink-0 h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
           />
         </label>
 
-        <label class="flex cursor-pointer items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
-          <div>
-            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">High contrast</span>
-            <span class="block text-xs opacity-60">Stronger borders and focus ring</span>
+        <label class="flex cursor-pointer items-center px-4 py-3 hover:bg-[var(--color-highlight)]">
+          <div class="flex-1 min-w-0">
+            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Dyslexia-friendly</span>
+            <span class="block text-xs opacity-60">OpenDyslexic font, wider spacing</span>
           </div>
           <input
             type="checkbox"
-            :checked="a11y.highContrast"
-            @change="a11y.update({ highContrast: ($event.target as HTMLInputElement).checked })"
-            class="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
+            :checked="a11y.dyslexia"
+            @change="a11y.update({ dyslexia: ($event.target as HTMLInputElement).checked })"
+            class="ml-4 shrink-0 h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
           />
         </label>
 
-        <!-- dyslexia-friendly hidden until fixed in a future branch -->
-
-        <div class="flex items-center justify-between px-4 py-3 hover:bg-[var(--color-highlight)]">
-          <div>
+        <div class="flex items-center px-4 py-3 hover:bg-[var(--color-highlight)]">
+          <div class="flex-1 min-w-0">
             <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
             <span class="block text-xs opacity-60">Scale from 100% to 120%</span>
           </div>
-          <select
-            :value="a11y.textScale"
-            @change="a11y.update({ textScale: Number(($event.target as HTMLSelectElement).value) })"
-            class="rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] px-2 py-1 text-sm text-[var(--color-text-secondary)]"
-            aria-label="Text size"
-          >
-            <option :value="0.9">100%</option>
-            <option :value="1">110%</option>
-            <option :value="1.1">120%</option>
-          </select>
+          <div class="relative ml-4 shrink-0">
+            <select
+              :value="a11y.textScale"
+              @change="a11y.update({ textScale: Number(($event.target as HTMLSelectElement).value) })"
+              class="appearance-none cursor-pointer rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] pl-3 pr-8 py-1 text-sm text-[var(--color-text-secondary)]"
+              aria-label="Text size"
+            >
+              <option :value="0.9">100%</option>
+              <option :value="1">110%</option>
+              <option :value="1.1">120%</option>
+            </select>
+            <IconChevronDown class="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 pointer-events-none text-[var(--color-text-secondary)]" aria-hidden="true" />
+          </div>
         </div>
-      </div>
-    </div>
+      </Dropdown>
+    </nav>
   </header>
 </template>

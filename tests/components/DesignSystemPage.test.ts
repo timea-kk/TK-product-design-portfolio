@@ -18,7 +18,7 @@ const NAV_SECTION_IDS = [
   'colors', 'typography',
   'button',
   'card-callout', 'card-interactive', 'card-project', 'card-timeline',
-  'carousel-nav', 'case-study-nav', 'case-study-section', 'header', 'image-carousel',
+  'carousel-nav', 'case-study-nav', 'case-study-section', 'dropdown', 'header', 'image-carousel',
   'segmented-control', 'sticky-note', 'tag-pill', 'timea-agent',
 ]
 

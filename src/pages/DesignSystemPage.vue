@@ -19,6 +19,7 @@ import TagPill from '@/components/TagPill.vue'
 import CardProject from '@/components/CardProject.vue'
 import ButtonOutline from '@/components/ButtonOutline.vue'
 import ButtonPrimary from '@/components/ButtonPrimary.vue'
+import Dropdown from '@/components/Dropdown.vue'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 
 const NAV_SECTIONS = [
@@ -32,6 +33,7 @@ const NAV_SECTIONS = [
   { id: 'carousel-nav',       label: 'CarouselNav',      group: 'Components' },
   { id: 'case-study-nav',     label: 'CaseStudyNav',     group: 'Components' },
   { id: 'case-study-section', label: 'CaseStudySection', group: 'Components' },
+  { id: 'dropdown',           label: 'Dropdown',         group: 'Components' },
   { id: 'header',             label: 'Header',           group: 'Components' },
   { id: 'image-carousel',     label: 'ImageCarousel',    group: 'Components' },
   { id: 'sticky-note',        label: 'StickyNote',       group: 'Components' },
@@ -272,12 +274,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '200', hex: '#d9c7e0', varName: '--color-dusty-violet-200' },
     token:     { name: '--color-surface-decorative',             hex: 'var(--color-dusty-violet-200)', label: 'Surface Decorative', group: 'Surface' },
-    usedIn:    ['A11yPanel', 'AppLayout', 'Header', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['Dropdown', 'Header', 'TimeaAgent', 'all pages'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-brand-primary',       hex: 'var(--color-dusty-violet-500)', label: 'Brand Primary', group: 'Brand' },
-    usedIn:    ['A11yPanel', 'ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Dropdown', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
@@ -298,12 +300,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
     token:     { name: '--color-surface-elevation-1',    hex: 'var(--color-golden-honey-50)',  label: 'Surface Elevation 1', group: 'Surface' },
-    usedIn:    ['A11yPanel', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
     token:     { name: '--color-border',              hex: 'var(--color-golden-honey-200)', label: 'Border', group: 'Border' },
-    usedIn:    ['A11yPanel', 'ButtonOutline', 'CardProject', 'CarouselNav', 'Header', 'SegmentedControl', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['ButtonOutline', 'CardProject', 'CarouselNav', 'Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
@@ -313,9 +315,14 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Golden Honey', step: '500', hex: '#EDB73B', varName: '--color-golden-honey-500' },
     token:     { name: '--color-surface-sticky-label', hex: 'var(--color-golden-honey-500)', label: 'Sticky Label', group: 'Surface' },
-    usedIn:    [],
+    usedIn:    ['StickyNote'],
   },
   // ── Deep Maroon ──────────────────────────────────────────────────────────
+  {
+    primitive: { group: 'Deep Maroon', step: '50',  hex: '#F9F7F7', varName: '--color-deep-maroon-50' },
+    token:     { name: '--color-surface-canvas',    hex: 'var(--color-deep-maroon-50)', label: 'Surface Canvas', group: 'Surface' },
+    usedIn:    ['all pages'],
+  },
   {
     primitive: { group: 'Deep Maroon', step: '100', hex: '#EEE8E8', varName: '--color-deep-maroon-100' },
     token:     { name: '--color-surface-card',        hex: 'var(--color-deep-maroon-100)', label: 'Surface Card', group: 'Surface' },
@@ -324,7 +331,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
     token:     { name: '--color-text-secondary',               hex: 'var(--color-deep-maroon-600)',  label: 'Text Secondary', group: 'Text' },
-    usedIn:    ['A11yPanel', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'Header', 'SegmentedControl', 'TagPill', 'ThemeSwitcher', 'TimeaAgent'],
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'Dropdown', 'Header', 'SegmentedControl', 'TagPill', 'TimeaAgent'],
   },
 ]
 
@@ -369,8 +376,6 @@ const groupedPrimitives = computed(() => {
 })
 
 const COMPONENT_GROUP_MAP: Record<string, string> = {
-  A11yPanel:         'Overlays',
-  AppLayout:         'Layout',
   ButtonOutline:     'Buttons',
   ButtonPrimary:     'Buttons',
   CardCallout:       'Cards',
@@ -380,13 +385,13 @@ const COMPONENT_GROUP_MAP: Record<string, string> = {
   CarouselNav:       'Navigation',
   CaseStudyNav:      'Navigation',
   CaseStudySection:  'Navigation',
-  Header:            'Layout',
+  Dropdown:          'Overlays',
+  Header:            'Navigation',
   Logo:              'Decorative',
   RotatingDescriptor:'Decorative',
   SegmentedControl:  'Navigation',
   StickyNote:        'Decorative',
   TagPill:           'Cards',
-  ThemeSwitcher:     'Overlays',
   TimeaAgent:        'Agent',
 }
 
@@ -1207,6 +1212,82 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">first</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Hero section: adds top margin, taller padding, looser internal spacing</td></tr>
                 </tbody>
               </table>
+            </div>
+          </CaseStudySection>
+
+          <!-- ── Dropdown ── -->
+          <CaseStudySection id="dropdown" label="Dropdown">
+            <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Dropdown</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">A reusable trigger-and-panel shell. Handles open/close toggle, outside-click dismissal, and ARIA attributes. Used directly in the Header for the theme picker and accessibility panel. Panel position, role, and content are fully configurable.</p>
+
+            <!-- Demo: static open-state mockup -->
+            <div class="rounded-xl border-2 border-dashed border-black/[0.10] pt-5 px-5 pb-52 flex justify-center items-start">
+              <div class="relative pointer-events-none select-none">
+                <button
+                  type="button"
+                  class="flex items-center gap-1 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-3 py-2 text-sm font-medium text-[var(--color-text-secondary)]"
+                  aria-haspopup="listbox"
+                  aria-expanded="true"
+                  aria-label="Choose theme"
+                >
+                  Themes
+                </button>
+                <div class="absolute right-0 top-full mt-1 z-10 min-w-[16rem] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg">
+                  <ul>
+                    <li>
+                      <div class="w-full px-4 py-2 text-left text-sm">
+                        <span class="font-medium">Default</span>
+                        <span class="block text-xs opacity-60">Light and minimal</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="w-full px-4 py-2 text-left text-sm bg-[var(--color-surface-decorative)] text-[var(--color-brand-primary)]">
+                        <span class="font-medium">Bauhaus</span>
+                        <span class="block text-xs opacity-60">High contrast, geometric</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="w-full px-4 py-2 text-left text-sm">
+                        <span class="font-medium">Nocturne</span>
+                        <span class="block text-xs opacity-60">Dark and moody</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Props -->
+            <div class="rounded-xl border border-black/[0.08] overflow-hidden overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-[var(--color-surface-subtle)]">
+                  <tr>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Prop</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Type</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Default</th>
+                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.05]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]"></td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Button label text. Required.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">triggerAriaLabel</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">aria-label for the trigger button. Defaults to label.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">haspopup</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">"true"</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">aria-haspopup value for the trigger. Use "listbox" or "dialog" as appropriate.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">panelClass</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">"right-0 top-full mt-1"</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Positioning classes appended to the panel div.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">panelRole</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]"></td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">role attribute on the panel div. Omit for generic panels.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">panelAriaLabel</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]"></td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">aria-label for the panel div.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Code -->
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;Dropdown label="Options" haspopup="listbox"&gt;
+  &lt;ul role="listbox"&gt;
+    &lt;li role="option"&gt;
+      &lt;button @click="select(id)"&gt;Label&lt;/button&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/Dropdown&gt;</pre>
             </div>
           </CaseStudySection>
 
