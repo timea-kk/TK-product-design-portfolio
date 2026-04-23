@@ -6,8 +6,8 @@
   Respects reduce-motion (both from the a11y store and the OS prefers-reduced-motion
   media query): when either is active, shows only the first phrase with no animation.
 
-  whitespace-nowrap on the outer span prevents the cursor from wrapping onto a new line
-  in dyslexia mode where letter-spacing makes characters wider.
+  Phrases wrap naturally. The parent h1 uses a fluid clamp() font-size so text never
+  overflows its container at any breakpoint.
 -->
 
 <script setup lang="ts">
@@ -101,7 +101,7 @@ function schedule() {
         visibleLength.value++
       }, TYPE_MS)
     } else {
-      // All characters revealed — move to the pause/blink phase
+      // All characters revealed; move to the pause/blink phase
       phase.value = 'pause'
     }
   } else if (phase.value === 'pause') {
@@ -148,7 +148,6 @@ onUnmounted(() => {
   <!-- Reduce-motion: static first phrase, no cursor or animation -->
   <span
     v-if="reduceMotion"
-    class="inline-block whitespace-nowrap align-baseline"
     aria-live="polite"
     aria-atomic="true"
   >
@@ -159,7 +158,7 @@ onUnmounted(() => {
   <span
     v-else
     :class="[
-      'inline-block whitespace-nowrap align-baseline transition-opacity duration-300',
+      'transition-opacity duration-300',
       phase === 'fadeOut' ? 'opacity-0' : 'opacity-100',
     ]"
     aria-live="polite"

@@ -7,6 +7,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { setActivePinia, createPinia } from 'pinia'
+import { nextTick } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import { useA11yStore } from '@/stores/a11y'
 
@@ -23,10 +24,10 @@ describe('RotatingDescriptor', () => {
     expect(wrapper.find('[aria-live="polite"]').exists()).toBe(true)
   })
 
-  it('has whitespace-nowrap on the outer span to prevent cursor wrapping', () => {
+  it('does not use whitespace-nowrap so phrases can wrap at the container boundary', () => {
     const wrapper = mount(RotatingDescriptor)
     const liveRegion = wrapper.find('[aria-live="polite"]')
-    expect(liveRegion.classes()).toContain('whitespace-nowrap')
+    expect(liveRegion.classes()).not.toContain('whitespace-nowrap')
   })
 
   it('shows static text when reduceMotion is enabled in the store', async () => {
@@ -113,5 +114,43 @@ describe('RotatingDescriptor', () => {
     expect(mockMq.removeEventListener).toHaveBeenCalledWith('change', expect.any(Function))
 
     vi.restoreAllMocks()
+  })
+
+  it('drives through typing → pause → cursorFadeOut → fadeOut → typing phases with fake timers', async () => {
+    const mockMq = {
+      matches: false,
+      media: '(prefers-reduced-motion: reduce)',
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }
+    vi.spyOn(window, 'matchMedia').mockReturnValue(mockMq as unknown as MediaQueryList)
+    vi.useFakeTimers()
+
+    const wrapper = mount(RotatingDescriptor)
+
+    // "Senior Product Designer " = 24 chars; TYPE_MS = 70
+    for (let i = 0; i < 24; i++) {
+      vi.advanceTimersByTime(70)
+      await nextTick()
+    }
+    // phase should now be 'pause'; advance through PAUSE_AFTER_TYPE_MS = 2997
+    vi.advanceTimersByTime(2997)
+    await nextTick()
+    // phase = 'cursorFadeOut'; advance through CURSOR_FADE_OUT_MS = 400
+    vi.advanceTimersByTime(400)
+    await nextTick()
+    // phase = 'fadeOut'; advance through FADE_OUT_MS = 350
+    vi.advanceTimersByTime(350)
+    await nextTick()
+    // back to typing phase with next phrase
+    expect(wrapper.find('[aria-live="polite"]').exists()).toBe(true)
+
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+    wrapper.unmount()
   })
 })

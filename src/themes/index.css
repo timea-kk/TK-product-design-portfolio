@@ -372,6 +372,7 @@ html[class*="theme-"] h3 {
    Wider letter/word spacing, generous line-height, no italics, no uppercase, no decorative shadows. */
 html.a11y-dyslexia body {
   font-family: 'OpenDyslexic', Arial, Verdana, sans-serif;
+  font-size: 0.875em;
   line-height: 1.8;
   letter-spacing: 0.05em;
   word-spacing: 0.16em;

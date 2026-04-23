@@ -77,11 +77,13 @@ describe('Header', () => {
   })
 
   it('switching to the a11y panel hides the theme panel', async () => {
-    const wrapper = mount(Header)
+    const wrapper = mount(Header, { attachTo: document.body })
     await wrapper.find('button[aria-label="Choose theme"]').trigger('click')
     await wrapper.find('button[aria-label="Accessibility options"]').trigger('click')
+    await wrapper.vm.$nextTick()
     expect(wrapper.find('[role="listbox"]').exists()).toBe(false)
     expect(wrapper.find('[role="dialog"]').exists()).toBe(true)
+    wrapper.unmount()
   })
 
   it('updates the store when a theme is selected', async () => {
