@@ -9,11 +9,12 @@ import LolsumoPage from '@/pages/LolsumoPage.vue'
 export default createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: HomePage },
-    { path: '/work/ecosia-onboarding', component: EcosiaOnboardingPage },
-    { path: '/work/ecosia-browser', component: EcosiaBrowserPage },
-    { path: '/work/flora-design-system', component: FloraDesignSystemPage },
-    { path: '/work/lolsumo', component: LolsumoPage },
-    { path: '/design-system', component: DesignSystemPage },
+    { path: '/', name: 'home', component: HomePage },
+    { path: '/work/ecosia-onboarding', name: 'ecosia-onboarding', component: EcosiaOnboardingPage },
+    { path: '/work/ecosia-browser', name: 'ecosia-browser', component: EcosiaBrowserPage },
+    { path: '/work/flora-design-system', name: 'flora-design-system', component: FloraDesignSystemPage },
+    { path: '/work/lolsumo', name: 'lolsumo', component: LolsumoPage },
+    { path: '/design-system', name: 'design-system', component: DesignSystemPage },
+    { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
 })

@@ -40,7 +40,7 @@ const panelRef = ref<HTMLElement | null>(null)
       ref="panelRef"
       class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
       style="
-        background-color: #f7f6f2;
+        background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
@@ -101,7 +101,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Flora Design System structure</figcaption>
             </figure>
           </CaseStudySection>
@@ -116,7 +116,7 @@ const panelRef = ref<HTMLElement | null>(null)
               Without a single owner, we needed a new way to keep Flora moving. <strong>I stepped in to structure and coordinate the transition to a shared ownership model.</strong>
             </p>
             <figure class="pt-2">
-              <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>DS Ownership transition: old vs. new</figcaption>
             </figure>
           </CaseStudySection>
@@ -140,15 +140,15 @@ const panelRef = ref<HTMLElement | null>(null)
             <div class="hidden sm:block pt-5">
               <div class="flex gap-3">
                 <StickyNote :rotate="-1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">How might we</span>
                   create a shared process for contributing to Flora?
                 </StickyNote>
                 <StickyNote :rotate="1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">How might we</span>
                   align six designers on the same standards and tools?
                 </StickyNote>
                 <StickyNote :rotate="-0.5" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">How might we</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">How might we</span>
                   turn scattered knowledge into something shared?
                 </StickyNote>
               </div>

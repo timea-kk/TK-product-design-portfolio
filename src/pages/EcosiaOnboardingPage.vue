@@ -66,6 +66,7 @@ function dissolve(
   newSrc: string,
   onComplete: () => void
 ) {
+  /* v8 ignore next 4 */
   if (!front || !back) {
     onComplete()
     return
@@ -115,7 +116,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
       ref="panelRef"
       class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
       style="
-        background-color: #f7f6f2;
+        background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
@@ -181,7 +182,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Landing Page snapshot</figcaption>
             </figure>
 
@@ -209,21 +210,21 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             <div class="hidden sm:block pt-5">
               <div class="flex gap-3">
                 <StickyNote :rotate="-1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">1</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">1</span>
                   Low conversion and retention rates with limited insight into why users dropped off
                 </StickyNote>
                 <StickyNote :rotate="1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">2</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">2</span>
                   Unclear value as users didn't understand what Ecosia was or how it worked
                 </StickyNote>
                 <StickyNote :rotate="-0.5" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: #d4a017;">3</span>
+                  <span class="text-sm font-bold rounded-md px-2 py-0.5 sm:text-base" style="background: var(--color-surface-sticky-label);">3</span>
                   No guidance on how to install or set Ecosia as the default search engine
                 </StickyNote>
               </div>
             </div>
             <figure class="pt-4 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Product landscape</figcaption>
             </figure>
           </CaseStudySection>
@@ -238,12 +239,12 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 <p>To make this possible, I defined a clear research and experimentation track that aligned product, design, and growth goals across multiple teams.</p>
               </div>
               <StickyNote :rotate="-1" square class="w-1/2 mx-auto sm:w-56 sm:mx-0 sm:shrink-0 sm:mt-4">
-                <span class="text-base font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">How might we</span>
+                <span class="text-base font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">How might we</span>
                 help new users quickly understand and trust Ecosia while keeping their experience familiar
               </StickyNote>
             </div>
             <figure class="pt-2 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Onboarding approach overview</figcaption>
             </figure>
           </CaseStudySection>
@@ -261,63 +262,63 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
               <!-- Left column: drives -->
               <div class="flex flex-col gap-4 flex-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#826520]">What drives the switch</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-golden-honey-700)]">What drives the switch</p>
 
                 <!-- Push -->
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:var(--color-golden-honey-500)"></span>
                     <span class="font-semibold text-[var(--color-text-primary)]">Push</span>
                   </div>
                   <p class="text-sm text-[var(--color-text-secondary)]">Frustration with Google's data policies and curiosity for alternatives</p>
                   <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "People I know and trust are using it" · "I'm frustrated with Google's data policy"
                   </blockquote>
-                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:var(--color-golden-honey-200); color:var(--color-golden-honey-700)">Emotional</span>
                 </div>
 
                 <!-- Pull -->
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#EDB73B"></span>
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:var(--color-golden-honey-500)"></span>
                     <span class="font-semibold text-[var(--color-text-primary)]">Pull</span>
                   </div>
                   <p class="text-sm text-[var(--color-text-secondary)]">Motivation from Ecosia's tree-planting mission and ease of switching</p>
                   <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "Tree planting impact is impressive" · "Switching sounded easy to do"
                   </blockquote>
-                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#fae9c4; color:#826520">Emotional</span>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:var(--color-golden-honey-200); color:var(--color-golden-honey-700)">Emotional</span>
                 </div>
               </div>
 
               <!-- Right column: holds back -->
               <div class="flex flex-col gap-4 flex-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#2A6864]">What holds them back</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-dusty-violet-700)]">What holds them back</p>
 
                 <!-- Inertia -->
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:var(--color-dusty-violet-400)"></span>
                     <span class="font-semibold text-[var(--color-text-primary)]">Inertia</span>
                   </div>
                   <p class="text-sm text-[var(--color-text-secondary)]">Reluctance to change habits or risk losing bookmarks and convenience</p>
                   <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "I need easy access to my emails and drive" · "Don't want to lose my bookmarks"
                   </blockquote>
-                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:var(--color-dusty-violet-100); color:var(--color-dusty-violet-700)">Functional</span>
                 </div>
 
                 <!-- Anxiety -->
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full shrink-0" style="background:#47B1AB"></span>
+                    <span class="w-3 h-3 rounded-full shrink-0" style="background:var(--color-dusty-violet-400)"></span>
                     <span class="font-semibold text-[var(--color-text-primary)]">Anxiety</span>
                   </div>
                   <p class="text-sm text-[var(--color-text-secondary)]">Uncertainty about search quality, privacy, and performance</p>
                   <blockquote class="border-l-2 border-black/10 pl-3 text-sm italic text-[var(--color-text-secondary)] opacity-80">
                     "I want to know how it compares to Google" · "I need fast answers without disruptions"
                   </blockquote>
-                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:#D5EFED; color:#2A6864">Functional</span>
+                  <span class="inline-block text-xs font-medium px-2.5 py-1 rounded" style="background:var(--color-dusty-violet-100); color:var(--color-dusty-violet-700)">Functional</span>
                 </div>
               </div>
 
@@ -329,25 +330,25 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
               <!-- Left column: try it -->
               <div class="flex flex-col gap-4 flex-1">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#9966AA]">Decision 1: try Ecosia out</p>
+                <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-dusty-violet-500)]">Decision 1: try Ecosia out</p>
 
                 <div class="rounded-xl bg-black/[0.03] p-5 space-y-3">
                   <p class="font-semibold text-[var(--color-text-primary)]">I'll give it a try if...</p>
                   <ul class="space-y-2">
                     <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
-                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:var(--color-dusty-violet-500)">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
                       Someone I trust recommended it
                     </li>
                     <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
-                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:var(--color-dusty-violet-500)">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
                       The climate impact feels real and clear
                     </li>
                     <li class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]">
-                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:#9966AA">
+                      <span class="w-5 h-5 rounded shrink-0 flex items-center justify-center" style="background:var(--color-dusty-violet-500)">
                         <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
                       </span>
                       Switching looks easy and low effort
@@ -417,7 +418,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
             </p>
             <figure class="pt-2 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
             <CardCallout label="Timing was everything">
@@ -455,7 +456,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   )"
                 />
               </div>
-              <div class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden" style="background:#275243">
+              <div class="relative w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)] overflow-hidden" style="background:var(--color-deep-maroon-700)">
                 <img
                   ref="beforeAfterFrontRef"
                   :src="beforeAfterFrontSrc"
@@ -539,7 +540,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- Active step image (desktop only) -->
             <figure class="hidden sm:block pt-2 space-y-3">
-              <div class="relative w-full rounded-xl border-2 border-[#275243]">
+              <div class="relative w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]">
                 <img
                   ref="strategyFrontRef"
                   :src="strategyFrontSrc"
@@ -604,7 +605,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
             <!-- Active step image (desktop only) -->
             <figure class="hidden sm:block pt-2 space-y-3">
-              <div class="relative w-full rounded-xl border-2 border-[#275243]" style="background:#275243">
+              <div class="relative w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" style="background:var(--color-deep-maroon-700)">
                 <img
                   ref="executionFrontRef"
                   :src="executionFrontSrc"

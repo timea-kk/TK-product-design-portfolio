@@ -37,7 +37,7 @@ const panelRef = ref<HTMLElement | null>(null)
       ref="panelRef"
       class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
       style="
-        background-color: #f7f6f2;
+        background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
@@ -97,7 +97,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-1.png" alt="Lolsumo Android and iOS apps" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-1.png" alt="Lolsumo Android and iOS apps" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>Lolsumo Android &amp; iOS apps</figcaption>
             </figure>
 
@@ -119,7 +119,7 @@ const panelRef = ref<HTMLElement | null>(null)
               I designed features for both casual and advanced players, working closely with engineers and content creators to keep pace with bi-weekly LoL patches and new champion releases.
             </CardCallout>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-2.png" alt="League of Legends game map" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-2.png" alt="League of Legends game map" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>League of Legends game map</figcaption>
             </figure>
           </CaseStudySection>
@@ -136,15 +136,15 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">User problem</p>
             <div class="flex gap-3 py-6">
               <StickyNote :rotate="-1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">Casual</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Casual</span>
                 Needed clear in-game guidance with item guides and builds in real-time.
               </StickyNote>
               <StickyNote :rotate="1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">Advanced</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Advanced</span>
                 Needed to analyze post-game stats or alternate champion builds.
               </StickyNote>
               <StickyNote :rotate="-0.5" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">Both</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Both</span>
                 Wanted to win more games and master their preferred champions.
               </StickyNote>
             </div>
@@ -183,7 +183,7 @@ const panelRef = ref<HTMLElement | null>(null)
               This raised the market pressure, and while we pushed hard to stay competitive, we had to make small compromises along the way to keep our place in the game.
             </p>
             <figure>
-              <div class="rounded-[19px] overflow-hidden border-2 border-[#275243]"><img src="/project-pages/lolsumo/lolsumo-3.png" alt="Lolsumo competitors" class="w-full block" /></div>
+              <div class="rounded-[19px] overflow-hidden border-2 border-[var(--color-deep-maroon-700)]"><img src="/project-pages/lolsumo/lolsumo-3.png" alt="Lolsumo competitors" class="w-full block" /></div>
               <figcaption>Lolsumo competitors</figcaption>
             </figure>
           </CaseStudySection>
@@ -206,11 +206,11 @@ const panelRef = ref<HTMLElement | null>(null)
               Survey results showed clear preferences for navigation patterns, and player quotes highlighted requests for better tips, performance tracking, and strategic decision-making guidance. Together, these methods gave us <strong>continuous validation</strong> and ensured we were always building features that players truly valued.
             </p>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-4.png" alt="Active community on the r/LOLSUMO subreddit" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-4.png" alt="Active community on the r/LOLSUMO subreddit" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>Active community on the r/LOLSUMO subreddit</figcaption>
             </figure>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-5.png" alt="User testing result sample" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-5.png" alt="User testing result sample" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>User testing result sample</figcaption>
             </figure>
           </CaseStudySection>
@@ -237,7 +237,7 @@ const panelRef = ref<HTMLElement | null>(null)
               By surfacing this guidance in the moment it was needed, Lolsumo helped casual players focus on playing rather than memorizing item trees or complex strategies.
             </p>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-6.png" alt="In-game item build and match history" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-6.png" alt="In-game item build and match history" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>In-game item build and match history</figcaption>
             </figure>
           </CaseStudySection>
@@ -264,7 +264,7 @@ const panelRef = ref<HTMLElement | null>(null)
               By combining these tools, Lolsumo gave advanced players the ability to refine their strategy, adjust their builds, and stay on top of the <strong>ever-changing meta</strong>.
             </p>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-7.png" alt="In-depth match analysis and tier lists" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-7.png" alt="In-depth match analysis and tier lists" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>In-depth match analysis and tier lists</figcaption>
             </figure>
           </CaseStudySection>
@@ -288,7 +288,7 @@ const panelRef = ref<HTMLElement | null>(null)
               For many players, these features were worth the upgrade, as no other platform combined <strong>real-time, in-game, and post-game data</strong> at this depth in one app.
             </p>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-8.png" alt="Lolsumo PRO features" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-8.png" alt="Lolsumo PRO features" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>Lolsumo PRO features</figcaption>
             </figure>
           </CaseStudySection>
@@ -301,15 +301,15 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <div class="flex gap-3 py-6">
               <StickyNote :rotate="-1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">Black Friday</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Black Friday</span>
                 Timed promotions around high-engagement retail moments and new season launches.
               </StickyNote>
               <StickyNote :rotate="1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">New LoL Season</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">New LoL Season</span>
                 Capitalized on seasonal player motivation to rank up and start fresh.
               </StickyNote>
               <StickyNote :rotate="-0.5" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">+25% conversions</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">+25% conversions</span>
                 Higher conversions compared to non-promotion periods across all three campaigns.
               </StickyNote>
             </div>
@@ -317,7 +317,7 @@ const panelRef = ref<HTMLElement | null>(null)
               Reduced subscription costs to <strong>€30/year</strong> for short periods during Black Friday, Christmas, and new LoL season launches. Seasonal offers became a <strong>key driver of revenue</strong>, boosting both subscriptions and engagement.
             </p>
             <figure>
-              <img src="/project-pages/lolsumo/lolsumo-9.png" alt="Lolsumo seasonal offers" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_#275243]" />
+              <img src="/project-pages/lolsumo/lolsumo-9.png" alt="Lolsumo seasonal offers" class="w-full rounded-[19px] shadow-[inset_0_0_0_2px_var(--color-deep-maroon-700)]" />
               <figcaption>Lolsumo seasonal offers</figcaption>
             </figure>
           </CaseStudySection>

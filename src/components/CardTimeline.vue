@@ -17,6 +17,7 @@ defineProps<{
       <!-- Content -->
       <div :class="['min-w-0', i < steps.length - 1 ? 'pb-5' : '']">
         <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)] mb-1">{{ step.label }}</p>
+        <!-- step.description must be compile-time static strings; never pass user input or API data here -->
         <p class="text-[var(--color-text-secondary)] leading-relaxed" v-html="step.description"></p>
       </div>
     </div>

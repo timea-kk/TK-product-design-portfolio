@@ -128,7 +128,7 @@ onUnmounted(() => {
             <div
               ref="navHoverIndicatorRef"
               class="absolute w-1 h-5 rounded-full left-1/2 -translate-x-1/2"
-              style="top:0; background:#c7abd1; opacity:0"
+              style="top:0; background:var(--color-dusty-violet-300); opacity:0"
             ></div>
             <div
               ref="navActiveIndicatorRef"
@@ -151,7 +151,7 @@ onUnmounted(() => {
                     'w-full text-left px-3 py-1.5 rounded-lg text-sm leading-tight transition-all duration-200',
                     activeSection === s.id
                       ? 'font-semibold text-[var(--color-text-primary)]'
-                      : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:translate-x-1'
+                      : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:translate-x-1 focus-visible:translate-x-1 focus-visible:text-[var(--color-text-primary)] focus-visible:outline-none'
                   ]"
                 >{{ s.label }}</button>
               </li>
