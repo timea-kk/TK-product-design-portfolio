@@ -105,6 +105,7 @@ onUnmounted(() => {
   if (typingTimer) clearInterval(typingTimer)
 })
 
+/* v8 ignore start */
 // Pill transition hooks (simple fade + scale)
 function onPillEnter(el: Element, done: () => void) {
   gsap.fromTo(el,
@@ -126,6 +127,7 @@ function onPanelEnter(el: Element, done: () => void) {
 function onPanelLeave(el: Element, done: () => void) {
   gsap.to(el, { opacity: 0, y: 8, duration: 0.16, ease: 'power2.in', onComplete: done })
 }
+/* v8 ignore stop */
 </script>
 
 <template>

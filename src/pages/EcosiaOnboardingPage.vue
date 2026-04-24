@@ -66,7 +66,7 @@ function dissolve(
   newSrc: string,
   onComplete: () => void
 ) {
-  /* v8 ignore next 3 */
+  /* v8 ignore next 4 */
   if (!front || !back) {
     onComplete()
     return

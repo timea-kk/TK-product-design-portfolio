@@ -238,4 +238,12 @@ describe('TimeaAgent', () => {
     // fetch should only have been called once
     expect(fetchSpy).toHaveBeenCalledTimes(1)
   })
+
+  it('removes the keydown listener on unmount', () => {
+    const spy = vi.spyOn(window, 'removeEventListener')
+    const wrapper = mount(TimeaAgent)
+    wrapper.unmount()
+    expect(spy).toHaveBeenCalledWith('keydown', expect.any(Function))
+    vi.restoreAllMocks()
+  })
 })
