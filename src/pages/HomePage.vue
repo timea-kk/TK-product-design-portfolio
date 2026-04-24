@@ -5,11 +5,25 @@
 -->
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import CardProject from '@/components/CardProject.vue'
+import CaseStudySection from '@/components/CaseStudySection.vue'
+
+const isLg = ref(false)
+let mql: MediaQueryList | null = null
+function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
+onMounted(() => {
+  mql = window.matchMedia('(min-width: 1024px)')
+  isLg.value = mql.matches
+  mql.addEventListener('change', onMqlChange)
+})
+onUnmounted(() => mql?.removeEventListener('change', onMqlChange))
 
 const PROJECTS = [
   {
+    id: 'project-onboarding',
+    year: '2025',
     title: "Building Ecosia's Onboarding Experience",
     description: 'A smooth first-time experience that boosted conversion by 25%.',
     image: '/main-page/ecosia-page.gif',
@@ -18,6 +32,8 @@ const PROJECTS = [
     tags: ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy'],
   },
   {
+    id: 'project-flora',
+    year: '2025',
     title: 'Scaling Design Operations at Ecosia',
     description: 'Establishing a shared ownership model for Flora, Ecosia\'s Design System.',
     image: '/project-pages/flora-design-system/flora-design-system-1.png',
@@ -27,6 +43,8 @@ const PROJECTS = [
     tags: ['Design System', 'Documentation', 'Design Operations', 'Workflows & Processes'],
   },
   {
+    id: 'project-browser',
+    year: '2024',
     title: 'Install Funnel for the Ecosia Browser',
     description: 'Launched Ecosia\'s browser in just two months, reaching 100k DAU.',
     image: '/main-page/browser.png',
@@ -37,6 +55,8 @@ const PROJECTS = [
     tags: ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System'],
   },
   {
+    id: 'project-lolsumo',
+    year: '2020',
     title: 'Lolsumo: a coaching app for League of Legends',
     description: 'Real-time gaming support for competitive League of Legends players.',
     image: '/project-pages/lolsumo/lolsumo-1.png',
@@ -112,20 +132,61 @@ const PROJECTS = [
         </svg>
       </div>
 
-      <!-- Project cards -->
-      <div class="grid grid-cols-1 gap-4 lg:gap-6 pb-16 max-w-[1100px] mx-auto w-full">
-        <CardProject
-          v-for="project in PROJECTS"
+      <!-- Scattered project cards -->
+      <div class="scattered-cards relative w-full max-w-[1100px] mx-auto pb-32">
+
+        <!-- Dotted bezier line behind all cards, desktop only -->
+        <svg
+          class="hidden lg:block absolute left-1/2 -translate-x-1/2 pointer-events-none"
+          viewBox="0 0 792 3064"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          style="top: 9.87%; height: 74.75%; width: 792px; z-index: 0;"
+        >
+          <path
+            d="M310.556 1.36328C249.056 96.0299 208.8 397.063 376 479.863C585 583.363 658.216 483.363 642 433.863C625.784 384.363 370.056 476.863 485.556 699.863C601.056 922.863 858.556 893.863 744.556 1128.86C630.556 1363.86 516.556 1163.36 350.556 1175.36C184.556 1187.36 -209.944 1988.86 148.056 2303.86C506.056 2618.86 815.057 2465.36 787.557 2378.86C760.057 2292.36 542.557 2448.86 633.557 2649.86C724.557 2850.86 744.556 2966.86 633.557 3061.86"
+            stroke="var(--color-dusty-violet-500)"
+            stroke-opacity="0.7"
+            stroke-width="3"
+            stroke-dasharray="12 15"
+            stroke-linecap="round"
+            fill="none"
+            vector-effect="non-scaling-stroke"
+          />
+        </svg>
+
+        <!-- Cards -->
+        <div
+          v-for="(project, i) in PROJECTS"
           :key="project.to"
-          :title="project.title"
-          :description="project.description"
-          :image="project.image"
-          :image-alt="project.imageAlt"
-          :video="project.video"
-          :zoom="project.zoom"
-          :to="project.to"
-          :tags="project.tags"
-        />
+          :class="['card-scattered', `card-scattered-${i + 1}`]"
+        >
+          <CaseStudySection v-if="isLg" :id="project.id" :label="project.year">
+            <CardProject
+              :title="project.title"
+              :description="project.description"
+              :image="project.image"
+              :image-alt="project.imageAlt"
+              :video="project.video"
+              :zoom="project.zoom"
+              :to="project.to"
+              :tags="project.tags"
+            />
+          </CaseStudySection>
+          <CardProject
+            v-else
+            :title="project.title"
+            :description="project.description"
+            :image="project.image"
+            :image-alt="project.imageAlt"
+            :video="project.video"
+            :zoom="project.zoom"
+            :to="project.to"
+            :tags="project.tags"
+          />
+        </div>
+
       </div>
 
       </div>
@@ -184,5 +245,19 @@ const PROJECTS = [
   0%   { transform: translateY(0); }
   50%  { transform: translateY(14px); }
   100% { transform: translateY(0); }
+}
+
+/* Scattered card layout */
+.card-scattered {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .card-scattered { margin-bottom: 11rem; padding-top: 3.5rem; }
+  .card-scattered-1 { transform: rotate(-4deg) translateX(-3%); z-index: 1; }
+  .card-scattered-2 { transform: rotate(3deg)  translateX(3%);  z-index: 2; }
+  .card-scattered-3 { transform: rotate(-3deg) translateX(-4%); z-index: 3; }
+  .card-scattered-4 { transform: rotate(4deg)  translateX(4%);  z-index: 4; }
 }
 </style>
