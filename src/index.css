@@ -87,15 +87,9 @@
     --color-dot-grid: rgba(0, 0, 0, 0.13);
     --font-sans: system-ui, -apple-system, sans-serif;
     --font-mono: ui-monospace, monospace;
-    /* A11yContext writes these; we use them for scale, motion, and contrast. */
-    --a11y-text-scale: 1;
+    /* A11yContext writes these; we use them for motion and contrast. */
     --a11y-motion: 1;
     --a11y-contrast: 0;
-  }
-
-  /* Text scale from accessibility panel (90%–130%) is applied to the whole page. */
-  html {
-    font-size: calc(1rem * var(--a11y-text-scale));
   }
 
   body {

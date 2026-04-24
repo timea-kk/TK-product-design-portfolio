@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { IconPalette, IconAccessible, IconChevronDown } from '@tabler/icons-vue'
+import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
 import { THEME_LABELS, THEME_DESCRIPTIONS } from '@/constants/themes'
@@ -138,26 +138,6 @@ function selectTheme(id: string) {
             class="ml-4 shrink-0 h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-brand-primary)]"
           />
         </label>
-
-        <div class="flex items-center px-4 py-3 hover:bg-[var(--color-highlight)]">
-          <div class="flex-1 min-w-0">
-            <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
-            <span class="block text-xs opacity-60">Scale from 90% to 110%</span>
-          </div>
-          <div class="relative ml-4 shrink-0">
-            <select
-              :value="a11y.textScale"
-              @change="a11y.update({ textScale: Number(($event.target as HTMLSelectElement).value) })"
-              class="appearance-none cursor-pointer rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] pl-3 pr-8 py-1 text-sm text-[var(--color-text-secondary)]"
-              aria-label="Text size"
-            >
-              <option :value="0.9">90%</option>
-              <option :value="1">100%</option>
-              <option :value="1.1">110%</option>
-            </select>
-            <IconChevronDown class="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 pointer-events-none text-[var(--color-text-secondary)]" aria-hidden="true" />
-          </div>
-        </div>
       </Dropdown>
     </nav>
   </header>

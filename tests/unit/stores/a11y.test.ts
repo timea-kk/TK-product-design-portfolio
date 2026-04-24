@@ -21,13 +21,11 @@ describe('useA11yStore', () => {
     const store = useA11yStore()
     expect(store.reduceMotion).toBe(false)
     expect(store.highContrast).toBe(false)
-    expect(store.textScale).toBe(1)
     expect(store.dyslexia).toBe(false)
   })
 
   it('applies the default CSS variables on init', () => {
     useA11yStore()
-    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('1')
     expect(document.documentElement.style.getPropertyValue('--a11y-motion')).toBe('1')
     expect(document.documentElement.style.getPropertyValue('--a11y-contrast')).toBe('0')
   })
@@ -65,50 +63,27 @@ describe('useA11yStore', () => {
     expect(document.documentElement.classList.contains('a11y-dyslexia')).toBe(true)
   })
 
-  it('update({ textScale: 1.1 }) sets the CSS variable', async () => {
-    const store = useA11yStore()
-    store.update({ textScale: 1.1 })
-    await nextTick()
-    expect(store.textScale).toBe(1.1)
-    expect(document.documentElement.style.getPropertyValue('--a11y-text-scale')).toBe('1.1')
-  })
-
   it('persists preferences to localStorage after update', async () => {
     const store = useA11yStore()
-    store.update({ highContrast: true, textScale: 1.1 })
+    store.update({ highContrast: true })
     await nextTick()
     const saved = JSON.parse(localStorage.getItem('portfolio-a11y')!)
     expect(saved.highContrast).toBe(true)
-    expect(saved.textScale).toBe(1.1)
   })
 
   it('loads saved preferences from localStorage on init', () => {
     localStorage.setItem(
       'portfolio-a11y',
-      JSON.stringify({ reduceMotion: true, highContrast: false, textScale: 1.3, dyslexia: false }),
+      JSON.stringify({ reduceMotion: true, highContrast: false, dyslexia: false }),
     )
     const store = useA11yStore()
     expect(store.reduceMotion).toBe(true)
-    expect(store.textScale).toBe(1.1)
-  })
-
-  it('clamps textScale to valid range when loaded from storage', () => {
-    localStorage.setItem('portfolio-a11y', JSON.stringify({ textScale: 99 }))
-    const store = useA11yStore()
-    expect(store.textScale).toBe(1.1) // clamped to max
-  })
-
-  it('falls back to default textScale when stored textScale is not a number', () => {
-    localStorage.setItem('portfolio-a11y', JSON.stringify({ textScale: 'invalid' }))
-    const store = useA11yStore()
-    expect(store.textScale).toBe(1)
   })
 
   it('falls back to defaults when localStorage contains corrupt JSON', () => {
     localStorage.setItem('portfolio-a11y', 'not-valid-json')
     const store = useA11yStore()
     expect(store.reduceMotion).toBe(false)
-    expect(store.textScale).toBe(1)
   })
 
   it('silently swallows errors when localStorage.setItem throws', async () => {
@@ -122,9 +97,8 @@ describe('useA11yStore', () => {
     const store = useA11yStore()
     store.update({ highContrast: true })
     await nextTick()
-    // reduceMotion, textScale, dyslexia should still be at defaults
+    // reduceMotion and dyslexia should still be at defaults
     expect(store.reduceMotion).toBe(false)
-    expect(store.textScale).toBe(1)
     expect(store.dyslexia).toBe(false)
   })
 })
