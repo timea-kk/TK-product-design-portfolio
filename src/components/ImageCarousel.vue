@@ -45,8 +45,8 @@ function goTo(newStep: number) {
 <template>
   <div class="relative">
     <div
-      class="relative w-full rounded-xl border-2 border-[#275243] overflow-hidden"
-      :style="{ background: '#275243', aspectRatio: lockedRatio || undefined }"
+      class="relative w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)] overflow-hidden"
+      :style="{ background: 'var(--color-deep-maroon-700)', aspectRatio: lockedRatio || undefined }"
     >
       <img
         ref="frontRef"

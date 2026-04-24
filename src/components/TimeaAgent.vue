@@ -99,9 +99,12 @@ function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && expanded.value) expanded.value = false
 }
 onMounted(() => window.addEventListener('keydown', onKeydown))
-onUnmounted(() => window.removeEventListener('keydown', onKeydown))
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown)
+  if (typingTimer) clearInterval(typingTimer)
+})
 
-// — Pill transition hooks (simple fade + scale)
+// Pill transition hooks (simple fade + scale)
 function onPillEnter(el: Element, done: () => void) {
   gsap.fromTo(el,
     { opacity: 0, scale: 0.92, y: 6 },
@@ -112,7 +115,7 @@ function onPillLeave(el: Element, done: () => void) {
   gsap.to(el, { opacity: 0, scale: 0.92, y: 6, duration: 0.15, ease: 'power2.in', onComplete: done })
 }
 
-// — Panel transition hooks (slides up from bottom with a controlled spring)
+// Panel transition hooks (slides up from bottom with a controlled spring)
 function onPanelEnter(el: Element, done: () => void) {
   gsap.fromTo(el,
     { opacity: 0, y: 24, scale: 0.96 },
@@ -169,7 +172,7 @@ function onPanelLeave(el: Element, done: () => void) {
         </button>
       </div>
 
-      <!-- Prompt questions — shown before any messages are sent -->
+      <!-- Prompt questions: shown before any messages are sent -->
       <div v-if="messages.length === 0 && !isThinking" class="flex flex-col gap-3 px-4 pt-5 pb-3">
         <p class="text-base font-semibold text-[var(--color-text-primary)]">Curious about Timea? Start here.</p>
         <button
@@ -177,7 +180,7 @@ function onPanelLeave(el: Element, done: () => void) {
           :key="q"
           @click="sendMessage(q)"
           class="rounded-2xl border border-[var(--color-border)] px-4 py-3 text-left text-sm text-[var(--color-text-primary)] transition-all duration-200 hover:border-[var(--color-brand-primary)] hover:bg-[var(--color-surface-decorative)] hover:-translate-y-1 hover:shadow-md"
-          style="background-color: #e7dbeb;"
+          style="background-color: var(--color-dusty-violet-100);"
         >
           {{ q }}
         </button>
@@ -200,7 +203,7 @@ function onPanelLeave(el: Element, done: () => void) {
           <div
             v-else
             class="mr-auto max-w-[85%] rounded-lg border border-[var(--color-border)] px-3 py-2 text-sm text-[var(--color-text-primary)]"
-            style="background-color: #e7dbeb;"
+            style="background-color: var(--color-dusty-violet-100);"
           >
             {{ typingIndex === i ? typingText : m.text }}
           </div>

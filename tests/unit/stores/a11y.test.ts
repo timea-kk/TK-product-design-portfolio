@@ -4,7 +4,7 @@
  * and the update() partial-patch API.
  */
 
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { nextTick } from 'vue'
 import { setActivePinia, createPinia } from 'pinia'
 import { useA11yStore } from '@/stores/a11y'
@@ -96,6 +96,26 @@ describe('useA11yStore', () => {
     localStorage.setItem('portfolio-a11y', JSON.stringify({ textScale: 99 }))
     const store = useA11yStore()
     expect(store.textScale).toBe(1.1) // clamped to max
+  })
+
+  it('falls back to MIN_TEXT_SCALE when stored textScale is not a number', () => {
+    localStorage.setItem('portfolio-a11y', JSON.stringify({ textScale: 'invalid' }))
+    const store = useA11yStore()
+    expect(store.textScale).toBe(0.9)
+  })
+
+  it('falls back to defaults when localStorage contains corrupt JSON', () => {
+    localStorage.setItem('portfolio-a11y', 'not-valid-json')
+    const store = useA11yStore()
+    expect(store.reduceMotion).toBe(false)
+    expect(store.textScale).toBe(0.9)
+  })
+
+  it('silently swallows errors when localStorage.setItem throws', async () => {
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new Error('storage full') })
+    const store = useA11yStore()
+    expect(() => store.update({ reduceMotion: true })).not.toThrow()
+    vi.restoreAllMocks()
   })
 
   it('update() only changes the specified keys, leaving others unchanged', async () => {

@@ -37,7 +37,7 @@ const panelRef = ref<HTMLElement | null>(null)
       ref="panelRef"
       class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
       style="
-        background-color: #f7f6f2;
+        background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
@@ -98,7 +98,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-1.png" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-1.png" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Browser landing page</figcaption>
             </figure>
 
@@ -117,7 +117,7 @@ const panelRef = ref<HTMLElement | null>(null)
               I owned the browser install funnel end to end, designing an experience to help users discover, understand, and adopt Ecosia's new browser.
             </CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-2.png" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-2.png" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia product offering: Extensions, native apps, Default Search &amp; Desktop browser</figcaption>
             </figure>
           </CaseStudySection>
@@ -133,21 +133,21 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-text-secondary)] leading-relaxed">This led us to identify <strong>three</strong> core business challenges that shaped the project from the start :</p>
             <div class="flex gap-3 py-6">
               <StickyNote :rotate="-1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
                 Volatile deals with Google and Bing <strong>threatened long-term planning</strong>
               </StickyNote>
               <StickyNote :rotate="1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
                 Building a browser meant <strong>full UX control</strong> and an <strong>independent revenue stream</strong>
               </StickyNote>
               <StickyNote :rotate="-0.5" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
                 <strong>Earth Day launch</strong>: a meaningful date tied to global climate activism
               </StickyNote>
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-3.png" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-3.png" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Partnership landscape &amp; deadline</figcaption>
             </figure>
 
@@ -158,21 +158,21 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-text-secondary)] leading-relaxed">This shaped <strong>three</strong> key user needs we had to address:</p>
             <div class="flex gap-3 py-6">
               <StickyNote :rotate="-1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">1</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
                 The browser had to feel <strong>instantly familiar</strong> to everyday Chrome users
               </StickyNote>
               <StickyNote :rotate="1" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">2</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
                 It had to <strong>clearly communicate</strong> Ecosia's unique environmental purpose
               </StickyNote>
               <StickyNote :rotate="-0.5" class="flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: #d4a017;">3</span>
+                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
                 <strong>Ryan</strong> values positive impact but doesn't see browsing as meaningful
               </StickyNote>
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-4.png" alt="New user persona" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-4.png" alt="New user persona" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>New user persona</figcaption>
             </figure>
           </CaseStudySection>
@@ -190,7 +190,7 @@ const panelRef = ref<HTMLElement | null>(null)
               I skipped a long discovery phase by building on <strong>existing Ecosia knowledge and competitive research</strong>. I ran <strong>stakeholder and user feedback in parallel</strong>, kept engineers in the loop from day one, and fed every new pattern back into the <strong>design system</strong>.
             </CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-5.png" alt="Project timeline" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-5.png" alt="Project timeline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Project timeline</figcaption>
             </figure>
           </CaseStudySection>
@@ -229,7 +229,7 @@ const panelRef = ref<HTMLElement | null>(null)
               </div>
             </div>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-6.png" alt="Competitor map" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-6.png" alt="Competitor map" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Competitor map</figcaption>
             </figure>
           </CaseStudySection>
@@ -294,7 +294,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <CardCallout label="Outcomes">Sentiment was positive across all 10 participants, and they understood what Ecosia Browser was, why it was different, and what it offered which gave me the confidence to keep refining.</CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-13.png" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[#275243]" />
+              <img src="/project-pages/ecosia-browser/ecosia-browser-13.png" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Browser concept</figcaption>
             </figure>
           </CaseStudySection>
@@ -347,7 +347,7 @@ const panelRef = ref<HTMLElement | null>(null)
               <li><a href="https://techcrunch.com/2024/04/22/ecosia-launches-a-cross-platform-browser-starts-an-affiliate-link-program/" target="_blank" rel="noopener" class="text-[var(--color-brand-primary)] underline hover:opacity-80">TechCrunch - Ecosia launches a cross-platform browser</a></li>
             </ul>
             <figure>
-              <video src="/project-pages/ecosia-browser/Browser.mp4" controls class="w-full rounded-xl border-2 border-[#275243]"></video>
+              <video src="/project-pages/ecosia-browser/Browser.mp4" controls class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]"></video>
               <figcaption>Ecosia Browser final landing page</figcaption>
             </figure>
           </CaseStudySection>

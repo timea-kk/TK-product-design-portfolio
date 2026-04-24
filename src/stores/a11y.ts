@@ -18,6 +18,8 @@ import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
 const STORAGE_KEY = 'portfolio-a11y'
+const MIN_TEXT_SCALE = 0.9
+const MAX_TEXT_SCALE = 1.1
 
 export interface A11yState {
   reduceMotion: boolean
@@ -29,7 +31,7 @@ export interface A11yState {
 const defaults: A11yState = {
   reduceMotion: false,
   highContrast: false,
-  textScale: 0.9,
+  textScale: MIN_TEXT_SCALE,
   dyslexia: false,
 }
 
@@ -43,7 +45,7 @@ function load(): A11yState {
       reduceMotion: !!o.reduceMotion,
       highContrast: !!o.highContrast,
       textScale:
-        typeof o.textScale === 'number' ? Math.max(0.9, Math.min(1.1, o.textScale)) : 0.9,
+        typeof o.textScale === 'number' ? Math.max(MIN_TEXT_SCALE, Math.min(MAX_TEXT_SCALE, o.textScale)) : MIN_TEXT_SCALE,
       dyslexia: !!o.dyslexia,
     }
   } catch {
@@ -78,7 +80,7 @@ export const useA11yStore = defineStore('a11y', () => {
         }),
       )
     } catch {
-      // localStorage unavailable (private browsing, storage full) — preferences won't persist
+      // localStorage unavailable (private browsing, storage full); preferences won't persist
     }
   }
 

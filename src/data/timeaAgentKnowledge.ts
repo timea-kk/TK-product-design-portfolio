@@ -2,7 +2,7 @@
  * data/timeaAgentKnowledge.ts – Chat agent knowledge base.
  *
  * Short answers derived from CV_CONTEXT.md, used by TimeaAgent.vue.
- * No API or backend required — all matching happens locally in the browser.
+ * No API or backend required; all matching happens locally in the browser.
  *
  * Matching algorithm: each entry is scored by counting how many of its keywords
  * appear (as substrings) in the lowercased user message. The highest-scoring entry

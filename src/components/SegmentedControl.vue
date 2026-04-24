@@ -11,6 +11,7 @@ defineEmits<{
 
 <template>
   <div
+    role="group"
     class="relative inline-grid rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] p-1"
     :style="{ gridTemplateColumns: `repeat(${options.length}, 1fr)` }"
   >
@@ -26,6 +27,7 @@ defineEmits<{
       :key="option"
       class="relative z-10 text-center px-6 py-1.5 text-sm font-medium transition-colors duration-200"
       :class="modelValue === i ? 'text-white' : 'text-[var(--color-text-secondary)]'"
+      :aria-pressed="modelValue === i"
       @click="$emit('update:modelValue', i)"
     >{{ option }}</button>
   </div>
