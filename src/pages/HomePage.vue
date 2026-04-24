@@ -65,9 +65,9 @@ const PROJECTS = [
       "
     >
       <div class="w-full max-w-[1220px] mx-auto flex flex-col gap-8 pt-16 mt-20">
-      <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-[102px]">
+      <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-0">
       <!-- Left: headline -->
-      <div class="flex-1 w-full lg:w-auto min-w-0">
+      <div class="flex-1 w-full lg:w-auto lg:max-w-[780px] min-w-0">
         <h1
           id="hero-heading"
           class="font-heading mt-2 text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)] text-center lg:text-left"
@@ -89,7 +89,7 @@ const PROJECTS = [
         </div>
         <!-- Pointer: X and Y on separate elements with coprime durations (7s/5s) -->
         <!-- so the combined path is a curved Lissajous that doesn't repeat for 35s -->
-        <div class="absolute pointer-events-none pointer-float-x" style="width: 7rem; bottom: calc(-2rem + 5px); right: calc(1rem - 30px);">
+        <div class="absolute pointer-events-none pointer-float-x" style="width: 7rem; bottom: calc(-2rem + 15px); right: calc(1rem - 30px);">
           <img src="/main-page/pointer.svg" alt="" aria-hidden="true" class="pointer-float-y w-full" />
         </div>
       </div>
@@ -105,7 +105,7 @@ const PROJECTS = [
 
 
       <!-- Scroll indicator -->
-      <div class="flex justify-center pt-[59px] pb-24" aria-hidden="true">
+      <div class="flex justify-center pt-[44px] pb-24" aria-hidden="true">
         <svg width="26" height="42" viewBox="0 0 26 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="24" height="40" rx="12" stroke="var(--color-brand-primary)" stroke-opacity="0.6" stroke-width="1.5"/>
           <circle class="scroll-dot" cx="13" cy="10" r="3" fill="var(--color-brand-primary)"/>
@@ -113,7 +113,7 @@ const PROJECTS = [
       </div>
 
       <!-- Project cards -->
-      <div class="grid grid-cols-1 gap-4 lg:gap-6 pb-16">
+      <div class="grid grid-cols-1 gap-4 lg:gap-6 pb-16 max-w-[1100px] mx-auto w-full">
         <CardProject
           v-for="project in PROJECTS"
           :key="project.to"
