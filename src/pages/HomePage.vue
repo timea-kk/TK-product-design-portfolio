@@ -11,28 +11,36 @@ import CardProject from '@/components/CardProject.vue'
 const PROJECTS = [
   {
     title: "Building Ecosia's Onboarding Experience",
-    image: '/project-pages/ecosia-onboarding/ecosia-onboarding-1.png',
+    description: 'A smooth first-time experience that boosted conversion by 25%.',
+    image: '/main-page/ecosia-page.gif',
     imageAlt: 'Ecosia onboarding screen',
     to: '/work/ecosia-onboarding',
     tags: ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy'],
   },
   {
-    title: 'Install Funnel for the Ecosia Browser',
-    image: '/project-pages/ecosia-browser/ecosia-browser-1.png',
-    imageAlt: 'Ecosia Browser landing page',
-    to: '/work/ecosia-browser',
-    tags: ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System'],
-  },
-  {
     title: 'Scaling Design Operations at Ecosia',
+    description: 'Establishing a shared ownership model for Flora, Ecosia\'s Design System.',
     image: '/project-pages/flora-design-system/flora-design-system-1.png',
     imageAlt: 'Flora Design System structure',
+    video: '/main-page/flora.mp4',
     to: '/work/flora-design-system',
     tags: ['Design System', 'Documentation', 'Design Operations', 'Workflows & Processes'],
   },
   {
+    title: 'Install Funnel for the Ecosia Browser',
+    description: 'Launched Ecosia\'s browser in just two months, reaching 100k DAU.',
+    image: '/main-page/browser.png',
+    imageAlt: 'Ecosia Browser landing page',
+    video: '/main-page/browser.mp4',
+    zoom: 0.11,
+    to: '/work/ecosia-browser',
+    tags: ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System'],
+  },
+  {
     title: 'Lolsumo: a coaching app for League of Legends',
+    description: 'Real-time gaming support for competitive League of Legends players.',
     image: '/project-pages/lolsumo/lolsumo-1.png',
+    video: '/main-page/Lolsumo.mp4',
     imageAlt: 'Lolsumo Android and iOS apps',
     to: '/work/lolsumo',
     tags: ['Community Engagement', 'Design System', 'User Testing'],
@@ -110,8 +118,11 @@ const PROJECTS = [
           v-for="project in PROJECTS"
           :key="project.to"
           :title="project.title"
+          :description="project.description"
           :image="project.image"
           :image-alt="project.imageAlt"
+          :video="project.video"
+          :zoom="project.zoom"
           :to="project.to"
           :tags="project.tags"
         />

@@ -9,8 +9,11 @@ import TagPill from '@/components/TagPill.vue'
 
 defineProps<{
   title: string
+  description?: string
   image: string
   imageAlt: string
+  video?: string
+  zoom?: number
   to: string
   tags?: string[]
 }>()
@@ -23,11 +26,12 @@ defineProps<{
     style="background-color: var(--color-surface-card)"
   >
     <!-- Text area -->
-    <div class="flex flex-col justify-between gap-8 p-8 lg:p-12 lg:w-[45%] lg:min-h-[360px]">
+    <div class="flex flex-col justify-between gap-8 p-8 lg:p-12 lg:w-[38%] lg:min-h-[440px]">
       <div class="flex flex-col gap-4">
         <h2 class="font-heading text-xl sm:text-2xl lg:text-4xl font-black leading-tight tracking-tight text-[var(--color-text-primary)]">
           {{ title }}
         </h2>
+        <p v-if="description" class="text-base lg:text-lg text-[var(--color-text-primary)]">{{ description }}</p>
         <div v-if="tags?.length" class="flex flex-wrap gap-2">
           <TagPill v-for="tag in tags" :key="tag" :label="tag" />
         </div>
@@ -37,12 +41,24 @@ defineProps<{
       </span>
     </div>
 
-    <!-- Image area -->
-    <div class="aspect-video lg:aspect-auto lg:flex-1 overflow-hidden">
+    <!-- Image / video area -->
+    <div class="aspect-video lg:aspect-auto lg:flex-1 overflow-hidden lg:rounded-l-2xl">
+      <video
+        v-if="video"
+        :src="video"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        :style="zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}"
+      />
       <img
+        v-else
         :src="image"
         :alt="imageAlt"
         class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        :style="zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}"
       />
     </div>
   </RouterLink>
