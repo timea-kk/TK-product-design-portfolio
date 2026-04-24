@@ -67,17 +67,17 @@
     --color-deep-maroon-900: #241A1A;
 
     /* Semantic colors – themes override these in themes/index.css */
-    --color-brand-primary: #0f766e;
-    --color-surface-decorative: #ffffff;
-    --color-surface-elevation-1: #f0fdfa;
-    --color-text-secondary: #64748b;
-    --color-border: #e2e8f0;
-    --color-text-primary: #334155;
-    --color-highlight: rgba(15, 118, 110, 0.12);
+    --color-brand-primary: #9966AA;
+    --color-surface-decorative: var(--color-dusty-violet-200);
+    --color-surface-elevation-1: var(--color-golden-honey-50);
+    --color-text-secondary: var(--color-deep-maroon-600);
+    --color-border: var(--color-golden-honey-200);
+    --color-text-primary: var(--color-dusty-violet-900);
+    --color-highlight: rgba(153, 102, 170, 0.10);
     --color-button-bg-primary: var(--color-brand-primary);
     --color-button-text-primary: #ffffff;
     --color-surface-button: #ffffff;
-    --color-button-text: #334155;
+    --color-button-text: var(--color-dusty-violet-900);
     --color-surface-card: var(--color-deep-maroon-100);
     --color-surface-sticky: var(--color-golden-honey-400);
     --color-surface-sticky-label: var(--color-golden-honey-500);
