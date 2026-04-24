@@ -142,7 +142,7 @@ function selectTheme(id: string) {
         <div class="flex items-center px-4 py-3 hover:bg-[var(--color-highlight)]">
           <div class="flex-1 min-w-0">
             <span class="block text-sm font-medium text-[var(--color-text-secondary)]">Text size</span>
-            <span class="block text-xs opacity-60">Scale from 100% to 120%</span>
+            <span class="block text-xs opacity-60">Scale from 90% to 110%</span>
           </div>
           <div class="relative ml-4 shrink-0">
             <select
@@ -151,9 +151,9 @@ function selectTheme(id: string) {
               class="appearance-none cursor-pointer rounded border border-[var(--color-border)] bg-[var(--color-surface-decorative)] pl-3 pr-8 py-1 text-sm text-[var(--color-text-secondary)]"
               aria-label="Text size"
             >
-              <option :value="0.9">100%</option>
-              <option :value="1">110%</option>
-              <option :value="1.1">120%</option>
+              <option :value="0.9">90%</option>
+              <option :value="1">100%</option>
+              <option :value="1.1">110%</option>
             </select>
             <IconChevronDown class="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 pointer-events-none text-[var(--color-text-secondary)]" aria-hidden="true" />
           </div>

@@ -31,7 +31,7 @@ export interface A11yState {
 const defaults: A11yState = {
   reduceMotion: false,
   highContrast: false,
-  textScale: MIN_TEXT_SCALE,
+  textScale: 1,
   dyslexia: false,
 }
 
@@ -45,7 +45,7 @@ function load(): A11yState {
       reduceMotion: !!o.reduceMotion,
       highContrast: !!o.highContrast,
       textScale:
-        typeof o.textScale === 'number' ? Math.max(MIN_TEXT_SCALE, Math.min(MAX_TEXT_SCALE, o.textScale)) : MIN_TEXT_SCALE,
+        typeof o.textScale === 'number' ? Math.max(MIN_TEXT_SCALE, Math.min(MAX_TEXT_SCALE, o.textScale)) : 1,
       dyslexia: !!o.dyslexia,
     }
   } catch {
