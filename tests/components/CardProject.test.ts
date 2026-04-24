@@ -1,6 +1,6 @@
 /**
  * Component tests for CardProject.vue.
- * Covers: title rendering, image, CTA text, tags (optional).
+ * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional).
  */
 
 import { describe, it, expect } from 'vitest'
@@ -30,6 +30,39 @@ describe('CardProject', () => {
   it('renders the CTA text', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
     expect(wrapper.text()).toContain('Read case study')
+  })
+
+  it('does not render a description paragraph when description prop is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.find('p').exists()).toBe(false)
+  })
+
+  it('renders the description when provided', () => {
+    const wrapper = mount(CardProject, {
+      props: { ...BASE_PROPS, description: 'A smooth first-time experience.' },
+    })
+    expect(wrapper.find('p').text()).toBe('A smooth first-time experience.')
+  })
+
+  it('renders an img when no video prop is provided', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.find('img').exists()).toBe(true)
+    expect(wrapper.find('video').exists()).toBe(false)
+  })
+
+  it('applies zoom transform style to img when zoom prop is provided', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, zoom: 0.05 } })
+    const img = wrapper.find('img')
+    expect(img.attributes('style')).toContain('scale(1.05)')
+  })
+
+  it('renders a video and no img when video prop is provided', () => {
+    const wrapper = mount(CardProject, {
+      props: { ...BASE_PROPS, video: '/main-page/Lolsumo.mp4' },
+    })
+    expect(wrapper.find('video').exists()).toBe(true)
+    expect(wrapper.find('video').attributes('src')).toBe('/main-page/Lolsumo.mp4')
+    expect(wrapper.find('img').exists()).toBe(false)
   })
 
   it('does not render tag pills when tags prop is omitted', () => {
