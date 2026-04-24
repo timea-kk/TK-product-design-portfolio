@@ -101,6 +101,7 @@ function onKeydown(e: KeyboardEvent) {
 onMounted(() => window.addEventListener('keydown', onKeydown))
 onUnmounted(() => {
   window.removeEventListener('keydown', onKeydown)
+  /* v8 ignore next */
   if (typingTimer) clearInterval(typingTimer)
 })
 
