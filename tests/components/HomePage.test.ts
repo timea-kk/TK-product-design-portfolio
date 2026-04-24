@@ -13,6 +13,7 @@ import HomePage from '@/pages/HomePage.vue'
 const STUBS = {
   Logo: true,
   RotatingDescriptor: true,
+  CardProject: true,
   RouterLink: { template: '<a><slot /></a>' },
 }
 
@@ -34,7 +35,7 @@ describe('HomePage', () => {
     expect(img.exists()).toBe(true)
   })
 
-  it('renders one CardProject per project', () => {
+  it('renders a CardProject for each project', () => {
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
     expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
   })
