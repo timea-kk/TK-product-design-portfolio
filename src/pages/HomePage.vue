@@ -30,13 +30,14 @@ const CARD_DECORATIONS: CardDecoration[][] = [
   // 1 – Flora / Design Ops
   [
     { src: '/main-page/pin.svg',         style: 'position:absolute;top:-5px;left:calc(33% - 70px);width:88px;pointer-events:none;z-index:10;' },
-    { src: '/main-page/thumbs-up.svg',   style: 'position:absolute;bottom:-158px;left:calc(11% - 40px);width:109px;pointer-events:none;transform:rotate(3deg);' },
+    { src: '/main-page/thumbs-up.svg',   style: 'position:absolute;bottom:-198px;left:calc(11% - 80px);width:109px;pointer-events:none;transform:rotate(3deg);' },
     { src: '/main-page/squiggle-2.svg',  style: 'position:absolute;bottom:-224px;right:calc(16% + 365px);width:187px;pointer-events:none;transform:rotate(-50deg);' },
+    { src: '/main-page/fire.svg',        style: 'position:absolute;bottom:-144px;right:calc(16% + 100px);width:100px;pointer-events:none;transform:rotate(-10deg);' },
   ],
   // 2 – Ecosia Browser
   [
     { src: '/main-page/Star%202.svg',    style: 'position:absolute;bottom:-142px;left:24%;width:108px;pointer-events:none;' },
-    { src: '/main-page/paperclip-1.svg', style: 'position:absolute;bottom:-95px;right:8%;width:52px;pointer-events:none;transform:rotate(28deg);' },
+    { src: '/main-page/paperclip-1.svg', style: 'position:absolute;bottom:-195px;right:calc(8% - 70px);width:52px;pointer-events:none;transform:rotate(28deg);' },
   ],
   // 3 – Lolsumo
   [
@@ -86,6 +87,7 @@ const PROJECTS = [
     image: '/project-pages/lolsumo/lolsumo-1.png',
     video: '/main-page/Lolsumo.mp4',
     imageAlt: 'Lolsumo Android and iOS apps',
+    mediaPosition: '-20px top',
     to: '/work/lolsumo',
     tags: ['Community Engagement', 'Design System', 'User Testing'],
   },
@@ -199,6 +201,7 @@ const PROJECTS = [
                 :image-alt="project.imageAlt"
                 :video="project.video"
                 :zoom="project.zoom"
+                :media-position="project.mediaPosition"
                 :to="project.to"
                 :tags="project.tags"
               />
@@ -217,6 +220,12 @@ const PROJECTS = [
               style="width:calc(16.5rem - 20px);height:calc(4.2rem - 20px);top:85px;right:calc(6% - 110px);transform:rotate(32deg);background:rgba(210,228,255,0.68);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 1px 2px rgba(0,0,0,0.10);z-index:10;clip-path:polygon(0% 0%,100% 0%,96% 17%,100% 33%,96% 50%,100% 67%,96% 83%,100% 100%,0% 100%,4% 83%,0% 67%,4% 50%,0% 33%,4% 17%,0% 0%);"
               aria-hidden="true"
             />
+            <div
+              v-if="i === 3"
+              class="absolute pointer-events-none"
+              style="width:calc(16.5rem - 20px);height:calc(4.2rem - 20px);bottom:5px;right:calc(6% - 110px);transform:rotate(-32deg);background:rgba(210,228,255,0.68);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 1px 2px rgba(0,0,0,0.10);z-index:10;clip-path:polygon(0% 0%,100% 0%,96% 17%,100% 33%,96% 50%,100% 67%,96% 83%,100% 100%,0% 100%,4% 83%,0% 67%,4% 50%,0% 33%,4% 17%,0% 0%);"
+              aria-hidden="true"
+            />
           </template>
           <CardProject
             v-else
@@ -226,6 +235,7 @@ const PROJECTS = [
             :image-alt="project.imageAlt"
             :video="project.video"
             :zoom="project.zoom"
+            :media-position="project.mediaPosition"
             :to="project.to"
             :tags="project.tags"
           />

@@ -14,6 +14,7 @@ defineProps<{
   imageAlt: string
   video?: string
   zoom?: number
+  mediaPosition?: string
   to: string
   tags?: string[]
 }>()
@@ -26,7 +27,7 @@ defineProps<{
     style="background-color: var(--color-surface-card)"
   >
     <!-- Text area -->
-    <div class="flex flex-col justify-between gap-8 p-8 lg:p-12 lg:w-[38%] lg:min-h-[440px]">
+    <div class="flex flex-col justify-between gap-8 p-8 lg:p-12 lg:w-[38%] lg:min-h-[420px]">
       <div class="flex flex-col gap-4">
         <h2 class="font-heading text-xl sm:text-2xl lg:text-4xl font-black leading-tight tracking-tight text-[var(--color-text-primary)]">
           {{ title }}
@@ -50,15 +51,15 @@ defineProps<{
         loop
         muted
         playsinline
-        class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-        :style="zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: mediaPosition ?? 'top' }"
       />
       <img
         v-else
         :src="image"
         :alt="imageAlt"
-        class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-        :style="zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: mediaPosition ?? 'top' }"
       />
     </div>
   </RouterLink>

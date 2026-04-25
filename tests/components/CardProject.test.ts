@@ -1,6 +1,6 @@
 /**
  * Component tests for CardProject.vue.
- * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional).
+ * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition.
  */
 
 import { describe, it, expect } from 'vitest'
@@ -63,6 +63,28 @@ describe('CardProject', () => {
     expect(wrapper.find('video').exists()).toBe(true)
     expect(wrapper.find('video').attributes('src')).toBe('/main-page/Lolsumo.mp4')
     expect(wrapper.find('img').exists()).toBe(false)
+  })
+
+  it('applies zoom transform style to video when zoom and video props are provided', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, video: '/main-page/Lolsumo.mp4', zoom: 0.05 } })
+    expect(wrapper.find('video').attributes('style')).toContain('scale(1.05)')
+  })
+
+  it('applies mediaPosition to img style', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, mediaPosition: 'right top' } })
+    expect(wrapper.find('img').attributes('style')).toContain('right top')
+  })
+
+  it('applies mediaPosition to video style', () => {
+    const wrapper = mount(CardProject, {
+      props: { ...BASE_PROPS, video: '/main-page/Lolsumo.mp4', mediaPosition: 'right top' },
+    })
+    expect(wrapper.find('video').attributes('style')).toContain('right top')
+  })
+
+  it('defaults object position to top when mediaPosition is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.find('img').attributes('style')).toContain('top')
   })
 
   it('does not render tag pills when tags prop is omitted', () => {
