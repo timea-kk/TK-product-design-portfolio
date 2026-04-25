@@ -8,7 +8,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import CardProject from '@/components/CardProject.vue'
-import CaseStudySection from '@/components/CaseStudySection.vue'
 
 const isLg = ref(false)
 let mql: MediaQueryList | null = null
@@ -19,6 +18,31 @@ onMounted(() => {
   mql.addEventListener('change', onMqlChange)
 })
 onUnmounted(() => mql?.removeEventListener('change', onMqlChange))
+
+interface CardDecoration { src: string; style: string }
+const CARD_DECORATIONS: CardDecoration[][] = [
+  // 0 – Ecosia Onboarding
+  [
+    { src: '/main-page/paperclip-2.svg', style: 'position:absolute;top:50px;left:calc(36% - 40px);width:36px;pointer-events:none;z-index:10;transform:rotate(1deg);' },
+    { src: '/main-page/squiggle-1.svg',  style: 'position:absolute;bottom:-95px;left:calc(24% - 60px);width:118px;pointer-events:none;transform:rotate(-15deg);' },
+    { src: '/main-page/Star%203.svg',    style: 'position:absolute;bottom:-188px;right:7%;width:84px;pointer-events:none;' },
+  ],
+  // 1 – Flora / Design Ops
+  [
+    { src: '/main-page/pin.svg',         style: 'position:absolute;top:-5px;left:calc(33% - 70px);width:88px;pointer-events:none;z-index:10;' },
+    { src: '/main-page/thumbs-up.svg',   style: 'position:absolute;bottom:-158px;left:calc(11% - 40px);width:109px;pointer-events:none;transform:rotate(3deg);' },
+    { src: '/main-page/squiggle-2.svg',  style: 'position:absolute;bottom:-224px;right:calc(16% + 365px);width:187px;pointer-events:none;transform:rotate(-50deg);' },
+  ],
+  // 2 – Ecosia Browser
+  [
+    { src: '/main-page/Star%202.svg',    style: 'position:absolute;bottom:-142px;left:24%;width:108px;pointer-events:none;' },
+    { src: '/main-page/paperclip-1.svg', style: 'position:absolute;bottom:-95px;right:8%;width:52px;pointer-events:none;transform:rotate(28deg);' },
+  ],
+  // 3 – Lolsumo
+  [
+    { src: '/main-page/paperclip-2.svg', style: 'position:absolute;top:50px;left:calc(41% - 90px);width:36px;pointer-events:none;z-index:10;transform:rotate(-1deg);' },
+  ],
+]
 
 const PROJECTS = [
   {
@@ -103,7 +127,7 @@ const PROJECTS = [
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: var(--color-golden-honey-400); box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="relative flex-1 overflow-hidden mx-9 mt-9 mb-9">
-            <img src="/main-page/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+            <img src="/main-page/timea.webp" alt="Timea Konya" class="w-full h-full object-cover object-top" />
             <div class="absolute inset-0 border-4 border-white pointer-events-none"></div>
           </div>
         </div>
@@ -162,18 +186,38 @@ const PROJECTS = [
           :key="project.to"
           :class="['card-scattered', `card-scattered-${i + 1}`]"
         >
-          <CaseStudySection v-if="isLg" :id="project.id" :label="project.year">
-            <CardProject
-              :title="project.title"
-              :description="project.description"
-              :image="project.image"
-              :image-alt="project.imageAlt"
-              :video="project.video"
-              :zoom="project.zoom"
-              :to="project.to"
-              :tags="project.tags"
+          <template v-if="isLg">
+            <div :id="project.id" class="relative scroll-mt-24">
+              <p
+                class="absolute -top-[60px] left-0 text-2xl font-medium text-white bg-[var(--color-brand-primary)] rounded-2xl px-5 py-2 select-none"
+                style="box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 5px solid var(--color-dusty-violet-100);"
+              >{{ project.year }}</p>
+              <CardProject
+                :title="project.title"
+                :description="project.description"
+                :image="project.image"
+                :image-alt="project.imageAlt"
+                :video="project.video"
+                :zoom="project.zoom"
+                :to="project.to"
+                :tags="project.tags"
+              />
+            </div>
+            <img
+              v-for="(dec, di) in CARD_DECORATIONS[i]"
+              :key="di"
+              :src="dec.src"
+              :style="dec.style"
+              alt=""
+              aria-hidden="true"
             />
-          </CaseStudySection>
+            <div
+              v-if="i === 0"
+              class="absolute pointer-events-none"
+              style="width:calc(16.5rem - 20px);height:calc(4.2rem - 20px);top:85px;right:calc(6% - 110px);transform:rotate(32deg);background:rgba(210,228,255,0.68);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 1px 2px rgba(0,0,0,0.10);z-index:10;clip-path:polygon(0% 0%,100% 0%,96% 17%,100% 33%,96% 50%,100% 67%,96% 83%,100% 100%,0% 100%,4% 83%,0% 67%,4% 50%,0% 33%,4% 17%,0% 0%);"
+              aria-hidden="true"
+            />
+          </template>
           <CardProject
             v-else
             :title="project.title"
@@ -200,7 +244,7 @@ const PROJECTS = [
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: var(--color-white); padding: 0.6rem 0.6rem 2rem 0.6rem; box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="flex-1 overflow-hidden">
-            <img src="/main-page/timea.png" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+            <img src="/main-page/timea.webp" alt="Timea Konya" class="w-full h-full object-cover object-top" />
           </div>
         </div>
       </div>
@@ -254,7 +298,7 @@ const PROJECTS = [
 }
 
 @media (min-width: 1024px) {
-  .card-scattered { margin-bottom: 11rem; padding-top: 3.5rem; }
+  .card-scattered { margin-bottom: 11rem; padding-top: 5rem; }
   .card-scattered-1 { transform: rotate(-4deg) translateX(-3%); z-index: 1; }
   .card-scattered-2 { transform: rotate(3deg)  translateX(3%);  z-index: 2; }
   .card-scattered-3 { transform: rotate(-3deg) translateX(-4%); z-index: 3; }
