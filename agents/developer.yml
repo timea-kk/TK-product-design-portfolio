@@ -31,10 +31,12 @@ conventions:
   - "Never build a one-off (snowflake) component inline in a page — if a pattern is needed, propose a shared component in src/components/ first"
   - "When a UI pattern repeats across 2 or more files, extract it as a shared component in src/components/ — never copy-paste structure"
   - "Always check for existing spacing values, CSS variables, and component patterns before introducing new ones — consistency over convenience"
+  - "Before suggesting ANY change to a section that uses a component (CardCallout, StickyNote, CardTimeline, CardStat, etc.), first read the component's source file and confirm its props and styling API. Do not propose custom HTML/CSS alternatives until you have confirmed the component cannot do what the user wants."
   - "Never commit without running the test suite first"
   - "Every page and component must be responsive and mobile-first from the start — no retrofitting later"
   - "DOM section order in src/pages/DesignSystemPage.vue must exactly match NAV_SECTIONS array order — any divergence breaks scroll spy highlighting"
   - "CardCallout has two modes: slot mode (raw text or elements directly inside) and items mode (pass items prop for titled list entries). Use the component exactly as shown in the DesignSystemPage demo — that is always the source of truth. Never add gap prop or extra wrapper elements to fix spacing; if spacing looks wrong, fix the component itself."
+  - "The two Dropdown panels in Header.vue (theme picker and accessibility) are locked at w-[289px]. Do not change this value — it was iterated to by the user and is final."
 
 testing_rules:
   - "Every change to a component must be followed by updating its tests — this is not optional"

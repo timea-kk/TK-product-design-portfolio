@@ -74,8 +74,8 @@ export const useA11yStore = defineStore('a11y', () => {
     }
   }
 
-  // Watch all prefs together; immediate: true applies them before the first render
-  watch([reduceMotion, highContrast, dyslexia], applyAndPersist, { immediate: true })
+  applyAndPersist()
+  watch([reduceMotion, highContrast, dyslexia], applyAndPersist)
 
   /** Update one or more preferences at once. Example: update({ reduceMotion: true }) */
   function update(patch: Partial<A11yState>) {
