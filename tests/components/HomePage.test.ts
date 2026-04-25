@@ -13,7 +13,6 @@ const STUBS = {
   Logo: true,
   RotatingDescriptor: true,
   CardProject: true,
-  CaseStudySection: { name: 'CaseStudySection', template: '<div><slot /></div>' },
   RouterLink: { template: '<a><slot /></a>' },
 }
 
@@ -47,31 +46,31 @@ describe('HomePage', () => {
     expect(img.exists()).toBe(true)
   })
 
-  it('renders bare CardProject cards below lg breakpoint', () => {
+  it('renders bare CardProject cards below lg breakpoint without year labels', () => {
     vi.stubGlobal('matchMedia', () => makeMql(false))
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
     expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
-    expect(wrapper.findAllComponents({ name: 'CaseStudySection' })).toHaveLength(0)
+    expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(0)
     vi.unstubAllGlobals()
   })
 
-  it('wraps cards in CaseStudySection at lg breakpoint and above', async () => {
+  it('shows year labels above each card at lg breakpoint', async () => {
     vi.stubGlobal('matchMedia', () => makeMql(true))
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAllComponents({ name: 'CaseStudySection' })).toHaveLength(4)
+    expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(4)
     expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
     vi.unstubAllGlobals()
   })
 
-  it('updates layout when breakpoint changes', async () => {
+  it('shows year labels when breakpoint changes to lg', async () => {
     const mql = makeMql(false)
     vi.stubGlobal('matchMedia', () => mql)
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    expect(wrapper.findAllComponents({ name: 'CaseStudySection' })).toHaveLength(0)
+    expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(0)
     mql._fire(true)
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAllComponents({ name: 'CaseStudySection' })).toHaveLength(4)
+    expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(4)
     vi.unstubAllGlobals()
   })
 })
