@@ -725,6 +725,7 @@ const groupedComponents = computed(() => {
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">icon-only</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Square padding (p-2.5) for icon-only layout.</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Reduces opacity to indicate a selected/pressed state.</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">disabled</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Reduces opacity and blocks interaction.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">type</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'button' | 'submit' | 'reset'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">HTML button type attribute. Defaults to 'button'.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1023,6 +1024,9 @@ const groupedComponents = computed(() => {
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">imageAlt</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Alt text for the cover image</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">to</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Vue Router path the card links to</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">tags</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string[] (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Skill/method pills rendered below the title</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Short summary text rendered below the title</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">video</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Path to a video file; shown instead of image when provided</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">zoom</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">number (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Scale factor applied to the cover image/video (e.g. 0.2 = 120%)</td></tr>
                 </tbody>
               </table>
             </div>

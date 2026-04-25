@@ -54,7 +54,7 @@ defineExpose({ close })
     </slot>
     <div
       v-if="open"
-      :class="['absolute z-10 min-w-[300px] rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg', panelClass]"
+      :class="['absolute z-10 rounded border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] py-1 shadow-lg', panelClass]"
       :role="panelRole"
       :aria-label="panelAriaLabel"
     >

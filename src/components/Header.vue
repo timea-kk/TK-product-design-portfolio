@@ -4,7 +4,7 @@
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
@@ -14,6 +14,9 @@ import Dropdown from './Dropdown.vue'
 const themeStore = useThemeStore()
 const a11y = useA11yStore()
 const themeDropRef = ref<InstanceType<typeof Dropdown> | null>(null)
+const filteredThemes = computed(() =>
+  themeStore.themes.filter(t => ['default', 'neo-brutalism', 'material'].includes(t))
+)
 
 function selectTheme(id: string) {
   themeStore.setTheme(id)
@@ -33,7 +36,7 @@ function selectTheme(id: string) {
         label="Themes"
         trigger-aria-label="Choose theme"
         haspopup="listbox"
-        panel-class="left-0 top-full mt-4 w-[322px]"
+        panel-class="left-0 top-full mt-4 w-[289px]"
       >
         <template #trigger="{ open, toggle }">
           <button
@@ -49,7 +52,7 @@ function selectTheme(id: string) {
         </template>
         <ul role="listbox" aria-label="Theme options">
           <li
-            v-for="id in themeStore.themes.filter(t => ['default', 'neo-brutalism', 'material'].includes(t))"
+            v-for="id in filteredThemes"
             :key="id"
             role="option"
             :aria-selected="themeStore.theme === id"
@@ -96,7 +99,7 @@ function selectTheme(id: string) {
         label="Accessibility"
         trigger-aria-label="Accessibility options"
         haspopup="dialog"
-        panel-class="right-0 top-full mt-4 w-[322px]"
+        panel-class="right-0 top-full mt-4 w-[289px]"
         panel-role="dialog"
         panel-aria-label="Accessibility options"
       >

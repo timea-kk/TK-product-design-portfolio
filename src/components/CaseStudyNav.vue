@@ -4,6 +4,9 @@
 import { ref, watch, nextTick, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
+const LABEL_ABOVE_CARD = 35 // px gap between the section label and the top of its card
+const NAV_STICKY_TOP = 40   // px height of the sticky nav area to clear when scrolling
+
 const props = defineProps<{
   sections: { id: string; label: string; group?: string }[]
   panel: HTMLElement | null
@@ -60,9 +63,7 @@ function scrollToSection(id: string) {
   if (el) {
     const panelRect = props.panel.getBoundingClientRect()
     const elRect = el.getBoundingClientRect()
-    const labelAboveCard = 35
-    const navStickyTop = 40
-    const target = Math.max(0, props.panel.scrollTop + elRect.top - panelRect.top - labelAboveCard - navStickyTop)
+    const target = Math.max(0, props.panel.scrollTop + elRect.top - panelRect.top - LABEL_ABOVE_CARD - NAV_STICKY_TOP)
     props.panel.scrollTo({ top: target, behavior: 'smooth' })
   }
 }
