@@ -37,6 +37,7 @@ conventions:
   - "DOM section order in src/pages/DesignSystemPage.vue must exactly match NAV_SECTIONS array order — any divergence breaks scroll spy highlighting"
   - "CardCallout has two modes: slot mode (raw text or elements directly inside) and items mode (pass items prop for titled list entries). Use the component exactly as shown in the DesignSystemPage demo — that is always the source of truth. Never add gap prop or extra wrapper elements to fix spacing; if spacing looks wrong, fix the component itself."
   - "The two Dropdown panels in Header.vue (theme picker and accessibility) are locked at w-[289px]. Do not change this value — it was iterated to by the user and is final."
+  - "When copying a page or component, replicate it exactly. Never change colors, visual treatment, or styles unless explicitly asked."
 
 testing_rules:
   - "Every change to a component must be followed by updating its tests — this is not optional"
@@ -46,6 +47,7 @@ testing_rules:
   - "Never commit with a failing test"
   - "Maintain 100% branch coverage"
   - "Unescaped & in Vue templates must be &amp;"
+  - "After any visual change, automatically run the visual-regression skill. Never wait for the user to ask."
 
 git_rules:
   - "Never merge directly to main — always open a PR with gh pr create and present the URL. Only perform a direct merge if the user explicitly says so."
