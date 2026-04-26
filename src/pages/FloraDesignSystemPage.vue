@@ -101,7 +101,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <img src="/project-pages/flora-design-system/flora-design-system-1.png" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/flora-design-system/flora-design-system-1.webp" alt="Flora Design System structure" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Flora Design System structure</figcaption>
             </figure>
           </CaseStudySection>
@@ -116,7 +116,7 @@ const panelRef = ref<HTMLElement | null>(null)
               Without a single owner, we needed a new way to keep Flora moving. <strong>I stepped in to structure and coordinate the transition to a shared ownership model.</strong>
             </p>
             <figure class="pt-2">
-              <img src="/project-pages/flora-design-system/flora-design-system-2.png" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/flora-design-system/flora-design-system-2.webp" alt="DS Ownership transition: old vs. new" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>DS Ownership transition: old vs. new</figcaption>
             </figure>
           </CaseStudySection>
@@ -175,7 +175,7 @@ const panelRef = ref<HTMLElement | null>(null)
             />
             <figure>
               <img
-                src="/project-pages/flora-design-system/flora-design-system-3.png"
+                src="/project-pages/flora-design-system/flora-design-system-3.webp"
                 alt="Detailed new process without a DS Lead"
                 class="w-full rounded-xl"
               />
@@ -219,9 +219,9 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>DS Ownership discussion &amp; Jira board setup</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/flora-design-system/flora-design-system-4.png',
-                  '/project-pages/flora-design-system/flora-design-system-5.png',
-                  '/project-pages/flora-design-system/flora-design-system-6.png',
+                  '/project-pages/flora-design-system/flora-design-system-4.webp',
+                  '/project-pages/flora-design-system/flora-design-system-5.webp',
+                  '/project-pages/flora-design-system/flora-design-system-6.webp',
                 ]"
                 :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
               />
@@ -251,9 +251,9 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>Flora Contribution checklist snapshot</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/flora-design-system/flora-design-system-7.png',
-                  '/project-pages/flora-design-system/flora-design-system-8.png',
-                  '/project-pages/flora-design-system/flora-design-system-9.png',
+                  '/project-pages/flora-design-system/flora-design-system-7.webp',
+                  '/project-pages/flora-design-system/flora-design-system-8.webp',
+                  '/project-pages/flora-design-system/flora-design-system-9.webp',
                 ]"
                 :alts="['Flora contribution checklist screenshot 1', 'Flora contribution checklist screenshot 2', 'Flora contribution checklist screenshot 3']"
               />
@@ -280,8 +280,8 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>Flora Health Check spreadsheet</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/flora-design-system/flora-design-system-10.png',
-                  '/project-pages/flora-design-system/flora-design-system-11.png',
+                  '/project-pages/flora-design-system/flora-design-system-10.webp',
+                  '/project-pages/flora-design-system/flora-design-system-11.webp',
                 ]"
                 :alts="['Flora health tracker overview', 'Flora health tracker monthly breakdown']"
               />
@@ -311,8 +311,8 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>New processes in Confluence</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/flora-design-system/flora-design-system-12.png',
-                  '/project-pages/flora-design-system/flora-design-system-13.png',
+                  '/project-pages/flora-design-system/flora-design-system-12.webp',
+                  '/project-pages/flora-design-system/flora-design-system-13.webp',
                 ]"
                 :alts="['Flora evolution process documentation', 'Flora evolution Confluence overview']"
               />
@@ -341,7 +341,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <div class="pt-2 space-y-4">
               <figure>
                 <img
-                  src="/project-pages/flora-design-system/flora-design-system-14.png"
+                  src="/project-pages/flora-design-system/flora-design-system-14.webp"
                   alt="Card component contribution in Flora"
                   class="w-full rounded-xl"
                 />

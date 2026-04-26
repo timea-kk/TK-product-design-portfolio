@@ -24,7 +24,11 @@ const NAV_SECTION_IDS = [
 
 beforeEach(() => {
   Element.prototype.scrollTo = vi.fn()
-  window.matchMedia = vi.fn().mockReturnValue({ matches: false })
+  window.matchMedia = vi.fn().mockReturnValue({
+    matches: false, media: '', onchange: null,
+    addListener: vi.fn(), removeListener: vi.fn(),
+    addEventListener: vi.fn(), removeEventListener: vi.fn(), dispatchEvent: vi.fn(),
+  })
   Element.prototype.getBoundingClientRect = vi.fn().mockReturnValue({
     top: 0, bottom: 0, left: 0, right: 0, width: 0, height: 0,
   })

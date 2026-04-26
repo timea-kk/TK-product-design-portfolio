@@ -49,7 +49,7 @@ describe('HomePage', () => {
   it('renders bare CardProject cards below lg breakpoint without year labels', () => {
     vi.stubGlobal('matchMedia', () => makeMql(false))
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
-    expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
+    expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(6)
     expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(0)
     vi.unstubAllGlobals()
   })
@@ -59,7 +59,7 @@ describe('HomePage', () => {
     const wrapper = mount(HomePage, { global: { stubs: STUBS } })
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('p.absolute').filter(p => /\d{4}/.test(p.text()))).toHaveLength(4)
-    expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(4)
+    expect(wrapper.findAllComponents({ name: 'CardProject' })).toHaveLength(6)
     vi.unstubAllGlobals()
   })
 

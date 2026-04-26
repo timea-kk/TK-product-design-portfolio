@@ -98,7 +98,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-1.png" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-1.webp" alt="Ecosia Browser landing page" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Browser landing page</figcaption>
             </figure>
 
@@ -117,7 +117,7 @@ const panelRef = ref<HTMLElement | null>(null)
               I owned the browser install funnel end to end, designing an experience to help users discover, understand, and adopt Ecosia's new browser.
             </CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-2.png" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-2.webp" alt="Ecosia product offering: Extensions, native apps, Default Search and Desktop browser" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia product offering: Extensions, native apps, Default Search &amp; Desktop browser</figcaption>
             </figure>
           </CaseStudySection>
@@ -147,7 +147,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-3.png" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-3.webp" alt="Partnership landscape and deadline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Partnership landscape &amp; deadline</figcaption>
             </figure>
 
@@ -172,7 +172,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-4.png" alt="New user persona" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-4.webp" alt="New user persona" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>New user persona</figcaption>
             </figure>
           </CaseStudySection>
@@ -190,7 +190,7 @@ const panelRef = ref<HTMLElement | null>(null)
               I skipped a long discovery phase by building on <strong>existing Ecosia knowledge and competitive research</strong>. I ran <strong>stakeholder and user feedback in parallel</strong>, kept engineers in the loop from day one, and fed every new pattern back into the <strong>design system</strong>.
             </CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-5.png" alt="Project timeline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-5.webp" alt="Project timeline" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Project timeline</figcaption>
             </figure>
           </CaseStudySection>
@@ -229,7 +229,7 @@ const panelRef = ref<HTMLElement | null>(null)
               </div>
             </div>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-6.png" alt="Competitor map" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-6.webp" alt="Competitor map" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Competitor map</figcaption>
             </figure>
           </CaseStudySection>
@@ -264,12 +264,12 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>Ecosia Search Engine &amp; Browser features</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/ecosia-browser/ecosia-browser-7.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-8.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-9.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-10.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-11.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-12.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-7.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-8.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-9.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-10.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-11.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-12.webp',
                 ]"
                 :alts="[
                   'Ecosia Browser features 7',
@@ -294,7 +294,7 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <CardCallout label="Outcomes">Sentiment was positive across all 10 participants, and they understood what Ecosia Browser was, why it was different, and what it offered which gave me the confidence to keep refining.</CardCallout>
             <figure>
-              <img src="/project-pages/ecosia-browser/ecosia-browser-13.png" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-browser/ecosia-browser-13.webp" alt="Ecosia Browser concept" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Browser concept</figcaption>
             </figure>
           </CaseStudySection>
@@ -331,9 +331,9 @@ const panelRef = ref<HTMLElement | null>(null)
               <figcaption>Final landing page iterations</figcaption>
               <ImageCarousel
                 :images="[
-                  '/project-pages/ecosia-browser/ecosia-browser-14.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-15.png',
-                  '/project-pages/ecosia-browser/ecosia-browser-16.png',
+                  '/project-pages/ecosia-browser/ecosia-browser-14.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-15.webp',
+                  '/project-pages/ecosia-browser/ecosia-browser-16.webp',
                 ]"
               />
             </figure>
@@ -374,7 +374,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <div class="pt-2 space-y-4">
               <figure>
                 <img
-                  src="/project-pages/flora-design-system/flora-design-system-14.png"
+                  src="/project-pages/flora-design-system/flora-design-system-14.webp"
                   alt="Card component contribution in Flora"
                   class="w-full rounded-xl"
                 />

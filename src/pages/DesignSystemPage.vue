@@ -952,7 +952,7 @@ const groupedComponents = computed(() => {
   description="See the product value in context."
   goal="Goal: make a search"
   :active="activeStep === 0"
-  image="/path/to/image.png"
+  image="/path/to/image.webp"
   image-alt="Description"
   @click="activeStep = 0"
 /&gt;</pre>
@@ -990,7 +990,7 @@ const groupedComponents = computed(() => {
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
               <CardProject
                 title="Install Funnel for the Ecosia Browser"
-                image="/project-pages/ecosia-browser/ecosia-browser-1.png"
+                image="/project-pages/ecosia-browser/ecosia-browser-1.webp"
                 imageAlt="Ecosia Browser landing page"
                 to="/work/ecosia-browser"
                 :tags="['Evaluative Research', 'Prototyping', 'Design System']"
@@ -1001,7 +1001,7 @@ const groupedComponents = computed(() => {
             <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
               <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CardProject
   title="Install Funnel for the Ecosia Browser"
-  image="/project-pages/ecosia-browser/ecosia-browser-1.png"
+  image="/project-pages/ecosia-browser/ecosia-browser-1.webp"
   imageAlt="Ecosia Browser landing page"
   to="/work/ecosia-browser"
   :tags="['Evaluative Research', 'Prototyping']"
@@ -1332,9 +1332,9 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 <figcaption>Example caption</figcaption>
                 <ImageCarousel
                   :images="[
-                    '/project-pages/flora-design-system/flora-design-system-4.png',
-                    '/project-pages/flora-design-system/flora-design-system-5.png',
-                    '/project-pages/flora-design-system/flora-design-system-6.png',
+                    '/project-pages/flora-design-system/flora-design-system-4.webp',
+                    '/project-pages/flora-design-system/flora-design-system-5.webp',
+                    '/project-pages/flora-design-system/flora-design-system-6.webp',
                   ]"
                   :alts="['Flora Design System screenshot 4', 'Flora Design System screenshot 5', 'Flora Design System screenshot 6']"
                 />
@@ -1344,7 +1344,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
               <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;ImageCarousel
-  :images="['/img-1.png', '/img-2.png', '/img-3.png']"
+  :images="['/img-1.webp', '/img-2.webp', '/img-3.webp']"
   :alts="['Alt 1', 'Alt 2', 'Alt 3']"
 /&gt;</pre>
             </div>
@@ -1519,14 +1519,14 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-8 flex flex-col gap-6 items-center pointer-events-none select-none">
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Collapsed</p>
               <button class="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] px-5 py-3 text-sm font-medium text-[var(--color-text-secondary)] shadow-lg">
-                <img src="/main-page/timeaAgent.jpg" alt="" aria-hidden="true" class="h-6 w-6 rounded-full object-cover" />
+                <img src="/main-page/timeaAgent.webp" alt="" aria-hidden="true" class="h-6 w-6 rounded-full object-cover" />
                 Get to know Timea
               </button>
 
               <p class="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Expanded</p>
               <div class="w-full max-w-md flex flex-col overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevation-1)] shadow-xl">
                 <div class="flex items-center gap-3 bg-[var(--color-brand-primary)] px-4 py-3">
-                  <img src="/main-page/timeaAgent.jpg" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-button-text-primary)]" />
+                  <img src="/main-page/timeaAgent.webp" alt="" class="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-[var(--color-button-text-primary)]" />
                   <div class="flex flex-col leading-tight">
                     <span class="text-base font-semibold text-[var(--color-button-text-primary)]">TimeaAgent</span>
                     <span class="text-sm text-[var(--color-button-text-primary)] opacity-75">AI assistant · Powered by Gemini</span>
