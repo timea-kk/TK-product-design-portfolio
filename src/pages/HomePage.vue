@@ -51,8 +51,9 @@ const PROJECTS = [
     year: '2025',
     title: "Building Ecosia's Onboarding Experience",
     description: 'A smooth first-time experience that boosted conversion by 25%.',
-    image: '/main-page/ecosia-page.gif',
+    image: '/project-pages/ecosia-onboarding/ecosia-onboarding-1.webp',
     imageAlt: 'Ecosia onboarding screen',
+    video: '/main-page/ecosia-page.mp4',
     to: '/work/ecosia-onboarding',
     tags: ['Generative Research', 'Ideation Workshop', 'A/B Testing', 'Strategy'],
   },
@@ -61,7 +62,7 @@ const PROJECTS = [
     year: '2025',
     title: 'Scaling Design Operations at Ecosia',
     description: 'Establishing a shared ownership model for Flora, Ecosia\'s Design System.',
-    image: '/project-pages/flora-design-system/flora-design-system-1.png',
+    image: '/project-pages/flora-design-system/flora-design-system-1.webp',
     imageAlt: 'Flora Design System structure',
     video: '/main-page/flora.mp4',
     to: '/work/flora-design-system',
@@ -72,7 +73,7 @@ const PROJECTS = [
     year: '2024',
     title: 'Install Funnel for the Ecosia Browser',
     description: 'Launched Ecosia\'s browser in just two months, reaching 100k DAU.',
-    image: '/main-page/browser.png',
+    image: '/main-page/browser.webp',
     imageAlt: 'Ecosia Browser landing page',
     video: '/main-page/browser.mp4',
     zoom: 0.11,
@@ -84,7 +85,7 @@ const PROJECTS = [
     year: '2020',
     title: 'Lolsumo: a coaching app for League of Legends',
     description: 'Real-time gaming support for competitive League of Legends players.',
-    image: '/project-pages/lolsumo/lolsumo-1.png',
+    image: '/project-pages/lolsumo/lolsumo-1.webp',
     video: '/main-page/Lolsumo.mp4',
     imageAlt: 'Lolsumo Android and iOS apps',
     mediaPosition: '-20px top',
@@ -156,6 +157,12 @@ const PROJECTS = [
           <rect x="1" y="1" width="24" height="40" rx="12" stroke="var(--color-brand-primary)" stroke-opacity="0.6" stroke-width="1.5"/>
           <circle class="scroll-dot" cx="13" cy="10" r="3" fill="var(--color-brand-primary)"/>
         </svg>
+      </div>
+
+      <!-- Recent work section label -->
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left">
+        <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
+        <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
 
       <!-- Scattered project cards -->
@@ -241,6 +248,38 @@ const PROJECTS = [
           />
         </div>
 
+      </div>
+
+      <!-- Side projects section label -->
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left mt-[-100px]">
+        <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
+        <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Ideas that I worked on for fun or to solve a real issue I was having.</p>
+      </div>
+
+      <!-- Side project placeholder cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1100px] mx-auto pb-[200px]">
+        <CardProject
+          title="Portfolio Design System"
+          description="The design system I built to power this portfolio: tokens, components, and live documentation in one place."
+          image="/main-page/portfolio-design-system.webp"
+          image-alt="Portfolio Design System"
+          to="https://tk-product-design-portfolio.vercel.app/design-system"
+          :tags="['Design System', 'Vue 3', 'Documentation']"
+          cta-label="Explore"
+          :image-top="true"
+          :vertical="true"
+        />
+        <CardProject
+          title="Arctic Scapes"
+          description="A Chrome extension I built that turns every new tab into a rotating gallery of 150 curated arctic landscape photographs."
+          image="/main-page/arctic-scapes.webp"
+          image-alt="Arctic Scapes"
+          to="https://chromewebstore.google.com/detail/arctic-scapes/pombmjljnopplgkmpaikgjkheokpgaae?authuser=0&hl=en"
+          :tags="['Chrome Extension', 'JavaScript', 'Photography']"
+          cta-label="Explore"
+          :image-top="true"
+          :vertical="true"
+        />
       </div>
 
       </div>

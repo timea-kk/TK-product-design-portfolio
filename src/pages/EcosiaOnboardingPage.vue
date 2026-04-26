@@ -34,30 +34,30 @@ const activeExecutionStep = ref(0)
 const beforeAfterStep = ref(0)
 const strategyFrontRef = ref<HTMLImageElement | null>(null)
 const strategyBackRef = ref<HTMLImageElement | null>(null)
-const strategyFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-10.png')
+const strategyFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-10.webp')
 
 const executionFrontRef = ref<HTMLImageElement | null>(null)
 const executionBackRef = ref<HTMLImageElement | null>(null)
-const executionFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-13.png')
+const executionFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-13.webp')
 
 const beforeAfterFrontRef = ref<HTMLImageElement | null>(null)
 const beforeAfterBackRef = ref<HTMLImageElement | null>(null)
-const beforeAfterFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-5.png')
+const beforeAfterFrontSrc = ref('/project-pages/ecosia-onboarding/ecosia-onboarding-5.webp')
 
 const SERP_SRCS = [
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-7.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-8.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-9.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-7.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-8.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-9.webp',
 ]
 const STRATEGY_SRCS = [
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-10.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-11.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-12.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-10.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-11.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-12.webp',
 ]
 const EXECUTION_SRCS = [
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-13.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-15.png',
-  '/project-pages/ecosia-onboarding/ecosia-onboarding-14.png',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-13.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-15.webp',
+  '/project-pages/ecosia-onboarding/ecosia-onboarding-14.webp',
 ]
 
 function dissolve(
@@ -182,7 +182,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
 
             <figure>
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-onboarding/ecosia-onboarding-1.webp" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Ecosia Landing Page snapshot</figcaption>
             </figure>
 
@@ -224,7 +224,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               </div>
             </div>
             <figure class="pt-4 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.png" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-onboarding/ecosia-onboarding-2.webp" alt="Ecosia onboarding screen" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Product landscape</figcaption>
             </figure>
           </CaseStudySection>
@@ -244,7 +244,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               </StickyNote>
             </div>
             <figure class="pt-2 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.png" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-onboarding/ecosia-onboarding-3.webp" alt="Ecosia onboarding approach" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Onboarding approach overview</figcaption>
             </figure>
           </CaseStudySection>
@@ -383,7 +383,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             </div>
 
             <div class="flex justify-center py-4">
-              <img src="/project-pages/ecosia-onboarding/arrow.svg" alt="" aria-hidden="true" width="108" height="143" />
+              <img loading="lazy" src="/project-pages/ecosia-onboarding/arrow.svg" alt="" aria-hidden="true" width="108" height="143" />
             </div>
 
             <!-- Trade-off and impact -->
@@ -418,7 +418,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
               In order to build confidence in my decisions, I created an <strong>Opportunity Solution Tree (OST)</strong> where I connected user problems with measurable product outcomes. This helped my team prioritize opportunities around clarity, familiarity, and confidence, and link them directly to design experiments such as clearer messaging, contextual prompts, and trust building visuals.
             </p>
             <figure class="pt-2 space-y-3">
-              <img src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.png" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
+              <img loading="lazy" src="/project-pages/ecosia-onboarding/ecosia-onboarding-4.webp" alt="Opportunity Solution Tree condensed snapshot" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]" />
               <figcaption>Opportunity Solution Tree condensed snapshot</figcaption>
             </figure>
             <CardCallout label="Timing was everything">
@@ -450,8 +450,8 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                   :model-value="beforeAfterStep"
                   @update:model-value="(i) => beforeAfterDissolve(
                     i === 0
-                      ? '/project-pages/ecosia-onboarding/ecosia-onboarding-5.png'
-                      : '/project-pages/ecosia-onboarding/ecosia-onboarding-6.png',
+                      ? '/project-pages/ecosia-onboarding/ecosia-onboarding-5.webp'
+                      : '/project-pages/ecosia-onboarding/ecosia-onboarding-6.webp',
                     i
                   )"
                 />
@@ -512,7 +512,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="See the product's value in context of their situation, enough to get them to try it."
                 goal="Goal: make a search"
                 :active="activeStrategyStep === 0"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-10.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-10.webp"
                 image-alt="Value Perception"
                 @click="strategyDissolveStep(0)"
               />
@@ -522,7 +522,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="Experience how Ecosia helps them reach their goals and builds confidence."
                 goal="Goal: return for a second session"
                 :active="activeStrategyStep === 1"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-11.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-11.webp"
                 image-alt="Value Experience"
                 @click="strategyDissolveStep(1)"
               />
@@ -532,7 +532,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="Adopt Ecosia into their daily life and start forming lasting habits."
                 goal="Goal: activate and convert"
                 :active="activeStrategyStep === 2"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-12.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-12.webp"
                 image-alt="Value Adoption"
                 @click="strategyDissolveStep(2)"
               />
@@ -577,7 +577,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="A search-focused and Google-like layout which sets a new baseline for conversion tracking."
                 goal="Goal: make a search"
                 :active="activeExecutionStep === 0"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-13.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-13.webp"
                 image-alt="Flip the funnel"
                 @click="executionDissolveStep(0)"
               />
@@ -587,7 +587,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="A high-impact mission-focused showcase of a planting site as the entry point to the product."
                 goal="Goal: return for a second session"
                 :active="activeExecutionStep === 1"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-15.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-15.webp"
                 image-alt="Before / After"
                 @click="executionDissolveStep(1)"
               />
@@ -597,7 +597,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
                 description="An intervention during the 1st search where we ask new users to switch to Ecosia."
                 goal="Goal: activate and convert"
                 :active="activeExecutionStep === 2"
-                image="/project-pages/ecosia-onboarding/ecosia-onboarding-14.png"
+                image="/project-pages/ecosia-onboarding/ecosia-onboarding-14.webp"
                 image-alt="Prompt install"
                 @click="executionDissolveStep(2)"
               />
