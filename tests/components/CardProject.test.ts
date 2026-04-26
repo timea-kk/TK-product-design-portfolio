@@ -165,4 +165,15 @@ describe('CardProject', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
     expect(wrapper.html()).not.toContain('target="_blank"')
   })
+
+  it('updates objectPosition when breakpoint changes to lg', async () => {
+    const listeners: ((e: MediaQueryListEvent) => void)[] = []
+    const mql = { ...makeMql(false), addEventListener: vi.fn((_, cb) => listeners.push(cb)) }
+    vi.stubGlobal('matchMedia', () => mql)
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, mediaPosition: 'right top' } })
+    expect(wrapper.find('img').attributes('style')).toContain('center')
+    listeners.forEach(cb => cb({ matches: true } as MediaQueryListEvent))
+    await nextTick()
+    expect(wrapper.find('img').attributes('style')).toContain('right top')
+  })
 })
