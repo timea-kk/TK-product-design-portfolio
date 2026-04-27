@@ -271,7 +271,7 @@ const panelRef = ref<HTMLElement | null>(null)
                 The tracker measured progress <strong>month by month</strong> and linked directly to <strong>OKRs</strong>, so we could quantify improvements and keep ourselves accountable.
               </p>
             </div>
-            <div class="grid grid-cols-3 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <CardCallout value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
               <CardCallout value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
               <CardCallout value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
@@ -366,7 +366,7 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               The shift to shared ownership transformed Flora. Designers gained confidence as contributors and used shared documentation and the checklist to maintain consistency. With clearer structure and healthier habits, Flora became easier to maintain, scale, and evolve across teams.
             </p>
-            <div class="flex gap-3">
+            <div class="flex flex-col sm:flex-row gap-3">
               <CardCallout value="+44%" label="Overall health" description="Jun '24 to Nov '25" />
               <CardCallout value="+20%" label="Flora Figma Global" description="Jun '24 to Nov '25" />
               <CardCallout value="+97%" label="Figma Touchpoints" description="Jun '24 to Nov '25" />
