@@ -1,6 +1,6 @@
 /**
  * Component tests for CardProject.vue.
- * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links.
+ * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links, primaryCta, hideCta, imageRounded, imageOutline, transparent, external link icon.
  */
 
 import { describe, it, expect, vi, afterEach } from 'vitest'
@@ -161,9 +161,79 @@ describe('CardProject', () => {
     expect(wrapper.html()).toContain('target="_blank"')
   })
 
+  it('renders the external link icon for external URLs', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, to: 'https://example.com' } })
+    expect(wrapper.find('svg').exists()).toBe(true)
+  })
+
+  it('does not render the external link icon for internal URLs', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.find('svg').exists()).toBe(false)
+  })
+
   it('does not render an anchor tag for internal URLs', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
     expect(wrapper.html()).not.toContain('target="_blank"')
+  })
+
+  it('hides the CTA button when hideCta is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, hideCta: true } })
+    expect(wrapper.text()).not.toContain('Read case study')
+  })
+
+  it('shows the CTA button when hideCta is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.text()).toContain('Read case study')
+  })
+
+  it('applies primary button colors when primaryCta is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, primaryCta: true } })
+    expect(wrapper.html()).toContain('color-button-bg-primary')
+    expect(wrapper.html()).toContain('color-button-text-primary')
+  })
+
+  it('applies neutral button colors when primaryCta is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).toContain('color-surface-button')
+    expect(wrapper.html()).toContain('color-button-text')
+    expect(wrapper.html()).not.toContain('color-button-bg-primary')
+  })
+
+  it('adds rounded image container when imageRounded is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, imageRounded: true } })
+    expect(wrapper.html()).toContain('rounded-xl')
+    expect(wrapper.html()).toContain('p-3')
+  })
+
+  it('does not add padding or inner rounding when imageRounded is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).not.toContain('p-3')
+  })
+
+  it('removes background color when transparent is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, transparent: true } })
+    expect(wrapper.html()).not.toContain('surface-card')
+  })
+
+  it('applies surface-card background when transparent is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).toContain('surface-card')
+  })
+
+  it('adds ring outline to image container when imageOutline is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, imageOutline: true } })
+    expect(wrapper.html()).toContain('ring-2')
+    expect(wrapper.html()).toContain('color-deep-maroon-700')
+  })
+
+  it('does not add ring outline when imageOutline is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).not.toContain('ring-1')
+  })
+
+  it('uses reduced horizontal padding when imageRounded is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, imageRounded: true } })
+    expect(wrapper.html()).toContain('px-3')
   })
 
   it('updates objectPosition when breakpoint changes to lg', async () => {

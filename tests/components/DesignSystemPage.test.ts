@@ -107,6 +107,51 @@ describe('DesignSystemPage', () => {
     expect(toggles[1].attributes('aria-checked')).toBe('true')
   })
 
+  it('CardProject demo: primaryCta toggle flips aria-checked', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-project')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[0].attributes('aria-checked')).toBe('false')
+    await toggles[0].trigger('click')
+    expect(toggles[0].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardProject demo: hideCta toggle flips aria-checked', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-project')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[1].attributes('aria-checked')).toBe('false')
+    await toggles[1].trigger('click')
+    expect(toggles[1].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardProject demo: imageRounded toggle flips aria-checked', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-project')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[2].attributes('aria-checked')).toBe('false')
+    await toggles[2].trigger('click')
+    expect(toggles[2].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardProject demo: imageOutline toggle flips aria-checked', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-project')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[3].attributes('aria-checked')).toBe('false')
+    await toggles[3].trigger('click')
+    expect(toggles[3].attributes('aria-checked')).toBe('true')
+  })
+
+  it('CardProject demo: transparent toggle flips aria-checked', async () => {
+    const wrapper = mount(DesignSystemPage)
+    const section = wrapper.find('#card-project')
+    const toggles = section.findAll('[role="switch"]')
+    expect(toggles[4].attributes('aria-checked')).toBe('false')
+    await toggles[4].trigger('click')
+    expect(toggles[4].attributes('aria-checked')).toBe('true')
+  })
+
   it('CardCallout demo: stat toggle shows stat cards', async () => {
     const wrapper = mount(DesignSystemPage)
     const section = wrapper.find('#card-callout')

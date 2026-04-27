@@ -56,6 +56,13 @@ const activeInteractiveStep = ref(0)
 const stickySquare = ref(false)
 const stickyTitle = ref(false)
 
+// CardProject demo state
+const cardProjectPrimaryCta = ref(false)
+const cardProjectHideCta = ref(false)
+const cardProjectImageRounded = ref(false)
+const cardProjectImageOutline = ref(false)
+const cardProjectTransparent = ref(false)
+
 // CaseStudySection demo state
 const sectionFirst = ref(false)
 
@@ -253,7 +260,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
     token:     { name: '--color-button-text-primary', hex: '#ffffff',               label: 'Button Text Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary', 'TimeaAgent'],
+    usedIn:    ['ButtonPrimary', 'CardProject', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
@@ -284,7 +291,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-button-bg-primary',     hex: 'var(--color-dusty-violet-500)', label: 'Button BG Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary'],
+    usedIn:    ['ButtonPrimary', 'CardProject'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
@@ -984,16 +991,85 @@ const groupedComponents = computed(() => {
           <!-- ── CardProject ── -->
           <CaseStudySection id="card-project" label="CardProject">
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">CardProject</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">A full-width project card used on the home page. Desktop: text left, image right. Below desktop: stacked, displayed in a 2-column grid. The whole card is a <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">RouterLink</code>. Tags are optional.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">A project card used on the home page. Desktop: text left, image right. Below desktop: stacked, displayed in a 2-column grid. Use <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">vertical</code> for grid contexts and <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">imageRounded</code> to inset the image with its own rounded corners. The whole card is a <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">RouterLink</code>. External URLs open in a new tab.</p>
+
+            <!-- Controls -->
+            <div class="flex flex-wrap gap-6 pt-2">
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">primaryCta</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="cardProjectPrimaryCta"
+                  @click="cardProjectPrimaryCta = !cardProjectPrimaryCta"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', cardProjectPrimaryCta ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', cardProjectPrimaryCta ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">hideCta</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="cardProjectHideCta"
+                  @click="cardProjectHideCta = !cardProjectHideCta"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', cardProjectHideCta ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', cardProjectHideCta ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">imageRounded</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="cardProjectImageRounded"
+                  @click="cardProjectImageRounded = !cardProjectImageRounded"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', cardProjectImageRounded ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', cardProjectImageRounded ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">imageOutline</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="cardProjectImageOutline"
+                  @click="cardProjectImageOutline = !cardProjectImageOutline"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', cardProjectImageOutline ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', cardProjectImageOutline ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">transparent</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="cardProjectTransparent"
+                  @click="cardProjectTransparent = !cardProjectTransparent"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', cardProjectTransparent ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', cardProjectTransparent ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+            </div>
 
             <!-- Demo -->
             <div class="rounded-xl border-2 border-dashed border-black/[0.10] p-5">
               <CardProject
                 title="Install Funnel for the Ecosia Browser"
                 image="/project-pages/ecosia-browser/ecosia-browser-1.webp"
-                imageAlt="Ecosia Browser landing page"
+                image-alt="Ecosia Browser landing page"
                 to="/work/ecosia-browser"
                 :tags="['Evaluative Research', 'Prototyping', 'Design System']"
+                :primary-cta="cardProjectPrimaryCta"
+                :hide-cta="cardProjectHideCta"
+                :image-rounded="cardProjectImageRounded"
+                :image-outline="cardProjectImageOutline"
+                :transparent="cardProjectTransparent"
               />
             </div>
 
@@ -1005,7 +1081,12 @@ const groupedComponents = computed(() => {
   imageAlt="Ecosia Browser landing page"
   to="/work/ecosia-browser"
   :tags="['Evaluative Research', 'Prototyping']"
-/&gt;</pre>
+  <template v-if="cardProjectPrimaryCta">:primary-cta="true"
+  </template><template v-if="cardProjectHideCta">:hide-cta="true"
+  </template><template v-if="cardProjectImageRounded">:image-rounded="true"
+  </template><template v-if="cardProjectImageOutline">:image-outline="true"
+  </template><template v-if="cardProjectTransparent">:transparent="true"
+  </template>/&gt;</pre>
             </div>
 
             <!-- Props table -->
@@ -1022,11 +1103,16 @@ const groupedComponents = computed(() => {
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">title</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Project headline displayed on the card</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">image</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Path to the cover image</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">imageAlt</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Alt text for the cover image</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">to</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Vue Router path the card links to</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">to</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Router path or external URL the card links to</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">tags</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string[] (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Skill/method pills rendered below the title</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">description</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Short summary text rendered below the title</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">video</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Path to a video file; shown instead of image when provided</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">zoom</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">number (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Scale factor applied to the cover image/video (e.g. 0.2 = 120%)</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">primaryCta</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Switches the CTA button to the primary filled style</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">hideCta</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Hides the CTA button entirely; use when the title acts as the interactive affordance</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">imageRounded</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Insets the image with padding and its own rounded corners; aligns text to the image edge</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">imageOutline</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Adds a subtle ring around the image; use when the image has a light background that bleeds into the card</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">transparent</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean (optional)</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Removes the card background; use when placing the card on a white surface</td></tr>
                 </tbody>
               </table>
             </div>
