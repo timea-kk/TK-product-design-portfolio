@@ -160,7 +160,7 @@ const PROJECTS = [
       </div>
 
       <!-- Recent work section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-9">
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px]">
         <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
@@ -211,6 +211,7 @@ const PROJECTS = [
                 :media-position="project.mediaPosition"
                 :to="project.to"
                 :tags="project.tags"
+                no-hover
               />
             </div>
             <img
@@ -257,9 +258,9 @@ const PROJECTS = [
             src="/main-page/paperclip-3.svg"
             alt=""
             aria-hidden="true"
-            style="position:absolute;top:-18px;right:-10px;width:44px;pointer-events:none;z-index:10;transform:rotate(8deg);"
+            style="position:absolute;top:-27px;right:50px;width:44px;pointer-events:none;z-index:10;transform:none;"
           />
-          <div class="pl-3 pt-10 text-center lg:text-left">
+          <div class="pl-3 pt-5 text-center lg:text-left">
             <div class="inline-flex items-center gap-3">
               <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
               <img
@@ -370,9 +371,9 @@ const PROJECTS = [
 
 @media (min-width: 1024px) {
   .card-scattered { margin-bottom: 11rem; padding-top: 5rem; }
-  .card-scattered-1 { transform: rotate(-4deg) translateX(-3%); z-index: 1; }
-  .card-scattered-2 { transform: rotate(3deg)  translateX(3%);  z-index: 2; }
-  .card-scattered-3 { transform: rotate(-3deg) translateX(-4%); z-index: 3; }
-  .card-scattered-4 { transform: rotate(4deg)  translateX(4%);  z-index: 4; }
+  .card-scattered-1 { transform: rotate(-2deg) translateX(-3%); z-index: 1; }
+  .card-scattered-2 { transform: rotate(1deg)  translateX(3%);  z-index: 2; }
+  .card-scattered-3 { transform: rotate(-1deg) translateX(-4%); z-index: 3; }
+  .card-scattered-4 { transform: rotate(2deg)  translateX(4%);  z-index: 4; }
 }
 </style>
