@@ -81,8 +81,8 @@ const effectivePosition = computed(() =>
         </div>
       </div>
       <component
-        v-if="!hideCta"
         :is="primaryCta ? ButtonPrimary : ButtonOutline"
+        v-if="!hideCta"
         tag="span"
         :class="['self-start', noHover && 'cursor-pointer']"
       >{{ ctaLabel ?? 'Read case study' }} &rarr;</component>
