@@ -78,7 +78,7 @@ const PROJECTS = [
     video: '/main-page/browser.mp4',
     zoom: 0.11,
     to: '/work/ecosia-browser',
-    tags: ['Evaluative Research', 'Stakeholder Management', 'Prototyping', 'Design System'],
+    tags: ['Evaluative Research', 'Prototyping', 'Stakeholder Management', 'Design System'],
   },
   {
     id: 'project-lolsumo',
@@ -172,14 +172,14 @@ const PROJECTS = [
         <!-- Dotted bezier line behind all cards, desktop only -->
         <svg
           class="hidden lg:block absolute left-1/2 -translate-x-1/2 pointer-events-none"
-          viewBox="0 0 792 3064"
+          viewBox="0 0 776 3064"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
-          style="top: 9.87%; height: 74.75%; width: 792px; z-index: 0;"
+          style="top: 9.87%; height: 74.75%; width: 776px; z-index: 0;"
         >
           <path
-            d="M310.556 1.36328C249.056 96.0299 208.8 397.063 376 479.863C585 583.363 658.216 483.363 642 433.863C625.784 384.363 370.056 476.863 485.556 699.863C601.056 922.863 858.556 893.863 744.556 1128.86C630.556 1363.86 516.556 1163.36 350.556 1175.36C184.556 1187.36 -209.944 1988.86 148.056 2303.86C506.056 2618.86 815.057 2465.36 787.557 2378.86C760.057 2292.36 542.557 2448.86 633.557 2649.86C724.557 2850.86 744.556 2966.86 633.557 3061.86"
+            d="M310.556 1.36328C249.056 96.0299 208.8 397.063 376 479.863C585 583.363 658.216 483.363 642 433.863C625.784 384.363 370.056 476.863 485.556 699.863C601.056 922.863 858.556 893.863 744.556 1128.86C630.556 1363.86 516.556 1163.36 350.556 1175.36C184.556 1187.36 -209.944 1988.86 148.056 2303.86C506.056 2618.86 702.93 2395.9 625 2349.36C555.5 2307.86 501.047 2518.87 669.5 2661.36C835 2801.36 744.556 2966.86 633.557 3061.86"
             stroke="var(--color-dusty-violet-500)"
             stroke-opacity="0.7"
             stroke-width="3"
@@ -254,13 +254,33 @@ const PROJECTS = [
 
       <!-- Side projects section -->
       <div class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[200px]">
-        <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8">
+        <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
+          <!-- Dotted bezier line, desktop only -->
+          <svg
+            class="hidden lg:block absolute pointer-events-none"
+            viewBox="0 0 510 254"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            style="z-index: -1; top: 0; right: 0; width: 50%; height: auto;"
+          >
+            <path
+              d="M1.43164 0.445312C30.4316 92.9453 109.832 89.4453 185.432 61.4453C239.932 41.2601 259.932 74.4453 234.932 132.445C209.932 190.445 253.432 280.445 345.932 242.445C438.432 204.445 409.432 107.445 375.432 132.445C339.723 158.702 444.932 217.445 508.432 148.445"
+              stroke="var(--color-dusty-violet-500)"
+              stroke-opacity="0.7"
+              stroke-width="3"
+              stroke-dasharray="12 15"
+              stroke-linecap="round"
+              fill="none"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
           <img
             src="/main-page/paperclip-3.svg"
             alt=""
             aria-hidden="true"
             class="hidden lg:block"
-            style="position:absolute;top:-27px;right:50px;width:44px;pointer-events:none;z-index:10;transform:none;"
+            style="position:absolute;top:-55px;right:50px;width:44px;pointer-events:none;z-index:10;transform:none;"
           />
           <div class="pl-3 pt-5 text-center lg:text-left">
             <div class="inline-flex items-center gap-3">
