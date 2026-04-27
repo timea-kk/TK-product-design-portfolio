@@ -103,14 +103,16 @@ const PROJECTS = [
   >
     <!-- Whiteboard panel: fills the viewport minus 80px on all sides -->
     <div
-      class="w-full h-full sm:rounded-3xl sm:border sm:border-black/[0.06] overflow-y-auto px-10 lg:px-20"
+      class="w-full h-full sm:rounded-3xl sm:border sm:border-black/[0.06] overflow-y-auto px-10 lg:px-20 flex flex-col"
       style="
         background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
       "
     >
-      <div class="w-full max-w-[1220px] mx-auto flex flex-col gap-8 pt-16 mt-20">
+      <div class="min-h-dvh sm:min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-80px)] flex flex-col">
+      <div class="flex-1 flex flex-col justify-center">
+      <div class="w-full max-w-[1220px] mx-auto flex flex-col gap-8 py-16">
       <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-0">
       <!-- Left: headline -->
       <div class="flex-1 w-full lg:w-auto lg:max-w-[780px] min-w-0">
@@ -147,19 +149,19 @@ const PROJECTS = [
         <strong class="font-semibold text-[var(--color-brand-primary)]"
           >thoughtful, analytical, and structured</strong>. I cut through ambiguity and connect dots others miss. I care about making design inclusive, accessible, and used for something genuinely good.
       </p>
-
-
-
+      </div>
+      </div>
       <!-- Scroll indicator -->
-      <div class="flex justify-center pt-[44px] pb-24" aria-hidden="true">
+      <div class="flex justify-center pb-8" aria-hidden="true">
         <svg width="26" height="42" viewBox="0 0 26 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="24" height="40" rx="12" stroke="var(--color-brand-primary)" stroke-opacity="0.6" stroke-width="1.5"/>
           <circle class="scroll-dot" cx="13" cy="10" r="3" fill="var(--color-brand-primary)"/>
         </svg>
       </div>
+      </div>
 
       <!-- Recent work section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px]">
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-16">
         <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
@@ -277,7 +279,7 @@ const PROJECTS = [
             <CardProject
               title="Portfolio Design System"
               description="The design system I built to power this portfolio: tokens, components, and live documentation in one place."
-              image="/main-page/portfolio-design-system.webp"
+              image="/main-page/portfolio-design-system-950.webp"
               image-alt="Portfolio Design System"
               to="https://tk-product-design-portfolio.vercel.app/design-system"
               :tags="['Design System', 'Vue 3', 'Documentation']"
@@ -291,7 +293,7 @@ const PROJECTS = [
             <CardProject
               title="Arctic Scapes"
               description="A Chrome extension I built that turns every new tab into a rotating gallery of 150 curated arctic landscape photographs."
-              image="/main-page/arctic-scapes.png"
+              image="/main-page/arctic-scapes-950.webp"
               image-alt="Arctic Scapes"
               to="https://chromewebstore.google.com/detail/arctic-scapes/pombmjljnopplgkmpaikgjkheokpgaae?authuser=0&hl=en"
               :tags="['Chrome Extension', 'JavaScript', 'Photography']"
@@ -306,7 +308,6 @@ const PROJECTS = [
         </div>
       </div>
 
-      </div>
 
       <!-- =====================================================================
         OPTION B: POLAROID (parked, may revisit)
