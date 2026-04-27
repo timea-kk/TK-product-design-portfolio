@@ -1,6 +1,6 @@
 /**
  * Component tests for CardProject.vue.
- * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links, primaryCta, hideCta, imageRounded, imageOutline, transparent, external link icon.
+ * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links, primaryCta, hideCta, imageRounded, imageOutline, transparent, noHover (uses ButtonOutline/ButtonPrimary as span), external link icon.
  */
 
 import { describe, it, expect, vi, afterEach } from 'vitest'
@@ -234,6 +234,36 @@ describe('CardProject', () => {
   it('uses reduced horizontal padding when imageRounded is true', () => {
     const wrapper = mount(CardProject, { props: { ...BASE_PROPS, imageRounded: true } })
     expect(wrapper.html()).toContain('px-3')
+  })
+
+  it('omits hover translate and title hover classes when noHover is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
+    expect(wrapper.html()).not.toContain('hover:-translate-y-1')
+    expect(wrapper.html()).not.toContain('group-hover/card:underline')
+  })
+
+  it('applies cursor-default to text area and cursor-pointer to CTA when noHover is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
+    expect(wrapper.html()).toContain('cursor-default')
+    expect(wrapper.html()).toContain('cursor-pointer')
+  })
+
+  it('renders ButtonOutline CTA with hover states when noHover is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
+    expect(wrapper.html()).toContain('hover:text-[var(--color-brand-primary)]')
+    expect(wrapper.html()).toContain('hover:underline')
+  })
+
+  it('does not apply cursor-default or CTA hover color when noHover is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).not.toContain('cursor-default')
+    expect(wrapper.html()).not.toContain('cursor-pointer')
+  })
+
+  it('includes hover translate and title hover classes when noHover is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).toContain('hover:-translate-y-1')
+    expect(wrapper.html()).toContain('group-hover/card:underline')
   })
 
   it('updates objectPosition when breakpoint changes to lg', async () => {

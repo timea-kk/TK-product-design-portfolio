@@ -10,6 +10,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, resolveComponent } from 'vue'
 import TagPill from '@/components/TagPill.vue'
+import ButtonOutline from '@/components/ButtonOutline.vue'
+import ButtonPrimary from '@/components/ButtonPrimary.vue'
 import { IconExternalLink } from '@tabler/icons-vue'
 
 const props = defineProps<{
@@ -28,6 +30,7 @@ const props = defineProps<{
   imageRounded?: boolean
   imageOutline?: boolean
   transparent?: boolean
+  noHover?: boolean
   to: string
   tags?: string[]
 }>()
@@ -55,7 +58,8 @@ const effectivePosition = computed(() =>
     :is="isExternal ? 'a' : routerLink"
     v-bind="isExternal ? { href: to, target: '_blank', rel: 'noopener noreferrer' } : { to }"
     :class="[
-      'group/card overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1 flex',
+      'group/card overflow-hidden rounded-2xl transition-transform duration-300 flex',
+      !noHover && 'hover:-translate-y-1',
       vertical
         ? (imageTop ? 'flex-col-reverse' : 'flex-col')
         : (imageTop ? 'flex-col-reverse lg:flex-row' : 'flex-col lg:flex-row')
@@ -63,10 +67,10 @@ const effectivePosition = computed(() =>
     :style="transparent ? {} : { backgroundColor: 'var(--color-surface-card)' }"
   >
     <!-- Text area -->
-    <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : 'lg:p-12 lg:w-[38%] lg:min-h-[420px]']">
+    <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : 'lg:p-12 lg:w-[38%] lg:min-h-[420px]', noHover && 'cursor-default']">
       <div class="flex flex-col gap-4">
         <h2 :class="['font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)]', vertical ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl lg:text-4xl']">
-          <span class="inline-flex items-center gap-[6px] transition-colors duration-200 group-hover/card:underline group-hover/card:text-[var(--color-brand-primary)] group-active/card:opacity-70">
+          <span :class="['inline-flex items-center gap-[6px] transition-colors duration-200 group-active/card:opacity-70', !noHover && 'group-hover/card:underline group-hover/card:text-[var(--color-brand-primary)]']">
             {{ title }}
             <IconExternalLink v-if="isExternal" style="width: calc(1em - 2px); height: calc(1em - 2px); flex-shrink: 0" />
           </span>
@@ -76,9 +80,12 @@ const effectivePosition = computed(() =>
           <TagPill v-for="tag in tags" :key="tag" :label="tag" />
         </div>
       </div>
-      <span v-if="!hideCta" :class="['self-start inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium shadow-sm whitespace-nowrap transition-colors duration-200', primaryCta ? 'bg-[var(--color-button-bg-primary)] text-[var(--color-button-text-primary)]' : 'border border-[var(--color-border)] bg-[var(--color-surface-button)] text-[var(--color-button-text)]']">
-        {{ ctaLabel ?? 'Read case study' }} &rarr;
-      </span>
+      <component
+        :is="primaryCta ? ButtonPrimary : ButtonOutline"
+        v-if="!hideCta"
+        tag="span"
+        :class="['self-start', noHover && 'cursor-pointer']"
+      >{{ ctaLabel ?? 'Read case study' }} &rarr;</component>
     </div>
 
     <!-- Image / video area -->
