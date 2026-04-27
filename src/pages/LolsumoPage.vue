@@ -134,16 +134,16 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
 
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">User problem</p>
-            <div class="flex gap-3 py-6">
-              <StickyNote :rotate="-1" class="flex-1">
+            <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Casual</span>
                 Needed clear in-game guidance with item guides and builds in real-time.
               </StickyNote>
-              <StickyNote :rotate="1" class="flex-1">
+              <StickyNote :rotate="1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Advanced</span>
                 Needed to analyze post-game stats or alternate champion builds.
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="flex-1">
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Both</span>
                 Wanted to win more games and master their preferred champions.
               </StickyNote>
@@ -299,16 +299,16 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               To grow revenue and stay competitive, we experimented with targeted seasonal promotions, timed around key engagement spikes.
             </p>
-            <div class="flex gap-3 py-6">
-              <StickyNote :rotate="-1" class="flex-1">
+            <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Black Friday</span>
                 Timed promotions around high-engagement retail moments and new season launches.
               </StickyNote>
-              <StickyNote :rotate="1" class="flex-1">
+              <StickyNote :rotate="1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">New LoL Season</span>
                 Capitalized on seasonal player motivation to rank up and start fresh.
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="flex-1">
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">+25% conversions</span>
                 Higher conversions compared to non-promotion periods across all three campaigns.
               </StickyNote>

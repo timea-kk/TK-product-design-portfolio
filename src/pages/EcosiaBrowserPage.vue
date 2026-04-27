@@ -130,17 +130,17 @@ const panelRef = ref<HTMLElement | null>(null)
             <p class="text-[var(--color-text-secondary)] leading-relaxed">
               Ecosia's search engine relied entirely on <strong>partnerships with Google and Bing</strong> to deliver results and generate revenue. These agreements were <strong>short-lived and often renegotiated</strong>, making any long-term planning unpredictable.
             </p>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">This led us to identify <strong>three</strong> core business challenges that shaped the project from the start :</p>
-            <div class="flex gap-3 py-6">
-              <StickyNote :rotate="-1" class="flex-1">
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">This led us to identify <strong>three</strong> core business challenges that shaped the project from the start:</p>
+            <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
                 Volatile deals with Google and Bing <strong>threatened long-term planning</strong>
               </StickyNote>
-              <StickyNote :rotate="1" class="flex-1">
+              <StickyNote :rotate="1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
                 Building a browser meant <strong>full UX control</strong> and an <strong>independent revenue stream</strong>
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="flex-1">
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
                 <strong>Earth Day launch</strong>: a meaningful date tied to global climate activism
               </StickyNote>
@@ -156,16 +156,16 @@ const panelRef = ref<HTMLElement | null>(null)
               Switching browsers is one of the <strong>hardest behaviors to change</strong>. Most users rely on Chrome every day and rarely consider alternatives. Their data, extensions, and habits are <strong>already deeply integrated</strong>, making switching feel <strong>inconvenient and risky</strong>.
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">This shaped <strong>three</strong> key user needs we had to address:</p>
-            <div class="flex gap-3 py-6">
-              <StickyNote :rotate="-1" class="flex-1">
+            <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
                 The browser had to feel <strong>instantly familiar</strong> to everyday Chrome users
               </StickyNote>
-              <StickyNote :rotate="1" class="flex-1">
+              <StickyNote :rotate="1" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
                 It had to <strong>clearly communicate</strong> Ecosia's unique environmental purpose
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="flex-1">
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
                 <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
                 <strong>Ryan</strong> values positive impact but doesn't see browsing as meaningful
               </StickyNote>
