@@ -160,7 +160,7 @@ const PROJECTS = [
       </div>
 
       <!-- Recent work section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left">
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-9">
         <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
@@ -250,36 +250,58 @@ const PROJECTS = [
 
       </div>
 
-      <!-- Side projects section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left mt-[-100px]">
-        <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
-        <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Ideas that I worked on for fun or to solve a real issue I was having.</p>
-      </div>
-
-      <!-- Side project placeholder cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-[1100px] mx-auto pb-[200px]">
-        <CardProject
-          title="Portfolio Design System"
-          description="The design system I built to power this portfolio: tokens, components, and live documentation in one place."
-          image="/main-page/portfolio-design-system.webp"
-          image-alt="Portfolio Design System"
-          to="https://tk-product-design-portfolio.vercel.app/design-system"
-          :tags="['Design System', 'Vue 3', 'Documentation']"
-          cta-label="Explore"
-          :image-top="true"
-          :vertical="true"
-        />
-        <CardProject
-          title="Arctic Scapes"
-          description="A Chrome extension I built that turns every new tab into a rotating gallery of 150 curated arctic landscape photographs."
-          image="/main-page/arctic-scapes.webp"
-          image-alt="Arctic Scapes"
-          to="https://chromewebstore.google.com/detail/arctic-scapes/pombmjljnopplgkmpaikgjkheokpgaae?authuser=0&hl=en"
-          :tags="['Chrome Extension', 'JavaScript', 'Photography']"
-          cta-label="Explore"
-          :image-top="true"
-          :vertical="true"
-        />
+      <!-- Side projects section -->
+      <div class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[200px]">
+        <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8">
+          <img
+            src="/main-page/paperclip-3.svg"
+            alt=""
+            aria-hidden="true"
+            style="position:absolute;top:-18px;right:-10px;width:44px;pointer-events:none;z-index:10;transform:rotate(8deg);"
+          />
+          <div class="pl-3 pt-10 text-center lg:text-left">
+            <div class="inline-flex items-center gap-3">
+              <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
+              <img
+                src="/main-page/heart.svg"
+                alt=""
+                aria-hidden="true"
+                style="width:49px;margin-left:0px;margin-top:5px;filter:drop-shadow(0 8px 16px rgba(0,0,0,0.18));pointer-events:none;flex-shrink:0;"
+              />
+            </div>
+            <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Ideas that I worked on for fun or to solve a real issue I was having.</p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <CardProject
+              title="Portfolio Design System"
+              description="The design system I built to power this portfolio: tokens, components, and live documentation in one place."
+              image="/main-page/portfolio-design-system.webp"
+              image-alt="Portfolio Design System"
+              to="https://tk-product-design-portfolio.vercel.app/design-system"
+              :tags="['Design System', 'Vue 3', 'Documentation']"
+              :image-top="true"
+              :vertical="true"
+              :hide-cta="true"
+              :image-rounded="true"
+              :image-outline="true"
+              :transparent="true"
+            />
+            <CardProject
+              title="Arctic Scapes"
+              description="A Chrome extension I built that turns every new tab into a rotating gallery of 150 curated arctic landscape photographs."
+              image="/main-page/arctic-scapes.png"
+              image-alt="Arctic Scapes"
+              to="https://chromewebstore.google.com/detail/arctic-scapes/pombmjljnopplgkmpaikgjkheokpgaae?authuser=0&hl=en"
+              :tags="['Chrome Extension', 'JavaScript', 'Photography']"
+              :image-top="true"
+              :vertical="true"
+              :hide-cta="true"
+              :image-rounded="true"
+              :image-outline="true"
+              :transparent="true"
+            />
+          </div>
+        </div>
       </div>
 
       </div>

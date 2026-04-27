@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, resolveComponent } from 'vue'
 import TagPill from '@/components/TagPill.vue'
+import { IconExternalLink } from '@tabler/icons-vue'
 
 const props = defineProps<{
   title: string
@@ -22,6 +23,11 @@ const props = defineProps<{
   imageTop?: boolean
   vertical?: boolean
   ctaLabel?: string
+  hideCta?: boolean
+  primaryCta?: boolean
+  imageRounded?: boolean
+  imageOutline?: boolean
+  transparent?: boolean
   to: string
   tags?: string[]
 }>()
@@ -49,49 +55,54 @@ const effectivePosition = computed(() =>
     :is="isExternal ? 'a' : routerLink"
     v-bind="isExternal ? { href: to, target: '_blank', rel: 'noopener noreferrer' } : { to }"
     :class="[
-      'group overflow-hidden rounded-2xl transition-shadow duration-200 hover:shadow-xl flex',
+      'group/card overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1 flex',
       vertical
         ? (imageTop ? 'flex-col-reverse' : 'flex-col')
         : (imageTop ? 'flex-col-reverse lg:flex-row' : 'flex-col lg:flex-row')
     ]"
-    style="background-color: var(--color-surface-card)"
+    :style="transparent ? {} : { backgroundColor: 'var(--color-surface-card)' }"
   >
     <!-- Text area -->
-    <div :class="['flex flex-col justify-between gap-8 p-8', vertical ? '' : 'lg:p-12 lg:w-[38%] lg:min-h-[420px]']">
+    <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : 'lg:p-12 lg:w-[38%] lg:min-h-[420px]']">
       <div class="flex flex-col gap-4">
         <h2 :class="['font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)]', vertical ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl lg:text-4xl']">
-          {{ title }}
+          <span class="inline-flex items-center gap-[6px] transition-colors duration-200 group-hover/card:underline group-hover/card:text-[var(--color-brand-primary)] group-active/card:opacity-70">
+            {{ title }}
+            <IconExternalLink v-if="isExternal" style="width: calc(1em - 2px); height: calc(1em - 2px); flex-shrink: 0" />
+          </span>
         </h2>
         <p v-if="description" class="text-base text-[var(--color-text-primary)]">{{ description }}</p>
         <div v-if="tags?.length" class="flex flex-wrap gap-2">
           <TagPill v-for="tag in tags" :key="tag" :label="tag" />
         </div>
       </div>
-      <span class="self-start inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface-button)] px-5 py-2.5 text-sm font-medium shadow-sm whitespace-nowrap text-[var(--color-button-text)]">
+      <span v-if="!hideCta" :class="['self-start inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium shadow-sm whitespace-nowrap transition-colors duration-200', primaryCta ? 'bg-[var(--color-button-bg-primary)] text-[var(--color-button-text-primary)]' : 'border border-[var(--color-border)] bg-[var(--color-surface-button)] text-[var(--color-button-text)]']">
         {{ ctaLabel ?? 'Read case study' }} &rarr;
       </span>
     </div>
 
     <!-- Image / video area -->
-    <div :class="['overflow-hidden', vertical ? 'aspect-video' : 'aspect-video lg:aspect-auto lg:flex-1 lg:rounded-l-2xl']">
-      <video
-        v-if="video"
-        :src="video"
-        autoplay
-        loop
-        muted
-        playsinline
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: effectivePosition }"
-      />
-      <img
-        v-else
-        :src="image"
-        :alt="imageAlt"
-        loading="lazy"
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: effectivePosition }"
-      />
+    <div :class="['overflow-hidden', imageRounded ? 'p-3' : '', vertical ? 'aspect-video' : 'aspect-video lg:aspect-auto lg:flex-1 lg:rounded-l-2xl']">
+      <div :class="['group/img h-full w-full overflow-hidden', imageRounded ? 'rounded-xl' : '', imageOutline ? 'ring-2 ring-[var(--color-deep-maroon-700)]' : '']">
+        <video
+          v-if="video"
+          :src="video"
+          autoplay
+          loop
+          muted
+          playsinline
+          class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]"
+          :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: effectivePosition }"
+        />
+        <img
+          v-else
+          :src="image"
+          :alt="imageAlt"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]"
+          :style="{ ...(zoom ? { transform: `scale(${1 + zoom})`, transformOrigin: 'top' } : {}), objectPosition: effectivePosition }"
+        />
+      </div>
     </div>
   </component>
 </template>
