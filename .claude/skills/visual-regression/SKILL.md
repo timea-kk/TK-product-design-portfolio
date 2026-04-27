@@ -13,10 +13,12 @@ npm run test:visual
 If tests **pass**: no visual regressions detected. Report that clearly.
 
 If tests **fail**: visual differences were detected.
-- Show which snapshots failed.
-- Ask the user: "These look like intentional changes — should I update the baselines?"
-- If yes: run `npm run test:visual:update` to accept the new screenshots as the new baseline, then confirm the baselines were updated.
-- If no: report the regression so the user can investigate the cause.
+- Report which snapshots failed.
+- Stop. Do NOT run `npm run test:visual:update`.
+- Wait for the user to explicitly say "update the baselines" or "yes update" before touching them.
+- Only then run `npm run test:visual:update`.
+
+Never update baselines proactively. The user must confirm after seeing the failure.
 
 The baseline screenshots live in `tests/visual/__snapshots__/`. The dev server must be running on port 5175 (the webServer config will start it automatically if it isn't).
 

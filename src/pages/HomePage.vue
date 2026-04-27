@@ -98,17 +98,16 @@ const PROJECTS = [
 <template>
   <!-- Hero: greeting row, typewriter headline, and bio paragraph -->
   <section
-    class="relative h-screen p-[40px]"
+    class="relative h-screen p-0 sm:p-6 lg:p-[40px]"
     aria-labelledby="hero-heading"
   >
     <!-- Whiteboard panel: fills the viewport minus 80px on all sides -->
     <div
-      class="w-full h-full rounded-3xl overflow-y-auto px-10 lg:px-20"
+      class="w-full h-full sm:rounded-3xl sm:border sm:border-black/[0.06] overflow-y-auto px-10 lg:px-20"
       style="
         background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
         background-size: 22px 22px;
-        border: 1px solid rgba(0,0,0,0.06);
       "
     >
       <div class="w-full max-w-[1220px] mx-auto flex flex-col gap-8 pt-16 mt-20">
@@ -258,6 +257,7 @@ const PROJECTS = [
             src="/main-page/paperclip-3.svg"
             alt=""
             aria-hidden="true"
+            class="hidden lg:block"
             style="position:absolute;top:-27px;right:50px;width:44px;pointer-events:none;z-index:10;transform:none;"
           />
           <div class="pl-3 pt-5 text-center lg:text-left">
@@ -267,6 +267,7 @@ const PROJECTS = [
                 src="/main-page/heart.svg"
                 alt=""
                 aria-hidden="true"
+                class="hidden lg:block"
                 style="width:49px;margin-left:0px;margin-top:5px;filter:drop-shadow(0 8px 16px rgba(0,0,0,0.18));pointer-events:none;flex-shrink:0;"
               />
             </div>
