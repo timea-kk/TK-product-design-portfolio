@@ -1,6 +1,6 @@
 /**
  * Component tests for StickyNote.vue.
- * Covers: rotation, tape dimensions (small prop), square layout, slot content.
+ * Covers: rotation, tape dimensions, square layout, slot content, color override.
  */
 
 import { describe, it, expect } from 'vitest'
@@ -48,6 +48,14 @@ describe('StickyNote', () => {
     })
     const inner = wrapper.find('.text-center')
     expect(inner.classes()).not.toContain('aspect-square')
+  })
+
+  it('uses color prop as background when provided', () => {
+    const wrapper = mount(StickyNote, {
+      props: { rotate: 0, color: '#EEAF90' },
+    })
+    const inner = wrapper.find('.text-center')
+    expect(inner.attributes('style')).toMatch(/background.*(?:#EEAF90|rgb\(238,\s*175,\s*144\))/i)
   })
 
   it('counter-rotates tape by twice the negative of rotate', () => {

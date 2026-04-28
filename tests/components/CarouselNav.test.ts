@@ -31,4 +31,12 @@ describe('CarouselNav', () => {
     await wrapper.findAll('button')[1].trigger('click')
     expect(wrapper.emitted('next')).toHaveLength(1)
   })
+
+  it('never disables buttons when infinite is true', () => {
+    const first = mount(CarouselNav, { props: { step: 0, total: 4, infinite: true } })
+    expect(first.findAll('button')[0].attributes('disabled')).toBeUndefined()
+
+    const last = mount(CarouselNav, { props: { step: 3, total: 4, infinite: true } })
+    expect(last.findAll('button')[1].attributes('disabled')).toBeUndefined()
+  })
 })
