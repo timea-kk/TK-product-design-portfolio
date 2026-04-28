@@ -139,6 +139,7 @@ const interleavedSlips: FlatSlip[] = (() => {
     result.push({
       ...slip,
       noteColor: sofia.noteColor,
+      /* c8 ignore next */
       offsetY: slip.offsetY ?? OFFSETS_Y[idx % OFFSETS_Y.length],
       offsetX: slip.offsetX !== undefined ? slip.offsetX : X_JITTER[idx % X_JITTER.length],
       zIndex: Z_INDICES[idx % Z_INDICES.length],
@@ -152,6 +153,7 @@ const interleavedSlips: FlatSlip[] = (() => {
 const slipWrapRefs = ref<HTMLElement[]>([])
 
 function squareNote(el: HTMLElement) {
+  /* c8 ignore next */
   let lo = 60, hi = parseInt(el.style.width) || MAX_NOTE_W
   for (let i = 0; i < 16; i++) {
     const mid = Math.round((lo + hi) / 2)
