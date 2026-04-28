@@ -8,6 +8,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import CardProject from '@/components/CardProject.vue'
+import InfiniteCardSlider from '@/components/InfiniteCardSlider.vue'
 
 const isLg = ref(false)
 let mql: MediaQueryList | null = null
@@ -325,6 +326,15 @@ const PROJECTS = [
               :transparent="true"
             />
           </div>
+        </div>
+      </div>
+      <div class="w-full max-w-[1100px] mx-auto pb-[200px]">
+        <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
+          <div class="pl-3 pt-5 text-center lg:text-left">
+            <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">What do others say?</h2>
+            <p class="mt-2 text-lg text-[var(--color-text-secondary)]">I've had the chance to work with people who've seen me at my best and challenged me to grow. Here are a few things they've said about how I work and the impact I've had.</p>
+          </div>
+          <InfiniteCardSlider />
         </div>
       </div>
 
