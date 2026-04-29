@@ -145,37 +145,47 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Reduce-motion: static first phrase, no cursor or animation -->
-  <span
-    v-if="reduceMotion"
-    aria-live="polite"
-    aria-atomic="true"
-  >
-    {{ DESCRIPTORS[0] }}
-  </span>
+  <span class="relative block">
+    <!-- Ghost: invisible, reserves the exact height the current full phrase needs.
+         Prevents layout shift during typing. Height only shifts at phrase transitions (during fade). -->
+    <span class="opacity-0 pointer-events-none select-none" aria-hidden="true">{{ phrase }}</span>
 
-  <!-- Animated typewriter -->
-  <span
-    v-else
-    :class="[
-      'transition-opacity duration-300',
-      phase === 'fadeOut' ? 'opacity-0' : 'opacity-100',
-    ]"
-    aria-live="polite"
-    aria-atomic="true"
-  >
-    <!-- Each character gets the highlight background; rendered one span per char -->
-    <span
-      v-for="(char, i) in Array.from(visible)"
-      :key="i"
-      :class="highlightClass"
-      >{{ char }}</span
-    >
-    <!-- Blinking cursor; hidden from screen readers since it's purely decorative -->
-    <span
-      :class="['select-none inline-block text-[var(--color-brand-primary)]', cursorClass]"
-      aria-hidden="true"
-      >|</span
-    >
+    <!-- Content: absolutely positioned over the ghost -->
+    <span class="absolute inset-0">
+      <!-- Reduce-motion: static first phrase, no cursor or animation -->
+      <span
+        v-if="reduceMotion"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {{ DESCRIPTORS[0] }}
+      </span>
+
+      <!-- Animated typewriter -->
+      <span
+        v-else
+        :class="[
+          'transition-opacity duration-300',
+          phase === 'fadeOut' ? 'opacity-0' : 'opacity-100',
+        ]"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <!-- Each character gets the highlight background; rendered one span per char -->
+        <span
+          v-for="(char, i) in Array.from(visible)"
+          :key="i"
+          :class="highlightClass"
+          >{{ char }}</span
+        >
+        <!-- Blinking cursor; hidden from screen readers since it's purely decorative -->
+        <span
+          :class="['select-none inline-block text-[var(--color-brand-primary)]', cursorClass]"
+          aria-hidden="true"
+          data-testid="cursor"
+          >|</span
+        >
+      </span>
+    </span>
   </span>
 </template>
