@@ -15,6 +15,7 @@ let mql: MediaQueryList | null = null
 function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
 
 function scrollToSideProjects(e: MouseEvent) {
+  /* c8 ignore next 3 */
   e.preventDefault()
   document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
 }

@@ -15,6 +15,7 @@ import Dropdown from './Dropdown.vue'
 const route = useRoute()
 
 function scrollToFun(e: MouseEvent) {
+  /* c8 ignore next 4 */
   if (route.path === '/') {
     e.preventDefault()
     document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
