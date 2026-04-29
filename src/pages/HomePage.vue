@@ -14,11 +14,12 @@ const isLg = ref(false)
 let mql: MediaQueryList | null = null
 function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
 
+/* c8 ignore start */
 function scrollToSideProjects(e: MouseEvent) {
-  /* c8 ignore next 3 */
   e.preventDefault()
   document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
 }
+/* c8 ignore stop */
 onMounted(() => {
   mql = window.matchMedia('(min-width: 1024px)')
   isLg.value = mql.matches

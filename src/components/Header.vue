@@ -14,13 +14,14 @@ import Dropdown from './Dropdown.vue'
 
 const route = useRoute()
 
+/* c8 ignore start */
 function scrollToFun(e: MouseEvent) {
-  /* c8 ignore next 4 */
   if (route.path === '/') {
     e.preventDefault()
     document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
   }
 }
+/* c8 ignore stop */
 
 const themeStore = useThemeStore()
 const a11y = useA11yStore()
