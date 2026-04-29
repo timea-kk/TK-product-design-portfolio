@@ -5,11 +5,23 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 import { useThemeStore } from '@/stores/theme'
 import { useA11yStore } from '@/stores/a11y'
 import { THEME_LABELS, THEME_DESCRIPTIONS } from '@/constants/themes'
 import Dropdown from './Dropdown.vue'
+
+const route = useRoute()
+
+/* c8 ignore start */
+function scrollToFun(e: MouseEvent) {
+  if (route.path === '/') {
+    e.preventDefault()
+    document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
+  }
+}
+/* c8 ignore stop */
 
 const themeStore = useThemeStore()
 const a11y = useA11yStore()
@@ -77,6 +89,14 @@ function selectTheme(id: string) {
       </a>
 
       <a
+        href="/#side-projects"
+        class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"
+        @click="scrollToFun"
+      >
+        Fun
+      </a>
+
+      <a
         href="https://www.linkedin.com/in/timea-konya-a3543284/"
         target="_blank"
         rel="noopener noreferrer"
@@ -86,7 +106,7 @@ function selectTheme(id: string) {
       </a>
 
       <a
-        href="https://drive.google.com/file/d/1aeNwj4QkRwouV0SgZ-m-c1h9_PUWALsb/view?usp=sharing"
+        href="https://drive.google.com/file/d/1AM8_Ibyub_9inWriySCqUcdfbBm2mOtJ/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
         class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"

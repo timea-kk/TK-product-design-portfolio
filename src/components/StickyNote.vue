@@ -1,14 +1,17 @@
 <!-- Yellow post-it note with a translucent tape piece at the top. Outer layout classes (flex-1, w-1/2, etc.) are passed from the parent via class fallthrough. -->
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const props = defineProps<{
   rotate: number    // degrees, e.g. -1, 1, -0.5
   square?: boolean  // aspect-square layout for "How might we" notes
   color?: string    // overrides the default sticky background token
 }>()
 
-const clampedRotate = Math.max(-2, Math.min(2, props.rotate))
-const tapeRotate = `${-clampedRotate * 2}deg`
+const clampedRotate = computed(() => Math.max(-2, Math.min(2, props.rotate)))
+const tapeRotate = computed(() => `${-clampedRotate.value * 2}deg`)
+
 </script>
 
 <template>

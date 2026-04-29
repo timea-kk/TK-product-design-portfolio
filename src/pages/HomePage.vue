@@ -13,6 +13,13 @@ import InfiniteCardSlider from '@/components/InfiniteCardSlider.vue'
 const isLg = ref(false)
 let mql: MediaQueryList | null = null
 function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
+
+/* c8 ignore start */
+function scrollToSideProjects(e: MouseEvent) {
+  e.preventDefault()
+  document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
+}
+/* c8 ignore stop */
 onMounted(() => {
   mql = window.matchMedia('(min-width: 1024px)')
   isLg.value = mql.matches
@@ -162,7 +169,7 @@ const PROJECTS = [
       </div>
 
       <!-- Recent work section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-[162px] pb-8 lg:pt-16 lg:pb-0">
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-[162px] pb-8 lg:pt-16 lg:pb-[50px]">
         <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
@@ -254,7 +261,7 @@ const PROJECTS = [
       </div>
 
       <!-- Side projects section -->
-      <div class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[28px] lg:pb-[200px]">
+      <div id="side-projects" class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[28px] lg:pb-[100px]">
         <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
           <!-- Dotted bezier line, desktop only -->
           <svg
@@ -328,13 +335,109 @@ const PROJECTS = [
           </div>
         </div>
       </div>
-      <div class="w-full max-w-[1100px] mx-auto pb-[200px]">
+      <div class="w-full max-w-[1100px] mx-auto pb-[28px] lg:pb-[100px]">
         <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
+          <!-- Dotted bezier line, desktop only -->
+          <svg
+            class="hidden lg:block absolute pointer-events-none"
+            viewBox="0 0 1023 870"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            style="z-index: -1; top: 0; right: 0; width: 40%; height: auto;"
+          >
+            <path
+              d="M1.48047 0.242188C11.6471 62.5755 102.066 193.6 308.48 115.742C479.48 51.2422 589.98 263.242 456.48 279.242C305.101 297.385 490.98 -1.75781 631.48 74.2422C771.98 150.242 448.98 373.742 566.98 526.242C684.98 678.742 822.98 505.242 908.48 604.742C993.98 704.242 933.98 830.742 1021.48 867.742"
+              stroke="var(--color-dusty-violet-500)"
+              stroke-opacity="0.7"
+              stroke-width="3"
+              stroke-dasharray="12 15"
+              stroke-linecap="round"
+              fill="none"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
+          <!-- Dotted bezier line flipped, bottom-left, desktop only -->
+          <svg
+            class="hidden lg:block absolute pointer-events-none"
+            viewBox="0 0 1023 870"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            style="z-index: -1; bottom: 0; left: 0; width: 31%; height: auto; transform: scale(-1, -1);"
+          >
+            <path
+              d="M1.48047 0.242188C11.6471 62.5755 102.066 193.6 308.48 115.742C479.48 51.2422 589.98 263.242 456.48 279.242C305.101 297.385 490.98 -1.75781 631.48 74.2422C771.98 150.242 448.98 373.742 566.98 526.242C684.98 678.742 822.98 505.242 908.48 604.742C993.98 704.242 933.98 830.742 1021.48 867.742"
+              stroke="var(--color-dusty-violet-500)"
+              stroke-opacity="0.7"
+              stroke-width="3"
+              stroke-dasharray="12 15"
+              stroke-linecap="round"
+              fill="none"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
+          <div
+            aria-hidden="true"
+            class="hidden lg:block"
+            style="position:absolute;top:-55px;right:50px;width:66px;pointer-events:none;z-index:10;"
+          >
+            <svg width="313" height="455" viewBox="0 0 313 455" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+              <path d="M136.053 241C125.775 235.066 112.622 239.138 107.494 249.84L17.3169 438.043C16.3416 440.078 17.0979 442.521 19.0526 443.65C21.0073 444.779 23.5013 444.212 24.7765 442.349L142.676 270.153C149.381 260.361 146.33 246.934 136.053 241Z" fill="#CECFD0"/>
+              <circle cx="127" cy="127" r="127" transform="matrix(-1 0 0 1 287.105 76)" fill="#47B1AC"/>
+              <path d="M260.855 134.933L261.105 134.5L261.102 134.498C261.02 134.643 260.939 134.789 260.855 134.933ZM108.979 175.996C108.895 176.14 108.81 176.283 108.727 176.428C93.4007 202.973 102.496 236.916 129.041 252.242C155.586 267.568 189.529 258.473 204.855 231.928C204.939 231.783 205.02 231.638 205.102 231.493L205.105 231.495L260.855 134.933C245.529 161.478 211.586 170.573 185.041 155.247C158.496 139.922 149.401 105.978 164.727 79.433C164.81 79.2885 164.895 79.1449 164.979 79.0015L164.977 79L108.977 175.995L108.979 175.996Z" fill="#8DD1CE"/>
+              <circle cx="85.5" cy="85.5" r="85.5" transform="matrix(-1 0 0 1 312.105 0)" fill="#B2E0DD"/>
+            </svg>
+          </div>
           <div class="pl-3 pt-5 mt-8 text-center lg:text-left">
             <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">What do others say?</h2>
             <p class="mt-2 text-lg text-[var(--color-text-secondary)]">I've had the chance to work with people who've seen me at my best and challenged me to grow.<br>Here are a few things they've said about how I work and the impact I've had.</p>
           </div>
           <InfiniteCardSlider />
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="w-full max-w-[1100px] mx-auto pb-16 mt-[50px]">
+        <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-12 isolate">
+          <p
+            class="absolute -top-[60px] left-0 text-2xl font-medium text-white bg-[var(--color-brand-primary)] rounded-2xl px-5 py-2 select-none"
+            style="box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 5px solid var(--color-dusty-violet-100);"
+          >Thanks for stopping by!</p>
+          <img src="/main-page/wave.png" alt="" aria-hidden="true" class="bottom-[5px] sm:bottom-[10px]" style="position:absolute;right:20px;width:90px;pointer-events:none;z-index:10;transform:rotate(10deg);" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="flex flex-col gap-3">
+              <p class="font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)] text-2xl sm:text-3xl">Let's connect</p>
+              <a href="mailto:work@timea.cc" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">work@timea.cc</a>
+            </div>
+            <div class="flex flex-col gap-3">
+              <p class="font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)] text-2xl sm:text-3xl">Navigation</p>
+              <div class="flex flex-col gap-2">
+                <a href="/" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Work</a>
+                <a href="/#side-projects" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors" @click="scrollToSideProjects">Fun</a>
+              </div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <p class="font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)] text-2xl sm:text-3xl">Links</p>
+              <div class="flex flex-col gap-2">
+                <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">LinkedIn</a>
+                <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">GitHub</a>
+                <a href="https://drive.google.com/file/d/1AM8_Ibyub_9inWriySCqUcdfbBm2mOtJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Resume</a>
+              </div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-5 flex flex-col gap-3">
+                <span class="text-xs font-mono text-white/40">// how I made this</span>
+                <p class="text-sm font-mono text-[var(--color-text-white)] leading-relaxed">Built by hand with a little help from Claude Code.</p>
+                <a
+                  href="https://github.com/timea-kk/TK-product-design-portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-[var(--color-brand-primary)] hover:underline transition-colors"
+                >$ view repo &rarr;</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
