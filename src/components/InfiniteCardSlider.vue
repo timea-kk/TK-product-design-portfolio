@@ -51,7 +51,7 @@ const notes: DesktopNote[] = [
   { text: 'She has a true talent for systems thinking and thrives on order.', rotate: -1.5, color: '#B1E0DD', x: 605, y: 60, z: 3, maxW: 150 },
   { text: 'She co-leads major projects, organizes collaboration within Miro, and bridges stakeholders, all while delivering high-quality design work.', rotate: -1.0, color: '#B1E0DD', x: 259, y: 206, z: 4 },
   { text: 'She consistently examines issues from multiple perspectives, ensuring a thorough understanding of project requirements.', rotate: 0.8, color: '#B1E0DD', x: 631, y: 242, z: 1 },
-  { text: 'Her proactiveness, process, and dedication make her stand out, and she excels beyond her designer duties.', rotate: 1.2, color: '#B1E0DD', x: 459, y: 234, z: 3, maxW: 160 },
+  { text: 'Her proactiveness, process, and dedication make her stand out, and she excels beyond her designer duties.', rotate: 1.2, color: '#B1E0DD', x: 459, y: 239, z: 3, maxW: 160 },
   // Barbara Borges
   { text: 'Timea always tackles design problems thoroughly and backs them up with research.', rotate: 1.2, color: '#CED4B8', x: 794, y: 56, z: 5, pill: { name: 'Barbara Borges', role: 'Frontend Engineer', image: '/main-page/quotes-Barbara.png', ringColor: '#A2AE78' } },
   { text: "She's very organised, with impeccable Figma files, and she helps us stay organised in Confluence as well.", rotate: -0.5, color: '#CED4B8', x: 829, y: 228, z: 1 },
@@ -109,7 +109,7 @@ onMounted(() => {
 
 <template>
   <!-- Desktop: each note is independently absolute-positioned; moving or removing one never affects any other -->
-  <div class="isolate hidden xl:flex justify-center pb-28">
+  <div class="isolate hidden xl:flex justify-center xl:-mb-10">
     <div class="relative" :style="{ width: CANVAS_W + 'px', height: CANVAS_H + 'px' }">
       <div
         v-for="(note, i) in notes"
@@ -152,7 +152,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="flex gap-3 justify-center w-full">
-        <div v-for="slip in person.slips" :key="slip.text" class="w-[140px]">
+        <div v-for="slip in person.slips" :key="slip.text" class="w-[182px]">
           <StickyNote :rotate="slip.rotate" :color="person.noteColor" class="w-full">
             <div class="text-center">{{ slip.text }}</div>
           </StickyNote>

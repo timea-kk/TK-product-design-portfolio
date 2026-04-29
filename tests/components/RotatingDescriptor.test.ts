@@ -46,15 +46,15 @@ describe('RotatingDescriptor', () => {
     store.update({ reduceMotion: true })
 
     const wrapper = mount(RotatingDescriptor)
-    // The cursor is only in the animated branch (aria-hidden span with '|')
-    const cursor = wrapper.findAll('[aria-hidden="true"]')
+    // The cursor is only in the animated branch
+    const cursor = wrapper.findAll('[data-testid="cursor"]')
     expect(cursor).toHaveLength(0)
   })
 
   it('renders the cursor span in animated mode', () => {
     // Default store has reduceMotion: false
     const wrapper = mount(RotatingDescriptor)
-    const cursor = wrapper.find('[aria-hidden="true"]')
+    const cursor = wrapper.find('[data-testid="cursor"]')
     expect(cursor.exists()).toBe(true)
     expect(cursor.text()).toBe('|')
   })

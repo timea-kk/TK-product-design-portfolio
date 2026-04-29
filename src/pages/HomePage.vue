@@ -104,7 +104,7 @@ const PROJECTS = [
   >
     <!-- Whiteboard panel: fills the viewport minus 80px on all sides -->
     <div
-      class="w-full h-full sm:rounded-3xl sm:border sm:border-black/[0.06] overflow-y-auto px-10 lg:px-20 flex flex-col"
+      class="w-full h-full sm:rounded-3xl sm:border sm:border-black/[0.06] overflow-y-auto px-5 lg:px-20 flex flex-col"
       style="
         background-color: var(--color-surface-canvas);
         background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
@@ -119,16 +119,16 @@ const PROJECTS = [
       <div class="flex-1 w-full lg:w-auto lg:max-w-[780px] min-w-0">
         <h1
           id="hero-heading"
-          class="font-heading mt-2 text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)] text-center lg:text-left"
+          class="font-heading mt-2 text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)] text-center lg:text-left"
         >
           <span class="block">I'm a</span>
-          <span class="block"><RotatingDescriptor /></span>
+          <span class="block min-h-[2em] lg:min-h-0"><RotatingDescriptor /></span>
           <span class="block">who creates with clarity and purpose.</span>
         </h1>
       </div>
 
       <!-- OPTION A: STICKY NOTE (active) -->
-      <div class="relative shrink-0 w-64 lg:w-80" style="aspect-ratio: 1 / 1; transform: rotate(2deg)">
+      <div class="relative shrink-0 w-64 lg:w-80 mt-20 lg:mt-0" style="aspect-ratio: 1 / 1; transform: rotate(2deg)">
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: var(--color-golden-honey-400); box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="relative flex-1 overflow-hidden mx-9 mt-9 mb-9">
@@ -162,8 +162,8 @@ const PROJECTS = [
       </div>
 
       <!-- Recent work section label -->
-      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-16">
-        <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
+      <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-[162px] pb-8 lg:pt-16 lg:pb-0">
+        <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
 
@@ -254,7 +254,7 @@ const PROJECTS = [
       </div>
 
       <!-- Side projects section -->
-      <div class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[200px]">
+      <div class="w-full max-w-[1100px] mx-auto mt-[-100px] pb-[28px] lg:pb-[200px]">
         <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
           <!-- Dotted bezier line, desktop only -->
           <svg
@@ -285,7 +285,7 @@ const PROJECTS = [
           />
           <div class="pl-3 pt-5 text-center lg:text-left">
             <div class="inline-flex items-center gap-3">
-              <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
+              <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
               <img
                 src="/main-page/heart.svg"
                 alt=""
@@ -330,9 +330,9 @@ const PROJECTS = [
       </div>
       <div class="w-full max-w-[1100px] mx-auto pb-[200px]">
         <div class="relative rounded-2xl bg-white border border-black/[0.06] p-8 sm:p-10 space-y-8 isolate">
-          <div class="pl-3 pt-5 text-center lg:text-left">
-            <h2 class="font-heading text-[clamp(1.5rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">What do others say?</h2>
-            <p class="mt-2 text-lg text-[var(--color-text-secondary)]">I've had the chance to work with people who've seen me at my best and challenged me to grow. Here are a few things they've said about how I work and the impact I've had.</p>
+          <div class="pl-3 pt-5 mt-8 text-center lg:text-left">
+            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">What do others say?</h2>
+            <p class="mt-2 text-lg text-[var(--color-text-secondary)]">I've had the chance to work with people who've seen me at my best and challenged me to grow.<br>Here are a few things they've said about how I work and the impact I've had.</p>
           </div>
           <InfiniteCardSlider />
         </div>
