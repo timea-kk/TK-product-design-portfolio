@@ -1,7 +1,7 @@
-// InfiniteCardSlider — interleaved testimonial stickies with author pills
+// InfiniteCardSlider — absolute-positioned testimonial stickies with author pills
 // Props: none (data-driven)
-// Branches: authorPill z-index boost, noSquare skip, document.fonts guard,
-//           offsetX/Y custom vs auto, Sofia offsetX custom vs auto
+// Branches: pill z-index boost, noSquare skip, document.fonts guard,
+//           pill offset styles, squareNote convergence
 
 import { describe, it, expect, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
@@ -12,49 +12,48 @@ describe('InfiniteCardSlider', () => {
     Object.defineProperty(document, 'fonts', { value: undefined, configurable: true, writable: true })
   })
 
-  it('renders the desktop flex layout', () => {
+  it('renders the desktop canvas layout', () => {
     const wrapper = mount(InfiniteCardSlider)
     expect(wrapper.find('.isolate').exists()).toBe(true)
   })
 
   it('renders the mobile column layout', () => {
     const wrapper = mount(InfiniteCardSlider)
-    expect(wrapper.find('.sm\\:hidden').exists()).toBe(true)
+    expect(wrapper.find('.xl\\:hidden').exists()).toBe(true)
   })
 
   it('renders all 4 people in the mobile layout', () => {
     const wrapper = mount(InfiniteCardSlider)
-    const names = wrapper.find('.sm\\:hidden').findAll('p.font-heading')
+    const names = wrapper.find('.xl\\:hidden').findAll('p.font-heading')
     expect(names).toHaveLength(4)
   })
 
   it('renders 2 sticky notes per person in mobile layout', () => {
     const wrapper = mount(InfiniteCardSlider)
-    const personBlocks = wrapper.find('.sm\\:hidden').findAll('[class*="flex gap-3"]')
+    const personBlocks = wrapper.find('.xl\\:hidden').findAll('[class*="flex gap-3"]')
     personBlocks.forEach(block => {
       expect(block.findAllComponents({ name: 'StickyNote' }).length).toBeLessThanOrEqual(2)
     })
   })
 
-  it('renders author pills for slips with showAuthorPill', () => {
+  it('renders author pills for notes with pill data', () => {
     const wrapper = mount(InfiniteCardSlider)
-    const pills = wrapper.find('.hidden').findAll('[class*="min-w-max"]')
+    const pills = wrapper.find('.isolate').findAll('[class*="min-w-max"]')
     expect(pills.length).toBeGreaterThan(0)
   })
 
-  it('renders slips without author pills (zIndex branch)', () => {
+  it('renders notes without pills (z-index branch)', () => {
     const wrapper = mount(InfiniteCardSlider)
-    const slipWrappers = wrapper.find('.isolate').findAll('.relative.self-start')
-    const noAuthorPill = slipWrappers.filter(s => !s.find('[class*="min-w-max"]').exists())
-    expect(noAuthorPill.length).toBeGreaterThan(0)
+    const noteWrappers = wrapper.find('.isolate').findAll('.absolute.overflow-visible')
+    const noPill = noteWrappers.filter(n => !n.find('[class*="min-w-max"]').exists())
+    expect(noPill.length).toBeGreaterThan(0)
   })
 
-  it('does not call squareNote for noSquare slips', async () => {
+  it('does not call squareNote for noSquare notes', async () => {
     const wrapper = mount(InfiniteCardSlider)
     await wrapper.vm.$nextTick()
-    // noSquare slips retain their maxW width unchanged by squareNote
-    const slipWrappers = wrapper.find('.isolate').findAll('.relative.self-start')
-    expect(slipWrappers.length).toBeGreaterThan(0)
+    const noteWrappers = wrapper.find('.isolate').findAll('.absolute.overflow-visible')
+    expect(noteWrappers.length).toBeGreaterThan(0)
   })
 
   it('uses document.fonts.ready when available', async () => {

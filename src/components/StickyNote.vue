@@ -7,7 +7,8 @@ const props = defineProps<{
   color?: string    // overrides the default sticky background token
 }>()
 
-const tapeRotate = `${-props.rotate * 2}deg`
+const clampedRotate = Math.max(-2, Math.min(2, props.rotate))
+const tapeRotate = `${-clampedRotate * 2}deg`
 </script>
 
 <template>
