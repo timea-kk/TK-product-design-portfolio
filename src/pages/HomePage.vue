@@ -111,7 +111,7 @@ const PROJECTS = [
         background-size: 22px 22px;
       "
     >
-      <div class="min-h-dvh sm:min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-80px)] flex flex-col">
+      <div class="h-screen sm:h-auto sm:min-h-[calc(100dvh-48px)] lg:min-h-[calc(100dvh-80px)] flex flex-col">
       <div class="flex-1 flex flex-col justify-center">
       <div class="w-full max-w-[1220px] mx-auto flex flex-col gap-8 py-16">
       <div class="flex flex-col-reverse items-center justify-center gap-10 lg:flex-row lg:items-center lg:gap-0">
