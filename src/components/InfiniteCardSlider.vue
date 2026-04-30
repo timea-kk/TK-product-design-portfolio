@@ -47,40 +47,42 @@ const notes: DesktopNote[] = [
   { text: 'She is <strong>data driven</strong> and has the ability to break down opaque problems into tangible product solutions.', rotate: -3, color: '#c4d0cd', x: 254, y: 33, z: 1, maxW: 150 },
   { text: 'Her <strong>communication</strong> and <strong>stakeholder management</strong> ensured that all entities were on the same page and moved towards a common objective.', rotate: -1, color: '#c4d0cd', x: 48, y: 272, z: 2, maxW: 180, noSquare: true },
   // Ina Arnaoudova
-  { text: 'Timea continuously drives <strong>Design System</strong> topics for her team and wider Design Org.', rotate: -0.5, color: '#B1E0DD', x: 463, y: 24, z: 2, maxW: 150, pill: { name: 'Ina Arnaoudova', role: 'Head of Design', image: '/main-page/quotes-Ina.png', ringColor: '#47B1AC', pillOffsetX: 0, pillOffsetY: 215 } },
+  { text: 'Timea continuously drives <strong>Design System</strong> topics for her team and wider Design Org.', rotate: -0.5, color: '#B1E0DD', x: 463, y: 24, z: 2, maxW: 150, pill: { name: 'Ina Arnaoudova', role: 'Head of Design', image: '/main-page/quotes-Ina.webp', ringColor: '#47B1AC', pillOffsetX: 0, pillOffsetY: 215 } },
   { text: 'She has a true talent for <strong>systems thinking</strong> and thrives on <strong>order</strong>.', rotate: -1.5, color: '#B1E0DD', x: 605, y: 60, z: 3, maxW: 150 },
   { text: 'She co-leads major projects, organizes collaboration within Miro, and bridges stakeholders, all while delivering <strong>high-quality design work</strong>.', rotate: 3, color: '#B1E0DD', x: 259, y: 206, z: 4 },
   { text: 'She consistently examines issues from <strong>multiple perspectives</strong>, ensuring a thorough understanding of project requirements.', rotate: -3, color: '#B1E0DD', x: 631, y: 232, z: 1 },
   { text: 'Her proactiveness, process, and <strong>dedication</strong> make her <strong>stand out</strong>, and she excels beyond her designer duties.', rotate: 1.2, color: '#B1E0DD', x: 459, y: 239, z: 3, maxW: 160 },
   // Elpida Fragkou
-  { text: 'Timea always tackles <strong>design problems</strong> thoroughly and backs them up with <strong>research</strong>.', rotate: 1.2, color: '#CED4B8', x: 794, y: 56, z: 5, pill: { name: 'Elpida Fragkou', role: 'User Research Lead', image: '/main-page/quotes-Elpida.png', ringColor: '#A2AE78' } },
-  { text: "She's very organised, with <strong>impeccable Figma files</strong>, and she helps us stay organised in Confluence as well.", rotate: -0.5, color: '#CED4B8', x: 829, y: 228, z: 1 },
+  { text: "Timea is one of the most <strong>analytical</strong>, methodical, organized, and <strong>data-driven</strong> Product Designers I've ever had the chance to work with.", rotate: 1.2, color: '#CED4B8', x: 794, y: 56, z: 5, pill: { name: 'Elpida Fragkou', role: 'User Research Lead', image: '/main-page/quotes-Elpida.webp', ringColor: '#8B975C' } },
+  { text: "Timea's <strong>impeccable work ethic</strong>, strong values, dedication to her craft, and collaborative style make her a pleasure to work with.", rotate: -0.5, color: '#CED4B8', x: 829, y: 228, z: 1 },
+  { text: 'Her exceptional work on <strong>Design Systems</strong> complements her strong product design skills, making her an <strong>invaluable</strong> member of any design team.', rotate: 1.5, color: '#CED4B8', x: 720, y: 420, z: 3, maxW: 220, noSquare: true },
   // Sofia Tiira
-  { text: "One of Timea's absolute strengths is breaking down complex topics into <strong>actionable steps</strong>.", rotate: 5, color: '#EEAF90', x: 228, y: 463, z: 5 },
-  { text: "She approaches every problem <strong>analytically</strong> and has a lot of skill in connecting team or design level projects to <strong>company goals</strong>.", rotate: 1, color: '#EEAF90', x: 402, y: 462, z: 2, pill: { name: 'Sofia Tiira', role: 'Senior Content Designer', image: '/main-page/quotes-Sofia.webp', ringColor: '#CC7B78' } },
-  { text: "In OKR plannings, I've witnessed Timea help the team maintain a focus on <strong>long-term goals</strong> while staying aligned with business priorities.", rotate: -1.2, color: '#EEAF90', x: 586, y: 454, z: 4 },
+  { text: "One of Timea's absolute strengths is breaking down complex topics into <strong>actionable steps</strong>.", rotate: 5, color: '#EEAF90', x: 178, y: 463, z: 5 },
+  { text: "She approaches every problem <strong>analytically</strong> and has a lot of skill in connecting team or design level projects to <strong>company goals</strong>.", rotate: 1, color: '#EEAF90', x: 352, y: 462, z: 2, pill: { name: 'Sofia Tiira', role: 'Senior Content Designer', image: '/main-page/quotes-Sofia.webp', ringColor: '#CC7B78' } },
+  { text: "In OKR plannings, I've witnessed Timea help the team maintain a focus on <strong>long-term goals</strong> while staying aligned with business priorities.", rotate: -1.2, color: '#EEAF90', x: 536, y: 454, z: 4 },
 ]
 
 const people: Person[] = [
-  { name: 'Ina Arnaoudova', role: 'Head of Design @ Ecosia', image: '/main-page/quotes-Ina.png', ringColor: '#47B1AC', noteColor: '#B1E0DD',
+  { name: 'Ina Arnaoudova', role: 'Head of Design @ Ecosia', image: '/main-page/quotes-Ina.webp', ringColor: '#47B1AC', noteColor: '#B1E0DD',
     slips: [
-      { text: 'Timea continuously drives Design System topics for her team and wider Design Org.', rotate: -0.5 },
+      { text: 'Timea continuously drives <strong>Design System</strong> topics for her team and wider Design Org.', rotate: -0.5 },
       { text: 'She has a true talent for <strong>systems thinking</strong> and thrives on <strong>order</strong>.', rotate: -1.5 },
     ] },
   { name: 'Abhishek Juneja', role: 'Engineering Manager @ Ecosia', image: '/main-page/quotes-Abhishek.webp', ringColor: '#3a655a', noteColor: '#c4d0cd',
     slips: [
-      { text: 'Timea has been pivotal in helping me understand key concepts from design thinking and systems thinking in a way that these skills can be transferred to an engineering domain.', rotate: 0.8 },
-      { text: 'She is data driven and has the ability to break down opaque problems into tangible product solutions.', rotate: 1.5 },
+      { text: 'Timea has been <strong>pivotal</strong> in helping me understand key concepts from design thinking and <strong>systems thinking</strong> in a way that these skills can be transferred to an engineering domain.', rotate: 0.8 },
+      { text: 'She is <strong>data driven</strong> and has the ability to break down opaque problems into tangible product solutions.', rotate: 1.5 },
     ] },
   { name: 'Sofia Tiira', role: 'Senior Content Designer @ Ecosia', image: '/main-page/quotes-Sofia.webp', ringColor: '#CC7B78', noteColor: '#EEAF90',
     slips: [
       { text: "One of Timea's absolute strengths is breaking down complex topics into <strong>actionable steps</strong>.", rotate: -0.7 },
       { text: "She approaches every problem <strong>analytically</strong> and has a lot of skill in connecting team or design level projects to <strong>company goals</strong>.", rotate: 1 },
     ] },
-  { name: 'Elpida Fragkou', role: 'User Research Lead @ Ecosia', image: '/main-page/quotes-Elpida.png', ringColor: '#A2AE78', noteColor: '#CED4B8',
+  { name: 'Elpida Fragkou', role: 'User Research Lead @ Ecosia', image: '/main-page/quotes-Elpida.webp', ringColor: '#8B975C', noteColor: '#CED4B8',
     slips: [
-      { text: 'Timea always tackles <strong>design problems</strong> thoroughly and backs them up with <strong>research</strong>.', rotate: 1.2 },
-      { text: "She's very organised, with <strong>impeccable Figma files</strong>, and she helps us stay organised in Confluence as well.", rotate: -0.5 },
+      { text: "Timea is one of the most <strong>analytical</strong>, methodical, organized, and <strong>data-driven</strong> Product Designers I've ever had the chance to work with.", rotate: 1.2 },
+      { text: "Timea's <strong>impeccable work ethic</strong>, strong values, dedication to her craft, and collaborative style make her a pleasure to work with.", rotate: -0.5 },
+      { text: 'Her exceptional work on <strong>Design Systems</strong> complements her strong product design skills, making her an <strong>invaluable</strong> member of any design team.', rotate: 1.5 },
     ] },
 ]
 
@@ -141,8 +143,8 @@ onMounted(() => {
       <img src="/main-page/sparkles.svg"  alt="" aria-hidden="true" style="position:absolute;left:590px;top:20px;width:52px;pointer-events:none;z-index:1000;transform:rotate(-15deg);" />
       <img src="/main-page/thumbs-up.svg" alt="" aria-hidden="true" style="position:absolute;left:190px;top:220px;width:68px;pointer-events:none;z-index:1000;transform:rotate(-8deg);" />
       <img src="/main-page/heart.svg"     alt="" aria-hidden="true" style="position:absolute;left:415px;top:340px;width:53px;pointer-events:none;z-index:1000;transform:rotate(-6deg);" />
-      <img src="/main-page/+1.svg"        alt="" aria-hidden="true" style="position:absolute;left:555px;top:590px;width:50px;pointer-events:none;z-index:1000;transform:rotate(10deg);" />
-      <img src="/main-page/fire.svg"      alt="" aria-hidden="true" style="position:absolute;left:940px;top:190px;width:58px;pointer-events:none;z-index:1000;transform:rotate(8deg);" />
+      <img src="/main-page/+1.svg"        alt="" aria-hidden="true" style="position:absolute;left:505px;top:590px;width:50px;pointer-events:none;z-index:1000;transform:rotate(10deg);" />
+      <img src="/main-page/fire.svg"      alt="" aria-hidden="true" style="position:absolute;left:940px;top:170px;width:58px;pointer-events:none;z-index:1000;transform:rotate(8deg);" />
     </div>
   </div>
 
@@ -157,7 +159,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="flex gap-3 justify-center w-full">
-        <div v-for="slip in person.slips" :key="slip.text" class="w-[182px]">
+        <div v-for="slip in person.slips.slice(0, 2)" :key="slip.text" class="w-[182px]">
           <StickyNote :rotate="slip.rotate" :color="person.noteColor" class="w-full">
             <div class="text-center" v-html="slip.text"></div>
           </StickyNote>

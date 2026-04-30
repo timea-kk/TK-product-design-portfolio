@@ -797,7 +797,7 @@ export const KNOWLEDGE: KnowledgeEntry[] = [
       'colleagues think',
     ],
     answer:
-      "People I've worked with describe me as: systems-thinking and structured (Ina, Head of Design at Ecosia), data-driven and great at breaking down opaque problems (Abhishek, Engineering Manager), good at connecting projects to company goals (Sofia, Content Designer), and proactive with research-backed decisions and organised Figma files (Elpida, User Research Lead).",
+      "People I've worked with describe me as: systems-thinking and structured (Ina, Head of Design at Ecosia), data-driven and great at breaking down opaque problems (Abhishek, Engineering Manager), good at connecting projects to company goals (Sofia, Content Designer), and analytical, methodical, organized, and data-driven with impeccable work ethic and a collaborative style (Elpida, User Research Lead).",
   },
 
   // Projects / portfolio / case studies
