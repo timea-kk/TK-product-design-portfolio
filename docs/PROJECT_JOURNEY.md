@@ -258,12 +258,80 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
-## 📍 Where we are now
+## 📍 Milestone 22: Flora Design System case study + Portfolio Design System page
 
-- **Site:** Whiteboard-themed portfolio. Hero page + full Ecosia Onboarding case study (four sections, mobile-responsive, interactive cards). Sticky left nav with scroll-spy. Chat widget (pill → GSAP panel → typewriter reply). Gemini API, local fallback.
-- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vue Router v4. Vitest + @vue/test-utils. ESLint 9 + Prettier. GSAP. Motion.
-- **Deploy:** GitHub + Vercel; 5-job CI/CD pipeline. See `AGENT_SETUP.md`.
-- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `CLAUDE_CODE_SETUP.md`, `README.md`. Claude Code session rules in `~/.claude/`.
+**What we built**
+- Full Flora case study (`/work/flora-design-system`): ownership model, CardTimeline for initiatives, ImageCarousel, and a co-ownership section.
+- Portfolio Design System page (`/design-system`): live token browser with hover states, component demos, and a scroll-spy nav. Design tokens renamed for consistency. Agent config files (`developer.yml`, `writer.yml`, `design-system.yml`) introduced.
+
+**What went wrong**
+- DS page section order diverged from `NAV_SECTIONS` array, breaking scroll-spy highlighting. Fixed by enforcing a rule: DOM order must exactly match nav order.
+
+**Outcome:** ✅ Flora case study live. Design System page live and documented. 185 tests passing.
+
+---
+
+## 📍 Milestone 23: Ecosia Browser and Lolsumo case studies
+
+**What we built**
+- Ecosia Browser case study (`/work/ecosia-browser`): context, problem, research, concept, and launch sections with images and video.
+- Lolsumo case study (`/work/lolsumo`): full page from scratch.
+- Responsive centering fixed across all case study pages at the `lg` breakpoint.
+
+**What went wrong**
+- Carousel images referenced the wrong index range (11-13 instead of 14-16). Fixed by correcting asset references.
+
+**Outcome:** ✅ All four case study pages live.
+
+---
+
+## 📍 Milestone 24: Homepage — layout, decorations, and side projects
+
+**What we built**
+- Full homepage (`/`): hero above-the-fold with rotating descriptors, stat cards, decorative SVGs (paperclips, pins, squiggles, dotted paths), side projects section with CardProject cards, and a footer card with columns.
+- All portfolio images converted to WebP at 950px. Videos re-encoded and compressed.
+- `CardProject` extended with `mediaPosition`, `textMinHeight`, and `wideBreakpoint` props. Hover-lift and title-underline-on-hover removed permanently.
+
+**What went wrong**
+- Index-based positioning for decorative elements cascaded badly when any item was added or removed. Refactored everything to absolute coordinates.
+- Hero overlap on mobile Safari required explicit `min-h-[100svh]` handling.
+
+**Outcome:** ✅ Homepage complete. All assets optimised.
+
+---
+
+## 📍 Milestone 25: Testimonials carousel
+
+**What we built**
+- `InfiniteCardSlider.vue`: GSAP-driven infinite carousel of testimonial sticky notes. Each testimonial is a cluster of `StickyNote` components with per-note absolute offsets, author pills, and quote marks. Mobile layout collapses to a simpler stacked view.
+
+**What went wrong**
+- Square sticky notes for longer quotes failed twice (overflow-hidden approach, then a binary search capped at 168px). Landed on explicit `noSquare` flag per note.
+- Author pill repositioning on one note cascaded to adjacent notes unexpectedly; required coordinated counter-offsets.
+
+**Outcome:** ✅ Testimonials carousel live. Absolute positioning throughout.
+
+---
+
+## 📍 Milestone 26: Shared footer and See also cards
+
+**What we built**
+- `FooterSection.vue`: shared footer card placed inside each page's content column so it inherits width automatically at all breakpoints.
+- See also section on every project and design system page, cross-linked in a ring: Onboarding → Flora → Browser → Lolsumo → Design System → Onboarding. Uses `wideBreakpoint` prop so both the card and footer switch to mobile layout below 1440px.
+
+**What went wrong**
+- Placing the footer outside the content column caused width misalignment. Fix: move it inside.
+
+**Outcome:** ✅ Footer and See also on all pages. 291 tests passing.
+
+---
+
+## 📍 Where we are now — v1 complete
+
+- **Site:** Full whiteboard-themed portfolio. Four case studies, Design System page, and a complete homepage with testimonials, side projects, and decorations. Shared footer and cross-linked See also cards on every page. Chat widget with Gemini API and local fallback.
+- **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vue Router v4. Vitest + @vue/test-utils. ESLint 9 + Prettier. GSAP.
+- **Deploy:** GitHub + Vercel; 5-job CI/CD pipeline. 291 tests, 100% branch coverage enforced by pre-commit hook and Codecov.
+- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `README.md`. Agent config in `agents/`. Claude Code session rules in `~/.claude/`.
 
 ---
 
@@ -273,4 +341,4 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 - What we built / what went wrong / fix / outcome (always last).
 - Keep it scannable. Max 2 bullet points per section.
 
-*Last updated: Mar 2026.*
+*Last updated: Apr 2026. v1 shipped.*
