@@ -21,6 +21,7 @@ import ButtonOutline from '@/components/ButtonOutline.vue'
 import ButtonPrimary from '@/components/ButtonPrimary.vue'
 import Dropdown from '@/components/Dropdown.vue'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
+import FooterSection from '@/components/FooterSection.vue'
 
 const NAV_SECTIONS = [
   { id: 'colors',             label: 'Colors',           group: 'Foundations' },
@@ -1641,12 +1642,29 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
           </CaseStudySection>
 
 
+          <!-- See also -->
+          <div class="flex flex-col gap-6">
+            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <CardProject
+              title="Building Ecosia's Onboarding Experience"
+              description="A smooth first-time experience that boosted conversion by 25%."
+              image="/project-pages/ecosia-onboarding/ecosia-onboarding-1.webp"
+              image-alt="Ecosia onboarding screen"
+              video="/main-page/ecosia-page.mp4"
+              to="/work/ecosia-onboarding"
+              :text-min-height="320"
+              wide-breakpoint
+              no-hover
+            />
+          </div>
+          <FooterSection />
         </div><!-- /content -->
 
         <!-- Balances the left nav so content stays centered -->
         <div class="hidden lg:block w-52 shrink-0"></div>
 
       </div><!-- /sidebar + content -->
+
     </div><!-- /whiteboard panel -->
   </section>
 </template>

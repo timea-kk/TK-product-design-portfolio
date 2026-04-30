@@ -1,6 +1,6 @@
 /**
  * Component tests for CardProject.vue.
- * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links, primaryCta, hideCta, imageRounded, imageOutline, transparent, noHover (uses ButtonOutline/ButtonPrimary as span), external link icon.
+ * Covers: title rendering, description (optional), image, video (optional), CTA text, tags (optional), mediaPosition, imageTop, vertical, ctaLabel, external links, primaryCta, hideCta, imageRounded, imageOutline, transparent, noHover (cursor-default on text area, cursor-pointer on CTA), external link icon, textMinHeight, wideBreakpoint.
  */
 
 import { describe, it, expect, vi, afterEach } from 'vitest'
@@ -236,10 +236,13 @@ describe('CardProject', () => {
     expect(wrapper.html()).toContain('px-3')
   })
 
-  it('omits hover translate and title hover classes when noHover is true', () => {
-    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
-    expect(wrapper.html()).not.toContain('hover:-translate-y-1')
-    expect(wrapper.html()).not.toContain('group-hover/card:underline')
+  it('never renders hover translate or title hover classes regardless of noHover', () => {
+    const with_ = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
+    const without = mount(CardProject, { props: BASE_PROPS })
+    for (const wrapper of [with_, without]) {
+      expect(wrapper.html()).not.toContain('hover:-translate-y-1')
+      expect(wrapper.html()).not.toContain('group-hover/card:underline')
+    }
   })
 
   it('applies cursor-default to text area and cursor-pointer to CTA when noHover is true', () => {
@@ -260,10 +263,38 @@ describe('CardProject', () => {
     expect(wrapper.html()).not.toContain('cursor-pointer')
   })
 
-  it('includes hover translate and title hover classes when noHover is omitted', () => {
+  it('does not include hover translate or title hover classes when noHover is omitted', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
-    expect(wrapper.html()).toContain('hover:-translate-y-1')
-    expect(wrapper.html()).toContain('group-hover/card:underline')
+    expect(wrapper.html()).not.toContain('hover:-translate-y-1')
+    expect(wrapper.html()).not.toContain('group-hover/card:underline')
+  })
+
+  it('applies custom minHeight style to text area when textMinHeight is set and isLg', async () => {
+    vi.stubGlobal('matchMedia', () => makeMql(true))
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, textMinHeight: 320 } })
+    await nextTick()
+    const textArea = wrapper.find('.flex.flex-col.justify-between')
+    expect(textArea.attributes('style')).toContain('min-height: 320px')
+  })
+
+  it('applies default 420px minHeight when textMinHeight is omitted and isLg', async () => {
+    vi.stubGlobal('matchMedia', () => makeMql(true))
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    await nextTick()
+    const textArea = wrapper.find('.flex.flex-col.justify-between')
+    expect(textArea.attributes('style')).toContain('min-height: 420px')
+  })
+
+  it('uses min-[1440px] layout classes when wideBreakpoint is true', () => {
+    const wrapper = mount(CardProject, { props: { ...BASE_PROPS, wideBreakpoint: true } })
+    expect(wrapper.html()).toContain('min-[1440px]:flex-row')
+    expect(wrapper.html()).not.toContain('lg:flex-row')
+  })
+
+  it('uses lg layout classes when wideBreakpoint is omitted', () => {
+    const wrapper = mount(CardProject, { props: BASE_PROPS })
+    expect(wrapper.html()).toContain('lg:flex-row')
+    expect(wrapper.html()).not.toContain('min-[1440px]:flex-row')
   })
 
   it('updates objectPosition when breakpoint changes to lg', async () => {

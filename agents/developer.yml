@@ -48,7 +48,6 @@ testing_rules:
   - "Never commit with a failing test"
   - "Maintain 100% branch coverage"
   - "Unescaped & in Vue templates must be &amp;"
-  - "After any visual change, automatically run the visual-regression skill. Never wait for the user to ask."
 
 git_rules:
   - "Never merge directly to main — always open a PR with gh pr create and present the URL. Only perform a direct merge if the user explicitly says so."
