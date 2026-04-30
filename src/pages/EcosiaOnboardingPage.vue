@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import gsap from 'gsap'
-import CaseStudyNav from '@/components/CaseStudyNav.vue'
+import CaseStudyLayout from '@/components/CaseStudyLayout.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
@@ -30,7 +30,6 @@ const NAV_SECTIONS = [
   { id: 'results',         label: 'Results' },
 ]
 
-const panelRef = ref<HTMLElement | null>(null)
 const activeStrategyStep = ref(0)
 const activeExecutionStep = ref(0)
 const beforeAfterStep = ref(0)
@@ -109,28 +108,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 </script>
 
 <template>
-  <section
-    class="h-screen p-0 sm:p-6 lg:p-[40px] flex flex-col"
-    aria-labelledby="project-heading"
-  >
-    <!-- Whiteboard panel: fixed to viewport with 60px inset, content scrolls inside -->
-    <div
-      ref="panelRef"
-      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
-      style="
-        background-color: var(--color-surface-canvas);
-        background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
-        background-size: 22px 22px;
-      "
-    >
-      <!-- Inner: sidebar + content -->
-      <div class="flex gap-8 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14" style="padding-left: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(2rem, 4vw, 3.5rem);">
-
-        <!-- ── Left nav (desktop only) ── -->
-        <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
-
-        <!-- ── Main content ── -->
-        <div class="w-full min-w-0 max-w-4xl space-y-24">
+  <CaseStudyLayout :nav-sections="NAV_SECTIONS">
 
           <!-- ── Hero + TL;DR (merged) ── -->
           <!-- mt-[35px]: first child gets no space-y gap, so we add 35px manually -->
@@ -669,7 +647,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
 
           <!-- See also -->
           <div class="flex flex-col gap-6">
-            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <h2 class="section-heading">See also</h2>
             <CardProject
               title="Scaling Design Operations at Ecosia"
               description="Establishing a shared ownership model for Flora, Ecosia's Design System."
@@ -683,13 +661,5 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
             />
           </div>
           <FooterSection />
-        </div><!-- /content -->
-
-        <!-- Balances the left nav so content stays centered -->
-        <div class="hidden lg:block w-52 shrink-0"></div>
-
-      </div><!-- /sidebar + content -->
-
-    </div><!-- /whiteboard panel -->
-  </section>
+  </CaseStudyLayout>
 </template>

@@ -24,8 +24,11 @@ file_structure:
 conventions:
   - "Grep for the exact line before reading anything. Use offset and limit on Read — never open a full file. Never use Read to check something already found via grep."
   - "Use Edit, never Write, for existing files"
-  - "Touch only what was explicitly asked about"
+  - "Touch only what was explicitly asked about. If something adjacent looks broken, name it and ask separately — never fix it silently."
   - "State file, line number, and exact string before every edit — wait for approval"
+  - "Before any CSS or layout change, state which breakpoints will be affected. If the request names one breakpoint, touch only that one — never add styles at other breakpoints without explicit instruction."
+  - "For any component that positions elements dynamically, use absolute positioning with explicit coordinates by default. Never use index-based or relative offsets that cascade when siblings change."
+  - "Never write copy, labels, or descriptive text without reading agents/writer.yml first. If content is needed and none was given, use a placeholder and flag it — do not invent it."
   - "Before building anything new, list existing components in src/components/ and check if any can be reused or extended"
   - "Whenever the user says to use a shared component or names a specific component, read agents/design-system.yml before touching any code — it defines how components must be used and what must never be overridden"
   - "Never build a one-off (snowflake) component inline in a page — if a pattern is needed, propose a shared component in src/components/ first"

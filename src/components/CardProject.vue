@@ -8,11 +8,12 @@
 -->
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, resolveComponent } from 'vue'
+import { computed, resolveComponent } from 'vue'
 import TagPill from '@/components/TagPill.vue'
 import ButtonOutline from '@/components/ButtonOutline.vue'
 import ButtonPrimary from '@/components/ButtonPrimary.vue'
 import { IconExternalLink } from '@tabler/icons-vue'
+import { useMediaQuery } from '@/composables/useMediaQuery'
 
 const props = defineProps<{
   title: string
@@ -37,24 +38,8 @@ const props = defineProps<{
   tags?: string[]
 }>()
 
-const isLg = ref(false)
-const isWide = ref(false)
-let mql: MediaQueryList | null = null
-let mqlWide: MediaQueryList | null = null
-function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
-function onMqlWideChange(e: MediaQueryListEvent) { isWide.value = e.matches }
-onMounted(() => {
-  mql = window.matchMedia('(min-width: 1024px)')
-  isLg.value = mql.matches
-  mql.addEventListener('change', onMqlChange)
-  mqlWide = window.matchMedia('(min-width: 1440px)')
-  isWide.value = mqlWide.matches
-  mqlWide.addEventListener('change', onMqlWideChange)
-})
-onUnmounted(() => {
-  mql?.removeEventListener('change', onMqlChange)
-  mqlWide?.removeEventListener('change', onMqlWideChange)
-})
+const isLg = useMediaQuery('(min-width: 1024px)')
+const isWide = useMediaQuery('(min-width: 1440px)')
 
 const isExternal = computed(() => props.to.startsWith('http'))
 const routerLink = resolveComponent('RouterLink')

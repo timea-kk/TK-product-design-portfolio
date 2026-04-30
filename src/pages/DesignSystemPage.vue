@@ -1644,7 +1644,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
 
           <!-- See also -->
           <div class="flex flex-col gap-6">
-            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <h2 class="section-heading">See also</h2>
             <CardProject
               title="Building Ecosia's Onboarding Experience"
               description="A smooth first-time experience that boosted conversion by 25%."

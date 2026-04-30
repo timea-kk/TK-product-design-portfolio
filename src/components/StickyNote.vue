@@ -7,6 +7,7 @@ const props = defineProps<{
   rotate: number    // degrees, e.g. -1, 1, -0.5
   square?: boolean  // aspect-square layout for "How might we" notes
   color?: string    // overrides the default sticky background token
+  label?: string    // rendered as a badge above slot content
 }>()
 
 const clampedRotate = computed(() => Math.max(-2, Math.min(2, props.rotate)))
@@ -37,6 +38,7 @@ const tapeRotate = computed(() => `${-clampedRotate.value * 2}deg`)
       ]"
       :style="{ background: color ?? 'var(--color-surface-sticky)', boxShadow: '1px 2px 3px rgba(0,0,0,0.08), 4px 10px 20px rgba(0,0,0,0.18)' }"
     >
+      <span v-if="label" class="sticky-note-label">{{ label }}</span>
       <slot />
     </div>
   </div>

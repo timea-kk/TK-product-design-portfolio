@@ -4,8 +4,7 @@
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import CaseStudyNav from '@/components/CaseStudyNav.vue'
+import CaseStudyLayout from '@/components/CaseStudyLayout.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
@@ -26,31 +25,10 @@ const NAV_SECTIONS = [
   { id: 'design-system',  label: 'Highlight' },
   { id: 'results',        label: 'Results' },
 ]
-
-const panelRef = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <section
-    class="h-screen p-0 sm:p-6 lg:p-[40px] flex flex-col"
-    aria-labelledby="project-heading"
-  >
-    <div
-      ref="panelRef"
-      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
-      style="
-        background-color: var(--color-surface-canvas);
-        background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
-        background-size: 22px 22px;
-      "
-    >
-      <div class="flex gap-8 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14" style="padding-left: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(2rem, 4vw, 3.5rem);">
-
-        <!-- ── Left nav (desktop only) ── -->
-        <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
-
-        <!-- ── Main content ── -->
-        <div class="w-full min-w-0 max-w-4xl space-y-24">
+  <CaseStudyLayout :nav-sections="NAV_SECTIONS">
 
           <!-- ── Overview ── -->
           <CaseStudySection id="overview" label="Overview" first>
@@ -134,16 +112,13 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">This led us to identify <strong>three</strong> core business challenges that shaped the project from the start:</p>
             <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
-              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1" label="1">
                 Volatile deals with Google and Bing <strong>threatened long-term planning</strong>
               </StickyNote>
-              <StickyNote :rotate="1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
+              <StickyNote :rotate="1" class="w-44 sm:flex-1" label="2">
                 Building a browser meant <strong>full UX control</strong> and an <strong>independent revenue stream</strong>
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1" label="3">
                 <strong>Earth Day launch</strong>: a meaningful date tied to global climate activism
               </StickyNote>
             </div>
@@ -159,16 +134,13 @@ const panelRef = ref<HTMLElement | null>(null)
             </p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">This shaped <strong>three</strong> key user needs we had to address:</p>
             <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
-              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">1</span>
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1" label="1">
                 The browser had to feel <strong>instantly familiar</strong> to everyday Chrome users
               </StickyNote>
-              <StickyNote :rotate="1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">2</span>
+              <StickyNote :rotate="1" class="w-44 sm:flex-1" label="2">
                 It had to <strong>clearly communicate</strong> Ecosia's unique environmental purpose
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">3</span>
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1" label="3">
                 <strong>Ryan</strong> values positive impact but doesn't see browsing as meaningful
               </StickyNote>
             </div>
@@ -216,16 +188,13 @@ const panelRef = ref<HTMLElement | null>(null)
               </ul>
               <!-- Desktop: sticky notes -->
               <div class="hidden sm:flex gap-8">
-                <StickyNote :rotate="-1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Chrome-level performance</span>
+                <StickyNote :rotate="-1" class="flex-1" label="Chrome-level performance">
                   Users expect speed and familiarity. Performance is the baseline, not a differentiator.
                 </StickyNote>
-                <StickyNote :rotate="1" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Privacy without emotion</span>
+                <StickyNote :rotate="1" class="flex-1" label="Privacy without emotion">
                   Privacy and independence resonate, but lack an emotional hook to drive switching.
                 </StickyNote>
-                <StickyNote :rotate="-0.5" class="flex-1">
-                  <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Mission needs clarity</span>
+                <StickyNote :rotate="-0.5" class="flex-1" label="Mission needs clarity">
                   Ecosia's purpose-driven value was distinctive but needed stronger articulation.
                 </StickyNote>
               </div>
@@ -432,7 +401,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- See also -->
           <div class="flex flex-col gap-6">
-            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <h2 class="section-heading">See also</h2>
             <CardProject
               title="Lolsumo: a coaching app for League of Legends"
               description="Real-time gaming support for competitive League of Legends players."
@@ -446,13 +415,5 @@ const panelRef = ref<HTMLElement | null>(null)
             />
           </div>
           <FooterSection />
-        </div><!-- /content -->
-
-        <!-- Balances the left nav so content stays centered -->
-        <div class="hidden lg:block w-52 shrink-0"></div>
-
-      </div><!-- /sidebar + content -->
-
-    </div><!-- /whiteboard panel -->
-  </section>
+  </CaseStudyLayout>
 </template>

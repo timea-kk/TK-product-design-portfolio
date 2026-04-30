@@ -4,8 +4,7 @@
 -->
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import CaseStudyNav from '@/components/CaseStudyNav.vue'
+import CaseStudyLayout from '@/components/CaseStudyLayout.vue'
 import CaseStudySection from '@/components/CaseStudySection.vue'
 import StickyNote from '@/components/StickyNote.vue'
 import CardCallout from '@/components/CardCallout.vue'
@@ -26,31 +25,10 @@ const NAV_SECTIONS = [
   { id: 'revenue',    label: 'Revenue' },
   { id: 'results',    label: 'Results' },
 ]
-
-const panelRef = ref<HTMLElement | null>(null)
 </script>
 
 <template>
-  <section
-    class="h-screen p-0 sm:p-6 lg:p-[40px] flex flex-col"
-    aria-labelledby="project-heading"
-  >
-    <div
-      ref="panelRef"
-      class="h-full w-full overflow-y-auto sm:rounded-3xl sm:border sm:border-black/[0.06]"
-      style="
-        background-color: var(--color-surface-canvas);
-        background-image: radial-gradient(circle, rgba(0,0,0,0.13) 1.2px, transparent 1.2px);
-        background-size: 22px 22px;
-      "
-    >
-      <div class="flex gap-8 justify-center pt-20 pb-14 sm:pt-10 sm:pb-14" style="padding-left: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(2rem, 4vw, 3.5rem);">
-
-        <!-- ── Left nav (desktop only) ── -->
-        <CaseStudyNav :sections="NAV_SECTIONS" :panel="panelRef" />
-
-        <!-- ── Main content ── -->
-        <div class="w-full min-w-0 max-w-4xl space-y-24">
+  <CaseStudyLayout :nav-sections="NAV_SECTIONS">
 
           <!-- ── Overview ── -->
           <CaseStudySection id="overview" label="Overview" first>
@@ -137,16 +115,13 @@ const panelRef = ref<HTMLElement | null>(null)
 
             <p class="pt-2 text-sm font-semibold uppercase tracking-widest text-[var(--color-text-primary)]">User problem</p>
             <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
-              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Casual</span>
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1" label="Casual">
                 Needed clear in-game guidance with item guides and builds in real-time.
               </StickyNote>
-              <StickyNote :rotate="1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Advanced</span>
+              <StickyNote :rotate="1" class="w-44 sm:flex-1" label="Advanced">
                 Needed to analyze post-game stats or alternate champion builds.
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Both</span>
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1" label="Both">
                 Wanted to win more games and master their preferred champions.
               </StickyNote>
             </div>
@@ -302,16 +277,13 @@ const panelRef = ref<HTMLElement | null>(null)
               To grow revenue and stay competitive, we experimented with targeted seasonal promotions, timed around key engagement spikes.
             </p>
             <div class="flex flex-col sm:flex-row items-center gap-x-3 gap-y-6 sm:gap-3 py-6">
-              <StickyNote :rotate="-1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">Black Friday</span>
+              <StickyNote :rotate="-1" class="w-44 sm:flex-1" label="Black Friday">
                 Timed promotions around high-engagement retail moments and new season launches.
               </StickyNote>
-              <StickyNote :rotate="1" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">New LoL Season</span>
+              <StickyNote :rotate="1" class="w-44 sm:flex-1" label="New LoL Season">
                 Capitalized on seasonal player motivation to rank up and start fresh.
               </StickyNote>
-              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1">
-                <span class="text-sm font-bold rounded-md px-2 py-0.5" style="background: var(--color-surface-sticky-label);">+25% conversions</span>
+              <StickyNote :rotate="-0.5" class="w-44 sm:flex-1" label="+25% conversions">
                 Higher conversions compared to non-promotion periods across all three campaigns.
               </StickyNote>
             </div>
@@ -361,7 +333,7 @@ const panelRef = ref<HTMLElement | null>(null)
 
           <!-- See also -->
           <div class="flex flex-col gap-6">
-            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <h2 class="section-heading">See also</h2>
             <CardProject
               title="Portfolio Design System"
               description="Component library and design tokens powering this portfolio."
@@ -374,13 +346,5 @@ const panelRef = ref<HTMLElement | null>(null)
             />
           </div>
           <FooterSection />
-        </div><!-- /content -->
-
-        <!-- Balances the left nav so content stays centered -->
-        <div class="hidden lg:block w-52 shrink-0"></div>
-
-      </div><!-- /sidebar + content -->
-
-    </div><!-- /whiteboard panel -->
-  </section>
+  </CaseStudyLayout>
 </template>

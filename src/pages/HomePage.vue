@@ -5,14 +5,12 @@
 -->
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import RotatingDescriptor from '@/components/RotatingDescriptor.vue'
 import CardProject from '@/components/CardProject.vue'
 import InfiniteCardSlider from '@/components/InfiniteCardSlider.vue'
+import { useMediaQuery } from '@/composables/useMediaQuery'
 
-const isLg = ref(false)
-let mql: MediaQueryList | null = null
-function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
+const isLg = useMediaQuery('(min-width: 1024px)')
 
 /* c8 ignore start */
 function scrollToSideProjects(e: MouseEvent) {
@@ -20,12 +18,6 @@ function scrollToSideProjects(e: MouseEvent) {
   document.getElementById('side-projects')?.scrollIntoView({ behavior: 'smooth' })
 }
 /* c8 ignore stop */
-onMounted(() => {
-  mql = window.matchMedia('(min-width: 1024px)')
-  isLg.value = mql.matches
-  mql.addEventListener('change', onMqlChange)
-})
-onUnmounted(() => mql?.removeEventListener('change', onMqlChange))
 
 interface CardDecoration { src: string; style: string }
 const CARD_DECORATIONS: CardDecoration[][] = [
@@ -170,7 +162,7 @@ const PROJECTS = [
 
       <!-- Recent work section label -->
       <div class="w-full max-w-[1100px] mx-auto text-center lg:text-left lg:pl-[16px] pt-[162px] pb-8 lg:pt-16 lg:pb-[50px]">
-        <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Recent work</h2>
+        <h2 class="section-heading">Recent work</h2>
         <p class="mt-2 text-lg text-[var(--color-text-secondary)]">Projects spanning research, experimentation, and strategy that show what I do best.</p>
       </div>
 
@@ -292,7 +284,7 @@ const PROJECTS = [
           />
           <div class="pl-3 pt-5 text-center lg:text-left">
             <div class="inline-flex items-center gap-3">
-              <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">Side projects</h2>
+              <h2 class="section-heading">Side projects</h2>
               <img
                 src="/main-page/heart.svg"
                 alt=""
@@ -390,7 +382,7 @@ const PROJECTS = [
             </svg>
           </div>
           <div class="pl-3 pt-5 mt-8 text-center lg:text-left">
-            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">What do others say?</h2>
+            <h2 class="section-heading">What do others say?</h2>
             <p class="mt-2 text-lg text-[var(--color-text-secondary)]">I've had the chance to work with people who've seen me at my best and challenged me to grow.<br>Here are a few things they've said about how I work and the impact I've had.</p>
           </div>
           <InfiniteCardSlider />

@@ -54,7 +54,7 @@ afterEach(() => {
 type Wrapper = ReturnType<typeof mount<typeof EcosiaOnboardingPage>>
 
 function getPanelEl(wrapper: Wrapper): HTMLElement {
-  return (wrapper.vm as unknown as { $refs: { panelRef: HTMLElement } }).$refs.panelRef
+  return wrapper.element.querySelector('.overflow-y-auto') as HTMLElement
 }
 
 /**

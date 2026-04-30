@@ -215,3 +215,22 @@
 .reduced-motion-none .timea-agent-dot {
   animation: none;
 }
+
+/* Shared section heading — matches font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)] */
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-text-primary);
+}
+
+/* Shared sticky note label span — matches text-sm font-bold rounded-md px-2 py-0.5 + sticky-label bg */
+.sticky-note-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.5rem;
+  background: var(--color-surface-sticky-label);
+}

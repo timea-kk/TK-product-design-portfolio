@@ -36,15 +36,16 @@ function startTyping(fullText: string, messageIndex: number) {
   typingIndex.value = messageIndex
   typingText.value = ''
   let i = 0
-  typingTimer = setInterval(() => {
+  const timer = setInterval(() => {
     i++
     typingText.value = fullText.slice(0, i)
     if (i >= fullText.length) {
-      clearInterval(typingTimer!)
+      clearInterval(timer)
       typingTimer = null
       typingIndex.value = null
     }
   }, 18)
+  typingTimer = timer
 }
 
 const panelRef = ref<HTMLElement | null>(null)
