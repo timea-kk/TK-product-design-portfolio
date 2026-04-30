@@ -13,6 +13,8 @@ import CardCallout from '@/components/CardCallout.vue'
 import CardTimeline from '@/components/CardTimeline.vue'
 import ImageCarousel from '@/components/ImageCarousel.vue'
 import TagPill from '@/components/TagPill.vue'
+import CardProject from '@/components/CardProject.vue'
+import FooterSection from '@/components/FooterSection.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',     label: 'Overview' },
@@ -393,12 +395,29 @@ const panelRef = ref<HTMLElement | null>(null)
             </div>
           </CaseStudySection>
 
+          <!-- See also -->
+          <div class="flex flex-col gap-6">
+            <h2 class="font-heading text-[clamp(3rem,5vw,4.5rem)] font-black leading-none tracking-tight text-[var(--color-text-primary)]">See also</h2>
+            <CardProject
+              title="Install Funnel for the Ecosia Browser"
+              description="Launched Ecosia's browser in just two months, reaching 100k DAU."
+              image="/main-page/browser.webp"
+              image-alt="Ecosia Browser landing page"
+              video="/main-page/browser.mp4"
+              to="/work/ecosia-browser"
+              :text-min-height="320"
+              wide-breakpoint
+              no-hover
+            />
+          </div>
+          <FooterSection />
         </div><!-- /content -->
 
         <!-- Balances the left nav so content stays centered -->
         <div class="hidden lg:block w-52 shrink-0"></div>
 
       </div><!-- /sidebar + content -->
+
     </div><!-- /whiteboard panel -->
   </section>
 </template>

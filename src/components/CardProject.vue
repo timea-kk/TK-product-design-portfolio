@@ -25,31 +25,43 @@ const props = defineProps<{
   imageTop?: boolean
   vertical?: boolean
   ctaLabel?: string
+  textMinHeight?: number
   hideCta?: boolean
   primaryCta?: boolean
   imageRounded?: boolean
   imageOutline?: boolean
   transparent?: boolean
   noHover?: boolean
+  wideBreakpoint?: boolean
   to: string
   tags?: string[]
 }>()
 
 const isLg = ref(false)
+const isWide = ref(false)
 let mql: MediaQueryList | null = null
+let mqlWide: MediaQueryList | null = null
 function onMqlChange(e: MediaQueryListEvent) { isLg.value = e.matches }
+function onMqlWideChange(e: MediaQueryListEvent) { isWide.value = e.matches }
 onMounted(() => {
   mql = window.matchMedia('(min-width: 1024px)')
   isLg.value = mql.matches
   mql.addEventListener('change', onMqlChange)
+  mqlWide = window.matchMedia('(min-width: 1440px)')
+  isWide.value = mqlWide.matches
+  mqlWide.addEventListener('change', onMqlWideChange)
 })
-onUnmounted(() => { mql?.removeEventListener('change', onMqlChange) })
+onUnmounted(() => {
+  mql?.removeEventListener('change', onMqlChange)
+  mqlWide?.removeEventListener('change', onMqlWideChange)
+})
 
 const isExternal = computed(() => props.to.startsWith('http'))
 const routerLink = resolveComponent('RouterLink')
+const isDesktop = computed(() => props.wideBreakpoint ? isWide.value : isLg.value)
 
 const effectivePosition = computed(() =>
-  isLg.value ? (props.mediaPosition ?? 'top') : 'center'
+  isDesktop.value ? (props.mediaPosition ?? 'top') : 'center'
 )
 </script>
 
@@ -58,19 +70,20 @@ const effectivePosition = computed(() =>
     :is="isExternal ? 'a' : routerLink"
     v-bind="isExternal ? { href: to, target: '_blank', rel: 'noopener noreferrer' } : { to }"
     :class="[
-      'group/card overflow-hidden rounded-2xl transition-transform duration-300 flex',
-      !noHover && 'hover:-translate-y-1',
+      'group/card overflow-hidden rounded-2xl flex',
       vertical
         ? (imageTop ? 'flex-col-reverse' : 'flex-col')
-        : (imageTop ? 'flex-col-reverse lg:flex-row' : 'flex-col lg:flex-row')
+        : wideBreakpoint
+          ? (imageTop ? 'flex-col-reverse min-[1440px]:flex-row' : 'flex-col min-[1440px]:flex-row')
+          : (imageTop ? 'flex-col-reverse lg:flex-row' : 'flex-col lg:flex-row')
     ]"
     :style="transparent ? {} : { backgroundColor: 'var(--color-surface-card)' }"
   >
     <!-- Text area -->
-    <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : 'lg:p-12 lg:w-[38%] lg:min-h-[420px]', noHover && 'cursor-default']">
+    <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : wideBreakpoint ? 'min-[1440px]:p-12 min-[1440px]:w-[38%]' : 'lg:p-12 lg:w-[38%]', noHover && 'cursor-default']" :style="!vertical && isDesktop ? { minHeight: (textMinHeight ?? 420) + 'px' } : {}">
       <div class="flex flex-col gap-4">
-        <h2 :class="['font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)]', vertical ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl lg:text-4xl']">
-          <span :class="['inline-flex items-center gap-[6px] transition-colors duration-200 group-active/card:opacity-70', !noHover && 'group-hover/card:underline group-hover/card:text-[var(--color-brand-primary)]']">
+        <h2 :class="['font-heading font-black leading-tight tracking-tight text-[var(--color-text-primary)]', vertical ? 'text-xl sm:text-2xl' : wideBreakpoint ? 'text-xl sm:text-2xl min-[1440px]:text-4xl' : 'text-xl sm:text-2xl lg:text-4xl']">
+          <span class="inline-flex items-center gap-[6px] group-active/card:opacity-70">
             {{ title }}
             <IconExternalLink v-if="isExternal" style="width: calc(1em - 2px); height: calc(1em - 2px); flex-shrink: 0" />
           </span>
@@ -89,7 +102,7 @@ const effectivePosition = computed(() =>
     </div>
 
     <!-- Image / video area -->
-    <div :class="['overflow-hidden', imageRounded ? 'p-3' : '', vertical ? 'aspect-video' : 'aspect-video lg:aspect-auto lg:flex-1 lg:rounded-l-2xl']">
+    <div :class="['overflow-hidden', imageRounded ? 'p-3' : '', vertical ? 'aspect-video' : wideBreakpoint ? 'aspect-video min-[1440px]:aspect-auto min-[1440px]:flex-1 min-[1440px]:rounded-l-2xl' : 'aspect-video lg:aspect-auto lg:flex-1 lg:rounded-l-2xl']">
       <div :class="['group/img h-full w-full overflow-hidden', imageRounded ? 'rounded-xl' : '', imageOutline ? 'ring-2 ring-[var(--color-deep-maroon-700)]' : '']">
         <video
           v-if="video"
