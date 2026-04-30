@@ -52,8 +52,8 @@ const notes: DesktopNote[] = [
   { text: 'She co-leads major projects, organizes collaboration within Miro, and bridges stakeholders, all while delivering <strong>high-quality design work</strong>.', rotate: 3, color: '#B1E0DD', x: 259, y: 206, z: 4 },
   { text: 'She consistently examines issues from <strong>multiple perspectives</strong>, ensuring a thorough understanding of project requirements.', rotate: -3, color: '#B1E0DD', x: 631, y: 232, z: 1 },
   { text: 'Her proactiveness, process, and <strong>dedication</strong> make her <strong>stand out</strong>, and she excels beyond her designer duties.', rotate: 1.2, color: '#B1E0DD', x: 459, y: 239, z: 3, maxW: 160 },
-  // Barbara Borges
-  { text: 'Timea always tackles <strong>design problems</strong> thoroughly and backs them up with <strong>research</strong>.', rotate: 1.2, color: '#CED4B8', x: 794, y: 56, z: 5, pill: { name: 'Barbara Borges', role: 'Frontend Engineer', image: '/main-page/quotes-Barbara.png', ringColor: '#A2AE78' } },
+  // Elpida Fragkou
+  { text: 'Timea always tackles <strong>design problems</strong> thoroughly and backs them up with <strong>research</strong>.', rotate: 1.2, color: '#CED4B8', x: 794, y: 56, z: 5, pill: { name: 'Elpida Fragkou', role: 'User Research Lead', image: '/main-page/quotes-Elpida.png', ringColor: '#A2AE78' } },
   { text: "She's very organised, with <strong>impeccable Figma files</strong>, and she helps us stay organised in Confluence as well.", rotate: -0.5, color: '#CED4B8', x: 829, y: 228, z: 1 },
   // Sofia Tiira
   { text: "One of Timea's absolute strengths is breaking down complex topics into <strong>actionable steps</strong>.", rotate: 5, color: '#EEAF90', x: 228, y: 463, z: 5 },
@@ -77,7 +77,7 @@ const people: Person[] = [
       { text: "One of Timea's absolute strengths is breaking down complex topics into <strong>actionable steps</strong>.", rotate: -0.7 },
       { text: "She approaches every problem <strong>analytically</strong> and has a lot of skill in connecting team or design level projects to <strong>company goals</strong>.", rotate: 1 },
     ] },
-  { name: 'Barbara Borges', role: 'Frontend Engineer @ Ecosia', image: '/main-page/quotes-Barbara.png', ringColor: '#A2AE78', noteColor: '#CED4B8',
+  { name: 'Elpida Fragkou', role: 'User Research Lead @ Ecosia', image: '/main-page/quotes-Elpida.png', ringColor: '#A2AE78', noteColor: '#CED4B8',
     slips: [
       { text: 'Timea always tackles <strong>design problems</strong> thoroughly and backs them up with <strong>research</strong>.', rotate: 1.2 },
       { text: "She's very organised, with <strong>impeccable Figma files</strong>, and she helps us stay organised in Confluence as well.", rotate: -0.5 },
