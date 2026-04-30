@@ -62,7 +62,7 @@ const effectivePosition = computed(() =>
           ? (imageTop ? 'flex-col-reverse min-[1440px]:flex-row' : 'flex-col min-[1440px]:flex-row')
           : (imageTop ? 'flex-col-reverse lg:flex-row' : 'flex-col lg:flex-row')
     ]"
-    :style="transparent ? {} : { backgroundColor: 'var(--color-surface-card)' }"
+    :style="transparent ? {} : { backgroundColor: 'var(--color-surface-strong)' }"
   >
     <!-- Text area -->
     <div :class="['flex flex-col justify-between gap-8', imageRounded ? 'px-3 py-6' : 'p-8', vertical ? '' : wideBreakpoint ? 'min-[1440px]:p-12 min-[1440px]:w-[38%]' : 'lg:p-12 lg:w-[38%]', noHover && 'cursor-default']" :style="!vertical && isDesktop ? { minHeight: (textMinHeight ?? 420) + 'px' } : {}">

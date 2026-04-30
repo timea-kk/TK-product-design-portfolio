@@ -261,7 +261,7 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
     token:     { name: '--color-button-text-primary', hex: '#ffffff',               label: 'Button Text Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary', 'CardProject', 'TimeaAgent'],
+    usedIn:    ['ButtonPrimary', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
@@ -292,12 +292,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-button-bg-primary',     hex: 'var(--color-dusty-violet-500)', label: 'Button BG Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary', 'CardProject'],
+    usedIn:    ['ButtonPrimary'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
     token:     { name: '--color-text-primary',        hex: 'var(--color-dusty-violet-900)', label: 'Text Primary', group: 'Text' },
-    usedIn:    ['CardCallout', 'CardInteractive', 'CardProject', 'StickyNote', 'CaseStudyNav', 'TimeaAgent'],
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardProject', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Header', 'StickyNote', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
@@ -333,13 +333,13 @@ const SEMANTIC_MAP = [
   },
   {
     primitive: { group: 'Deep Maroon', step: '100', hex: '#EEE8E8', varName: '--color-deep-maroon-100' },
-    token:     { name: '--color-surface-card',        hex: 'var(--color-deep-maroon-100)', label: 'Surface Card', group: 'Surface' },
+    token:     { name: '--color-surface-strong',       hex: 'var(--color-deep-maroon-100)', label: 'Surface Strong', group: 'Surface' },
     usedIn:    ['CardProject'],
   },
   {
     primitive: { group: 'Deep Maroon', step: '600', hex: '#7D5A5A', varName: '--color-deep-maroon-600' },
     token:     { name: '--color-text-secondary',               hex: 'var(--color-deep-maroon-600)',  label: 'Text Secondary', group: 'Text' },
-    usedIn:    ['CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'Dropdown', 'Header', 'SegmentedControl', 'TagPill', 'TimeaAgent'],
+    usedIn:    ['CardCallout', 'CardInteractive', 'CardProject', 'CardTimeline', 'CaseStudyNav', 'Dropdown', 'Header', 'SegmentedControl', 'TagPill', 'TimeaAgent'],
   },
 ]
 
@@ -455,7 +455,7 @@ const groupedComponents = computed(() => {
             <p class="text-[var(--color-text-secondary)] leading-relaxed">I also built tools to make the work easier. The semantic token map on this page tracks every primitive-to-role mapping and where each token is used across components.</p>
 
             <h2 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Built with Claude Code</h2>
-            <p class="text-[var(--color-text-secondary)] leading-relaxed">Every session was guided by a dedicated design-system agent in <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">agents/design-system.yml</code>. Claude Code handled the implementation; the agent acted as the specialist, enforcing that every change was a three-part operation: code, token map, and docs in one pass.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">Every session was guided by a dedicated design system agent in <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs whitespace-nowrap">agents/design-system.yml</code>. Claude Code handled the implementation; the agent acted as the specialist, enforcing that every change was a three-part operation: code, token map, and docs in one pass.</p>
 
             <details class="rounded-xl overflow-hidden group">
               <summary class="flex items-center justify-between bg-[var(--color-text-primary)] px-5 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
@@ -510,17 +510,6 @@ testing_rules:
               </div>
             </details>
 
-            <h2 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Structure</h2>
-
-            <CardCallout label="Foundations" :items="[
-              { title: 'Colors', description: 'A palette of primitive values mapped to semantic roles: text, surface, brand. Change one token and the whole UI follows.' },
-              { title: 'Typography', description: 'A type scale with consistent sizing and weight conventions shared across every component.' },
-            ]" />
-
-            <CardCallout label="Components" :items="[
-              { title: 'Props-first API', description: 'Each SFC exposes typed props for its variants and slots for custom content. No string-based config, no magic classes.' },
-              { title: 'Live documentation', description: 'Every component on this page is the real component. Demos are interactive, not screenshots.' },
-            ]" />
           </CaseStudySection>
 
           <!-- ── Foundations ── -->
@@ -1455,6 +1444,11 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
               </nav>
             </div>
 
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;!-- AppLayout.vue --&gt;
+&lt;Header /&gt;</pre>
+            </div>
+
             <CardCallout
               label="Key internals"
               :items="[
@@ -1686,6 +1680,11 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                   <span class="min-w-0 flex-1 px-3 py-1.5 text-sm text-[var(--color-text-secondary)]">Type your question...</span>
                 </div>
               </div>
+            </div>
+
+            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;!-- AppLayout.vue --&gt;
+&lt;TimeaAgent /&gt;</pre>
             </div>
 
             <CardCallout

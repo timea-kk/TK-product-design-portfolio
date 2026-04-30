@@ -212,12 +212,12 @@ describe('CardProject', () => {
 
   it('removes background color when transparent is true', () => {
     const wrapper = mount(CardProject, { props: { ...BASE_PROPS, transparent: true } })
-    expect(wrapper.html()).not.toContain('surface-card')
+    expect(wrapper.html()).not.toContain('surface-strong')
   })
 
-  it('applies surface-card background when transparent is omitted', () => {
+  it('applies surface-strong background when transparent is omitted', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
-    expect(wrapper.html()).toContain('surface-card')
+    expect(wrapper.html()).toContain('surface-strong')
   })
 
   it('adds ring outline to image container when imageOutline is true', () => {
