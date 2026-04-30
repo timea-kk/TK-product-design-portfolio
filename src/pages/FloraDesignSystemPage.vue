@@ -33,7 +33,7 @@ const NAV_SECTIONS = [
   <CaseStudyLayout :nav-sections="NAV_SECTIONS">
 
           <!-- Overview -->
-          <CaseStudySection id="overview" label="Overview" first>
+          <CaseStudySection id="overview" label="Overview">
 
             <div class="space-y-4">
               <h1

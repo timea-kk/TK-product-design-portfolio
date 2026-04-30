@@ -111,10 +111,9 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
   <CaseStudyLayout :nav-sections="NAV_SECTIONS">
 
           <!-- ── Hero + TL;DR (merged) ── -->
-          <!-- mt-[35px]: first child gets no space-y gap, so we add 35px manually -->
           <!-- 40px flex padding-top + 35px margin-top = 75px from panel top -->
           <!-- label is 35px above card → label lands at 40px = nav sticky top ✓ -->
-          <CaseStudySection id="overview" label="Overview" first>
+          <CaseStudySection id="overview" label="Overview">
 
             <!-- Title block -->
             <div class="space-y-4">

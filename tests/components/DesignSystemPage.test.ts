@@ -15,7 +15,7 @@ vi.mock('gsap', () => {
 })
 
 const NAV_SECTION_IDS = [
-  'colors', 'typography',
+  'overview', 'colors', 'typography',
   'button',
   'card-callout', 'card-interactive', 'card-project', 'card-timeline',
   'carousel-nav', 'case-study-nav', 'case-study-section', 'dropdown', 'header', 'image-carousel',
@@ -79,16 +79,7 @@ describe('DesignSystemPage', () => {
     await compItems[0].trigger('mouseleave')
   })
 
-  it('toggles sectionFirst switch to true inside the CaseStudySection demo', async () => {
-    const wrapper = mount(DesignSystemPage)
-    const section = wrapper.find('#case-study-section')
-    const toggle = section.find('[role="switch"]')
-    expect(toggle.attributes('aria-checked')).toBe('false')
-    await toggle.trigger('click')
-    expect(toggle.attributes('aria-checked')).toBe('true')
-  })
-
-  it('toggles stickyTitle switch to true and renders the title span', async () => {
+it('toggles stickyTitle switch to true and renders the title span', async () => {
     const wrapper = mount(DesignSystemPage)
     const section = wrapper.find('#sticky-note')
     const toggles = section.findAll('[role="switch"]')

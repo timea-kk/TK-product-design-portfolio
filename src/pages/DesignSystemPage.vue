@@ -24,6 +24,7 @@ import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 import FooterSection from '@/components/FooterSection.vue'
 
 const NAV_SECTIONS = [
+  { id: 'overview',           label: 'Overview',         group: 'Foundations' },
   { id: 'colors',             label: 'Colors',           group: 'Foundations' },
   { id: 'typography',         label: 'Typography',       group: 'Foundations' },
   { id: 'button',             label: 'Button',           group: 'Components' },
@@ -64,8 +65,7 @@ const cardProjectImageRounded = ref(false)
 const cardProjectImageOutline = ref(false)
 const cardProjectTransparent = ref(false)
 
-// CaseStudySection demo state
-const sectionFirst = ref(false)
+
 
 // CarouselNav demo state
 const carouselNavStep = ref(2)
@@ -448,8 +448,83 @@ const groupedComponents = computed(() => {
 
         <div class="w-full min-w-0 max-w-4xl space-y-24">
 
+          <!-- ── Overview ── -->
+          <CaseStudySection id="overview" label="Overview" class="mt-[35px]">
+            <h1 id="ds-heading" class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Portfolio Design System</h1>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">I built this design system from scratch to experience owning one end to end: design, engineering, and documentation, solo. 2 foundation layers, 15 components, each documented here with a live demo, copy-paste code, and a props table.</p>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">I also built tools to make the work easier. The semantic token map on this page tracks every primitive-to-role mapping and where each token is used across components.</p>
+
+            <h2 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Built with Claude Code</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">Every session was guided by a dedicated design-system agent in <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs">agents/design-system.yml</code>. Claude Code handled the implementation; the agent acted as the specialist, enforcing that every change was a three-part operation: code, token map, and docs in one pass.</p>
+
+            <details class="rounded-xl overflow-hidden group">
+              <summary class="flex items-center justify-between bg-[var(--color-text-primary)] px-5 py-3 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden">
+                <span class="text-xs font-semibold font-mono text-white opacity-60">agents/design-system.yml</span>
+                <svg class="h-4 w-4 shrink-0 text-white opacity-40 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="bg-[var(--color-text-primary)] px-5 pb-4 overflow-x-auto">
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre"># Design System Specialist &mdash; Portfolio DS Agent
+# Specialist for token management, component API design, and DS page documentation
+
+persona: design-system-specialist
+identity: "Design system specialist for Timea Konya's portfolio. Owns the token layer,
+  component APIs, and the live documentation on DesignSystemPage.vue. Every change
+  must be complete &mdash; code, tokens, and docs in one pass."
+
+stack:
+  framework: "Vue 3 &mdash; Composition API, script setup, SFCs only"
+  language: "TypeScript &mdash; strict mode"
+  styling: "Tailwind CSS + CSS custom properties for all tokens"
+  token_source: "src/index.css &mdash; single source of truth for all CSS variables"
+  semantic_map: "src/pages/DesignSystemPage.vue &mdash; SEMANTIC_MAP array is the live
+    documentation of token&rarr;primitive mappings and component usage"
+
+## The golden rule
+# Every change is a 3-part operation. Never do only one or two parts:
+#   1. The code (component or index.css)
+#   2. SEMANTIC_MAP in DesignSystemPage.vue (token names, labels, usedIn, groups)
+#   3. The demo/docs section in DesignSystemPage.vue
+# If the user says "remove X", "rename X", or "add X" &mdash; all three parts change.
+
+token_conventions:
+  - "Token names follow the pattern --color-{category}-{descriptor}"
+  - "Category comes before descriptor: surface, text, border, brand, button &mdash; never the reverse"
+  - "NEVER delete a token unless the user explicitly asks &mdash; renaming is not deleting"
+  - "Never introduce a token without adding it to SEMANTIC_MAP"
+  - "usedIn must exactly match real component usage &mdash; verify by grepping before updating"
+
+component_reuse_rules:
+  - "Before building anything new, check if an existing component can be reused or extended"
+  - "Never build a one-off (snowflake) component inline in a page"
+  - "Never override a shared component's typography, spacing, or color from outside"
+
+component_api_rules:
+  - "Props should be boolean flags or typed values"
+  - "Demo controls must match the component's actual props exactly"
+
+testing_rules:
+  - "Every change to a component, token, or API must be followed by updating its tests"
+  - "Never leave a test asserting behaviour that no longer exists in the component"</pre>
+              </div>
+            </details>
+
+            <h2 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Structure</h2>
+
+            <CardCallout label="Foundations" :items="[
+              { title: 'Colors', description: 'A palette of primitive values mapped to semantic roles: text, surface, brand. Change one token and the whole UI follows.' },
+              { title: 'Typography', description: 'A type scale with consistent sizing and weight conventions shared across every component.' },
+            ]" />
+
+            <CardCallout label="Components" :items="[
+              { title: 'Props-first API', description: 'Each SFC exposes typed props for its variants and slots for custom content. No string-based config, no magic classes.' },
+              { title: 'Live documentation', description: 'Every component on this page is the real component. Demos are interactive, not screenshots.' },
+            ]" />
+          </CaseStudySection>
+
           <!-- ── Foundations ── -->
-          <CaseStudySection id="colors" label="Colors" first>
+          <CaseStudySection id="colors" label="Colors">
             <div class="space-y-10">
               <div class="space-y-6">
                 <div>
@@ -1247,31 +1322,14 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">CaseStudySection</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">The white rounded card wrapper used for every section on case study pages. Has a floating brand label above it and supports three layout modes.</p>
 
-            <!-- Controls -->
-            <div class="flex flex-wrap gap-4 pt-2">
-              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
-                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">first</code>
-                <button
-                  type="button"
-                  role="switch"
-                  :aria-checked="sectionFirst"
-                  @click="sectionFirst = !sectionFirst"
-                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', sectionFirst ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
-                >
-                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', sectionFirst ? 'translate-x-4' : 'translate-x-0']" />
-                </button>
-              </label>
-            </div>
-
             <!-- Demo -->
             <div class="rounded-xl p-5 pt-12" style="background-color: var(--color-surface-canvas); background-image: radial-gradient(circle, var(--color-dot-grid) 1.2px, transparent 1.2px); background-size: 22px 22px;">
               <CaseStudySection
                 id="ds-section-demo"
                 label="Demo Section"
-                :first="sectionFirst"
               >
                 <h3 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Section title goes here</h3>
-                <p class="text-[var(--color-text-secondary)] leading-relaxed">This is a live demo of CaseStudySection. Toggle <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">first</code> above to see how spacing changes.</p>
+                <p class="text-[var(--color-text-secondary)] leading-relaxed">This is a live demo of CaseStudySection.</p>
                 <p class="text-[var(--color-text-secondary)] leading-relaxed">A second paragraph showing internal spacing.</p>
               </CaseStudySection>
             </div>
@@ -1281,7 +1339,6 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
               <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;CaseStudySection
   id="overview"
   label="Overview"
-  :first="{{ sectionFirst }}"
 &gt;
   &lt;!-- section content --&gt;
 &lt;/CaseStudySection&gt;</pre>
@@ -1300,7 +1357,7 @@ const panelRef = ref&lt;HTMLElement | null&gt;(null)
                 <tbody class="divide-y divide-black/[0.04]">
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">id</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Used for scroll spy and anchor linking</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">label</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Floating brand label above the card</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">first</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Hero section: adds top margin, taller padding, looser internal spacing</td></tr>
+
                 </tbody>
               </table>
             </div>

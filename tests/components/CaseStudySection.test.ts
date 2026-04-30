@@ -1,6 +1,6 @@
 /**
  * Component tests for CaseStudySection.vue.
- * Covers: rendering, label, id, first prop, slot content.
+ * Covers: rendering, label, id, slot content.
  */
 
 import { describe, it, expect } from 'vitest'
@@ -30,19 +30,11 @@ describe('CaseStudySection', () => {
     expect(wrapper.text()).toContain('Hello world')
   })
 
-  it('applies first variant classes when first prop is set', () => {
-    const wrapper = mount(CaseStudySection, {
-      props: { id: 'hero', label: 'Hero', first: true },
-    })
-    expect(wrapper.classes()).toContain('mt-[35px]')
-    expect(wrapper.classes()).toContain('space-y-8')
-  })
-
-  it('applies standard variant classes when first is not set', () => {
+  it('applies standard spacing classes', () => {
     const wrapper = mount(CaseStudySection, {
       props: { id: 'problem', label: 'The Problem' },
     })
     expect(wrapper.classes()).toContain('space-y-4')
-    expect(wrapper.classes()).not.toContain('mt-[35px]')
+    expect(wrapper.classes()).toContain('sm:py-10')
   })
 })
