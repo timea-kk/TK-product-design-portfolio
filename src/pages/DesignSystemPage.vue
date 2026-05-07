@@ -449,7 +449,7 @@ const groupedComponents = computed(() => {
         <div class="w-full min-w-0 max-w-4xl space-y-24">
 
           <!-- ── Overview ── -->
-          <CaseStudySection id="overview" label="Overview" class="mt-[35px]">
+          <CaseStudySection id="overview" label="Overview" class="mt-20 lg:mt-8">
             <h1 id="ds-heading" class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Portfolio Design System</h1>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">I built this design system from scratch to experience owning one end to end: design, engineering, and documentation, solo. 2 foundation layers, 15 components, each documented here with a live demo, copy-paste code, and a props table.</p>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">I also built tools to make the work easier. The semantic token map on this page tracks every primitive-to-role mapping and where each token is used across components.</p>
