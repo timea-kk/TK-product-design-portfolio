@@ -113,7 +113,7 @@ function beforeAfterDissolve(newSrc: string, newStep: number) {
           <!-- ── Hero + TL;DR (merged) ── -->
           <!-- 40px flex padding-top + 35px margin-top = 75px from panel top -->
           <!-- label is 35px above card → label lands at 40px = nav sticky top ✓ -->
-          <CaseStudySection id="overview" label="Overview">
+          <CaseStudySection id="overview" label="Overview" class="mt-20 lg:mt-8">
 
             <!-- Title block -->
             <div class="space-y-4">
