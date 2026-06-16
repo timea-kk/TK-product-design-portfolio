@@ -318,7 +318,7 @@ const NAV_SECTIONS = [
               <li><a href="https://techcrunch.com/2024/04/22/ecosia-launches-a-cross-platform-browser-starts-an-affiliate-link-program/" target="_blank" rel="noopener" class="text-[var(--color-brand-primary)] underline hover:opacity-80">TechCrunch - Ecosia launches a cross-platform browser</a></li>
             </ul>
             <figure>
-              <video src="/project-pages/ecosia-browser/Browser.mp4" controls class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]"></video>
+              <video src="/project-pages/ecosia-browser/Browser.mp4" controls preload="none" class="w-full rounded-xl border-2 border-[var(--color-deep-maroon-700)]"></video>
               <figcaption>Ecosia Browser final landing page</figcaption>
             </figure>
           </CaseStudySection>
