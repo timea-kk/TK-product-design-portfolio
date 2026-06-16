@@ -329,6 +329,7 @@ const NAV_SECTIONS = [
                 <video
                   src="/project-pages/flora-design-system/Default card.mp4"
                   controls
+                  preload="none"
                   muted
                   playsinline
                   class="w-full rounded-xl"
