@@ -17,8 +17,7 @@ import CarouselNav from '@/components/CarouselNav.vue'
 import SegmentedControl from '@/components/SegmentedControl.vue'
 import TagPill from '@/components/TagPill.vue'
 import CardProject from '@/components/CardProject.vue'
-import ButtonOutline from '@/components/ButtonOutline.vue'
-import ButtonPrimary from '@/components/ButtonPrimary.vue'
+import Button from '@/components/Button.vue'
 import Dropdown from '@/components/Dropdown.vue'
 import { IconPalette, IconAccessible } from '@tabler/icons-vue'
 import FooterSection from '@/components/FooterSection.vue'
@@ -45,6 +44,9 @@ const NAV_SECTIONS = [
 ]
 
 const panelRef = ref<HTMLElement | null>(null)
+
+// Button demo state
+const buttonVariant = ref<'primary' | 'outline'>('primary')
 
 // CardCallout demo state
 const calloutStatMode = ref(false)
@@ -261,12 +263,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
     token:     { name: '--color-button-text-primary', hex: '#ffffff',               label: 'Button Text Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary', 'TimeaAgent'],
+    usedIn:    ['Button', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Neutrals', step: 'white', hex: '#ffffff', varName: '--color-white' },
-    token:     { name: '--color-surface-button',      hex: '#ffffff',               label: 'Surface Button', group: 'Surface' },
-    usedIn:    ['ButtonOutline', 'CardProject', 'CarouselNav'],
+    token:     { name: '--color-button-bg-outline',   hex: 'var(--color-surface-elevation-1)', label: 'Button BG Outline', group: 'Button' },
+    usedIn:    ['Button', 'CardProject'],
   },
   {
     primitive: { group: 'Neutrals', step: 'overlay', hex: 'rgba(0,0,0,0.03)', varName: '--color-surface-subtle' },
@@ -287,12 +289,12 @@ const SEMANTIC_MAP = [
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-brand-primary',       hex: 'var(--color-dusty-violet-500)', label: 'Brand Primary', group: 'Brand' },
-    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Dropdown', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'TimeaAgent'],
+    usedIn:    ['Button', 'CardCallout', 'CardInteractive', 'CardTimeline', 'CaseStudyNav', 'CaseStudySection', 'Dropdown', 'Header', 'Logo', 'RotatingDescriptor', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '500', hex: '#9966AA', varName: '--color-dusty-violet-500' },
     token:     { name: '--color-button-bg-primary',     hex: 'var(--color-dusty-violet-500)', label: 'Button BG Primary', group: 'Button' },
-    usedIn:    ['ButtonPrimary'],
+    usedIn:    ['Button'],
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
@@ -301,19 +303,19 @@ const SEMANTIC_MAP = [
   },
   {
     primitive: { group: 'Dusty Violet', step: '900', hex: '#312036', varName: '--color-dusty-violet-900' },
-    token:     { name: '--color-button-text',         hex: 'var(--color-dusty-violet-900)', label: 'Button Text', group: 'Button' },
-    usedIn:    ['ButtonOutline', 'ButtonPrimary', 'CardProject', 'CarouselNav', 'TimeaAgent'],
+    token:     { name: '--color-button-text-outline', hex: 'var(--color-dusty-violet-900)', label: 'Button Text Outline', group: 'Button' },
+    usedIn:    ['Button', 'CardProject', 'CarouselNav', 'TimeaAgent'],
   },
   // ── Golden Honey ─────────────────────────────────────────────────────────
   {
     primitive: { group: 'Golden Honey', step: '50',  hex: '#fefbf5', varName: '--color-golden-honey-50' },
     token:     { name: '--color-surface-elevation-1',    hex: 'var(--color-golden-honey-50)',  label: 'Surface Elevation 1', group: 'Surface' },
-    usedIn:    ['Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
+    usedIn:    ['CarouselNav', 'Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '200', hex: '#fae9c4', varName: '--color-golden-honey-200' },
     token:     { name: '--color-border',              hex: 'var(--color-golden-honey-200)', label: 'Border', group: 'Border' },
-    usedIn:    ['ButtonOutline', 'CardProject', 'CarouselNav', 'Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
+    usedIn:    ['Button', 'CardProject', 'CarouselNav', 'Dropdown', 'Header', 'SegmentedControl', 'TimeaAgent'],
   },
   {
     primitive: { group: 'Golden Honey', step: '400', hex: '#f2c96c', varName: '--color-golden-honey-400' },
@@ -384,8 +386,7 @@ const groupedPrimitives = computed(() => {
 })
 
 const COMPONENT_GROUP_MAP: Record<string, string> = {
-  ButtonOutline:     'Buttons',
-  ButtonPrimary:     'Buttons',
+  Button:            'Buttons',
   CardCallout:       'Cards',
   CardInteractive:   'Cards',
   CardProject:       'Cards',
@@ -741,8 +742,22 @@ testing_rules:
             <h2 class="font-heading text-2xl font-bold text-[var(--color-text-primary)]">Button</h2>
             <p class="text-[var(--color-text-secondary)] leading-relaxed">The shared button component used across the portfolio. Supports text-only, icon+text, and icon-only layouts, with default, hover, active, and disabled states.</p>
 
-            <!-- ButtonPrimary -->
-            <h3 class="text-base font-semibold text-[var(--color-text-primary)]">ButtonPrimary</h3>
+            <!-- Controls -->
+            <div class="flex flex-wrap gap-6 pt-2">
+              <label class="flex items-center gap-3 text-sm text-[var(--color-text-secondary)] cursor-pointer select-none">
+                <code class="font-mono bg-[var(--color-surface-subtle)] px-1 rounded text-xs">outline</code>
+                <button
+                  type="button"
+                  role="switch"
+                  :aria-checked="buttonVariant === 'outline'"
+                  @click="buttonVariant = buttonVariant === 'outline' ? 'primary' : 'outline'"
+                  :class="['relative inline-flex h-5 w-9 shrink-0 rounded-full border-2 border-transparent transition-colors duration-200', buttonVariant === 'outline' ? 'bg-[var(--color-brand-primary)]' : 'bg-[var(--color-surface-subtle)]']"
+                >
+                  <span :class="['pointer-events-none block h-4 w-4 rounded-full bg-[var(--color-surface-decorative)] shadow transition-transform duration-200', buttonVariant === 'outline' ? 'translate-x-4' : 'translate-x-0']" />
+                </button>
+              </label>
+            </div>
+
             <div class="overflow-x-auto">
             <div class="rounded-xl border border-[var(--color-surface-subtle)] overflow-hidden min-w-[700px]">
               <div class="grid grid-cols-5 bg-[var(--color-surface-subtle)] border-b border-[var(--color-surface-subtle)]">
@@ -754,29 +769,29 @@ testing_rules:
               </div>
               <div class="grid grid-cols-5">
                 <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonPrimary>Label</ButtonPrimary>
-                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
-                  <ButtonPrimary icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                  <Button :variant="buttonVariant">Label</Button>
+                  <Button :variant="buttonVariant">&#8592; Previous</Button>
+                  <Button :variant="buttonVariant" icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
-                <div class="px-5 py-6 flex flex-col gap-5 items-start [&_button]:opacity-90">
-                  <ButtonPrimary>Label</ButtonPrimary>
-                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
-                  <ButtonPrimary icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                <div :class="['px-5 py-6 flex flex-col gap-5 items-start', buttonVariant === 'outline' ? '[&_button]:text-[var(--color-brand-primary)]' : '[&_button]:opacity-90']">
+                  <Button :variant="buttonVariant">Label</Button>
+                  <Button :variant="buttonVariant">&#8592; Previous</Button>
+                  <Button :variant="buttonVariant" icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
                 <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonPrimary active>Label</ButtonPrimary>
-                  <ButtonPrimary active>&#8592; Previous</ButtonPrimary>
-                  <ButtonPrimary icon-only active aria-label="Active"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                  <Button :variant="buttonVariant" active>Label</Button>
+                  <Button :variant="buttonVariant" active>&#8592; Previous</Button>
+                  <Button :variant="buttonVariant" icon-only active aria-label="Active"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
                 <div class="px-5 py-6 flex flex-col gap-5 items-start [&_button]:ring-2 [&_button]:ring-[var(--color-brand-primary)] [&_button]:ring-offset-2">
-                  <ButtonPrimary>Label</ButtonPrimary>
-                  <ButtonPrimary>&#8592; Previous</ButtonPrimary>
-                  <ButtonPrimary icon-only aria-label="Focus"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                  <Button :variant="buttonVariant">Label</Button>
+                  <Button :variant="buttonVariant">&#8592; Previous</Button>
+                  <Button :variant="buttonVariant" icon-only aria-label="Focus"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
                 <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonPrimary disabled>Label</ButtonPrimary>
-                  <ButtonPrimary disabled>&#8592; Previous</ButtonPrimary>
-                  <ButtonPrimary icon-only disabled aria-label="Disabled"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonPrimary>
+                  <Button :variant="buttonVariant" disabled>Label</Button>
+                  <Button :variant="buttonVariant" disabled>&#8592; Previous</Button>
+                  <Button :variant="buttonVariant" icon-only disabled aria-label="Disabled"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
               </div>
             </div>
@@ -794,10 +809,12 @@ testing_rules:
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-[var(--color-surface-subtle)]">
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">variant</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'primary' | 'outline'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Visual style. Defaults to 'primary'.</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">icon-only</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Square padding (p-2.5) for icon-only layout.</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Reduces opacity to indicate a selected/pressed state.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Indicates a selected/pressed state. Visual treatment depends on variant.</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">disabled</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Reduces opacity and blocks interaction.</td></tr>
                   <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">type</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">'button' | 'submit' | 'reset'</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">HTML button type attribute. Defaults to 'button'.</td></tr>
+                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">tag</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">string</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Render as a different element/component while keeping identical styling.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -805,77 +822,11 @@ testing_rules:
 
             <!-- Code -->
             <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;ButtonPrimary&gt;Label&lt;/ButtonPrimary&gt;
-&lt;ButtonPrimary icon-only aria-label="..."&gt;&lt;IconSvg /&gt;&lt;/ButtonPrimary&gt;
-&lt;ButtonPrimary :active="true"&gt;Label&lt;/ButtonPrimary&gt;
-&lt;ButtonPrimary :disabled="true"&gt;Label&lt;/ButtonPrimary&gt;</pre>
-            </div>
-
-            <!-- ButtonOutline -->
-            <h3 class="text-base font-semibold text-[var(--color-text-primary)]">ButtonOutline</h3>
-            <div class="overflow-x-auto">
-            <div class="rounded-xl border border-[var(--color-surface-subtle)] overflow-hidden min-w-[700px]">
-              <div class="grid grid-cols-5 bg-[var(--color-surface-subtle)] border-b border-[var(--color-surface-subtle)]">
-                <span class="px-5 py-2 text-xs font-semibold text-[var(--color-text-primary)]">Default</span>
-                <span class="px-5 py-2 text-xs font-semibold text-[var(--color-text-primary)]">Hover</span>
-                <span class="px-5 py-2 text-xs font-semibold text-[var(--color-text-primary)]">Active</span>
-                <span class="px-5 py-2 text-xs font-semibold text-[var(--color-text-primary)]">Focus</span>
-                <span class="px-5 py-2 text-xs font-semibold text-[var(--color-text-primary)]">Disabled</span>
-              </div>
-              <div class="grid grid-cols-5">
-                <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonOutline>Label</ButtonOutline>
-                  <ButtonOutline>&#8592; Previous</ButtonOutline>
-                  <ButtonOutline icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
-                </div>
-                <div class="px-5 py-6 flex flex-col gap-5 items-start [&_button]:text-[var(--color-brand-primary)]">
-                  <ButtonOutline>Label</ButtonOutline>
-                  <ButtonOutline>&#8592; Previous</ButtonOutline>
-                  <ButtonOutline icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
-                </div>
-                <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonOutline active>Label</ButtonOutline>
-                  <ButtonOutline active>&#8592; Previous</ButtonOutline>
-                  <ButtonOutline icon-only active aria-label="Active"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
-                </div>
-                <div class="px-5 py-6 flex flex-col gap-5 items-start [&_button]:ring-2 [&_button]:ring-[var(--color-brand-primary)] [&_button]:ring-offset-2">
-                  <ButtonOutline>Label</ButtonOutline>
-                  <ButtonOutline>&#8592; Previous</ButtonOutline>
-                  <ButtonOutline icon-only aria-label="Focus"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
-                </div>
-                <div class="px-5 py-6 flex flex-col gap-5 items-start">
-                  <ButtonOutline disabled>Label</ButtonOutline>
-                  <ButtonOutline disabled>&#8592; Previous</ButtonOutline>
-                  <ButtonOutline icon-only disabled aria-label="Disabled"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></ButtonOutline>
-                </div>
-              </div>
-            </div>
-
-            <!-- Props -->
-            <div class="rounded-xl border border-[var(--color-surface-subtle)] overflow-hidden">
-              <table class="w-full text-left border-collapse">
-                <thead class="bg-[var(--color-surface-subtle)]">
-                  <tr>
-                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Prop</th>
-                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Type</th>
-                    <th class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)]">Description</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[var(--color-surface-subtle)]">
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">icon-only</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Square padding (p-2.5) for icon-only layout.</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">active</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Forces brand color on the text to indicate a selected state.</td></tr>
-                  <tr><td class="px-4 py-3 font-mono text-xs text-[var(--color-text-primary)]">disabled</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">boolean</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Reduces opacity and blocks interaction.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            </div><!-- /overflow-x-auto ButtonOutline state -->
-
-            <!-- Code -->
-            <div class="rounded-xl bg-[var(--color-text-primary)] px-5 py-4 overflow-x-auto">
-              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;ButtonOutline&gt;Label&lt;/ButtonOutline&gt;
-&lt;ButtonOutline icon-only aria-label="..."&gt;&lt;IconSvg /&gt;&lt;/ButtonOutline&gt;
-&lt;ButtonOutline :active="true"&gt;Label&lt;/ButtonOutline&gt;
-&lt;ButtonOutline :disabled="true"&gt;Label&lt;/ButtonOutline&gt;</pre>
+              <pre class="text-xs text-[var(--color-text-white)] leading-relaxed font-mono whitespace-pre">&lt;Button&gt;Label&lt;/Button&gt;
+&lt;Button variant="outline"&gt;Label&lt;/Button&gt;
+&lt;Button icon-only aria-label="..."&gt;&lt;IconSvg /&gt;&lt;/Button&gt;
+&lt;Button :active="true"&gt;Label&lt;/Button&gt;
+&lt;Button :disabled="true"&gt;Label&lt;/Button&gt;</pre>
             </div>
           </CaseStudySection>
 

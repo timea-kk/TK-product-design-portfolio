@@ -194,8 +194,8 @@ describe('CardProject', () => {
 
   it('applies neutral button colors when primaryCta is omitted', () => {
     const wrapper = mount(CardProject, { props: BASE_PROPS })
-    expect(wrapper.html()).toContain('color-surface-button')
-    expect(wrapper.html()).toContain('color-button-text')
+    expect(wrapper.html()).toContain('color-button-bg-outline')
+    expect(wrapper.html()).toContain('color-button-text-outline')
     expect(wrapper.html()).not.toContain('color-button-bg-primary')
   })
 
@@ -251,7 +251,7 @@ describe('CardProject', () => {
     expect(wrapper.html()).toContain('cursor-pointer')
   })
 
-  it('renders ButtonOutline CTA with hover states when noHover is true', () => {
+  it('renders outline-variant CTA with hover states when noHover is true', () => {
     const wrapper = mount(CardProject, { props: { ...BASE_PROPS, noHover: true } })
     expect(wrapper.html()).toContain('hover:text-[var(--color-brand-primary)]')
     expect(wrapper.html()).toContain('hover:underline')

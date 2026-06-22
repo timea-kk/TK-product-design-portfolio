@@ -43,7 +43,7 @@ component_reuse_rules:
 component_api_rules:
   - "Before removing a prop: remove it from the component, all usages across pages, the SEMANTIC_MAP if referenced, the demo controls, the props table, the code snippet, and the test"
   - "Before adding a prop: check if it belongs in the component or if it's a one-off styling concern better handled by a class"
-  - "Props should be boolean flags or typed values — never strings that act as enums unless there are 3+ variants"
+  - "Props should be boolean flags or typed values for one-off concerns. A fixed, mutually-exclusive set of visual styles (e.g. button variant) belongs in a string enum prop on a single component, not split across separate components"
   - "Demo controls must match the component's actual props exactly — no controls for props that don't exist"
 
 ds_page_rules:
