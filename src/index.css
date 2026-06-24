@@ -76,8 +76,8 @@
     --color-highlight: rgba(153, 102, 170, 0.10);
     --color-button-bg-primary: var(--color-brand-primary);
     --color-button-text-primary: #ffffff;
-    --color-surface-button: #ffffff;
-    --color-button-text: var(--color-dusty-violet-900);
+    --color-button-bg-outline: var(--color-surface-elevation-1);
+    --color-button-text-outline: var(--color-dusty-violet-900);
     --color-surface-strong: var(--color-deep-maroon-100);
     --color-surface-sticky: var(--color-golden-honey-400);
     --color-surface-sticky-label: var(--color-golden-honey-500);

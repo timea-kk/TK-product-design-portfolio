@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonOutline from '@/components/ButtonOutline.vue'
+import Button from '@/components/Button.vue'
 
 defineProps<{
   step: number
@@ -16,13 +16,13 @@ defineEmits<{
 <template>
   <div class="flex items-center gap-3">
     <div class="flex-1 flex justify-start">
-      <ButtonOutline :disabled="step === 0 && !infinite" @click="$emit('prev')">&#8592; Previous</ButtonOutline>
+      <Button variant="outline" :disabled="step === 0 && !infinite" @click="$emit('prev')">&#8592; Previous</Button>
     </div>
-    <span class="px-5 py-2.5 rounded-full bg-[var(--color-surface-button)] border border-[var(--color-border)] shadow-sm text-sm font-medium text-[var(--color-button-text)] tabular-nums">
+    <span class="px-5 py-2.5 rounded-full bg-[var(--color-surface-elevation-1)] border border-[var(--color-border)] shadow-sm text-sm font-medium text-[var(--color-button-text-outline)] tabular-nums">
       {{ step + 1 }} / {{ total }}
     </span>
     <div class="flex-1 flex justify-end">
-      <ButtonOutline :disabled="step === total - 1 && !infinite" @click="$emit('next')">Next &#8594;</ButtonOutline>
+      <Button variant="outline" :disabled="step === total - 1 && !infinite" @click="$emit('next')">Next &#8594;</Button>
     </div>
   </div>
 </template>

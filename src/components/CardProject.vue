@@ -10,8 +10,7 @@
 <script setup lang="ts">
 import { computed, resolveComponent } from 'vue'
 import TagPill from '@/components/TagPill.vue'
-import ButtonOutline from '@/components/ButtonOutline.vue'
-import ButtonPrimary from '@/components/ButtonPrimary.vue'
+import Button from '@/components/Button.vue'
 import { IconExternalLink } from '@tabler/icons-vue'
 import { useMediaQuery } from '@/composables/useMediaQuery'
 
@@ -78,12 +77,12 @@ const effectivePosition = computed(() =>
           <TagPill v-for="tag in tags" :key="tag" :label="tag" />
         </div>
       </div>
-      <component
-        :is="primaryCta ? ButtonPrimary : ButtonOutline"
+      <Button
+        :variant="primaryCta ? 'primary' : 'outline'"
         v-if="!hideCta"
         tag="span"
         :class="['self-start', noHover && 'cursor-pointer']"
-      >{{ ctaLabel ?? 'Read case study' }} &rarr;</component>
+      >{{ ctaLabel ?? 'Read case study' }} &rarr;</Button>
     </div>
 
     <!-- Image / video area -->
