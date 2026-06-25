@@ -24,6 +24,7 @@ import FooterSection from '@/components/FooterSection.vue'
 
 const NAV_SECTIONS = [
   { id: 'overview',           label: 'Overview',         group: 'Foundations' },
+  { id: 'stats',              label: 'Stats',            group: 'Foundations' },
   { id: 'colors',             label: 'Colors',           group: 'Foundations' },
   { id: 'typography',         label: 'Typography',       group: 'Foundations' },
   { id: 'button',             label: 'Button',           group: 'Components' },
@@ -511,6 +512,36 @@ testing_rules:
               </div>
             </details>
 
+          </CaseStudySection>
+
+          <!-- ── Stats ── -->
+          <CaseStudySection id="stats" label="Stats">
+            <h2 class="font-heading text-xl font-bold text-[var(--color-text-primary)]">Stats</h2>
+            <p class="text-[var(--color-text-secondary)] leading-relaxed">A health assessment of this design system across six dimensions, run via the <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs whitespace-nowrap">design-system-ops</code> system-health skill.</p>
+
+            <CardCallout label="Current state">
+              This is a component library, not a multi-team design system: one repo, one maintainer, unpublished. Token discipline, decision-making, documentation, and AI-readiness are all strong. <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs whitespace-nowrap">agents/design-system.yml</code> encodes the process rules directly, so they don't rely on memory, and every component now has a standalone LLM-readable doc in <code class="font-mono bg-[var(--color-surface-subtle)] px-1.5 py-0.5 rounded text-xs whitespace-nowrap">docs/components/</code>. The next lever is recurring audits, not more coverage.
+            </CardCallout>
+
+            <div class="rounded-xl bg-[var(--color-surface-subtle)] overflow-hidden overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-[var(--color-surface-subtle)]">
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Dimension</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Status</th>
+                    <th class="text-left px-4 py-3 text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-primary)]">Key finding</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-black/[0.04]">
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Tokens</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">🟢 Strong</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">56 CSS custom properties, clean primitive-to-semantic structure, single source of truth</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Components</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">🟡 Functional</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">21 components; 7 use hardcoded color for decorative content, not systemic token bypass</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Documentation</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">🟢 Strong</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">This page documents every component live, and all 21 have a standalone doc file in docs/components/</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Decision-making</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">🟢 Strong</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Token, component, and API change rules are encoded in agents/design-system.yml, not left to memory</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">AI readiness</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">🟢 Strong</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">LLM-readable docs exist for all 21 components, consistent six-section format</td></tr>
+                  <tr><td class="px-4 py-3 text-xs text-[var(--color-text-primary)]">Platform maturity</td><td class="px-4 py-3 text-xs font-semibold text-[var(--color-text-primary)] whitespace-nowrap">⚪ N/A</td><td class="px-4 py-3 text-xs text-[var(--color-text-secondary)]">Unpublished, single-repo project, not distributed as a package</td></tr>
+                </tbody>
+              </table>
+            </div>
           </CaseStudySection>
 
           <!-- ── Foundations ── -->

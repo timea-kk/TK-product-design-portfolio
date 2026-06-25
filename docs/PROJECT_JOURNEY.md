@@ -326,12 +326,25 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 
 ---
 
+## 📍 Milestone 27: Making the design system AI-ready
+
+**What we built**
+- Consolidated ButtonPrimary/ButtonOutline into a single Button component with a `variant` prop, then wrote its LLM-readable doc (component/usage/visual/behavior/props/accessibility/aiHints/examples/composition) as the template for the rest.
+- Installed the design-system-ops skill pack, ran a system-health assessment, and used the AI-readiness gap it surfaced (1 of 21 components documented) to roll the same doc format out to the remaining 20 components — plus a live Stats section on the Design System page showing the health table and a current-state summary.
+
+**What went wrong**
+- The first health check correctly flagged the gap as Weak — closing it meant reading each component's actual source and usage across the codebase to write accurate docs, not templating guesses.
+
+**Outcome:** ✅ All 21 components documented in `docs/components/`. AI readiness and Documentation both moved to Strong on re-assessment.
+
+---
+
 ## 📍 Where we are now — v1 complete
 
 - **Site:** Full whiteboard-themed portfolio. Four case studies, Design System page, and a complete homepage with testimonials, side projects, and decorations. Shared footer and cross-linked See also cards on every page. Chat widget with Gemini API and local fallback.
 - **Stack:** Vue 3 + TypeScript + Pinia + Tailwind + Vite. Vue Router v4. Vitest + @vue/test-utils. ESLint 9 + Prettier. GSAP.
 - **Deploy:** GitHub + Vercel; 5-job CI/CD pipeline. 291 tests, 100% branch coverage enforced by pre-commit hook and Codecov.
-- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `README.md`. Agent config in `agents/`. Claude Code session rules in `~/.claude/`.
+- **Docs:** `PROJECT_BRIEF.md`, `CV_CONTEXT.md`, `PROJECT_JOURNEY.md`, `AGENT_SETUP.md`, `README.md`, plus LLM-readable per-component docs in `docs/components/` (21 of 21). Agent config in `agents/`. Claude Code session rules in `~/.claude/`.
 
 ---
 
@@ -341,4 +354,4 @@ Build journey for **Timea Konya**'s portfolio — what we built, what broke, and
 - What we built / what went wrong / fix / outcome (always last).
 - Keep it scannable. Max 2 bullet points per section.
 
-*Last updated: Apr 2026. v1 shipped.*
+*Last updated: Jun 2026. v1 shipped.*

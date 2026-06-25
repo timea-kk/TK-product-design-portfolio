@@ -15,7 +15,7 @@ vi.mock('gsap', () => {
 })
 
 const NAV_SECTION_IDS = [
-  'overview', 'colors', 'typography',
+  'overview', 'stats', 'colors', 'typography',
   'button',
   'card-callout', 'card-interactive', 'card-project', 'card-timeline',
   'carousel-nav', 'case-study-nav', 'case-study-section', 'dropdown', 'header', 'image-carousel',
