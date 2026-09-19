@@ -131,7 +131,7 @@ const PROJECTS = [
         <div class="absolute z-10" style="width: 5.5rem; height: 2.1rem; top: -1rem; left: 50%; transform: translateX(-50%) rotate(-3deg); background: rgba(210, 228, 255, 0.68); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.10);"></div>
         <div class="absolute inset-0 flex flex-col" style="background: var(--color-golden-honey-400); box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.08), 4px 10px 20px rgba(0, 0, 0, 0.18), 8px 24px 48px rgba(0, 0, 0, 0.12);">
           <div class="relative flex-1 overflow-hidden mx-9 mt-9 mb-9">
-            <img src="/main-page/timea.webp" alt="Timea Konya" class="w-full h-full object-cover object-top" />
+            <img src="/main-page/timea.webp" alt="Timea Konya" fetchpriority="high" class="w-full h-full object-cover object-top" />
             <div class="absolute inset-0 border-4 border-white pointer-events-none"></div>
           </div>
         </div>
@@ -414,7 +414,7 @@ const PROJECTS = [
               <div class="flex flex-col gap-2">
                 <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">LinkedIn</a>
                 <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">GitHub</a>
-                <a href="https://drive.google.com/file/d/1AM8_Ibyub_9inWriySCqUcdfbBm2mOtJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Resume</a>
+                <a href="https://drive.google.com/file/d/1GBbJQW1T-ufjRy_Y8yWAtzHtnZvHwFic/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Resume</a>
               </div>
             </div>
             <div class="flex flex-col gap-3">
