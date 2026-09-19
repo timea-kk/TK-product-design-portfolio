@@ -31,7 +31,7 @@
           <div class="flex flex-col gap-2">
             <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">LinkedIn</a>
             <a href="#" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">GitHub</a>
-            <a href="https://drive.google.com/file/d/1AM8_Ibyub_9inWriySCqUcdfbBm2mOtJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Resume</a>
+            <a href="https://drive.google.com/file/d/1GBbJQW1T-ufjRy_Y8yWAtzHtnZvHwFic/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-lg text-[var(--color-text-secondary)] hover:underline hover:text-[var(--color-brand-primary)] transition-colors">Resume</a>
           </div>
         </div>
         <div class="flex flex-col gap-3">

@@ -106,7 +106,7 @@ function selectTheme(id: string) {
       </a>
 
       <a
-        href="https://drive.google.com/file/d/1AM8_Ibyub_9inWriySCqUcdfbBm2mOtJ/view?usp=sharing"
+        href="https://drive.google.com/file/d/1GBbJQW1T-ufjRy_Y8yWAtzHtnZvHwFic/view?usp=sharing"
         target="_blank"
         rel="noopener noreferrer"
         class="rounded-full px-4 py-1.5 text-sm font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-brand-primary)] focus-visible:outline-offset-2"

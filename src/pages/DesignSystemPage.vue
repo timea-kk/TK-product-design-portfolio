@@ -804,7 +804,7 @@ testing_rules:
                   <Button :variant="buttonVariant">&#8592; Previous</Button>
                   <Button :variant="buttonVariant" icon-only aria-label="Default"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
                 </div>
-                <div :class="['px-5 py-6 flex flex-col gap-5 items-start', buttonVariant === 'outline' ? '[&_button]:text-[var(--color-brand-primary)]' : '[&_button]:opacity-90']">
+                <div :class="['px-5 py-6 flex flex-col gap-5 items-start', buttonVariant === 'outline' ? '[&_button]:text-[var(--color-brand-primary)] [&_button]:underline' : '[&_button]:opacity-90 [&_button]:underline']">
                   <Button :variant="buttonVariant">Label</Button>
                   <Button :variant="buttonVariant">&#8592; Previous</Button>
                   <Button :variant="buttonVariant" icon-only aria-label="Hover"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></Button>
